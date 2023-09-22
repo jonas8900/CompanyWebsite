@@ -40,6 +40,12 @@ h1 {
 
 }
 
+h2 {
+  font-size: var(--font-size-subtitle);
+  font-weight: 700;
+  color: var(--color-fourth);
+}
+
 p {
   font-size: var(--font-size-text);
   font-weight: 400;

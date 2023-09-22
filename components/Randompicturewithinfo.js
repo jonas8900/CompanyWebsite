@@ -25,7 +25,7 @@ export default function Randompicture() {
   }, []);
 
   return (
-    <>
+    <StyledWrapper>
       <StyledProgressSection>
         <StyledProgressButton1
           $counter={counter}
@@ -70,13 +70,17 @@ export default function Randompicture() {
           <Greenbutton>Kundenerfahrungen</Greenbutton>
         </StyledCardSection>
       </StyledCardWrapper>
-    </>
+    </StyledWrapper>
   );
 }
 
 const Left = keyframes`
 0% { opacity: 0;}
 100% { opacity: 1; }
+`;
+
+const StyledWrapper = styled.main`
+  margin-bottom: 12rem;
 `;
 
 const StyledRandomImage = styled(Image)`
@@ -86,7 +90,7 @@ const StyledRandomImage = styled(Image)`
   top: 0;
   object-fit: cover;
   z-index: 0;
-  animation: ${({ counter }) => counter >= 1 && Left} 2s ease;
+  animation: ${({ counter }) => counter >= 1 && Left} 1.5s ease;
 `;
 
 const StyledImageContainer = styled.section`
