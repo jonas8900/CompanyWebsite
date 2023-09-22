@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Greenbutton from "./GreenButton";
 import { useEffect, useState } from "react";
 
@@ -48,15 +48,17 @@ export default function Randompicture() {
           onClick={() => handleClickedPicture(5)}
         ></StyledProgressButton5>
       </StyledProgressSection>
-      <StyledRandomImage
-        key={counter}
-        src={`/Random-Kranbild-${counter}.jpg`}
-        alt="Zufälliges Bild einer Krananlage"
-        width={390}
-        height={219}
-        counter={counter}
-        priority={true}
-      />
+      <StyledImageContainer>
+        <StyledRandomImage
+          key={counter}
+          src={`/Random-Kranbild-${counter}.jpg`}
+          alt="Zufälliges Bild einer Krananlage"
+          width={390}
+          height={219}
+          counter={counter}
+          priority={true}
+        />
+      </StyledImageContainer>
 
       <StyledCardWrapper>
         <StyledCardSection>
@@ -72,11 +74,25 @@ export default function Randompicture() {
   );
 }
 
+const Left = keyframes`
+0% { opacity: 0;}
+100% { opacity: 1; }
+`;
+
 const StyledRandomImage = styled(Image)`
-  position: relative;
   height: 100%;
   width: 100%;
+  position: absolute;
+  top: 0;
+  object-fit: cover;
   z-index: 0;
+  animation: ${({ counter }) => counter >= 1 && Left} 2s ease;
+`;
+
+const StyledImageContainer = styled.section`
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
 `;
 
 const StyledCardSection = styled.article`
