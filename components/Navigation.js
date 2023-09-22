@@ -28,47 +28,61 @@ export default function Navigation() {
               <>
                 <StyledMenuIcon
                   icon={faX}
-                  menuClicked={menuClicked}
-                  animationDone={animationDone}
+                  menuclicked={menuClicked ? "true" : "false"}
+                  animationdone={animationDone ? "true" : "false"}
                 />
               </>
             ) : (
               <StyledMenuIcon
                 icon={faBars}
-                menuClicked={menuClicked}
-                animationDone={animationDone}
+                menuclicked={menuClicked ? "true" : "false"}
+                animationdone={animationDone ? "true" : "false"}
               />
             )}
           </StyledShowOrHideMenuButton>
           <StyledShowOrHideSearchButton onClick={handleChangeSearchButton}>
-            <StyledIconDescription>Suche</StyledIconDescription>
-            <StyledSearchIcon icon={faSearch} searchClicked={searchClicked} />
-          </StyledShowOrHideSearchButton>
-          <StyledInputSection>
             {searchClicked ? (
               <>
-                <label id="suche"></label>
-                <input id="suche" type="text" placeholder="Suche" />
+                <StyledIconDescription>schließen</StyledIconDescription>
+                <StyledSearchIcon
+                  icon={faX}
+                  searchclicked={searchClicked ? "true" : "false"}
+                />
               </>
             ) : (
-              <StyledLogoSection>
-                <Logo />
-              </StyledLogoSection>
+              <>
+                <StyledIconDescription>Suche</StyledIconDescription>
+                <StyledSearchIcon
+                  icon={faSearch}
+                  searchclicked={searchClicked ? "true" : "false"}
+                />
+              </>
             )}
-          </StyledInputSection>
+          </StyledShowOrHideSearchButton>
+
+          {searchClicked ? (
+            <StyledInputSection>
+              <label id="suche"></label>
+              <Fade>
+                <StyledSearchInput id="suche" type="text" placeholder="Suche" />
+              </Fade>
+            </StyledInputSection>
+          ) : (
+            <StyledLogoSection>
+              <Fade>
+                <Logo />
+              </Fade>
+            </StyledLogoSection>
+          )}
         </StyledNavigationSection>
 
         {menuClicked && (
           <StyledUnsortedList>
             <Fade cascade damping={0.1}>
               <StyledListItems>Start</StyledListItems>
-
               <StyledListItems>Unsere Produkte</StyledListItems>
-
               <StyledListItems>Wer wir sind</StyledListItems>
-
               <StyledListItems>Karriere</StyledListItems>
-
               <StyledListItems>Kontakt</StyledListItems>
             </Fade>
           </StyledUnsortedList>
@@ -109,8 +123,8 @@ const StyledMenuIcon = styled(FontAwesomeIcon)`
   width: 2.2rem;
   height: 2.2rem;
   color: white;
-  animation: ${({ animationDone, menuClicked }) =>
-      animationDone ? (menuClicked ? Rotateforwards : "none") : FadeIn}
+  animation: ${({ animationdone, menuclicked }) =>
+      animationdone ? (menuclicked ? Rotateforwards : "none") : FadeIn}
     0.7s ease;
   transition: all 0.7s ease;
 `;
@@ -127,7 +141,22 @@ const StyledIconDescription = styled.p`
   font-size: var(--font-size-text);
 `;
 
-const StyledNavigationBar = styled.nav``;
+const StyledSearchInput = styled.input`
+  height: 2rem;
+  width: 13rem;
+  border-radius: 10px;
+  border: none;
+`;
+
+const StyledInputSection = styled.section`
+  grid-area: 1 / 2 / 2 / 3;
+  text-align: center;
+`;
+
+const StyledNavigationBar = styled.nav`
+  width: 100%;
+  height: 100%;
+`;
 
 const StyledNavigationSection = styled.section`
   display: grid;
@@ -169,10 +198,6 @@ const StyledListItems = styled.li`
     background-color: var(--color-third);
     color: var(--color-fourth);
   }
-`;
-
-const StyledInputSection = styled.section`
-  grid-area: 1 / 2 / 2 / 3;
 `;
 
 const StyledLogoSection = styled.section`
