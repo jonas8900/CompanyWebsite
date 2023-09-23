@@ -1,15 +1,19 @@
-import { faComment, faX } from "@fortawesome/free-solid-svg-icons";
+import {
+  faComment,
+  faEnvelope,
+  faPhone,
+  faX,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export default function SpeechBubbleHelp() {
   const [helpButtonClicked, setHelpButtonClicked] = useState(false);
 
   function handleHelpButton() {
     setHelpButtonClicked(!helpButtonClicked);
-    console.log(helpButtonClicked);
   }
 
   return (
@@ -22,6 +26,14 @@ export default function SpeechBubbleHelp() {
                 <StyledSubHeadline>
                   Rufen Sie jetzt unseren Berater an !
                 </StyledSubHeadline>
+                <StyledParagraph>
+                  <StyledInfoIcons icon={faPhone} />
+                  <b>0511 27789680</b>
+                </StyledParagraph>
+                <StyledParagraph>
+                  <StyledInfoIcons icon={faEnvelope} />
+                  <b>info@emb-schulze.de</b>
+                </StyledParagraph>
                 <StyledClosedHelp icon={faX} onClick={handleHelpButton} />
               </StyledArticle>
             </Fade>
@@ -31,7 +43,10 @@ export default function SpeechBubbleHelp() {
             <StyledButton onClick={handleHelpButton}>
               <StyledHeadline>Hilfe?</StyledHeadline>
 
-              <StyledSpeechBubble icon={faComment} />
+              <StyledSpeechBubble
+                icon={faComment}
+                helpbuttonclicked={helpButtonClicked ? "true" : "false"}
+              />
             </StyledButton>
           </>
         )}
@@ -39,6 +54,11 @@ export default function SpeechBubbleHelp() {
     </>
   );
 }
+
+const FadeIn = keyframes`
+0% {opacity: 0;}
+100% {opacity: 1;}
+`;
 
 const StyledBubbleWrapper = styled.section`
   position: fixed;
@@ -55,12 +75,16 @@ const StyledSpeechBubble = styled(FontAwesomeIcon)`
   left: 0rem;
   z-index: 3;
   color: var(--color-fourth);
+  animation: ${({ helpbuttonclicked }) => helpbuttonclicked && FadeIn} 1.5s ease;
 `;
 
 const StyledClosedHelp = styled(FontAwesomeIcon)`
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid black;
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: white;
 `;
 
 const StyledHeadline = styled.h1`
@@ -85,8 +109,22 @@ const StyledButton = styled.button`
 const StyledArticle = styled.article`
   background-color: var(--color-fourth);
   width: 20rem;
-  height: 6rem;
+  height: 7rem;
   border: 1px solid black;
 `;
 
-const StyledSubHeadline = styled.h2``;
+const StyledSubHeadline = styled.h2`
+  color: white;
+`;
+
+const StyledParagraph = styled.p`
+  color: white;
+  text-align: center;
+`;
+
+const StyledInfoIcons = styled(FontAwesomeIcon)`
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
+  text-align: center;
+`;
