@@ -73,18 +73,26 @@ const StyledSpeechBubble = styled(FontAwesomeIcon)`
   height: 4rem;
   bottom: 2.5rem;
   left: 0rem;
-  z-index: 3;
+  z-index: 99;
   color: var(--color-fourth);
   animation: ${({ helpbuttonclicked }) => helpbuttonclicked && FadeIn} 1.5s ease;
 `;
 
 const StyledClosedHelp = styled(FontAwesomeIcon)`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1rem;
+  height: 1rem;
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 0.5rem;
+  top: 0.5rem;
   color: white;
+  border: 1px solid white;
+
+  &:hover {
+    color: red;
+  }
+  &:active {
+    color: red;
+  }
 `;
 
 const StyledHeadline = styled.h1`
@@ -92,7 +100,7 @@ const StyledHeadline = styled.h1`
   font-size: var(--font-size-subtitle);
   bottom: -0.6rem;
   left: 0.1rem;
-  z-index: 4;
+  z-index: 999;
   color: white;
   font-weight: 300;
 `;
