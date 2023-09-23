@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import GreenButton from "./GreenButton";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
+import WindowCard from "./WindowCard";
 
 export default function Introtext() {
   const [windowAlert, setWindowAlert] = useState(0);
@@ -34,22 +35,16 @@ export default function Introtext() {
             </GreenButton>
             {windowAlert === 1 && (
               <>
-                <StyledWindow>
-                  <StyledInformationCard>
-                    <h3>schnell</h3>
-                    <p>
-                      Bei uns wissen wir, dass Zeit buchstäblich Geld bedeutet,
+                <WindowCard
+                  headline={"schnell"}
+                  infotext={`Bei uns wissen wir, dass Zeit buchstäblich Geld bedeutet,
                       insbesondere in der Welt des Maschinenbaus und der
                       Fördertechnik. Deshalb haben wir uns einen Ruf als
                       diejenigen erarbeitet, die nicht nur verstehen, wie man
                       Krananlagen repariert und wartet, sondern dies auch in
-                      Rekordzeit erledigen.
-                    </p>
-                    <GreenButton onClick={handleCloseWindow}>
-                      Schließen
-                    </GreenButton>
-                  </StyledInformationCard>
-                </StyledWindow>
+                      Rekordzeit erledigen.`}
+                  onClick={handleCloseWindow}
+                />
               </>
             )}
             <GreenButton onClick={() => handleOnclickOnButtonWindow(2)}>
@@ -100,22 +95,16 @@ export default function Introtext() {
             )}
             {windowAlert === 3 && (
               <>
-                <StyledWindow>
-                  <StyledInformationCard>
-                    <h3>zuverlässig</h3>
-                    <p>
-                      Bei uns sind wir stolz auf unsere Zuverlässigkeit und
+                <WindowCard
+                  headline={"zuverlässig"}
+                  infotext={`Bei uns sind wir stolz auf unsere Zuverlässigkeit und
                       unser Engagement, unsere Kunden zufriedenzustellen.
                       Verlassen Sie sich auf uns, um Ihre Anlagen in optimaler
                       Betriebsbereitschaft zu halten. Ihre Zufriedenheit und Ihr
                       Vertrauen sind unsere höchsten Prioritäten, und darauf
-                      können Sie sich immer verlassen.
-                    </p>
-                    <GreenButton onClick={handleCloseWindow}>
-                      Schließen
-                    </GreenButton>
-                  </StyledInformationCard>
-                </StyledWindow>
+                      können Sie sich immer verlassen.`}
+                  onClick={handleCloseWindow}
+                />
               </>
             )}
             <GreenButton onClick={() => handleOnclickOnButtonWindow(3)}>
@@ -127,6 +116,12 @@ export default function Introtext() {
     </>
   );
 }
+
+const FadeIn = keyframes`
+0% {opacity: 0;}
+100% {opacity: 1;}
+
+`;
 
 const StyledIntroTextWrapper = styled.main`
   margin: auto 10% auto 10%;
@@ -156,6 +151,7 @@ const StyledWindow = styled.section`
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
+  animation: ${FadeIn} 0.5s ease;
 `;
 
 const StyledInformationCard = styled.article`
