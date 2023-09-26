@@ -5,59 +5,172 @@ import {
   faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 import { useState } from "react";
-import { Fade } from "react-awesome-reveal";
 import styled, { keyframes } from "styled-components";
 
 export default function SpeechBubbleHelp() {
   const [helpButtonClicked, setHelpButtonClicked] = useState(false);
+  const [appearBubble, setAppearBubble] = useState(false);
 
   function handleHelpButton() {
     setHelpButtonClicked(!helpButtonClicked);
   }
 
+  function handleAppearByScrolling() {
+    if (typeof window !== "undefined") {
+      window.onscroll = function () {
+        if (window.scrollY > 150) {
+          setAppearBubble(true);
+        } else {
+          setAppearBubble(false);
+          setHelpButtonClicked(false);
+        }
+      };
+    }
+  }
+  handleAppearByScrolling();
+
   return (
     <>
-      <StyledBubbleWrapper>
-        {helpButtonClicked ? (
-          <>
-            <Fade>
-              <StyledArticle>
+      {appearBubble && (
+        <StyledBubbleWrapper>
+          {helpButtonClicked ? (
+            <>
+              <StyledArticle
+                helpbuttonclicked={helpButtonClicked ? "true" : "false"}
+              >
                 <StyledSubHeadline>
                   Rufen Sie jetzt unseren Berater an !
                 </StyledSubHeadline>
                 <StyledParagraph>
-                  <StyledInfoIcons icon={faPhone} />
-                  <b>0511 27789680</b>
+                  <StyledLink href="tel:051127789680">
+                    <StyledPhoneIcons icon={faPhone} />
+                    <b>0511 27789680</b>
+                  </StyledLink>
                 </StyledParagraph>
                 <StyledParagraph>
-                  <StyledInfoIcons icon={faEnvelope} />
-                  <b>info@emb-schulze.de</b>
+                  <StyledLink href="mailto:info@emb-schulze.de">
+                    <StyledInfoIcons icon={faEnvelope} />
+
+                    <b>info@emb-schulze.de</b>
+                  </StyledLink>
                 </StyledParagraph>
                 <StyledClosedHelp icon={faX} onClick={handleHelpButton} />
               </StyledArticle>
-            </Fade>
-          </>
-        ) : (
-          <>
-            <StyledButton onClick={handleHelpButton}>
-              <StyledHeadline>Hilfe?</StyledHeadline>
+            </>
+          ) : (
+            <>
+              <StyledButton onClick={handleHelpButton}>
+                <StyledHeadline>Hilfe?</StyledHeadline>
 
-              <StyledSpeechBubble
-                icon={faComment}
-                helpbuttonclicked={helpButtonClicked ? "true" : "false"}
-              />
-            </StyledButton>
-          </>
-        )}
-      </StyledBubbleWrapper>
+                <StyledSpeechBubble
+                  icon={faComment}
+                  $helpbuttonclicked={helpButtonClicked ? "true" : "false"}
+                />
+              </StyledButton>
+            </>
+          )}
+        </StyledBubbleWrapper>
+      )}
     </>
   );
 }
 
+const PhoneRing = keyframes`
+
+    0% {
+        transform: rotate(0) scale(1) skew(1deg)
+    }
+    10% {
+        transform: rotate(-25deg) scale(1.5) skew(1deg);
+        border: 1px solid transparent; 
+        border-radius: 50%;
+        background-color: var(--color-third);
+        padding: 0rem;
+    }
+    20% {
+        transform: rotate(25deg) scale(1.5) skew(1deg);
+        border: 1px solid transparent; 
+        border-radius: 50%;
+        background-color: var(--color-secondary);
+        color: black;
+    }
+    30% {
+        transform: rotate(-25deg) scale(1.5) skew(1deg);
+        border: 1px solid transparent; 
+        border-radius: 50%;
+        background-color: var(--color-secondary);
+        color: black;
+    }
+    40% {
+        transform: rotate(25deg) scale(1.5) skew(1deg);
+        border: 1px solid transparent; 
+        border-radius: 50%;
+        background-color: var(--color-secondary);
+        color: black
+    }
+    50% {
+        transform: rotate(0) scale(1.5) skew(1deg);
+        border: 1px solid transparent; 
+        border-radius: 100%;
+        background-color: var(--color-secondary)
+
+    }
+    100% {
+        transform: rotate(0) scale(1) skew(1deg);
+    }
+
+`;
+
+const WobbleEffect = keyframes` 
+
+0% {
+			transform:rotate(0deg);
+			transform-origin:50% 0;
+		}
+		10% {
+			transform:rotate(2deg);
+		}
+		20% {
+			transform:rotate(-4deg);
+		}
+		30% {
+			transform:rotate(6deg);
+		}
+		40% {
+			transform:rotate(-6deg);
+		}
+		40% {
+			transform:rotate(8deg);
+		}
+		60% {
+			transform:rotate(-8deg);
+		}
+		70% {
+			transform:rotate(6deg);
+		}
+		80% {
+			transform:rotate(-6deg);
+		}
+		90% {
+			transform:rotate(4deg);
+		}
+		100% {
+			transform:rotate(0deg);
+			transform-origin:50% 0;
+		}
+
+`;
+
 const FadeIn = keyframes`
 0% {opacity: 0;}
 100% {opacity: 1;}
+`;
+
+const FadeOut = keyframes`
+0% { opacity: 1;}
+100% { opacity: 0; }
 `;
 
 const StyledBubbleWrapper = styled.section`
@@ -75,7 +188,8 @@ const StyledSpeechBubble = styled(FontAwesomeIcon)`
   left: 0rem;
   z-index: 99;
   color: var(--color-fourth);
-  animation: ${({ helpbuttonclicked }) => helpbuttonclicked && FadeIn} 1.5s ease;
+  animation: ${({ $helpbuttonclicked }) => $helpbuttonclicked && FadeIn} 0.5s
+    ease;
 `;
 
 const StyledClosedHelp = styled(FontAwesomeIcon)`
@@ -93,6 +207,11 @@ const StyledClosedHelp = styled(FontAwesomeIcon)`
   &:active {
     color: red;
   }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: white;
 `;
 
 const StyledHeadline = styled.h1`
@@ -119,6 +238,7 @@ const StyledArticle = styled.article`
   width: 20rem;
   height: 7rem;
   border: 1px solid black;
+  animation: ${({ helpbuttonclicked }) => helpbuttonclicked && FadeIn} 1s ease;
 `;
 
 const StyledSubHeadline = styled.h2`
@@ -135,4 +255,17 @@ const StyledInfoIcons = styled(FontAwesomeIcon)`
   height: 1rem;
   margin-right: 1rem;
   text-align: center;
+  &:hover {
+    animation: ${WobbleEffect} 1s linear both infinite;
+  }
+`;
+
+const StyledPhoneIcons = styled(FontAwesomeIcon)`
+  width: 1rem;
+  height: 1rem;
+  margin-right: 1rem;
+  text-align: center;
+  &:hover {
+    animation: ${PhoneRing} 1s linear both infinite;
+  }
 `;

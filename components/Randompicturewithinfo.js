@@ -2,12 +2,27 @@ import Image from "next/image";
 import styled, { keyframes } from "styled-components";
 import Greenbutton from "./GreenButton";
 import { useEffect, useState } from "react";
+import WindowCard from "./WindowCard";
+import ContactData from "./ContactData";
 
 export default function Randompicture() {
   const [counter, setCounter] = useState(1);
+  const [contactClicked, setContactClicked] = useState(false);
+  const [animationToggle, setAnimationToggle] = useState(true);
 
   function handleClickedPicture(onclickedNumber) {
     setCounter(onclickedNumber);
+  }
+
+  function handleContactUsButton() {
+    setAnimationToggle(!animationToggle);
+    if (contactClicked === true) {
+      setTimeout(() => {
+        setContactClicked(!contactClicked);
+      }, 400);
+    } else {
+      setContactClicked(!contactClicked);
+    }
   }
 
   useEffect(() => {
@@ -67,7 +82,20 @@ export default function Randompicture() {
             Planung, Lieferung, Montage, Reparatur und Wartung von individuellen
             Krananlagen.
           </p>
-          <Greenbutton>Kundenerfahrungen</Greenbutton>
+          <Greenbutton onClick={handleContactUsButton}>
+            Kontaktieren Sie uns
+          </Greenbutton>
+          {contactClicked && (
+            <>
+              <WindowCard
+                headline={"Kontakt"}
+                infotext={`Wir sind für Sie da. Rufen Sie uns an oder schreiben Sie uns eine E-Mail. Wir freuen uns auf Sie!`}
+                onClick={handleContactUsButton}
+                contactData={<ContactData />}
+                animationTrigger={animationToggle}
+              ></WindowCard>
+            </>
+          )}
         </StyledCardSection>
       </StyledCardWrapper>
     </StyledWrapper>
@@ -125,6 +153,11 @@ const StyledProgressSection = styled.section`
   right: 50%;
   display: flex;
   justify-content: center;
+`;
+
+const StyledImage = styled(Image)`
+  width: fit-content;
+  height: fit-content;
 `;
 
 const StyledProgressButton1 = styled.button`
