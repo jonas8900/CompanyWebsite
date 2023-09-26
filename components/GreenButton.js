@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export default function Greenbutton({ children, onClick, margin }) {
+export default function Greenbutton({ children, onClick, margin, value }) {
   return (
-    <StyledButton onClick={onClick} margin={margin}>
+    <StyledButton onClick={onClick} $margin={margin} $value={value}>
       {children}
     </StyledButton>
   );
@@ -14,7 +14,7 @@ const StyledButton = styled.button`
   padding: 0.6rem;
   min-width: 6rem;
   color: var(--color-fourth);
-  margin-bottom: ${({ margin }) => margin + "rem"};
+  margin-bottom: ${({ $margin }) => $margin + "rem"};
   &:active {
     box-shadow: inset 1px 1px 5px 0px black;
   }

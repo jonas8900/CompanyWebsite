@@ -1,18 +1,27 @@
 import styled, { keyframes } from "styled-components";
 import GreenButton from "./GreenButton";
 import { useState } from "react";
-import { Fade } from "react-awesome-reveal";
+
 import WindowCard from "./WindowCard";
 
 export default function Introtext() {
   const [windowAlert, setWindowAlert] = useState(0);
+  const [animationToggle, setAnimationToggle] = useState(true);
 
   function handleOnclickOnButtonWindow(index) {
-    setWindowAlert(index);
+    if (windowAlert === 0 && animationToggle === false) {
+      setAnimationToggle(true);
+    } else {
+      setAnimationToggle(!animationToggle);
+      setWindowAlert(index);
+    }
   }
 
   function handleCloseWindow() {
-    setWindowAlert(0);
+    setAnimationToggle(!animationToggle);
+    setTimeout(() => {
+      setWindowAlert(0);
+    }, 400);
   }
 
   return (
@@ -44,6 +53,7 @@ export default function Introtext() {
                       Krananlagen repariert und wartet, sondern dies auch in
                       Rekordzeit erledigen.`}
                   onClick={handleCloseWindow}
+                  animationTrigger={animationToggle}
                 />
               </>
             )}
@@ -52,7 +62,7 @@ export default function Introtext() {
             </GreenButton>
             {windowAlert === 2 && (
               <>
-                <StyledWindow>
+                <StyledWindow $animationtrigger={animationToggle}>
                   <StyledInformationCard>
                     <h3>
                       <b>fair</b>
@@ -104,6 +114,7 @@ export default function Introtext() {
                       Vertrauen sind unsere höchsten Prioritäten, und darauf
                       können Sie sich immer verlassen.`}
                   onClick={handleCloseWindow}
+                  animationTrigger={animationToggle}
                 />
               </>
             )}
@@ -121,6 +132,11 @@ const FadeIn = keyframes`
 0% {opacity: 0;}
 100% {opacity: 1;}
 
+`;
+
+const FadeOut = keyframes`
+0% { opacity: 1;}
+100% { opacity: 0; }
 `;
 
 const StyledIntroTextWrapper = styled.main`
@@ -151,7 +167,9 @@ const StyledWindow = styled.section`
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
-  animation: ${FadeIn} 0.5s ease;
+  animation: ${({ $animationtrigger }) =>
+      $animationtrigger ? FadeOut : FadeIn}
+    0.4s ease;
 `;
 
 const StyledInformationCard = styled.article`

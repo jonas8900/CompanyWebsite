@@ -1,20 +1,24 @@
 import styled, { keyframes } from "styled-components";
 import Greenbutton from "./GreenButton";
-import { Fade } from "react-awesome-reveal";
 
 export default function WindowCard({
   headline,
   infotext,
   onClick,
-  subheadline,
+  value,
+  animationTrigger,
+  contactData,
 }) {
   return (
     <>
-      <StyledWindow>
+      <StyledWindow $animationtrigger={animationTrigger}>
         <StyledInformationCard>
           <h3>{headline}</h3>
           <p>{infotext}</p>
-          <Greenbutton onClick={onClick}>Schließen</Greenbutton>
+          <StyledContactData>{contactData}</StyledContactData>
+          <Greenbutton onClick={onClick} $value={value}>
+            Schließen
+          </Greenbutton>
         </StyledInformationCard>
       </StyledWindow>
     </>
@@ -27,6 +31,11 @@ const FadeIn = keyframes`
 
 `;
 
+const FadeOut = keyframes`
+0% { opacity: 1;}
+100% { opacity: 0; }
+`;
+
 const StyledWindow = styled.section`
   width: 100%;
   height: 100%;
@@ -36,7 +45,15 @@ const StyledWindow = styled.section`
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
-  animation: ${FadeIn} 0.5s ease;
+  animation: ${({ $animationtrigger }) =>
+      $animationtrigger ? FadeOut : FadeIn}
+    0.4s ease;
+`;
+
+const StyledContactData = styled.p`
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid grey;
 `;
 
 const StyledInformationCard = styled.article`
