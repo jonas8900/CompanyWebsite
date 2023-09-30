@@ -23,7 +23,7 @@ export default function Introtext() {
       setWindowAlert(0);
     }, 400);
   }
-
+console.log(windowAlert)
   return (
     <>
       <StyledIntroTextWrapper>
