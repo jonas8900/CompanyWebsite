@@ -1,3 +1,4 @@
+import AboutUs from "../components/AboutUs";
 import Introtext from "../components/IntroText";
 import Navigation from "../components/Navigation";
 import Products from "../components/Products";
@@ -12,6 +13,7 @@ export default function Home() {
       <Randompicture />
       <Introtext />
       <Products />
+      <AboutUs/>
     </>
   );
 }
