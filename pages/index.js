@@ -13,7 +13,7 @@ export default function Home() {
       <Randompicture />
       <Introtext />
       <Products />
-      <AboutUs/>
+      <AboutUs />
     </>
   );
 }
