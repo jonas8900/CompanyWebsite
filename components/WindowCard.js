@@ -9,6 +9,9 @@ export default function WindowCard({
   animationTrigger,
   contactData,
 }) {
+
+
+
   return (
     <>
       <StyledWindow $animationtrigger={animationTrigger}>

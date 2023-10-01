@@ -18,6 +18,10 @@ export default function AboutUs() {
     setShowImageFolderGuidelines(!showImageFolderGuidelines);
   }
 
+  if(showImageFolderCertificate || showImageFolderGuidelines === true) {
+      document.body.style.overflow = "hidden"
+    } else {document.body.style.overflow = "auto"}
+
   return (
     <>
       <StyledAboutUsSection>

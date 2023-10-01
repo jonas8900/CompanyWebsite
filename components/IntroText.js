@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import WindowCard from "./WindowCard";
 
+
 export default function Introtext() {
   const [windowAlert, setWindowAlert] = useState(0);
   const [animationToggle, setAnimationToggle] = useState(true);
@@ -11,11 +12,18 @@ export default function Introtext() {
   function handleOnclickOnButtonWindow(index) {
     if (windowAlert === 0 && animationToggle === false) {
       setAnimationToggle(true);
+
     } else {
       setAnimationToggle(!animationToggle);
       setWindowAlert(index);
     }
   }
+
+
+    if(windowAlert > 0) {
+      document.body.style.overflow = "hidden"
+    } else {document.body.style.overflow = "auto"}
+
 
   function handleCloseWindow() {
     setAnimationToggle(!animationToggle);
@@ -23,7 +31,6 @@ export default function Introtext() {
       setWindowAlert(0);
     }, 400);
   }
-console.log(windowAlert)
   return (
     <>
       <StyledIntroTextWrapper>
@@ -175,8 +182,8 @@ const StyledWindow = styled.section`
 const StyledInformationCard = styled.article`
   padding: 1rem;
   position: fixed;
-  top: 35%;
-  transform: translate(-0%, -35%);
+  top: 38%;
+  transform: translate(-0%, -38%);
   border-radius: 9px;
   background-color: var(--color-third);
   width: 80%;
