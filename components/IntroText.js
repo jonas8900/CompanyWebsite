@@ -19,11 +19,12 @@ export default function Introtext() {
     }
   }
 
-useEffect(() => { 
-  if (typeof window !== "undefined") {
-  if(windowAlert > 0) {
-  document.body.style.overflow = "hidden"
-} else {document.body.style.overflow = "auto"}}}, [windowAlert])
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if(windowAlert > 0) {
+        document.body.style.overflow = "hidden"
+      } else {document.body.style.overflow = "auto"}
+    }}, [windowAlert]);
    
 
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import ImageFolder from "./ImageWindowFolder";
 import { useEffect, useState } from "react";
 
+
 export default function AboutUs() {
   const [showImageFolderCertificate, setShowImageFolderCertificate] =
     useState(false);
@@ -17,14 +18,13 @@ export default function AboutUs() {
   function handleShowImageFolderGuideLines() {
     setShowImageFolderGuidelines(!showImageFolderGuidelines);
   }
-
   useEffect(() => {
-  if (typeof window !== "undefined") {
-  if(showImageFolderCertificate || showImageFolderGuidelines === true) {
-      document.body.style.overflow = "hidden"
-    } else {document.body.style.overflow = "auto"}
-  }}, [showImageFolderCertificate, showImageFolderGuidelines]);
-  
+    if (typeof window !== "undefined") {
+      if(showImageFolderCertificate || showImageFolderGuidelines === true) {
+        document.body.style.overflow = "hidden"
+      } else {document.body.style.overflow = "auto"}
+    }}, [showImageFolderCertificate, showImageFolderGuidelines]);
+
   return (
     <>
       <StyledAboutUsSection>
@@ -133,6 +133,8 @@ export default function AboutUs() {
     </>
   );
 }
+
+
 
 const StyledAboutUsSection = styled.section`
   border-top: 1px solid grey;

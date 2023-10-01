@@ -31,9 +31,7 @@ export default function Randompicture() {
       } else {document.body.style.overflow = "auto"}
     }}, [contactClicked]);
 
-  if(contactClicked === true) {
-    document.body.style.overflow = "hidden"
-  } else {document.body.style.overflow = "auto"}
+
 
   useEffect(() => {
     const timeOutForCount = setInterval(() => {

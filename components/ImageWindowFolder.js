@@ -1,6 +1,7 @@
 import Greenbutton from "./GreenButton";
 import styled, { keyframes } from "styled-components";
 
+
 export default function ImageFolder({
   animationTrigger,
   children,
@@ -22,6 +23,8 @@ export default function ImageFolder({
     </>
   );
 }
+
+
 
 const FadeIn = keyframes`
 0% {opacity: 0;}

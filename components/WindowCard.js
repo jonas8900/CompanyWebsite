@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import Greenbutton from "./GreenButton";
 
+
 export default function WindowCard({
   headline,
   infotext,
@@ -27,6 +28,7 @@ export default function WindowCard({
     </>
   );
 }
+
 
 const FadeIn = keyframes`
 0% {opacity: 0;}
