@@ -2,7 +2,8 @@ import styled from "styled-components";
 import Greenbutton from "./GreenButton";
 import Image from "next/image";
 import ImageFolder from "./ImageWindowFolder";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 
 export default function AboutUs() {
   const [showImageFolderCertificate, setShowImageFolderCertificate] =
@@ -17,6 +18,12 @@ export default function AboutUs() {
   function handleShowImageFolderGuideLines() {
     setShowImageFolderGuidelines(!showImageFolderGuidelines);
   }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if(showImageFolderCertificate || showImageFolderGuidelines === true) {
+        document.body.style.overflow = "hidden"
+      } else {document.body.style.overflow = "auto"}
+    }}, [showImageFolderCertificate, showImageFolderGuidelines]);
 
   return (
     <>
@@ -126,6 +133,8 @@ export default function AboutUs() {
     </>
   );
 }
+
+
 
 const StyledAboutUsSection = styled.section`
   border-top: 1px solid grey;
