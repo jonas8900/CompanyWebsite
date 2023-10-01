@@ -24,6 +24,13 @@ export default function Randompicture() {
       setContactClicked(!contactClicked);
     }
   }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if(contactClicked === true) {
+        document.body.style.overflow = "hidden"
+      } else {document.body.style.overflow = "auto"}
+    }}, [contactClicked]);
+
   if(contactClicked === true) {
     document.body.style.overflow = "hidden"
   } else {document.body.style.overflow = "auto"}

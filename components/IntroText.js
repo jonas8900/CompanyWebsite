@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import GreenButton from "./GreenButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import WindowCard from "./WindowCard";
 
@@ -19,10 +19,12 @@ export default function Introtext() {
     }
   }
 
-
-    if(windowAlert > 0) {
-      document.body.style.overflow = "hidden"
-    } else {document.body.style.overflow = "auto"}
+useEffect(() => { 
+  if (typeof window !== "undefined") {
+  if(windowAlert > 0) {
+  document.body.style.overflow = "hidden"
+} else {document.body.style.overflow = "auto"}}}, [windowAlert])
+   
 
 
   function handleCloseWindow() {

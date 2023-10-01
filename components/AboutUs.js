@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Greenbutton from "./GreenButton";
 import Image from "next/image";
 import ImageFolder from "./ImageWindowFolder";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function AboutUs() {
   const [showImageFolderCertificate, setShowImageFolderCertificate] =
@@ -18,10 +18,13 @@ export default function AboutUs() {
     setShowImageFolderGuidelines(!showImageFolderGuidelines);
   }
 
+  useEffect(() => {
+  if (typeof window !== "undefined") {
   if(showImageFolderCertificate || showImageFolderGuidelines === true) {
       document.body.style.overflow = "hidden"
     } else {document.body.style.overflow = "auto"}
-
+  }}, [showImageFolderCertificate, showImageFolderGuidelines]);
+  
   return (
     <>
       <StyledAboutUsSection>
