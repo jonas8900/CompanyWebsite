@@ -1,8 +1,10 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Greenbutton from "./GreenButton";
 import Image from "next/image";
 import ImageFolder from "./ImageWindowFolder";
 import { useEffect, useState } from "react";
+import FullScreenImage from "./FullScreenImage";
+
 
 
 export default function AboutUs() {
@@ -10,24 +12,53 @@ export default function AboutUs() {
     useState(false);
   const [showImageFolderGuidelines, setShowImageFolderGuidelines] =
     useState(false);
+    const[showImageFullScreen, setShowImageFullScreen] = useState(false);
+    const [imageIndex, setImageIndex] = useState(1);
+    const [animationDone, setAnimationDone] = useState(false);
 
   function handleShowImageFolderCertificate() {
+    setAnimationDone(!animationDone);
     setShowImageFolderCertificate(!showImageFolderCertificate);
   }
 
   function handleShowImageFolderGuideLines() {
+    setAnimationDone(!animationDone);
+    if(animationDone === false) {
+    setTimeout(() => {
     setShowImageFolderGuidelines(!showImageFolderGuidelines);
+  }, 400)} else {setShowImageFolderGuidelines(!showImageFolderGuidelines)};
   }
+
+  function handleShowImageFullScreen(index) {
+    setShowImageFullScreen(true);
+    setImageIndex(index)
+  }
+
+  function handleCloseImage() {
+    setAnimationDone(!animationDone);
+    setTimeout(() => {
+      setShowImageFullScreen(false);
+      setShowImageFolderCertificate(false);
+    }, 400);
+
+  }
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      if(showImageFolderCertificate || showImageFolderGuidelines === true) {
+      if(showImageFolderCertificate || showImageFolderGuidelines || showImageFullScreen === true) {
         document.body.style.overflow = "hidden"
       } else {document.body.style.overflow = "auto"}
-    }}, [showImageFolderCertificate, showImageFolderGuidelines]);
+    }}, [showImageFolderCertificate, showImageFolderGuidelines, showImageFullScreen]);
 
+
+
+
+console.log(animationDone)
+
+    
   return (
     <>
-      <StyledAboutUsSection>
+      <StyledAboutUsSection id="about-us">
         <StyledHeadline>Wer sind wir?</StyledHeadline>
         <p>
           Wir sind ein Unternehmen mit <b>Sitz in Hannover</b>, welches sich
@@ -84,7 +115,7 @@ export default function AboutUs() {
         </StyledCertificateArticleLeft>
         <StyledCertificateArticleRight>
           <StyledImage
-            src="/Richtlinien.png"
+            src="/Richtlinien/Richtlinien-1.png"
             width={99}
             height={142}
             alt="Bild eines ISO - Zertifikates"
@@ -95,44 +126,64 @@ export default function AboutUs() {
         </StyledCertificateArticleRight>
       </StyledCertificateSection>
       {showImageFolderCertificate && (
-        <ImageFolder onClick={handleShowImageFolderCertificate}></ImageFolder>
-      )}
+      <FullScreenImage    
+      src={`/Zertifikat.png`}
+      alt="Zufälliges Bild einer Krananlage"
+      width={100}
+      height={200} onClick={handleCloseImage} animationTrigger={animationDone}/>)
+    }
       {showImageFolderGuidelines && (
-        <ImageFolder onClick={handleShowImageFolderGuideLines}>
+        <ImageFolder onClick={handleShowImageFolderGuideLines} animationTrigger={animationDone}>
           <StyledImageWrapper>
+            {}
             <StyledImageDescription>
-              <h2>Zertfikat 1</h2>
+              <h2>Richtlinie 1</h2>
               <StyledImage
-                src="/Richtlinien.png"
+                src={`/Richtlinien/Richtlinien-1.png`}
                 width={99}
                 height={142}
                 alt="Bild eines ISO - Zertifikates"
+                onClick={()=>handleShowImageFullScreen(1)}
               />
             </StyledImageDescription>
             <StyledImageDescription>
-              <h2>Zertfikat 2</h2>
+              <h2>Richtlinie 2</h2>
               <StyledImage
-                src="/Richtlinien.png"
+                src="/Richtlinien/Richtlinien-2.png"
                 width={99}
                 height={142}
                 alt="Bild eines ISO - Zertifikates"
+                onClick={()=>handleShowImageFullScreen(2)}
               />
             </StyledImageDescription>
             <StyledImageDescription>
-              <h2>Zertfikat 3</h2>
+              <h2>Richtlinie 3</h2>
               <StyledImage
-                src="/Richtlinien.png"
+                src="/Richtlinien/Richtlinien-3.png"
                 width={99}
                 height={142}
                 alt="Bild eines ISO - Zertifikates"
+                onClick={()=>handleShowImageFullScreen(3)}
               />
             </StyledImageDescription>
           </StyledImageWrapper>
         </ImageFolder>
       )}
+    {showImageFullScreen && showImageFolderGuidelines && (
+
+      <FullScreenImage    
+      src={`/Richtlinien/Richtlinien-${imageIndex}.png`}
+      alt="Zufälliges Bild einer Krananlage"
+      width={100}
+      height={200} onClick={handleCloseImage} animationTrigger={animationDone}/>
+      
+    )} 
+    
     </>
+   
   );
 }
+
 
 
 
@@ -208,7 +259,6 @@ const StyledImage = styled(Image)`
 `;
 
 const StyledImageWrapper = styled.section`
-  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -4,8 +4,10 @@ import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
+import { Link } from "react-scroll/modules"
 
-export default function Navigation() {
+
+export default function Navigation({sectionIds}) {
   const [menuClicked, setMenuClicked] = useState(false);
   const [animationDone, setAnimationDone] = useState(false);
   const [searchClicked, setSearchClicked] = useState(false);
@@ -18,6 +20,7 @@ export default function Navigation() {
   function handleChangeSearchButton() {
     setSearchClicked(!searchClicked);
   }
+
   return (
     <>
       <StyledNavigationBar>
@@ -75,13 +78,13 @@ export default function Navigation() {
             </StyledLogoSection>
           )}
         </StyledNavigationSection>
-
+ 
         {menuClicked && (
           <StyledUnsortedList>
             <Fade cascade damping={0.1}>
-              <StyledListItems>Start</StyledListItems>
-              <StyledListItems>Unsere Produkte</StyledListItems>
-              <StyledListItems>Wer wir sind</StyledListItems>
+            <Link to="introtext" spy={true} smooth={false} offset={-70} duration={350} onClick={handleChangeMenuButton}><StyledListItems>Start</StyledListItems></Link>
+              <Link to="products" spy={true} smooth={false} offset={-70} duration={350} onClick={handleChangeMenuButton}><StyledListItems>Unsere Produkte</StyledListItems></Link>
+              <Link to="about-us" spy={true} smooth={false} offset={-70} duration={350} onClick={handleChangeMenuButton}><StyledListItems>Wer wir sind</StyledListItems></Link>
               <StyledListItems>Karriere</StyledListItems>
               <StyledListItems>Kontakt</StyledListItems>
             </Fade>
