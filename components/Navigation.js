@@ -7,7 +7,7 @@ import Logo from "./Logo";
 import { Link } from "react-scroll/modules"
 
 
-export default function Navigation({sectionIds}) {
+export default function Navigation() {
   const [menuClicked, setMenuClicked] = useState(false);
   const [animationDone, setAnimationDone] = useState(false);
   const [searchClicked, setSearchClicked] = useState(false);
