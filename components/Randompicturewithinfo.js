@@ -24,6 +24,7 @@ export default function Randompicture() {
       setContactClicked(!contactClicked);
     }
   }
+  //useEffect to prevent scrolling in the blured background when contact window is open
   useEffect(() => {
     if (typeof window !== "undefined") {
       if(contactClicked === true) {
@@ -32,7 +33,7 @@ export default function Randompicture() {
     }}, [contactClicked]);
 
 
-
+//use a function with to change the picture every 10 seconds
   useEffect(() => {
     const timeOutForCount = setInterval(() => {
       setCounter((increaseCount) => {

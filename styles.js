@@ -10,7 +10,9 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-
+html {
+  scroll-behavior: smooth;
+}
 :root{
     --color-primary: #BAFFC6;
     --color-secondary: #34FF66;

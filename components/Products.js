@@ -3,7 +3,7 @@ import ProductCard from "./Productcard";
 
 export default function Products() {
   return (
-    <StyledProductWrapper>
+    <StyledProductWrapper id="products">
       <StyledHeadline>Unsere Produkte</StyledHeadline>
       <ProductCard
         src={"/ProductPictures/Produkt-1.jpg"}

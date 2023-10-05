@@ -136,7 +136,13 @@ const StyledMailIcon = styled(FontAwesomeIcon)`
   }
 `;
 
-const StyledHeadline2 = styled.h3``;
+const StyledHeadline2 = styled.section`
+font-size: var(--font-size-subtitle);
+  font-weight: 700;
+  color: var(--color-fourth);
+
+  
+  `;
 
 const StyledHeadline1 = styled.h2`
   width: 4rem;
@@ -149,5 +155,6 @@ const StyledLink = styled(Link)`
   align-items: center;
   justify-content: left;
   text-decoration: none;
+  margin-top: 0.6rem;
   color: var(--color-fourth);
 `;

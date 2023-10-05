@@ -36,7 +36,7 @@ export default function Introtext() {
   }
   return (
     <>
-      <StyledIntroTextWrapper>
+      <StyledIntroTextWrapper id="introtext">
         <StyledHeadline>Elektromaschinenbau Schulze GmbH</StyledHeadline>
         <h2>schon seit 10 Jahren..</h2>
         <StyledInfoSection>
