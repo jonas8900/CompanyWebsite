@@ -6,31 +6,29 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 
-export default function SpeechBubbleHelp() {
+export default function SpeechBubbleHelp({scrollY}) {
   const [helpButtonClicked, setHelpButtonClicked] = useState(false);
   const [appearBubble, setAppearBubble] = useState(false);
 
   function handleHelpButton() {
     setHelpButtonClicked(!helpButtonClicked);
   }
-
+useEffect(() => {
   function handleAppearByScrolling() {
     if (typeof window !== "undefined") {
-      window.onscroll = function () {
-        if (window.scrollY > 150) {
+        if (scrollY > 150) {
           setAppearBubble(true);
         } else {
           setAppearBubble(false);
           setHelpButtonClicked(false);
         }
-      };
     }
   }
   handleAppearByScrolling();
-
+},[scrollY]);
   return (
     <>
       {appearBubble && (
@@ -168,10 +166,7 @@ const FadeIn = keyframes`
 100% {opacity: 1;}
 `;
 
-const FadeOut = keyframes`
-0% { opacity: 1;}
-100% { opacity: 0; }
-`;
+
 
 const StyledBubbleWrapper = styled.section`
   position: fixed;

@@ -4,6 +4,8 @@ import Greenbutton from "./GreenButton";
 import { useEffect, useState } from "react";
 import WindowCard from "./WindowCard";
 import ContactData from "./ContactData";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Randompicture() {
   const [counter, setCounter] = useState(1);
@@ -48,31 +50,34 @@ export default function Randompicture() {
     return () => clearInterval(timeOutForCount);
   }, []);
 
+
+function handleClickLeftButtonToChangePicture() {
+  if(counter === 1) {
+    setCounter(5)
+  } else {
+  setCounter(counter - 1);}
+}
+function handleClickRightButtonToChangePicture() {
+  if(counter === 5) {
+    setCounter(1)} 
+    else {
+  setCounter(counter + 1); }
+}
+
   return (
-    <StyledWrapper>
-      <StyledProgressSection>
-        <StyledProgressButton1
-          $counter={counter}
-          onClick={() => handleClickedPicture(1)}
-        ></StyledProgressButton1>
-        <StyledProgressButton2
-          $counter={counter}
-          onClick={() => handleClickedPicture(2)}
-        ></StyledProgressButton2>
-        <StyledProgressButton3
-          $counter={counter}
-          onClick={() => handleClickedPicture(3)}
-        ></StyledProgressButton3>
-        <StyledProgressButton4
-          $counter={counter}
-          onClick={() => handleClickedPicture(4)}
-        ></StyledProgressButton4>
-        <StyledProgressButton5
-          $counter={counter}
-          onClick={() => handleClickedPicture(5)}
-        ></StyledProgressButton5>
+    <StyledWrapper id="randompicture">
+
+
+      <StyledProgressSection >
+        <StyledProgressDiv1 $counter={counter} ></StyledProgressDiv1>
+        <StyledProgressDiv2 $counter={counter} ></StyledProgressDiv2>
+        <StyledProgressDiv3 $counter={counter} ></StyledProgressDiv3>
+        <StyledProgressDiv4 $counter={counter} ></StyledProgressDiv4>
+        <StyledProgressDiv5 $counter={counter} ></StyledProgressDiv5>
       </StyledProgressSection>
-      <StyledImageContainer>
+      <StyledImageContainer>      
+        <StyledArrowLeft icon={faCaretLeft} onClick={handleClickLeftButtonToChangePicture}/>
+      <StyledArrowRight icon={faCaretRight} onClick={handleClickRightButtonToChangePicture}/>
         <StyledRandomImage
           key={counter}
           src={`/Random-Kranbild-${counter}.jpg`}
@@ -157,61 +162,107 @@ const StyledCardWrapper = styled.section`
 const StyledProgressSection = styled.section`
   position: absolute;
   z-index: 2;
-  padding: 0.3rem;
+  padding: 0rem;
   left: 50%;
   right: 50%;
   display: flex;
   justify-content: center;
 `;
 
-const StyledImage = styled(Image)`
-  width: fit-content;
-  height: fit-content;
+
+const StyledArrowRight = styled(FontAwesomeIcon)`
+  position: absolute;
+  z-index: 2;
+  right: 0%;
+  top: 40%;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: black;
+  border: none;
+  margin: 0.3rem;
+
+  &:hover {
+    color: white;
+    transition: all 0.5s ease;
+  }
+  &:not(:hover) {
+    color: black;
+    transition: all 0.5s ease;
+  }
+
+  &:active {
+    color: var(--color-fifth);
+    transition: all 0.1s ease;
+  }
+`;
+const StyledArrowLeft = styled(FontAwesomeIcon)`
+  position: absolute;
+  z-index: 2;
+  left: 0%;
+  top: 40%;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: black;
+  border: none;
+  margin: 0.3rem;
+
+  &:hover {
+    color: white;
+    transition: all 0.5s ease;
+  }
+  &:not(:hover) {
+    color: black;
+    transition: all 0.5s ease;
+  }
+
+  &:active {
+    color: var(--color-fifth);
+    transition: all 0.1s ease;
+  }
 `;
 
-const StyledProgressButton1 = styled.button`
-  width: 0.7rem;
-  height: 0.7rem;
-  color: white;
-  border: none;
-  margin: 0.3rem;
-  background-color: ${({ $counter }) =>
-    $counter === 1 && "var(--color-primary)"};
+const StyledProgressDiv1 = styled.div`
+width: 0.7rem;
+height: 0.7rem;
+margin: 0.3rem;
+min-width: 0.7rem;
+min-height: 0.7rem;
+background-color: ${({ $counter }) =>
+    $counter === 1 ? "var(--color-primary)" : "var(--color-third)"};
 `;
-
-const StyledProgressButton2 = styled.button`
-  width: 0.7rem;
-  height: 0.7rem;
-  color: white;
-  border: none;
-  margin: 0.3rem;
-  background-color: ${({ $counter }) =>
-    $counter === 2 && "var(--color-primary)"};
+const StyledProgressDiv2 = styled.div`
+width: 0.7rem;
+height: 0.7rem;
+margin: 0.3rem;
+min-width: 0.7rem;
+min-height: 0.7rem;
+background-color: ${({ $counter }) =>
+    $counter === 2 ? "var(--color-primary)" : "var(--color-third)"};
 `;
-const StyledProgressButton3 = styled.button`
-  width: 0.7rem;
-  height: 0.7rem;
-  color: white;
-  border: none;
-  margin: 0.3rem;
-  background-color: ${({ $counter }) =>
-    $counter === 3 && "var(--color-primary)"};
+const StyledProgressDiv3 = styled.div`
+width: 0.7rem;
+height: 0.7rem;
+margin: 0.3rem;
+min-width: 0.7rem;
+min-height: 0.7rem;
+background-color: ${({ $counter }) =>
+    $counter === 3 ? "var(--color-primary)" : "var(--color-third)"};
 `;
-const StyledProgressButton4 = styled.button`
-  width: 0.7rem;
-  height: 0.7rem;
-  color: white;
-  border: none;
-  margin: 0.3rem;
-  background-color: ${({ $counter }) =>
-    $counter === 4 && "var(--color-primary)"};
+const StyledProgressDiv4 = styled.div`
+width: 0.7rem;
+height: 0.7rem;
+margin: 0.3rem;
+min-width: 0.7rem;
+min-height: 0.7rem;
+background-color: ${({ $counter }) =>
+    $counter === 4 ? "var(--color-primary)" : "var(--color-third)"};
 `;
-const StyledProgressButton5 = styled.button`
-  width: 0.7rem;
-  height: 0.7rem;
-  color: white;
-  border: none;
-  margin: 0.3rem;
-  background-color: ${({ $counter }) =>
-    $counter === 5 && "var(--color-primary)"};
+const StyledProgressDiv5 = styled.div`
+width: 0.7rem;
+height: 0.7rem;
+margin: 0.3rem;
+min-width: 0.7rem;
+min-height: 0.7rem;
+background-color: ${({ $counter }) =>
+    $counter === 5 ? "var(--color-primary)" : "var(--color-third)"};
 `;

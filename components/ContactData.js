@@ -136,7 +136,7 @@ const StyledMailIcon = styled(FontAwesomeIcon)`
   }
 `;
 
-const StyledHeadline2 = styled.section`
+const StyledHeadline2 = styled.p`
 font-size: var(--font-size-subtitle);
   font-weight: 700;
   color: var(--color-fourth);

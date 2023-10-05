@@ -14,7 +14,7 @@ export default function AboutUs() {
     useState(false);
     const[showImageFullScreen, setShowImageFullScreen] = useState(false);
     const [imageIndex, setImageIndex] = useState(1);
-    const [animationDone, setAnimationDone] = useState(false);
+    const [animationDone, setAnimationDone] = useState(true);
 
   function handleShowImageFolderCertificate() {
     setAnimationDone(!animationDone);
@@ -35,13 +35,27 @@ export default function AboutUs() {
   }
 
   function handleCloseImage() {
-    setAnimationDone(!animationDone);
-    setTimeout(() => {
+    if(showImageFolderGuidelines) {
+     setAnimationDone(false);
+    
+      setTimeout(() => {
+
       setShowImageFullScreen(false);
       setShowImageFolderCertificate(false);
-    }, 400);
-
+      
+      
+    }, 400);} else {
+      setAnimationDone(true);
+    
+      setTimeout(() => {
+      setShowImageFullScreen(false);
+      setShowImageFolderCertificate(false);
+    }, 400);}
+    
+  
   }
+
+
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -53,7 +67,6 @@ export default function AboutUs() {
 
 
 
-console.log(animationDone)
 
     
   return (
@@ -216,11 +229,12 @@ const StyledList = styled.ul`
   margin-top: 0;
 `;
 
-const StyledSubHeadline = styled.h3`
+const StyledSubHeadline = styled.h2`
   font-size: var(--font-size-text);
   font-weight: 400;
   color: var(--color-fourth);
 `;
+
 
 const StyledCertificateSection = styled.section`
   display: flex;
