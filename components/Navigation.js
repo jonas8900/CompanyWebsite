@@ -85,7 +85,7 @@ export default function Navigation() {
             <Link to="introtext" spy={true} smooth={false} offset={-70} duration={350} onClick={handleChangeMenuButton}><StyledListItems>Start</StyledListItems></Link>
               <Link to="products" spy={true} smooth={false} offset={-70} duration={350} onClick={handleChangeMenuButton}><StyledListItems>Unsere Produkte</StyledListItems></Link>
               <Link to="about-us" spy={true} smooth={false} offset={-70} duration={350} onClick={handleChangeMenuButton}><StyledListItems>Wer wir sind</StyledListItems></Link>
-              <StyledListItems>Karriere</StyledListItems>
+              <Link to="career" spy={true} smooth={false} offset={-65} duration={350} onClick={handleChangeMenuButton}><StyledListItems>Karriere</StyledListItems></Link>
               <StyledListItems>Kontakt</StyledListItems>
             </Fade>
           </StyledUnsortedList>

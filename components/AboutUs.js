@@ -37,14 +37,10 @@ export default function AboutUs() {
   function handleCloseImage() {
     if(showImageFolderGuidelines) {
      setAnimationDone(false);
-    
-      setTimeout(() => {
-
       setShowImageFullScreen(false);
       setShowImageFolderCertificate(false);
       
-      
-    }, 400);} else {
+} else {
       setAnimationDone(true);
     
       setTimeout(() => {

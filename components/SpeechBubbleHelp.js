@@ -173,6 +173,7 @@ const StyledBubbleWrapper = styled.section`
   text-align: center;
   bottom: 2rem;
   left: 1rem;
+  z-index: 99;
 `;
 
 const StyledSpeechBubble = styled(FontAwesomeIcon)`

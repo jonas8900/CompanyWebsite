@@ -12,9 +12,6 @@ export default function Randompicture() {
   const [contactClicked, setContactClicked] = useState(false);
   const [animationToggle, setAnimationToggle] = useState(true);
 
-  function handleClickedPicture(onclickedNumber) {
-    setCounter(onclickedNumber);
-  }
 
   function handleContactUsButton() {
     setAnimationToggle(!animationToggle);

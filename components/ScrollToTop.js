@@ -26,17 +26,14 @@ function handleToTopButtonAppearByScrolling() {
         <>
         {appearScrollToTopButton && (
         <StyledSection $appearscrolltotopbutton={appearScrollToTopButton}>
-        <StyledLink to="randompicture" spy={true} smooth={false} offset={-70} duration={350}><FontAwesomeIcon icon={faArrowUp}/></StyledLink>
+        <Link to="randompicture" spy={true} smooth={false} offset={-70} duration={350}><FontAwesomeIcon icon={faArrowUp}/></Link>
         </StyledSection>)}</>
 
     )
 
 }
 
-const StyledLink = styled(Link)`
 
-
-`;
 
 
 const FadeIn = keyframes`
