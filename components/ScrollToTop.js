@@ -6,6 +6,7 @@ import styled, { keyframes } from "styled-components";
 
 export default function ScrollToTop({scrollY}) {
 const [appearScrollToTopButton, setappearScrollToTopButton] = useState(false);
+const [color, setColor] = useState(false);
 
 useEffect(() => {
 function handleToTopButtonAppearByScrolling() {
@@ -22,21 +23,31 @@ function handleToTopButtonAppearByScrolling() {
   handleToTopButtonAppearByScrolling();
   },[scrollY]);
 
+useEffect(() => { 
+  function handleChangeColorByScrolling() {
+    if(scrollY >= 2750) {
+        setColor(true);
+    } else {
+        setColor(false);
+    }
+  } handleChangeColorByScrolling();
+
+
+},[scrollY]);
+
     return(
         <>
         {appearScrollToTopButton && (
-        <StyledSection $appearscrolltotopbutton={appearScrollToTopButton}>
-        <StyledLink to="randompicture" spy={true} smooth={false} offset={-70} duration={350}><FontAwesomeIcon icon={faArrowUp}/></StyledLink>
+        <StyledSection $appearscrolltotopbutton={appearScrollToTopButton} >
+        <Link to="randompicture" spy={true} smooth={false} offset={-70} duration={350} ><StyledIcon icon={faArrowUp} $color={color}/></Link>
         </StyledSection>)}</>
 
     )
 
 }
 
-const StyledLink = styled(Link)`
 
 
-`;
 
 
 const FadeIn = keyframes`
@@ -47,12 +58,12 @@ const FadeIn = keyframes`
 
 const StyledSection = styled.section`
  position: fixed;
-  width: 2rem;
-  height: 2rem;
+  width: 1.4rem;
+  height: 1.4rem;
   bottom: 3.2rem;
   right: 5%;
   z-index: 99;
-  color: var(--color-fourth);
+  
   animation: ${({ $appearscrolltotopbutton }) => $appearscrolltotopbutton && FadeIn} 0.5s
     ease;
 
@@ -69,4 +80,10 @@ const StyledSection = styled.section`
     &:active {
         color: var(--color-fifth);
     }
+`;
+
+
+const StyledIcon = styled(FontAwesomeIcon)`
+ color: ${({ $color }) => $color ? "#F5F6FF" : "#4B5E6B"};
+ transition: all 0.5s ease;
 `;

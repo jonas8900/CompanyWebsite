@@ -17,8 +17,10 @@ export default function WindowCard({
     <>
       <StyledWindow $animationtrigger={animationTrigger}>
         <StyledInformationCard>
+          <section>
           <h3>{headline}</h3>
           <p>{infotext}</p>
+          </section>
           <StyledContactData>{contactData}</StyledContactData>
           <Greenbutton onClick={onClick} $value={value}>
             Schließen

@@ -13,6 +13,7 @@ const StyledButton = styled.button`
   border: none;
   padding: 0.6rem;
   min-width: 6rem;
+  font-size: var(--font-size-text);
   color: var(--color-fourth);
   margin-bottom: ${({ $margin }) => $margin + "rem"};
   &:active {

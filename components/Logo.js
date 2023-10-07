@@ -1,7 +1,8 @@
+import { Link } from "react-scroll/modules"
 import styled from "styled-components";
 
 export default function Logo() {
-  return <StyledLogo>Elektromaschinenbau Schulze GmbH</StyledLogo>;
+  return <Link to="randompicture" spy={true} smooth={false} offset={-70} duration={350}><StyledLogo>Elektromaschinenbau Schulze GmbH</StyledLogo></Link>;
 }
 
 const StyledLogo = styled.h1`

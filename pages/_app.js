@@ -18,6 +18,7 @@ useEffect(() => {
 
  }, []);
 
+
   return (
     <>
       <GlobalStyle />

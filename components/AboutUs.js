@@ -37,14 +37,10 @@ export default function AboutUs() {
   function handleCloseImage() {
     if(showImageFolderGuidelines) {
      setAnimationDone(false);
-    
-      setTimeout(() => {
-
       setShowImageFullScreen(false);
       setShowImageFolderCertificate(false);
       
-      
-    }, 400);} else {
+} else {
       setAnimationDone(true);
     
       setTimeout(() => {
@@ -238,7 +234,7 @@ const StyledSubHeadline = styled.h2`
 
 const StyledCertificateSection = styled.section`
   display: flex;
-  margin: 2rem 10% 2rem 10%;
+  margin: 2rem ;
   justify-content: space-between;
 `;
 

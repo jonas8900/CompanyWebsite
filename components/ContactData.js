@@ -5,7 +5,7 @@ import styled, { keyframes } from "styled-components";
 
 export default function ContactData() {
   return (
-    <>
+    <StyledSection>
       <StyledHeadline1>Tim Dally</StyledHeadline1>
       <StyledHeadline2>
         <StyledLink href="tel:017626246722">
@@ -18,7 +18,7 @@ export default function ContactData() {
           tim.dally@emb-schulze.de
         </StyledLink>
       </StyledHeadline2>
-    </>
+    </StyledSection>
   );
 }
 
@@ -136,11 +136,10 @@ const StyledMailIcon = styled(FontAwesomeIcon)`
   }
 `;
 
-const StyledHeadline2 = styled.p`
+const StyledHeadline2 = styled.article`
 font-size: var(--font-size-subtitle);
   font-weight: 700;
   color: var(--color-fourth);
-
   
   `;
 
@@ -157,4 +156,8 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   margin-top: 0.6rem;
   color: var(--color-fourth);
+`;
+
+
+const StyledSection = styled.section`
 `;

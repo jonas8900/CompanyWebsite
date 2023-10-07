@@ -44,7 +44,7 @@ const StyledImageWrapper = styled.section`
   height: 100%;
 
   position: fixed;
-  z-index: 200;
+  z-index: 9999;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
