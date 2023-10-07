@@ -36,6 +36,8 @@ export default function JobCard({headline, infotext, jobtitle}) {
     const StyledCardWrapper = styled.section`
     border: 1px solid transparent;
     background-color: #4E4E4E;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
     `;
     
     const StyledButtonWrapper = styled.section`
@@ -68,6 +70,7 @@ export default function JobCard({headline, infotext, jobtitle}) {
 
     const StyledParagraphForInfo  = styled.p`
        color: black;
+       text-align: center;
       font-weight: 300;
       margin-top: 2rem;
       margin-bottom: 0;

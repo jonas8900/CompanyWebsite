@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import AboutUs from "../components/AboutUs";
 import Career from "../components/Career";
 import Introtext from "../components/IntroText";
@@ -22,3 +23,5 @@ export default function Home({scrollY}) {
     </>
   );
 }
+
+

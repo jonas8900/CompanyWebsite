@@ -86,7 +86,7 @@ function handleClickRightButtonToChangePicture() {
         />
       </StyledImageContainer>
 
-      <StyledCardWrapper>
+      <StyledCardWrapper $contactclicked={contactClicked}>
         <StyledCardSection>
           <h1>Was wir können</h1>
           <p>
@@ -97,7 +97,7 @@ function handleClickRightButtonToChangePicture() {
             Kontaktieren Sie uns
           </Greenbutton>
           {contactClicked && (
-            <>
+
               <WindowCard
                 headline={"Kontakt"}
                 infotext={`Wir sind für Sie da. Rufen Sie uns an oder schreiben Sie uns eine E-Mail. Wir freuen uns auf Sie!`}
@@ -105,7 +105,7 @@ function handleClickRightButtonToChangePicture() {
                 contactData={<ContactData />}
                 animationTrigger={animationToggle}
               ></WindowCard>
-            </>
+
           )}
         </StyledCardSection>
       </StyledCardWrapper>
@@ -153,7 +153,7 @@ const StyledCardWrapper = styled.section`
   right: 10%;
   margin: auto;
   margin-top: -1rem;
-  z-index: 1;
+  z-index: ${({ $contactclicked }) => ($contactclicked ? 1000 : 1)};
 `;
 
 const StyledProgressSection = styled.section`

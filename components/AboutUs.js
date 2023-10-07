@@ -234,7 +234,7 @@ const StyledSubHeadline = styled.h2`
 
 const StyledCertificateSection = styled.section`
   display: flex;
-  margin: 2rem 10% 2rem 10%;
+  margin: 2rem ;
   justify-content: space-between;
 `;
 
