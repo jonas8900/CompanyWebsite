@@ -21,11 +21,11 @@ function handleToTopButtonAppearByScrolling() {
     }
   }
   handleToTopButtonAppearByScrolling();
-  },[scrollY]);
-
+  });
+// only for iphonexr screen, need to change it later
 useEffect(() => { 
   function handleChangeColorByScrolling() {
-    if(scrollY >= 2750) {
+    if(scrollY >= 2780 && scrollY <= 6100) {
         setColor(true);
     } else {
         setColor(false);
@@ -33,7 +33,7 @@ useEffect(() => {
   } handleChangeColorByScrolling();
 
 
-},[scrollY]);
+});
 
     return(
         <>

@@ -24,8 +24,7 @@ export default function JobCard({headline, infotext, jobtitle}) {
     
 
     const StyledInfoWrapper = styled.article`
-      margin-left: 1rem;
-      margin-right: 0.5rem;
+     
       margin: 1rem;
       background-color: var(--color-third);
       padding: 1rem 2rem 1rem 2rem;
