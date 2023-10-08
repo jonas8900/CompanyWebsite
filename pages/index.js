@@ -7,6 +7,7 @@ import Products from "../components/Products";
 import Randompicture from "../components/Randompicturewithinfo";
 import ScrollToTop from "../components/ScrollToTop";
 import SpeechBubbleHelp from "../components/SpeechBubbleHelp";
+import Contact from "../components/Contact";
 
 export default function Home({scrollY}) {
 
@@ -20,6 +21,7 @@ export default function Home({scrollY}) {
       <Products/>
       <AboutUs/>
       <Career/>
+      <Contact/>
     </>
   );
 }

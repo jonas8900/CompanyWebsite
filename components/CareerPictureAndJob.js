@@ -39,7 +39,7 @@ position: relative;
 width: 100%;
 
 background-color: #2C2C2C;
-border: 1px solid black;
+
 `;
 
 
