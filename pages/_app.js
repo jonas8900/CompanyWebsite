@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import GlobalStyle from "../styles";
 import Head from "next/head";

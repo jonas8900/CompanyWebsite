@@ -1,12 +1,16 @@
-import Image from "next/image";
-import styled from "styled-components";
+
+import styled, { keyframes } from "styled-components";
 import Greenbutton from "./GreenButton";
 
 
-export default function JobCard({headline, infotext, jobtitle}) {
+
+export default function JobCard({headline, infotext, jobtitle, numberForRandomJob}) {
+
+
+
     return (
 
-        <StyledCardWrapper>
+        <StyledCardWrapper key={numberForRandomJob} $numberforrandomjob={numberForRandomJob}>
           <StyledInfoWrapper>
             <StyledSubHeadline>{headline}</StyledSubHeadline>
             <StyledJobTitle>{jobtitle}<StyledParagraphForJobTitle>(m/w/d)</StyledParagraphForJobTitle></StyledJobTitle>
@@ -21,7 +25,18 @@ export default function JobCard({headline, infotext, jobtitle}) {
     }
     
 
-    
+    const FadeinLeft = keyframes`
+      0% {
+      opacity: 0;
+      -webkit-transform: translate3d(-100%, 0, 0);
+      transform: translate3d(-100%, 0, 0);
+      }
+      100% {
+      opacity: 1;
+      -webkit-transform: none;
+      transform: none;
+      }`;
+
 
     const StyledInfoWrapper = styled.article`
      
@@ -36,6 +51,7 @@ export default function JobCard({headline, infotext, jobtitle}) {
     border: 1px solid transparent;
     background-color: #4E4E4E;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    animation: ${({$numberforrandomjob}) => $numberforrandomjob >= 1 && FadeinLeft} 1s ease;
 
     `;
     

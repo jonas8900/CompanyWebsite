@@ -6,10 +6,11 @@ import styled, { keyframes } from "styled-components";
 
 export default function ScrollToTop({scrollY}) {
 const [appearScrollToTopButton, setappearScrollToTopButton] = useState(false);
-const [color, setColor] = useState(false);
+
+const [linkClicked, setLinkClicked] = useState(false);
 
 useEffect(() => {
-function handleToTopButtonAppearByScrolling() {
+
     if (typeof window !== "undefined") {
       window.onscroll = function () {
         if (window.scrollY > 1000) {
@@ -19,27 +20,18 @@ function handleToTopButtonAppearByScrolling() {
         }
       };
     }
-  }
-  handleToTopButtonAppearByScrolling();
-  });
-// only for iphonexr screen, need to change it later
-useEffect(() => { 
-  function handleChangeColorByScrolling() {
-    if(scrollY >= 2780 && scrollY <= 6100) {
-        setColor(true);
-    } else {
-        setColor(false);
-    }
-  } handleChangeColorByScrolling();
 
+  }, [linkClicked]);
 
-});
+function handleClickLink() {
+    setLinkClicked(!linkClicked)
+}
 
     return(
         <>
         {appearScrollToTopButton && (
         <StyledSection $appearscrolltotopbutton={appearScrollToTopButton} >
-        <Link to="randompicture" spy={true} smooth={false} offset={-70} duration={350} ><StyledIcon icon={faArrowUp} $color={color}/></Link>
+        <Link to="randompicture" spy={true} smooth={false} offset={-70} duration={350} onClick={handleClickLink}><StyledIcon icon={faArrowUp} /></Link>
         </StyledSection>)}</>
 
     )
@@ -84,6 +76,7 @@ const StyledSection = styled.section`
 
 
 const StyledIcon = styled(FontAwesomeIcon)`
- color: ${({ $color }) => $color ? "#F5F6FF" : "#4B5E6B"};
+ /* color: ${({ $color }) => $color ? "#F5F6FF" : "#4B5E6B"}; */
+ color: var(--color-fourth);
  transition: all 0.5s ease;
 `;
