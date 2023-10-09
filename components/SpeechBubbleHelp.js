@@ -36,7 +36,7 @@ useEffect(() => {
           {helpButtonClicked ? (
             <>
               <StyledArticle
-                helpbuttonclicked={helpButtonClicked ? "true" : "false"}
+                $helpbuttonclicked={helpButtonClicked ? "true" : "false"}
               >
                 <StyledSubHeadline>
                   Rufen Sie jetzt unseren Berater an !

@@ -5,22 +5,24 @@ import styled, { keyframes } from "styled-components";
 
 export default function ContactData() {
   return (
-    <StyledSection>
-      <StyledHeadline1>Tim Dally</StyledHeadline1>
-      <StyledHeadline2>
-        <StyledLink href="tel:017626246722">
-          <StyledPhoneIcon icon={faPhone} /> 0176 262 46722
-        </StyledLink>
-      </StyledHeadline2>
-      <StyledHeadline2>
-        <StyledLink href="mailto:tim.dally@emb-schulze.de">
-          <StyledMailIcon icon={faEnvelope} />
-          tim.dally@emb-schulze.de
-        </StyledLink>
-      </StyledHeadline2>
-    </StyledSection>
-  );
-}
+        <StyledSection>
+          <StyledHeadline1>Tim Dally</StyledHeadline1>
+          <StyledArticle>
+            <StyledLink href="tel:017626246722">
+              <StyledPhoneIcon icon={faPhone} /> 0176 262 46722
+            </StyledLink>
+          </StyledArticle>
+          <StyledArticle>
+            <StyledLink href="mailto:tim.dally@emb-schulze.de">
+              <StyledMailIcon icon={faEnvelope} />
+              tim.dally@emb-schulze.de
+            </StyledLink>
+          </StyledArticle>
+        </StyledSection>
+      );
+    }
+    
+
 
 const PhoneRing = keyframes`
 
@@ -136,7 +138,7 @@ const StyledMailIcon = styled(FontAwesomeIcon)`
   }
 `;
 
-const StyledHeadline2 = styled.article`
+const StyledArticle = styled.article`
 font-size: var(--font-size-subtitle);
   font-weight: 700;
   color: var(--color-fourth);

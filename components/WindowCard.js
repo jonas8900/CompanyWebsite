@@ -57,7 +57,7 @@ const StyledWindow = styled.section`
     0.4s ease;
 `;
 
-const StyledContactData = styled.p`
+const StyledContactData = styled.article`
   margin-top: 2rem;
   margin-bottom: 2rem;
   border-top: 1px solid grey;

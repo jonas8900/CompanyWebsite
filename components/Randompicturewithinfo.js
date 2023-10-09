@@ -114,11 +114,17 @@ function handleClickRightButtonToChangePicture() {
 }
 
 const Left = keyframes`
-0% { opacity: 0;}
-100% { opacity: 1; }
+ 0% {
+  opacity: 0;
+  }
+  100% {
+  opacity: 1;
+
+  }
+  
 `;
 
-const StyledWrapper = styled.main`
+const StyledWrapper = styled.section`
   margin-bottom: 12rem;
 `;
 
