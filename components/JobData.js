@@ -1,5 +1,3 @@
-
-
 export const JobData = [
 
 {
@@ -43,6 +41,11 @@ export const JobData = [
     jobTitle: "Schlosser",
     moreInfo: "Als technischer Einkäufer ist Ihre Aufgabe die......",
     qualification: "Sie überzeugen uns mit"
+},
+{
+    id: "8",
+    jobTitle: "Test",
+    moreInfo: "Als technischer Einkäufer ist Ihre Aufgabe die......",
+    qualification: "Sie überzeugen uns mit"
 }
-
 ]

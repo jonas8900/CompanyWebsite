@@ -23,6 +23,12 @@ html {
     --font-size-subtitle: 14px;
     --font-size-title: 16px;
     --font-size-headlines: 22px;
+    @media (min-width: 768px) {
+      --font-size-text: 1rem;
+      --font-size-subtitle: 1.2rem;
+    --font-size-title: 1.3rem;
+    --font-size-headlines: 1.8rem;
+    }
 }
 
 body {

@@ -53,8 +53,9 @@ const StyledSection = styled.section`
   width: 1.4rem;
   height: 1.4rem;
   bottom: 3.2rem;
-  right: 5%;
+  right: 2%;
   z-index: 99;
+
   
   animation: ${({ $appearscrolltotopbutton }) => $appearscrolltotopbutton && FadeIn} 0.5s
     ease;
@@ -76,7 +77,10 @@ const StyledSection = styled.section`
 
 
 const StyledIcon = styled(FontAwesomeIcon)`
- /* color: ${({ $color }) => $color ? "#F5F6FF" : "#4B5E6B"}; */
  color: var(--color-fourth);
  transition: all 0.5s ease;
+
+ border-radius: 20%;
+ padding: 3px;
+ background-color: white;
 `;

@@ -1,13 +1,14 @@
 import styled, { keyframes } from "styled-components";
 import Greenbutton from "./GreenButton";
 
-export default function WindowCard({
+export default function ProductDetails({
 	headline,
 	infotext,
 	onClick,
 	value,
 	animationTrigger,
 	contactData,
+	imageGalery,
 }) {
 	return (
 		<>
@@ -18,10 +19,13 @@ export default function WindowCard({
 						<p>{infotext}</p>
 					</section>
 					<StyledContactData>{contactData}</StyledContactData>
+					<StyledImageGalery>{imageGalery}</StyledImageGalery>
+				</StyledInformationCard>
+				<StyledImageWrapper>
 					<Greenbutton onClick={onClick} $value={value}>
 						Schließen
 					</Greenbutton>
-				</StyledInformationCard>
+				</StyledImageWrapper>
 			</StyledWindow>
 		</>
 	);
@@ -52,6 +56,13 @@ const StyledWindow = styled.section`
 		0.4s ease;
 `;
 
+const StyledImageGalery = styled.article`
+	background-color: var(--color-third);
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 2rem;
+`;
+
 const StyledContactData = styled.article`
 	margin-top: 2rem;
 	margin-bottom: 2rem;
@@ -61,13 +72,21 @@ const StyledContactData = styled.article`
 const StyledInformationCard = styled.article`
 	padding: 1rem;
 	position: fixed;
-	top: 35%;
-	transform: translate(-0%, -35%);
+	top: 40%;
+	transform: translate(-0%, -40%);
 	border-radius: 9px;
 	background-color: var(--color-third);
-	width: 80%;
-	left: 10%;
-	right: 10%;
+	width: 90%;
+	left: 5%;
+	right: 5%;
 	margin: auto;
 	z-index: 1;
+	max-height: 80%;
+	overflow-y: scroll;
+`;
+
+const StyledImageWrapper = styled.article`
+	position: fixed;
+	bottom: 2rem;
+	right: 3rem;
 `;

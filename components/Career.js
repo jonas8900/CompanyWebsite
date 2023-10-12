@@ -6,9 +6,11 @@ import JobCard from "./JobCard";
 import { useState } from "react";
 import Greenbutton from "./GreenButton";
 import Link from "next/link";
+import { JobData } from "./JobData";
 
 export default function Career() {
     const [showMore, setShowMore] = useState(false);
+
 
     function handleClickShowMore() {
         setShowMore(!showMore);
@@ -22,14 +24,14 @@ export default function Career() {
         <StyledImageWrapper>
      <Link href="https://www.kununu.com/de/elektromaschinenbau-schulze?utm_source=widget&utm_campaign=widget_selfservice_scorelarge"><StyledImage src="https://www.kununu.com/de/partner/KlRWCFBUUQ%3D%3D/self-service-button?button-type=3" width="150" height="100" alt="kununu-score" unoptimized /></Link>
      </StyledImageWrapper>
-     <StyledJobCardWrapper>
-        <StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
-        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Technischer Einkäufer"}></JobCard>
-        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Elektroniker für Maschinen- und Antriebstechnik"}></JobCard>
+    <StyledJobCardWrapper id="job-ads">
         {showMore === false && (
-            <>
-            <StyledShowMoreSection>
-            <Greenbutton onClick={handleClickShowMore}>alle Jobs anzeigen</Greenbutton>
+            <>     
+        <StyledSubHeadline >Stellenanzeigen</StyledSubHeadline>
+       {/* i want to show the first job in the jobdata */}
+        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={JobData[0].jobTitle}></JobCard>
+        <StyledShowMoreSection>
+           <Greenbutton onClick={handleClickShowMore}>alle Jobs anzeigen</Greenbutton>
             </StyledShowMoreSection>
             <StyledBlurSection>
                  <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Mechatroniker"}></JobCard>
@@ -39,17 +41,15 @@ export default function Career() {
         )}
         {showMore === true && (
             <>
-        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Mechatroniker"}></JobCard>
-        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Elektroniker für Betriebstechnik"}></JobCard>
-        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Konstruktionsmechatroniker"}></JobCard>
-        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Elektrokonstrukteur"}></JobCard>
-        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Projektleitung Modernisierung im Maschinen- und Anlagenbau"}></JobCard>
-        <JobCard headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={"Schlosser"}></JobCard>
+        {JobData.map((job) => (
+            <JobCard key={job.id} headline={"Wir suchen Verstärkung!"} infotext={"wir freuen uns darauf Sie kennenzulernen!"} jobtitle={job.jobTitle}></JobCard>
+        ))}
         <StyledShowMoreSection>
         <Greenbutton onClick={handleClickShowMore}>weniger anzeigen</Greenbutton>
         </StyledShowMoreSection>
-        </>
+</>
         )}
+
      </StyledJobCardWrapper>
      </StyledMainSection>
     )

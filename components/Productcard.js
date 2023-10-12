@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Greenbutton from "./GreenButton";
 
-export default function ProductCard({ src, alt, headline, infotext }) {
+export default function ProductCard({ src, alt, headline, infotext, children }) {
   return (
     <StyledCardWrapper>
       <StyledImageContainer>
@@ -12,9 +12,7 @@ export default function ProductCard({ src, alt, headline, infotext }) {
         <StyledSubHeadline>{headline}</StyledSubHeadline>
         <p>{infotext}</p>
       </StyledInfoWrapper>
-      <StyledButtonWrapper>
-        <Greenbutton margin={-2}>Mehr erfahren ...</Greenbutton>
-      </StyledButtonWrapper>
+      {children}
     </StyledCardWrapper>
   );
 }
@@ -43,9 +41,7 @@ const StyledCardWrapper = styled.section`
   margin-bottom: 3rem;
 `;
 
-const StyledButtonWrapper = styled.section`
-  margin-left: 50%;
-`;
+
 
 const StyledSubHeadline = styled.h2`
   font-size: var(--font-size-title);
