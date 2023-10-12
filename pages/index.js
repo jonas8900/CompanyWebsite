@@ -8,6 +8,7 @@ import Randompicture from "../components/Randompicturewithinfo";
 import ScrollToTop from "../components/ScrollToTop";
 import SpeechBubbleHelp from "../components/SpeechBubbleHelp";
 import Contact from "../components/Contact";
+import Footer from "../components/Footer";
 
 export default function Home({scrollY}) {
 
@@ -22,6 +23,7 @@ export default function Home({scrollY}) {
       <AboutUs/>
       <Career/>
       <Contact/>
+      <Footer/>
     </>
   );
 }

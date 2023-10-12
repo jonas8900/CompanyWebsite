@@ -26,7 +26,7 @@ export default function Navigation() {
       <StyledNavigationBar>
         <StyledNavigationSection>
           <StyledShowOrHideMenuButton onClick={handleChangeMenuButton}>
-            <StyledIconDescription>Menü</StyledIconDescription>
+            <StyledIconDescription></StyledIconDescription>
             {menuClicked ? (
               <>
                 <StyledMenuIcon
@@ -46,7 +46,7 @@ export default function Navigation() {
           <StyledShowOrHideSearchButton onClick={handleChangeSearchButton}>
             {searchClicked ? (
               <>
-                <StyledIconDescription>schließen</StyledIconDescription>
+                <StyledIconDescription></StyledIconDescription>
                 <StyledSearchIcon
                   icon={faX}
                   searchclicked={searchClicked ? "true" : "false"}
@@ -54,7 +54,7 @@ export default function Navigation() {
               </>
             ) : (
               <>
-                <StyledIconDescription>Suche</StyledIconDescription>
+                <StyledIconDescription></StyledIconDescription>
                 <StyledSearchIcon
                   icon={faSearch}
                   searchclicked={searchClicked ? "true" : "false"}

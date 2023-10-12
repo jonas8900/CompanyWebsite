@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Greenbutton from "./GreenButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-scroll";
 
 export default function CompanyAdvantages() {
 return(
@@ -20,7 +21,7 @@ return(
     <StyledDiv><StyledParagraph>flache Hierachien</StyledParagraph><StyledIcon icon={faCheck} /></StyledDiv>
 
     </StyledDivSection>
-    <StyledButtonSection><Greenbutton margin={-2}>zu den Jobs</Greenbutton></StyledButtonSection>
+    <StyledButtonSection><Link to="job-ads" spy={true} smooth={false} offset={-70} duration={350}><Greenbutton margin={-2}>zu den Jobs</Greenbutton></Link></StyledButtonSection>
     </StyledCardWrapper>
     </>
 )

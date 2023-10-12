@@ -1,5 +1,7 @@
 {
-    "prettier.bracketSameLine": true,
-    "prettier.endOfLine": "lf",
-    "prettier.useTabs": true
+	"prettier.bracketSameLine": false,
+	"prettier.endOfLine": "lf",
+	"prettier.useTabs": true,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
 }
