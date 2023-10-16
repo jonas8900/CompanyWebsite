@@ -1,14 +1,9 @@
-import Head from "next/head";
-import React from "react";
 import { Link } from "react-scroll/modules";
 import styled from "styled-components";
 
 export default function Logo() {
 	return (
 		<>
-			<Head>
-				<link rel="canonical" href="https://elektromaschinenbau.vercel.app/" />
-			</Head>
 			<Link
 				to="randompicture"
 				spy={true}

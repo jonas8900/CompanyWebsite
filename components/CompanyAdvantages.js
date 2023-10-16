@@ -3,15 +3,10 @@ import Greenbutton from "./GreenButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-scroll";
-import React from "react";
-import Head from "next/head";
 
 export default function CompanyAdvantages() {
 	return (
 		<>
-			<Head>
-				<link rel="canonical" href="https://elektromaschinenbau.vercel.app/" />
-			</Head>
 			<StyledCardWrapper>
 				<StyledHeadline>Was wir bieten</StyledHeadline>
 				<StyledDivSection>
