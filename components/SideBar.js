@@ -12,11 +12,13 @@ import styled, { keyframes } from "styled-components";
 import directLink from "next/link";
 import { Link } from "react-scroll";
 import OutsideClickHandler from "react-outside-click-handler";
+import ContactFormular from "./ContactFormular";
 
 export default function SideBar() {
 	const [arrowClicked, setArrowClicked] = useState(false);
 	const [arrowAnimation, setArrowAnimation] = useState(false);
 	const [questionClicked, setQuestionClicked] = useState(false);
+	const [formularClicked, setFormularClicked] = useState(false);
 
 	function handleArrowClicked() {
 		setArrowAnimation(!arrowAnimation);
@@ -27,6 +29,14 @@ export default function SideBar() {
 
 	function handleQuestionClick() {
 		setQuestionClicked(!questionClicked);
+	}
+
+	function handleClickFormularButton() {
+		setFormularClicked(!formularClicked);
+	}
+
+	function handleSubmitFormular(event) {
+		event.preventDefault();
 	}
 
 	return (
@@ -53,18 +63,18 @@ export default function SideBar() {
 							<StyledButton $questionclicked={questionClicked}>
 								<StyledIcon icon={faQuestion} onClick={handleQuestionClick} />
 							</StyledButton>
-							<StyledButton>
-								<Link
-									to="career"
-									spy={true}
-									smooth={false}
-									offset={-70}
-									duration={350}
-								>
+							<Link
+								to="career"
+								spy={true}
+								smooth={false}
+								offset={-70}
+								duration={350}
+							>
+								<StyledButton>
 									<StyledIcon icon={faUserGraduate} />
-								</Link>
-							</StyledButton>
-							<StyledButton>
+								</StyledButton>
+							</Link>
+							<StyledButton onClick={handleClickFormularButton}>
 								<StyledIcon icon={faEnvelope} />
 							</StyledButton>
 						</StyledSectionForSideBar>
@@ -94,6 +104,12 @@ export default function SideBar() {
 					)}
 				</StyledWrapper>
 			</OutsideClickHandler>
+			{formularClicked && (
+				<ContactFormular
+					onSubmit={handleSubmitFormular}
+					onClick={handleClickFormularButton}
+				/>
+			)}
 		</>
 	);
 }
@@ -226,11 +242,10 @@ const StyledSectionForSideBar = styled.section`
 
 const StyledButton = styled.button`
 	background-color: var(--color-fourth);
-	width: 2rem;
-	height: 2rem;
+	width: 3rem;
+	height: 3rem;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+
 	border: none;
 	box-shadow: ${({ $questionclicked }) =>
 		$questionclicked
@@ -243,9 +258,11 @@ const StyledButton = styled.button`
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 2rem;
+	height: 2rem;
 	color: white;
+	align-self: center;
+	justify-self: center;
 `;
 
 const StyledSectionForArrow = styled.section`
@@ -281,9 +298,9 @@ const StyledArticle = styled.article`
 	height: 7rem;
 	animation: ${({ helpbuttonclicked }) => helpbuttonclicked && FadeIn} 1s ease;
 	position: fixed;
-	top: -2rem;
+	top: -3rem;
 	z-index: 9999;
-	right: 2rem;
+	right: 2.4rem;
 	transform: translateY(-70%);
 `;
 
