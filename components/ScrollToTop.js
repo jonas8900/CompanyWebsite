@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-scroll/modules";
 import styled, { keyframes } from "styled-components";
 
-export default function ScrollToTop({ scrollY }) {
+export default function ScrollToTop() {
 	const [appearScrollToTopButton, setappearScrollToTopButton] = useState(false);
 
 	const [linkClicked, setLinkClicked] = useState(false);
@@ -54,8 +54,8 @@ const StyledSection = styled.section`
 	position: fixed;
 	width: 1.4rem;
 	height: 1.4rem;
-	bottom: 3.2rem;
-	right: 1%;
+	bottom: 3rem;
+	left: 5%;
 	z-index: 99;
 
 	animation: ${({ $appearscrolltotopbutton }) =>
