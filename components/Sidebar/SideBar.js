@@ -12,7 +12,7 @@ import styled, { keyframes } from "styled-components";
 import directLink from "next/link";
 import { Link } from "react-scroll";
 import OutsideClickHandler from "react-outside-click-handler";
-import ContactFormular from "./ContactFormular";
+import ContactFormular from "../Contact/ContactFormular";
 
 export default function SideBar() {
 	const [arrowClicked, setArrowClicked] = useState(false);
@@ -35,8 +35,29 @@ export default function SideBar() {
 		setFormularClicked(!formularClicked);
 	}
 
-	function handleSubmitFormular(event) {
+	async function handleSubmitFormular(event) {
 		event.preventDefault();
+
+		const formData = new FormData(event.target);
+		const data = Object.fromEntries(formData);
+
+		const response = await fetch("/api/contact", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify(data),
+		});
+		setFormularClicked(false);
+		if (response.ok) {
+			alert(
+				"Vielen Dank für Ihre Nachricht. Wir werden uns so schnell wie möglich bei Ihnen melden."
+			);
+			
+		} else {
+			alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+		}
 	}
 
 	return (

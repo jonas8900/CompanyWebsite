@@ -1,8 +1,8 @@
 import styled, { keyframes } from "styled-components";
-import GreenButton from "./GreenButton";
+import GreenButton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
 
-import WindowCard from "./WindowCard";
+import WindowCard from "../WindowCards/WindowCard";
 
 export default function Introtext() {
 	const [windowAlert, setWindowAlert] = useState(0);

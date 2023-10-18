@@ -1,13 +1,27 @@
 import styled from "styled-components";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
+import { useState } from "react";
+import ContactFormular from "./ContactFormular";
 
 export default function Contact() {
+	const [contactClicked, setContactClicked] = useState(false);
+
+	function handleClickContact() {
+		setContactClicked(!contactClicked);
+	}
+
+	function handleSubmit(event) {
+		event.preventDefault();
+	}
+
 	return (
 		<>
 			<StyledContactSection id="contact">
 				<StyledHeadlineAndButtonWrapper>
 					<StyledHeadline>Kontakt</StyledHeadline>
-					<Greenbutton>Kontaktformular</Greenbutton>
+					<Greenbutton onClick={handleClickContact}>
+						Kontaktformular
+					</Greenbutton>
 				</StyledHeadlineAndButtonWrapper>
 				<StyledInformationWrapper>
 					<StyledInformations>
@@ -43,6 +57,9 @@ export default function Contact() {
 					></StyledFrame>
 				</StyledMap>
 			</StyledContactSection>
+			{contactClicked && (
+				<ContactFormular onSubmit={handleSubmit} onClick={handleClickContact} />
+			)}
 		</>
 	);
 }

@@ -1,27 +1,23 @@
+import Greenbutton from "../Buttons/GreenButton";
 import styled, { keyframes } from "styled-components";
-import Greenbutton from "./GreenButton";
 
-export default function WindowCard({
-	headline,
-	infotext,
+export default function ImageFolder({
+	animationTrigger,
+	children,
 	onClick,
 	value,
-	animationTrigger,
-	contactData,
 }) {
 	return (
 		<>
 			<StyledWindow $animationtrigger={animationTrigger}>
-				<StyledInformationCard>
-					<section>
-						<h3>{headline}</h3>
-						<p>{infotext}</p>
-					</section>
-					<StyledContactData>{contactData}</StyledContactData>
-					<Greenbutton onClick={onClick} $value={value}>
-						Schließen
-					</Greenbutton>
-				</StyledInformationCard>
+				<StyledImagWrapper>
+					<StyledImageContainer>{children}</StyledImageContainer>
+					<StyledButtonArticle>
+						<Greenbutton onClick={onClick} $value={value}>
+							Schließen
+						</Greenbutton>
+					</StyledButtonArticle>
+				</StyledImagWrapper>
 			</StyledWindow>
 		</>
 	);
@@ -44,7 +40,7 @@ const StyledWindow = styled.section`
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 999;
+	z-index: 1000;
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(20px);
 	animation: ${({ $animationtrigger }) =>
@@ -52,16 +48,10 @@ const StyledWindow = styled.section`
 		0.4s ease;
 `;
 
-const StyledContactData = styled.article`
-	margin-top: 2rem;
-	margin-bottom: 2rem;
-	border-top: 1px solid grey;
-`;
-
-const StyledInformationCard = styled.article`
+const StyledImagWrapper = styled.article`
 	padding: 1rem;
 	position: fixed;
-	top: 35%;
+	top: 40%;
 	transform: translate(-0%, -35%);
 	border-radius: 9px;
 	background-color: var(--color-third);
@@ -70,4 +60,16 @@ const StyledInformationCard = styled.article`
 	right: 10%;
 	margin: auto;
 	z-index: 1;
+	display: flex;
+	flex-wrap: wrap;
+`;
+
+const StyledImageContainer = styled.article`
+	margin-bottom: 4rem;
+`;
+
+const StyledButtonArticle = styled.article`
+	position: fixed;
+	bottom: 1rem;
+	left: 1rem;
 `;

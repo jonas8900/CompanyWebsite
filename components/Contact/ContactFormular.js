@@ -1,7 +1,12 @@
 import styled from "styled-components";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
 
-export default function ContactFormular({ onSubmit, onClick, value }) {
+export default function ContactFormular({
+	onSubmit,
+	onClick,
+	value,
+	disabled,
+}) {
 	return (
 		<>
 			<StyledWindow>
@@ -14,6 +19,7 @@ export default function ContactFormular({ onSubmit, onClick, value }) {
 								type="text"
 								name="name"
 								placeholder="Max Mustermann..."
+								maxLength="50"
 								required
 							/>
 						</StyledInputAndLabelArticle>
@@ -23,6 +29,7 @@ export default function ContactFormular({ onSubmit, onClick, value }) {
 								type="email"
 								name="email"
 								placeholder="max.mustermann@..."
+								maxLength="70"
 								required
 							/>
 						</StyledInputAndLabelArticle>
@@ -30,7 +37,7 @@ export default function ContactFormular({ onSubmit, onClick, value }) {
 							<StyledLabel id="message" required>
 								Nachricht
 							</StyledLabel>
-							<StyledTextArea name="message" />
+							<StyledTextArea name="message" maxLength="500" />
 						</StyledInputAndLabelArticle>
 						<StyledInputAndLabelArticle>
 							<StyledLabel id="requestType">Art der Anfrage</StyledLabel>
@@ -38,9 +45,12 @@ export default function ContactFormular({ onSubmit, onClick, value }) {
 								<option value="Kundenberatung">Kundenberatung</option>
 								<option value="Kaufanfrage">Kaufanfrage</option>
 								<option value="Jobinformation">Job Informationen</option>
+								<option value="Sonstige">Sonstige</option>
 							</select>
 						</StyledInputAndLabelArticle>
-						<Greenbutton type="submit">Absenden</Greenbutton>
+						<Greenbutton type="submit" disabled={disabled}>
+							Absenden
+						</Greenbutton>
 					</StyledForm>
 				</StyledFormularCard>
 				<StyledButtonSection>
@@ -117,4 +127,16 @@ const StyledInputField = styled.input`
 
 const StyledTextArea = styled.textarea`
 	height: 5rem;
+`;
+
+const StyledButton = styled.button`
+	background-color: var(--color-primary);
+	border: none;
+	padding: 0.6rem;
+	min-width: 6rem;
+	font-size: var(--font-size-text);
+	color: var(--color-fourth);
+	&:active {
+		box-shadow: inset 1px 1px 5px 0px black;
+	}
 `;

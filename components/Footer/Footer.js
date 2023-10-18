@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Logo from "./Logo";
+import Logo from "../Navigation/Logo";
 import Link from "next/link";
 
 export default function Footer() {
