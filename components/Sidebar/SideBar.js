@@ -1,5 +1,6 @@
 import {
 	faCaretLeft,
+	faCircleCheck,
 	faEnvelope,
 	faPhone,
 	faQuestion,
@@ -7,18 +8,24 @@ import {
 	faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import directLink from "next/link";
 import { Link } from "react-scroll";
 import OutsideClickHandler from "react-outside-click-handler";
 import ContactFormular from "../Contact/ContactFormular";
+import ToastMessage from "../ToastMessage/ToastMessage";
 
 export default function SideBar() {
 	const [arrowClicked, setArrowClicked] = useState(false);
 	const [arrowAnimation, setArrowAnimation] = useState(false);
 	const [questionClicked, setQuestionClicked] = useState(false);
 	const [formularClicked, setFormularClicked] = useState(false);
+	const [messageSuccess, setMessageSuccess] = useState(false);
+	const [messageError, setMessageError] = useState(false);
+	const [animationTrigger, setAnimationTrigger] = useState(false);
+	const [submitClicked, setSubmitClicked] = useState(false);
+	const [capture, setCapture] = useState("");
 
 	function handleArrowClicked() {
 		setArrowAnimation(!arrowAnimation);
@@ -33,10 +40,24 @@ export default function SideBar() {
 
 	function handleClickFormularButton() {
 		setFormularClicked(!formularClicked);
+		setCapture("");
+	}
+
+	function handleSubmitButtonClicked() {
+		setSubmitClicked(true);
+		setTimeout(() => {
+			setSubmitClicked(false);
+		}, 3000);
 	}
 
 	async function handleSubmitFormular(event) {
+		handleSubmitButtonClicked();
 		event.preventDefault();
+
+		if (!capture || capture === null || "") {
+			alert("Bitte bestätigen Sie, dass Sie kein Roboter sind.");
+			return;
+		}
 
 		const formData = new FormData(event.target);
 		const data = Object.fromEntries(formData);
@@ -49,12 +70,13 @@ export default function SideBar() {
 			},
 			body: JSON.stringify(data),
 		});
-		setFormularClicked(false);
+
 		if (response.ok) {
-			alert(
-				"Vielen Dank für Ihre Nachricht. Wir werden uns so schnell wie möglich bei Ihnen melden."
-			);
-			
+			setMessageSuccess(true);
+			setTimeout(() => {
+				setMessageSuccess(false);
+				setFormularClicked(false);
+			}, 3000);
 		} else {
 			alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
 		}
@@ -129,7 +151,16 @@ export default function SideBar() {
 				<ContactFormular
 					onSubmit={handleSubmitFormular}
 					onClick={handleClickFormularButton}
+					onChange={(value) => setCapture(value)}
+					disabled={submitClicked}
+					successValue={submitClicked}
 				/>
+			)}
+
+			{messageSuccess && (
+				<AnimationSection $animationtrigger={animationTrigger}>
+					<ToastMessage>Senden erfolgreich!</ToastMessage>
+				</AnimationSection>
 			)}
 		</>
 	);
@@ -245,6 +276,18 @@ const WobbleEffect = keyframes`
 
 `;
 
+const ToastFadeIn = keyframes`
+ 0% {
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+  }
+`;
+
 const FadeIn = keyframes`
 0% {opacity: 0;}
 100% {opacity: 1;}
@@ -259,6 +302,11 @@ const StyledSectionForSideBar = styled.section`
 	animation: ${({ $arrowclicked }) =>
 			$arrowclicked ? fadeInRight : fadeOutRight}
 		0.4s ease;
+`;
+
+const AnimationSection = styled.section`
+	animation: ${({ $messagesuccess }) => $messagesuccess && ToastFadeIn} 0.4s
+		ease;
 `;
 
 const StyledButton = styled.button`

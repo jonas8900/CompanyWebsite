@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function ContactFormular({
 	onSubmit,
 	onClick,
 	value,
 	disabled,
+	onChange,
+	successValue,
 }) {
 	return (
 		<>
@@ -48,9 +54,19 @@ export default function ContactFormular({
 								<option value="Sonstige">Sonstige</option>
 							</select>
 						</StyledInputAndLabelArticle>
+						<ReCAPTCHA
+							sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+							onChange={onChange}
+							
+						/>
 						<Greenbutton type="submit" disabled={disabled}>
 							Absenden
 						</Greenbutton>
+						{successValue && (
+							<>
+								<StyledCheckIcon icon={faCheck} />
+							</>
+						)}
 					</StyledForm>
 				</StyledFormularCard>
 				<StyledButtonSection>
@@ -106,6 +122,17 @@ const StyledButtonSection = styled.section`
 
 const StyledLabel = styled.label`
 	font-size: var(--font-size-subtitle);
+`;
+
+const StyledCheckIcon = styled(FontAwesomeIcon)`
+	position: fixed;
+	z-index: 9999;
+	width: 2rem;
+	height: 2rem;
+	color: black;
+	bottom: 3%;
+	border-radius: 0%;
+	right: 20%;
 `;
 
 const StyledInputAndLabelArticle = styled.article`
