@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-scroll";

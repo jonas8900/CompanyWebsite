@@ -1,13 +1,69 @@
 import styled from "styled-components";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
+import { useState } from "react";
+import ContactFormular from "./ContactFormular";
+import ToastMessage from "../ToastMessage/ToastMessage";
 
 export default function Contact() {
+	const [contactClicked, setContactClicked] = useState(false);
+	const [messageSuccess, setMessageSuccess] = useState(false);
+	const [messageError, setMessageError] = useState(false);
+	const [animationTrigger, setAnimationTrigger] = useState(false);
+	const [submitClicked, setSubmitClicked] = useState(false);
+	const [formularClicked, setFormularClicked] = useState(false);
+	const [capture, setCapture] = useState("");
+
+	function handleClickFormularButton() {
+		setContactClicked(!contactClicked);
+	}
+
+	function handleSubmitButtonClicked() {
+		setSubmitClicked(true);
+		setTimeout(() => {
+			setSubmitClicked(false);
+		}, 3000);
+	}
+
+	async function handleSubmitFormular(event) {
+		handleSubmitButtonClicked();
+		event.preventDefault();
+
+		if (!capture || capture === null || "") {
+			alert("Bitte bestätigen Sie, dass Sie kein Roboter sind.");
+			return;
+		}
+
+		const formData = new FormData(event.target);
+		const data = Object.fromEntries(formData);
+
+		const response = await fetch("/api/contact", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Accept: "application/json",
+			},
+			body: JSON.stringify(data),
+		});
+
+		if (response.ok) {
+			setMessageSuccess(true);
+			setTimeout(() => {
+				setMessageSuccess(false);
+				setFormularClicked(false);
+			}, 3000);
+		} else {
+			alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+		}
+	}
+
 	return (
 		<>
 			<StyledContactSection id="contact">
 				<StyledHeadlineAndButtonWrapper>
 					<StyledHeadline>Kontakt</StyledHeadline>
-					<Greenbutton>Kontaktformular</Greenbutton>
+					<Greenbutton onClick={handleClickFormularButton}>
+						Kontaktformular
+					</Greenbutton>
 				</StyledHeadlineAndButtonWrapper>
 				<StyledInformationWrapper>
 					<StyledInformations>
@@ -43,6 +99,18 @@ export default function Contact() {
 					></StyledFrame>
 				</StyledMap>
 			</StyledContactSection>
+			{formularClicked && (
+				<>
+					<ContactFormular
+						onSubmit={handleSubmitFormular}
+						onClick={handleClickFormularButton}
+						onChange={(value) => setCapture(value)}
+						disabled={submitClicked}
+						successValue={submitClicked}
+					/>
+					{messageSuccess && <ToastMessage>Senden erfolgreich!</ToastMessage>}
+				</>
+			)}
 		</>
 	);
 }

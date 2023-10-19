@@ -1,7 +1,18 @@
 import styled from "styled-components";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 
-export default function ContactFormular({ onSubmit, onClick, value }) {
+export default function ContactFormular({
+	onSubmit,
+	onClick,
+	value,
+	disabled,
+	onChange,
+	successValue,
+}) {
 	return (
 		<>
 			<StyledWindow>
@@ -14,6 +25,7 @@ export default function ContactFormular({ onSubmit, onClick, value }) {
 								type="text"
 								name="name"
 								placeholder="Max Mustermann..."
+								maxLength="50"
 								required
 							/>
 						</StyledInputAndLabelArticle>
@@ -23,6 +35,7 @@ export default function ContactFormular({ onSubmit, onClick, value }) {
 								type="email"
 								name="email"
 								placeholder="max.mustermann@..."
+								maxLength="70"
 								required
 							/>
 						</StyledInputAndLabelArticle>
@@ -30,7 +43,7 @@ export default function ContactFormular({ onSubmit, onClick, value }) {
 							<StyledLabel id="message" required>
 								Nachricht
 							</StyledLabel>
-							<StyledTextArea name="message" />
+							<StyledTextArea name="message" maxLength="500" />
 						</StyledInputAndLabelArticle>
 						<StyledInputAndLabelArticle>
 							<StyledLabel id="requestType">Art der Anfrage</StyledLabel>
@@ -38,9 +51,22 @@ export default function ContactFormular({ onSubmit, onClick, value }) {
 								<option value="Kundenberatung">Kundenberatung</option>
 								<option value="Kaufanfrage">Kaufanfrage</option>
 								<option value="Jobinformation">Job Informationen</option>
+								<option value="Sonstige">Sonstige</option>
 							</select>
 						</StyledInputAndLabelArticle>
-						<Greenbutton type="submit">Absenden</Greenbutton>
+						<ReCAPTCHA
+							sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+							onChange={onChange}
+							
+						/>
+						<Greenbutton type="submit" disabled={disabled}>
+							Absenden
+						</Greenbutton>
+						{successValue && (
+							<>
+								<StyledCheckIcon icon={faCheck} />
+							</>
+						)}
 					</StyledForm>
 				</StyledFormularCard>
 				<StyledButtonSection>
@@ -98,6 +124,17 @@ const StyledLabel = styled.label`
 	font-size: var(--font-size-subtitle);
 `;
 
+const StyledCheckIcon = styled(FontAwesomeIcon)`
+	position: fixed;
+	z-index: 9999;
+	width: 2rem;
+	height: 2rem;
+	color: black;
+	bottom: 3%;
+	border-radius: 0%;
+	right: 20%;
+`;
+
 const StyledInputAndLabelArticle = styled.article`
 	display: flex;
 	flex-direction: column;
@@ -117,4 +154,16 @@ const StyledInputField = styled.input`
 
 const StyledTextArea = styled.textarea`
 	height: 5rem;
+`;
+
+const StyledButton = styled.button`
+	background-color: var(--color-primary);
+	border: none;
+	padding: 0.6rem;
+	min-width: 6rem;
+	font-size: var(--font-size-text);
+	color: var(--color-fourth);
+	&:active {
+		box-shadow: inset 1px 1px 5px 0px black;
+	}
 `;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ProductCard from "./Productcard";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
 import { ProductData } from "./ProductData";
 import ProductDetails from "./ProductDetails";

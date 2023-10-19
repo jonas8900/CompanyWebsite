@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
 import Image from "next/image";
 import ImageFolder from "./ImageWindowFolder";
 import { useEffect, useState } from "react";

@@ -4,7 +4,7 @@ import CareerPictureAndJob from "./CareerPictureAndJob";
 import Image from "next/image";
 import JobCard from "./JobCard";
 import { useState } from "react";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
 import Link from "next/link";
 import { JobData } from "./JobData";
 

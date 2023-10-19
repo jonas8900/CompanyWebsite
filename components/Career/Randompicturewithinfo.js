@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styled, { keyframes } from "styled-components";
-import Greenbutton from "./GreenButton";
+import Greenbutton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
-import WindowCard from "./WindowCard";
-import ContactData from "./ContactData";
+import WindowCard from "../WindowCards/WindowCard";
+import ContactData from "../Homescreen/ContactData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
