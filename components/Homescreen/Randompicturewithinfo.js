@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
 import WindowCard from "../WindowCards/WindowCard";
-import ContactData from "../Homescreen/ContactData";
+import ContactData from "./ContactData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -130,6 +130,8 @@ const Left = keyframes`
 
 const StyledWrapper = styled.section`
 	margin-bottom: 12rem;
+	position: relative;
+	top: 0;
 `;
 
 const StyledRandomImage = styled(Image)`

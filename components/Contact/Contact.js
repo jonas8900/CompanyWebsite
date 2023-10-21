@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ContactFormular from "./ContactFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 
 export default function Contact() {
-	const [contactClicked, setContactClicked] = useState(false);
 	const [messageSuccess, setMessageSuccess] = useState(false);
 	const [messageError, setMessageError] = useState(false);
 	const [animationTrigger, setAnimationTrigger] = useState(false);
@@ -14,7 +13,7 @@ export default function Contact() {
 	const [capture, setCapture] = useState("");
 
 	function handleClickFormularButton() {
-		setContactClicked(!contactClicked);
+		setFormularClicked(!formularClicked);
 	}
 
 	function handleSubmitButtonClicked() {
@@ -55,6 +54,16 @@ export default function Contact() {
 			alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
 		}
 	}
+
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			if (formularClicked) {
+				document.body.style.overflow = "hidden";
+			} else {
+				document.body.style.overflow = "auto";
+			}
+		}
+	}, [formularClicked]);
 
 	return (
 		<>
