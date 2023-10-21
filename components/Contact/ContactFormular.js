@@ -13,6 +13,9 @@ export default function ContactFormular({
 	onChange,
 	successValue,
 }) {
+
+
+
 	return (
 		<>
 			<StyledWindow>
@@ -57,7 +60,6 @@ export default function ContactFormular({
 						<ReCAPTCHA
 							sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
 							onChange={onChange}
-							
 						/>
 						<Greenbutton type="submit" disabled={disabled}>
 							Absenden
@@ -97,9 +99,14 @@ const StyledFormularCard = styled.article`
 	transform: translate(-0%, -35%);
 	border-radius: 9px;
 	background-color: var(--color-third);
-	width: 80%;
-	left: 10%;
-	right: 10%;
+	width: 92%;
+	left: 4%;
+	right: 4%;
+	@media (min-width: 768px) {
+		width: 50%;
+		left: 25%;
+		right: 25%;
+	}
 	margin: auto;
 	z-index: 1;
 `;

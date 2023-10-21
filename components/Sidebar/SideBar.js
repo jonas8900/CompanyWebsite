@@ -8,7 +8,7 @@ import {
 	faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import directLink from "next/link";
 import { Link } from "react-scroll";
@@ -81,6 +81,16 @@ export default function SideBar() {
 			alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
 		}
 	}
+
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			if (formularClicked) {
+				document.body.style.overflow = "hidden";
+			} else {
+				document.body.style.overflow = "auto";
+			}
+		}
+	}, [formularClicked]);
 
 	return (
 		<>
@@ -365,6 +375,10 @@ const StyledArticle = styled.article`
 	background-color: var(--color-fourth);
 	width: 20rem;
 	height: 7rem;
+	@media (min-width: 768px) {
+		width: 25rem;
+		height: 9rem;
+	}
 	animation: ${({ helpbuttonclicked }) => helpbuttonclicked && FadeIn} 1s ease;
 	position: fixed;
 	top: -3rem;
