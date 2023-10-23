@@ -11,7 +11,7 @@ export default function Navigation({ scrollY }) {
 	const [animationDone, setAnimationDone] = useState(false);
 	const [searchClicked, setSearchClicked] = useState(false);
 	const [device, setDevice] = useState("");
-	console.log(scrollY);
+
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			function handleResize() {
@@ -331,7 +331,8 @@ const StyledNavigationSection = styled.section`
 const StyledUnsortedList = styled.ul`
 	position: absolute;
 	z-index: 3;
-
+	display: flex;
+	flex-direction: column;
 	width: 60%;
 	height: 20rem;
 	display: flex;
@@ -340,7 +341,7 @@ const StyledUnsortedList = styled.ul`
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	margin-top: 0.5rem;
+	margin-top: 25rem;
 	@media (min-width: 1024px) {
 		flex-direction: row;
 		justify-content: flex-end;

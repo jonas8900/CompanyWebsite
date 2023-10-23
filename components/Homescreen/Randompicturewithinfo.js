@@ -132,11 +132,12 @@ const Left = keyframes`
 `;
 
 const StyledWrapper = styled.section`
-	margin-bottom: 0rem;
+	margin-bottom: 12rem;
 	position: relative;
 	top: 0%;
 	@media (min-width: 1025px) {
 		margin-top: -8rem;
+		margin-bottom: 4rem;
 	}
 `;
 

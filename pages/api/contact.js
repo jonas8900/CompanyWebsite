@@ -1,8 +1,6 @@
 import { transporter, mailOptions } from "../../components/Config/nodemailer";
 
 export default async function handler(request, response) {
-	console.log(request.body);
-
 	if (request.method === "POST") {
 		const data = request.body;
 

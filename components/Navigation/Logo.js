@@ -4,15 +4,17 @@ import styled from "styled-components";
 export default function Logo() {
 	return (
 		<>
-			<Link
-				to="randompicture"
-				spy={true}
-				smooth={false}
-				offset={-70}
-				duration={350}
-			>
-				<StyledLogo>Elektromaschinenbau Schulze GmbH</StyledLogo>
-			</Link>
+			<StyledLogo>
+				<Link
+					to="randompicture"
+					spy={true}
+					smooth={false}
+					offset={-70}
+					duration={350}
+				>
+					Elektromaschinenbau Schulze GmbH
+				</Link>
+			</StyledLogo>
 		</>
 	);
 }
