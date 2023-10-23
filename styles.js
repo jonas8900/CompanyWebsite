@@ -12,6 +12,8 @@ export default createGlobalStyle`
 
 html {
   scroll-behavior: smooth;
+  margin: 0;
+    padding: 0;
   
 
   
@@ -42,6 +44,9 @@ body {
     font-size: 100%;
     width: 100%;
     height: 100%;
+    @media (min-width: 1199px){
+      margin: auto;
+    }
 
 }
 

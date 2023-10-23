@@ -13,10 +13,10 @@ import styled from "styled-components";
 export default function Home({ scrollY }) {
 	return (
 		<>
-			<Navigation />
+			<Navigation scrollY={scrollY} />
+			<Randompicture />
 			<ScrollToTop scrollY={scrollY} />
 			<SideBar />
-			<Randompicture />
 			<Introtext />
 			<Products />
 			<AboutUs />
