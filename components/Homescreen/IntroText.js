@@ -8,6 +8,7 @@ export default function Introtext() {
 	const [windowAlert, setWindowAlert] = useState(0);
 	const [animationToggle, setAnimationToggle] = useState(true);
 
+	
 	function handleOnclickOnButtonWindow(index) {
 		if (windowAlert === 0 && animationToggle === false) {
 			setAnimationToggle(true);
@@ -15,6 +16,13 @@ export default function Introtext() {
 			setAnimationToggle(!animationToggle);
 			setWindowAlert(index);
 		}
+	}
+
+	function handleCloseWindow() {
+		setAnimationToggle(!animationToggle);
+		setTimeout(() => {
+			setWindowAlert(0);
+		}, 350);
 	}
 
 	useEffect(() => {
@@ -27,31 +35,31 @@ export default function Introtext() {
 		}
 	}, [windowAlert]);
 
-	function handleCloseWindow() {
-		setAnimationToggle(!animationToggle);
-		setTimeout(() => {
-			setWindowAlert(0);
-		}, 350);
-	}
+
 	return (
 		<>
 			<StyledIntroTextWrapper id="introtext">
 				<StyledHeadline>Elektromaschinenbau Schulze GmbH</StyledHeadline>
-				<h2>schon seit 10 Jahren..</h2>
+				<StyledSecondHeadline>schon seit 10 Jahren..</StyledSecondHeadline>
 				<StyledInfoSection>
-					<p>
-						Sind wir Ihr zuverlässiger Partner in der Fördertechnik. Von der
-						Planung bis zur Wartung kümmern wir uns um Ihre Krananlagen. Auch
-						Elektromotoren und Steuerungsbau sind Teil unseres Services. Wir
-						verwenden hochwertige Produkte und fertigen individuelle Teile, wenn
-						nötig. Unser Ziel ist es, maßgeschneiderte Lösungen für jeden Kunden
-						anzubieten.
-					</p>
+					<StyledTextParagraph>
+						sind wir Ihr <b>zuverlässiger Partner</b> im Bereich{" "}
+						<b>Fördertechnik</b>. Unsere Leistungen umfassen die{" "}
+						<b>Herstellung von Krananlagen</b>, Service und Reparaturen,
+						Mängelbeseitigungen, Prüfungen sowie die Reparatur und Überholung
+						sämtlicher Kranantriebe, unabhängig von ihrem Alter und Hersteller.
+						Wir sind Spezialisten in der Planung, Konstruktion und Herstellung
+						von Kranen und Sonderhebezeugen. Darüber hinaus bieten wir
+						Kranprüfungen gemäß der UVV BGV an und sind Experten in
+						Spezialmontagen. Unser Ziel ist es, maßgeschneiderte Lösungen für
+						jeden Kunden anzubieten und somit langfristige Partnerschaften
+						aufzubauen. Vertrauen Sie auf unsere Erfahrung und unser Engagement.
+					</StyledTextParagraph>
 					<StyledArgumentCardWrapper>
-						<GreenButton onClick={() => handleOnclickOnButtonWindow(1)}>
+						<GreenButton>
 							<i>schnell</i>
 						</GreenButton>
-						{windowAlert === 1 && (
+						{/* {windowAlert === 1 && (
 							<>
 								<WindowCard
 									headline={"schnell"}
@@ -65,11 +73,11 @@ export default function Introtext() {
 									animationTrigger={animationToggle}
 								/>
 							</>
-						)}
-						<GreenButton onClick={() => handleOnclickOnButtonWindow(2)}>
+						)} */}
+						<GreenButton>
 							<b>fair</b>
 						</GreenButton>
-						{windowAlert === 2 && (
+						{/* {windowAlert === 2 && (
 							<>
 								<StyledWindow $animationtrigger={animationToggle}>
 									<StyledInformationCard>
@@ -126,10 +134,8 @@ export default function Introtext() {
 									animationTrigger={animationToggle}
 								/>
 							</>
-						)}
-						<GreenButton onClick={() => handleOnclickOnButtonWindow(3)}>
-							zuverlässig
-						</GreenButton>
+						)} */}
+						<GreenButton>zuverlässig</GreenButton>
 					</StyledArgumentCardWrapper>
 				</StyledInfoSection>
 			</StyledIntroTextWrapper>
@@ -149,7 +155,14 @@ const FadeOut = keyframes`
 `;
 
 const StyledIntroTextWrapper = styled.main`
-	margin: auto 10% auto 10%;
+	margin: auto 5% auto 10%;
+	@media (min-width: 1025px) {
+		margin: auto;
+		margin-top: 0;
+		padding: 1rem;
+		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
+		width: 70%;
+	}
 `;
 
 const StyledHeadline = styled.h1`
@@ -160,9 +173,28 @@ const StyledInfoSection = styled.section`
 	display: flex;
 `;
 
+const StyledTextParagraph = styled.p`
+	@media (min-width: 1025px) {
+		line-height: 1.5rem;
+		align-self: center;
+	}
+`;
+
+const StyledSecondHeadline = styled.h2`
+	text-align: center;
+	@media (min-width: 1025px) {
+		font-size: 1.1rem;
+		font-weight: 500;
+	}
+`;
+
 const StyledArgumentCardWrapper = styled.article`
-	margin: 1rem 0 auto 1rem;
-	display: grid;
+	margin: auto 0 auto 1rem;
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+	justify-content: center;
 	grid-template-rows: 1fr 1fr 1fr;
 	gap: 1rem;
 `;

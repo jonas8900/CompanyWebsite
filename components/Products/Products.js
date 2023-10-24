@@ -6,20 +6,19 @@ import { ProductData } from "./ProductData";
 import ProductDetails from "./ProductDetails";
 import Image from "next/image";
 
-export default function Products() {
+export default function Products({ device }) {
 	const [showProductDetails, setShowProductDetails] = useState(false);
 	const [activeProduct, setActiveProduct] = useState({});
+	const [productIndex, setProductIndex] = useState(0);
 
-	function handleShowProductDetails(productIndex) {
+	function handleShowProductDetails(productIndexFromCard) {
 		setShowProductDetails(true);
-		setActiveProduct(ProductData[productIndex - 1]);
+		setActiveProduct(ProductData[productIndexFromCard - 1]);
 	}
 
 	function handleCloseWindow() {
 		setShowProductDetails(false);
 	}
-
-	//useEffect to prevent scrolling in the blured background when contact window is open
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			if (showProductDetails === true) {
@@ -31,53 +30,130 @@ export default function Products() {
 	}, [showProductDetails]);
 
 	return (
-		<StyledProductWrapper id="products">
-			<StyledHeadline>Unsere Produkte</StyledHeadline>
-			{ProductData.map((product) => (
-				<ProductCard
-					key={product.id}
-					src={product.src}
-					alt={product.alt}
-					headline={product.headline}
-					infotext={product.infotext}
-				>
-					<StyledButtonWrapper>
-						<Greenbutton
-							margin={-2}
-							onClick={() => handleShowProductDetails(product.id)}
-						>
-							Mehr erfahren ...
-						</Greenbutton>
-					</StyledButtonWrapper>
-				</ProductCard>
-			))}
-			{showProductDetails && (
+		<>
+			{device ? (
 				<>
-					<ProductDetails
-						headline={activeProduct.headline}
-						infotext={activeProduct.productDescription}
-						contactData={
-							<StyledArticle>{activeProduct.productDetails}</StyledArticle>
-						}
-						imageGalery={
-							activeProduct.images != undefined
-								? activeProduct.images.map((image) => (
-										<Image
-											src={image}
-											key={image}
-											alt="Produktbild"
-											width={100}
-											height={100}
-										/>
-								  ))
-								: null
-						}
-						onClick={handleCloseWindow}
-					/>
+					<StyledProductDesktopSection>
+						{ProductData[productIndex] != undefined ? (
+							<ProductCard
+								key={ProductData[productIndex].id}
+								src={ProductData[productIndex].src}
+								alt={ProductData[productIndex].alt}
+								headline={ProductData[productIndex].headline}
+								infotext={ProductData[productIndex].infotext}
+							>
+								<StyledButtonWrapper>
+									<Greenbutton
+										margin={-2}
+										onClick={() =>
+											handleShowProductDetails(ProductData[productIndex].id)
+										}
+									>
+										Mehr erfahren ...
+									</Greenbutton>
+								</StyledButtonWrapper>
+							</ProductCard>
+						) : null}
+						{ProductData[productIndex + 1] != undefined ? (
+							<ProductCard
+								key={ProductData[productIndex + 1].id}
+								src={ProductData[productIndex + 1].src}
+								alt={ProductData[productIndex + 1].alt}
+								headline={ProductData[productIndex + 1].headline}
+								infotext={ProductData[productIndex + 1].infotext}
+							>
+								<StyledButtonWrapper>
+									<Greenbutton
+										margin={-2}
+										onClick={() =>
+											handleShowProductDetails(ProductData[productIndex + 1].id)
+										}
+									>
+										Mehr erfahren ...
+									</Greenbutton>
+								</StyledButtonWrapper>
+							</ProductCard>
+						) : null}
+						{showProductDetails && (
+							<>
+								<ProductDetails
+									headline={activeProduct.headline}
+									infotext={activeProduct.productDescription}
+									contactData={
+										<StyledArticle>
+											{activeProduct.productDetails}
+										</StyledArticle>
+									}
+									imageGalery={
+										activeProduct.images != undefined
+											? activeProduct.images.map((image) => (
+													<Image
+														src={image}
+														key={image}
+														alt="Produktbild"
+														width={100}
+														height={100}
+													/>
+											  ))
+											: null
+									}
+									onClick={handleCloseWindow}
+								/>
+							</>
+						)}
+					</StyledProductDesktopSection>
 				</>
+			) : (
+				<StyledProductWrapper id="products">
+					<StyledHeadline>Unsere Produkte</StyledHeadline>
+					<StyledProductSection>
+						{ProductData.map((product) => (
+							<ProductCard
+								key={product.id}
+								src={product.src}
+								alt={product.alt}
+								headline={product.headline}
+								infotext={product.infotext}
+							>
+								<StyledButtonWrapper>
+									<Greenbutton
+										margin={-2}
+										onClick={() => handleShowProductDetails(product.id)}
+									>
+										Mehr erfahren ...
+									</Greenbutton>
+								</StyledButtonWrapper>
+							</ProductCard>
+						))}
+					</StyledProductSection>
+					{showProductDetails && (
+						<>
+							<ProductDetails
+								headline={activeProduct.headline}
+								infotext={activeProduct.productDescription}
+								contactData={
+									<StyledArticle>{activeProduct.productDetails}</StyledArticle>
+								}
+								imageGalery={
+									activeProduct.images != undefined
+										? activeProduct.images.map((image) => (
+												<Image
+													src={image}
+													key={image}
+													alt="Produktbild"
+													width={100}
+													height={100}
+												/>
+										  ))
+										: null
+								}
+								onClick={handleCloseWindow}
+							/>
+						</>
+					)}
+				</StyledProductWrapper>
 			)}
-			;
-		</StyledProductWrapper>
+		</>
 	);
 }
 
@@ -96,10 +172,25 @@ const StyledProductWrapper = styled.section`
 
 const StyledButtonWrapper = styled.article`
 	margin-left: 50%;
+	@media (min-width: 1200px) {
+		margin-left: 65%;
+
+	}
 `;
 
 const StyledArticle = styled.article`
 	font-size: var(--font-size-text);
 	font-weight: 400;
 	color: var(--color-fourth);
+`;
+
+const StyledProductSection = styled.section`
+	@media (min-width: 1025px) {
+	}
+`;
+
+const StyledProductDesktopSection = styled.section`
+	margin: 10% 15%;
+	display: flex;
+	gap: 30px;
 `;

@@ -6,32 +6,10 @@ import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 import { Link } from "react-scroll/modules";
 
-export default function Navigation({ scrollY }) {
+export default function Navigation({ scrollY, device }) {
 	const [menuClicked, setMenuClicked] = useState(false);
 	const [animationDone, setAnimationDone] = useState(false);
 	const [searchClicked, setSearchClicked] = useState(false);
-	const [device, setDevice] = useState("");
-
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			function handleResize() {
-				if (window.matchMedia("(min-width: 1024px)").matches) {
-					setDevice(true);
-				} else {
-					setDevice(false);
-				}
-			}
-
-			handleResize();
-
-			window.addEventListener("resize", handleResize);
-
-			return () => {
-				window.removeEventListener("resize", handleResize);
-			};
-		}
-	}, []);
-
 	function handleChangeMenuButton() {
 		setMenuClicked(!menuClicked);
 		setAnimationDone(!animationDone);
@@ -60,7 +38,9 @@ export default function Navigation({ scrollY }) {
 								duration={350}
 								onClick={handleChangeMenuButton}
 							>
-								<StyledListItems $scrolly={scrollY}>Start</StyledListItems>
+								<StyledBorderDiv $scrolly={scrollY}>
+									<StyledListItems $scrolly={scrollY}>Start</StyledListItems>
+								</StyledBorderDiv>
 							</Link>
 							<Link
 								to="products"
@@ -70,11 +50,12 @@ export default function Navigation({ scrollY }) {
 								duration={350}
 								onClick={handleChangeMenuButton}
 							>
-								<StyledListItems $scrolly={scrollY}>
-									Unsere Produkte
-								</StyledListItems>
+								{" "}
+								<StyledBorderDiv $scrolly={scrollY}>
+									<StyledListItems $scrolly={scrollY}>Produkte</StyledListItems>
+								</StyledBorderDiv>
 							</Link>
-							<Link
+							{/* <Link
 								to="about-us"
 								spy={true}
 								smooth={false}
@@ -82,10 +63,12 @@ export default function Navigation({ scrollY }) {
 								duration={350}
 								onClick={handleChangeMenuButton}
 							>
-								<StyledListItems $scrolly={scrollY}>
-									Wer wir sind
-								</StyledListItems>
-							</Link>
+								<StyledBorderDiv>
+									<StyledListItems $scrolly={scrollY}>
+										Wer wir sind
+									</StyledListItems>
+								</StyledBorderDiv>
+							</Link> */}
 							<Link
 								to="career"
 								spy={true}
@@ -94,7 +77,9 @@ export default function Navigation({ scrollY }) {
 								duration={350}
 								onClick={handleChangeMenuButton}
 							>
-								<StyledListItems $scrolly={scrollY}>Karriere</StyledListItems>
+								<StyledBorderDiv $scrolly={scrollY}>
+									<StyledListItems $scrolly={scrollY}>Karriere</StyledListItems>
+								</StyledBorderDiv>
 							</Link>
 							<Link
 								to="contact"
@@ -104,7 +89,9 @@ export default function Navigation({ scrollY }) {
 								duration={350}
 								onClick={handleChangeMenuButton}
 							>
-								<StyledListItems $scrolly={scrollY}>Kontakt</StyledListItems>
+								<StyledBorderDiv $scrolly={scrollY}>
+									<StyledListItems $scrolly={scrollY}>Kontakt</StyledListItems>
+								</StyledBorderDiv>
 							</Link>
 						</StyledUnsortedList>
 					</StyledNavigationSection>
@@ -189,7 +176,7 @@ export default function Navigation({ scrollY }) {
 										duration={350}
 										onClick={handleChangeMenuButton}
 									>
-										<StyledListItems>Unsere Produkte</StyledListItems>
+										<StyledListItems>Produkte</StyledListItems>
 									</Link>
 									<Link
 										to="about-us"
@@ -243,6 +230,15 @@ const Rotateforwards = keyframes`
     transform: rotate(180deg);
     opacity: 1;
   }
+`;
+
+const changeBorder = keyframes`
+ 0% {
+    width: 0%;
+ }
+ 100% {
+    width: 100%;
+ }
 `;
 
 const StyledShowOrHideMenuButton = styled.button`
@@ -341,7 +337,11 @@ const StyledUnsortedList = styled.ul`
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	margin-top: 25rem;
+	margin-top: 24rem;
+	@media (min-width: 768px) {
+		margin-top: 26rem;
+	}
+
 	@media (min-width: 1024px) {
 		flex-direction: row;
 		justify-content: flex-end;
@@ -365,7 +365,14 @@ const StyledListItems = styled.li`
 	background-color: white;
 	border: 1px solid var(--color-third);
 	font-size: var(--font-size-title);
-
+	width: 100%;
+	transition: all 0.2s ease;
+	&:hover {
+		color: white;
+		background-color: var(--color-fourth);
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
 	@media (min-width: 1024px) {
 		padding: 0.5rem;
 		border: none;
@@ -376,10 +383,23 @@ const StyledListItems = styled.li`
 		border-left: ${({ $scrolly }) =>
 			$scrolly < 200 ? "none" : "1px solid black"};
 		font-weight: 500;
+
+		&:hover {
+			scale: 1.1;
+			padding: 0.5rem;
+			background-color: transparent;
+			color: ${({ $scrolly }) =>
+				$scrolly > 200 ? "var(--color-fourth)" : "white"};
+			cursor: pointer;
+		}
 	}
+`;
+
+const StyledBorderDiv = styled.div`
 	&:hover {
-		background-color: var(--color-third);
-		color: var(--color-fourth);
+		border-bottom: ${({ $scrolly }) =>
+			$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
+		animation: ${changeBorder} 0.2s linear forwards;
 	}
 `;
 

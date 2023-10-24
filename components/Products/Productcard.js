@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Greenbutton from "../Buttons/GreenButton";
 
 export default function ProductCard({
 	src,
@@ -12,11 +11,17 @@ export default function ProductCard({
 	return (
 		<StyledCardWrapper>
 			<StyledImageContainer>
-				<StyledRandomImage src={src} width={250} height={141} alt={alt} />
+				<StyledRandomImage
+					src={src}
+					width={250}
+					height={141}
+					alt={alt}
+					sizes="(max-width: 600px) 400px, (max-width: 1024px) 1080px"
+				/>
 			</StyledImageContainer>
 			<StyledInfoWrapper>
 				<StyledSubHeadline>{headline}</StyledSubHeadline>
-				<p>{infotext}</p>
+				<StyledParagraph>{infotext}</StyledParagraph>
 			</StyledInfoWrapper>
 			{children}
 		</StyledCardWrapper>
@@ -37,6 +42,12 @@ const StyledInfoWrapper = styled.article`
 
 const StyledImageContainer = styled.section`
 	width: 100%;
+`;
+
+const StyledParagraph = styled.p`
+	@media (min-width: 1025px) {
+		min-height: 4rem;
+	}
 `;
 
 const StyledCardWrapper = styled.section`

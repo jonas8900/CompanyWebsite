@@ -8,17 +8,16 @@ import ScrollToTop from "../components/Sidebar/ScrollToTop";
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
 import SideBar from "../components/Sidebar/SideBar";
-import styled from "styled-components";
 
-export default function Home({ scrollY }) {
+export default function Home({ scrollY, device, setDevice }) {
 	return (
 		<>
-			<Navigation scrollY={scrollY} />
+			<Navigation scrollY={scrollY} device={device} setDevice={setDevice} />
 			<Randompicture />
 			<ScrollToTop scrollY={scrollY} />
 			<SideBar />
 			<Introtext />
-			<Products />
+			<Products device={device} setDevice={setDevice} />
 			<AboutUs />
 			<Career />
 			<Contact />

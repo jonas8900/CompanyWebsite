@@ -85,7 +85,7 @@ export default function Randompicture() {
 					<StyledRandomImage
 						key={counter}
 						src={`/Random-Kranbild-${counter}.jpg`}
-						sizes="(max-width: 600px) 400px, (max-width: 1024px) 1800px"
+						sizes="(max-width: 600px) 400px, (max-width: 1024px) 1080px"
 						alt="Zufälliges Bild einer Krananlage"
 						width={1477}
 						height={615}
@@ -97,13 +97,16 @@ export default function Randompicture() {
 				<StyledCardWrapper $contactclicked={contactClicked}>
 					<StyledCardSection>
 						<h1>Was wir können</h1>
+						<StyledSecondHeadline>Ganz einfach:</StyledSecondHeadline>
 						<p>
-							Planung, Lieferung, Montage, Reparatur und Wartung von
-							individuellen Krananlagen.
+							Krananlagen – von maßgefertigter Herstellung bis zu jährlichen
+							Sicherheitsprüfungen und allem dazwischen.
 						</p>
-						<Greenbutton onClick={handleContactUsButton}>
-							Kontaktieren Sie uns
-						</Greenbutton>
+						<StyledGreenButtonSection>
+							<Greenbutton onClick={handleContactUsButton} margin={-2}>
+								Kontaktieren Sie uns
+							</Greenbutton>
+						</StyledGreenButtonSection>
 						{contactClicked && (
 							<WindowCard
 								headline={"Kontakt"}
@@ -139,6 +142,16 @@ const StyledWrapper = styled.section`
 		margin-top: -8rem;
 		margin-bottom: 4rem;
 	}
+	@media (min-width: 1440px) {
+		margin-bottom: 0rem;
+	}
+`;
+
+const StyledSecondHeadline = styled.h2`
+	@media (min-width: 1025px) {
+		font-size: 1.1rem;
+		font-weight: 500;
+	}
 `;
 
 const StyledRandomImage = styled(Image)`
@@ -165,9 +178,16 @@ const StyledImageContainer = styled.section`
 `;
 
 const StyledCardSection = styled.article`
-	width: 70%;
+	width: 85%;
 	margin: auto;
 	margin-left: 2rem;
+`;
+
+const StyledGreenButtonSection = styled.section`
+	margin-left: 50%;
+	@media (min-width: 1250px) {
+		margin-left: 60%;
+	}
 `;
 
 const StyledCardWrapper = styled.section`
@@ -180,6 +200,12 @@ const StyledCardWrapper = styled.section`
 	margin: auto;
 	margin-top: -1rem;
 	z-index: ${({ $contactclicked }) => ($contactclicked ? 1000 : 1)};
+
+	@media (min-width: 768px) {
+		width: 60%;
+		margin: auto;
+		margin-top: -10%;
+	}
 	@media (min-width: 1025px) {
 		width: 40%;
 		margin: auto;
