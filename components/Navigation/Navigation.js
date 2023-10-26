@@ -25,9 +25,18 @@ export default function Navigation({ scrollY, device }) {
 				<StyledNavigationBar>
 					<StyledNavigationSection $scrolly={scrollY}>
 						<StyledLogoSection>
-							<StyledLogo $scrolly={scrollY}>
-								Elektromaschinenbau Schulze GmbH
-							</StyledLogo>
+							<Link
+								to="introtext"
+								spy={true}
+								smooth={false}
+								offset={-70}
+								duration={350}
+								onClick={handleChangeMenuButton}
+							>
+								<StyledLogo $scrolly={scrollY}>
+									Elektromaschinenbau Schulze GmbH
+								</StyledLogo>
+							</Link>
 						</StyledLogoSection>
 						<StyledUnsortedList>
 							<Link

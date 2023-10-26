@@ -16,10 +16,10 @@ export default function ProductDetails({
 				<StyledInformationCard>
 					<section>
 						<h3>{headline}</h3>
-						<p>{infotext}</p>
+						<StyledIntroText>{infotext}</StyledIntroText>
 					</section>
 					<StyledContactData>{contactData}</StyledContactData>
-					<StyledImageGalery>{imageGalery}</StyledImageGalery>
+					{/* <StyledImageGalery>{imageGalery}</StyledImageGalery> */}
 				</StyledInformationCard>
 				<StyledImageWrapper>
 					<Greenbutton onClick={onClick} $value={value}>
@@ -63,6 +63,12 @@ const StyledImageGalery = styled.article`
 	margin-bottom: 2rem;
 `;
 
+const StyledIntroText = styled.h4`
+	font-size: var(--font-size-text);
+	font-weight: 400;
+	color: black;
+`;
+
 const StyledContactData = styled.article`
 	margin-top: 2rem;
 	margin-bottom: 2rem;
@@ -77,6 +83,7 @@ const StyledInformationCard = styled.article`
 	border-radius: 9px;
 	background-color: var(--color-third);
 	width: 90%;
+	max-width: 1000px;
 	left: 5%;
 	right: 5%;
 	margin: auto;

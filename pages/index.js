@@ -18,7 +18,6 @@ export default function Home({ scrollY, device, setDevice }) {
 			<SideBar />
 			<Introtext />
 			<Products device={device} setDevice={setDevice} />
-			<AboutUs />
 			<Career />
 			<Contact />
 			<Footer />

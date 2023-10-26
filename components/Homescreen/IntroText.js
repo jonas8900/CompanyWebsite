@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import GreenButton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
 
-import WindowCard from "../WindowCards/WindowCard";
+
 
 export default function Introtext() {
 	const [windowAlert, setWindowAlert] = useState(0);
@@ -38,7 +38,7 @@ export default function Introtext() {
 
 	return (
 		<>
-			<StyledIntroTextWrapper id="introtext">
+			<StyledIntroTextWrapper>
 				<StyledHeadline>Elektromaschinenbau Schulze GmbH</StyledHeadline>
 				<StyledSecondHeadline>schon seit 10 Jahren..</StyledSecondHeadline>
 				<StyledInfoSection>

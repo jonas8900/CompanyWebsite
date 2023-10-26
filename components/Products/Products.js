@@ -5,11 +5,14 @@ import { useEffect, useState } from "react";
 import { ProductData } from "./ProductData";
 import ProductDetails from "./ProductDetails";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Products({ device }) {
 	const [showProductDetails, setShowProductDetails] = useState(false);
 	const [activeProduct, setActiveProduct] = useState({});
 	const [productIndex, setProductIndex] = useState(0);
+	const productIndexForSecondPicture = (productIndex + 1) % ProductData.length;
 
 	function handleShowProductDetails(productIndexFromCard) {
 		setShowProductDetails(true);
@@ -29,10 +32,20 @@ export default function Products({ device }) {
 		}
 	}, [showProductDetails]);
 
+	function handleAddIndexForPicture() {
+		setProductIndex((productIndex + 1) % ProductData.length);
+	}
+
+	function handleSubtractIndexForPicture() {
+		setProductIndex(
+			(productIndex - 1 + ProductData.length) % ProductData.length
+		);
+	}
 	return (
 		<>
 			{device ? (
 				<>
+					<StyledHeadline id="products">Unsere Produkte</StyledHeadline>
 					<StyledProductDesktopSection>
 						{ProductData[productIndex] != undefined ? (
 							<ProductCard
@@ -41,37 +54,28 @@ export default function Products({ device }) {
 								alt={ProductData[productIndex].alt}
 								headline={ProductData[productIndex].headline}
 								infotext={ProductData[productIndex].infotext}
+								onClick={() =>
+									handleShowProductDetails(ProductData[productIndex].id)
+								}
 							>
-								<StyledButtonWrapper>
-									<Greenbutton
-										margin={-2}
-										onClick={() =>
-											handleShowProductDetails(ProductData[productIndex].id)
-										}
-									>
-										Mehr erfahren ...
-									</Greenbutton>
-								</StyledButtonWrapper>
+								Mehr Erfahren ...
 							</ProductCard>
 						) : null}
-						{ProductData[productIndex + 1] != undefined ? (
+						{ProductData[productIndexForSecondPicture] != undefined ? (
 							<ProductCard
-								key={ProductData[productIndex + 1].id}
-								src={ProductData[productIndex + 1].src}
-								alt={ProductData[productIndex + 1].alt}
-								headline={ProductData[productIndex + 1].headline}
-								infotext={ProductData[productIndex + 1].infotext}
+								key={ProductData[productIndexForSecondPicture].id}
+								src={ProductData[productIndexForSecondPicture].src}
+								alt={ProductData[productIndexForSecondPicture].alt}
+								headline={ProductData[productIndexForSecondPicture].headline}
+								infotext={ProductData[productIndexForSecondPicture].infotext}
+								onClick={() =>
+									handleShowProductDetails(
+										ProductData[productIndexForSecondPicture].id
+									)
+								}
 							>
-								<StyledButtonWrapper>
-									<Greenbutton
-										margin={-2}
-										onClick={() =>
-											handleShowProductDetails(ProductData[productIndex + 1].id)
-										}
-									>
-										Mehr erfahren ...
-									</Greenbutton>
-								</StyledButtonWrapper>
+								{" "}
+								Mehr erfahren ...
 							</ProductCard>
 						) : null}
 						{showProductDetails && (
@@ -101,6 +105,14 @@ export default function Products({ device }) {
 								/>
 							</>
 						)}
+						<StyledArrowLeft
+							icon={faCaretLeft}
+							onClick={handleSubtractIndexForPicture}
+						/>
+						<StyledArrowRight
+							icon={faCaretRight}
+							onClick={handleAddIndexForPicture}
+						/>
 					</StyledProductDesktopSection>
 				</>
 			) : (
@@ -114,15 +126,10 @@ export default function Products({ device }) {
 								alt={product.alt}
 								headline={product.headline}
 								infotext={product.infotext}
+								onClick={() => handleShowProductDetails(product.id)}
 							>
-								<StyledButtonWrapper>
-									<Greenbutton
-										margin={-2}
-										onClick={() => handleShowProductDetails(product.id)}
-									>
-										Mehr erfahren ...
-									</Greenbutton>
-								</StyledButtonWrapper>
+								{" "}
+								Mehr erfahren ...
 							</ProductCard>
 						))}
 					</StyledProductSection>
@@ -163,19 +170,15 @@ const StyledHeadline = styled.h1`
 	@media (min-width: 768px) {
 		width: 10.5rem;
 	}
+	@media (min-width: 1025px) {
+		margin-top: 5%;
+	}
 	border-bottom: 2px solid var(--color-primary);
 `;
 
 const StyledProductWrapper = styled.section`
 	margin-top: 4rem;
-`;
-
-const StyledButtonWrapper = styled.article`
-	margin-left: 50%;
-	@media (min-width: 1200px) {
-		margin-left: 65%;
-
-	}
+	max-width: 2000px;
 `;
 
 const StyledArticle = styled.article`
@@ -190,7 +193,28 @@ const StyledProductSection = styled.section`
 `;
 
 const StyledProductDesktopSection = styled.section`
-	margin: 10% 15%;
+	margin: 5% 15%;
 	display: flex;
 	gap: 30px;
+	position: relative;
+`;
+
+const StyledArrowLeft = styled(FontAwesomeIcon)`
+	position: absolute;
+	left: -15%;
+	top: 40%;
+	color: var(--color-fourth);
+	transform: translateY(-40%);
+	width: 4rem;
+	height: 4rem;
+`;
+
+const StyledArrowRight = styled(FontAwesomeIcon)`
+	position: absolute;
+	right: -15%;
+	top: 40%;
+	color: var(--color-fourth);
+	transform: translateY(-40%);
+	width: 4rem;
+	height: 4rem;
 `;

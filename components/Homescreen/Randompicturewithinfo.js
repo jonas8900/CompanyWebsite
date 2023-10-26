@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Randompicture() {
-	const [counter, setCounter] = useState(1);
+	const [counter, setCounter] = useState(0);
 	const [contactClicked, setContactClicked] = useState(false);
 	const [animationToggle, setAnimationToggle] = useState(true);
 
@@ -37,8 +37,9 @@ export default function Randompicture() {
 	useEffect(() => {
 		const timeOutForCount = setInterval(() => {
 			setCounter((increaseCount) => {
-				if (increaseCount >= 5) {
-					return 1;
+				if (increaseCount === 4) {
+					console.log("increase", increaseCount);
+					return 0;
 				} else {
 					return increaseCount + 1;
 				}
@@ -49,29 +50,20 @@ export default function Randompicture() {
 	}, []);
 
 	function handleClickLeftButtonToChangePicture() {
-		if (counter === 1) {
-			setCounter(5);
-		} else {
-			setCounter(counter - 1);
-		}
+		setCounter((counter - 1 + 5) % 5);
 	}
 	function handleClickRightButtonToChangePicture() {
-		if (counter === 5) {
-			setCounter(1);
-		} else {
-			setCounter(counter + 1);
-		}
+		setCounter((counter + 1) % 5);
 	}
-
 	return (
 		<>
-			<StyledWrapper id="randompicture">
+			<StyledWrapper id="introtext">
 				<StyledProgressSection>
-					<StyledProgressDiv1 $counter={counter}></StyledProgressDiv1>
-					<StyledProgressDiv2 $counter={counter}></StyledProgressDiv2>
-					<StyledProgressDiv3 $counter={counter}></StyledProgressDiv3>
-					<StyledProgressDiv4 $counter={counter}></StyledProgressDiv4>
-					<StyledProgressDiv5 $counter={counter}></StyledProgressDiv5>
+					<StyledProgressDiv1 $counter={counter + 1}></StyledProgressDiv1>
+					<StyledProgressDiv2 $counter={counter + 1}></StyledProgressDiv2>
+					<StyledProgressDiv3 $counter={counter + 1}></StyledProgressDiv3>
+					<StyledProgressDiv4 $counter={counter + 1}></StyledProgressDiv4>
+					<StyledProgressDiv5 $counter={counter + 1}></StyledProgressDiv5>
 				</StyledProgressSection>
 				<StyledImageContainer>
 					<StyledArrowLeft
@@ -89,7 +81,7 @@ export default function Randompicture() {
 						alt="Zufälliges Bild einer Krananlage"
 						width={1477}
 						height={615}
-						counter={counter}
+						counter={counter + 1}
 						priority={true}
 					/>
 				</StyledImageContainer>
