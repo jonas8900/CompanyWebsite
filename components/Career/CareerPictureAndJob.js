@@ -51,22 +51,25 @@ export default function CareerPictureAndJob({}) {
 				<StyledCareerIntroSectionImage>
 					<StyledPageHeadline>Karriere</StyledPageHeadline>
 					<StyledImage
-						src="/Karriere.jpg"
+						src="/KarriereBild.jpg"
 						width={500}
 						height={500}
+						sizes="100%"
 						alt="Das Bild zeigt einen Mann am Schreibtisch mit einem Helm und einem Anzug"
+						unoptimized
 					/>
 				</StyledCareerIntroSectionImage>
 				<StyledCareerIntroSectionCard>
-					<StyledIconLeft
-						icon={faChevronLeft}
-						onClick={handleClickLeftButtonToChangePicture}
-					/>
-					<StyledIconRigh
-						icon={faChevronRight}
-						onClick={handleClickRightButtonToChangePicture}
-					/>
 					<StyledJobArticle>
+						<StyledIconLeft
+							icon={faChevronLeft}
+							onClick={handleClickLeftButtonToChangePicture}
+						/>
+						<StyledIconRigh
+							icon={faChevronRight}
+							onClick={handleClickRightButtonToChangePicture}
+						/>
+
 						<JobCard
 							headline={"Wir suchen Verstärkung!"}
 							infotext={"wir freuen uns darauf Sie kennenzulernen!"}
@@ -91,7 +94,6 @@ const StyledHeadlineAndJobCardSectionWrapper = styled.section`
 const StyledCareerIntroSectionImage = styled.section`
 	position: relative;
 	width: 100%;
-
 	background-color: #2c2c2c;
 `;
 
@@ -104,15 +106,28 @@ const StyledCareerIntroSectionCard = styled.section`
 	margin-top: -1rem;
 `;
 
-const StyledJobArticle = styled.article``;
+const StyledJobArticle = styled.article`
+	position: relative;
+
+	@media (min-width: 768px) {
+		width: 60%;
+		margin: 0 auto;
+	}
+	@media (min-width: 1200px) {
+		width: 50%;
+		margin: 0 auto;
+	}
+`;
 
 const StyledPageHeadline = styled.h1`
 	position: absolute;
-	color: white;
-	margin: 1rem;
+	left: 10%;
+	color: White;
 	z-index: 1;
-	font-size: var(--font-size-headlines);
-	font-weight: 600;
+	font-size: 2rem;
+	font-weight: 700;
+	@media (min-width: 768px) {
+	}
 `;
 
 const StyledIconLeft = styled(FontAwesomeIcon)`
@@ -139,5 +154,7 @@ const StyledIconRigh = styled(FontAwesomeIcon)`
 
 const StyledImage = styled(Image)`
 	width: 100%;
-	height: auto;
+	height: 20rem;
+	object-fit: cover;
+	filter: brightness(0.55);
 `;

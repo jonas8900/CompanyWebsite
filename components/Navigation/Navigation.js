@@ -1,17 +1,15 @@
 import { faBars, faSearch, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 import { Link } from "react-scroll/modules";
-import MediaQuery from "react-responsive";
 
-export default function Navigation() {
+export default function Navigation({ scrollY, device }) {
 	const [menuClicked, setMenuClicked] = useState(false);
 	const [animationDone, setAnimationDone] = useState(false);
 	const [searchClicked, setSearchClicked] = useState(false);
-
 	function handleChangeMenuButton() {
 		setMenuClicked(!menuClicked);
 		setAnimationDone(!animationDone);
@@ -23,67 +21,91 @@ export default function Navigation() {
 
 	return (
 		<>
-			<MediaQuery minWidth={1025}>
-				<StyledNavBarPositioning>
-					<StyledNavigationBar>
-						<StyledNavigationSection>
-							<StyledUnsortedList>
-								<Link
-									to="introtext"
-									spy={true}
-									smooth={false}
-									offset={-70}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Start</StyledListItems>
-								</Link>
-								<Link
-									to="products"
-									spy={true}
-									smooth={false}
-									offset={-70}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Unsere Produkte</StyledListItems>
-								</Link>
-								<Link
-									to="about-us"
-									spy={true}
-									smooth={false}
-									offset={-70}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Wer wir sind</StyledListItems>
-								</Link>
-								<Link
-									to="career"
-									spy={true}
-									smooth={false}
-									offset={-65}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Karriere</StyledListItems>
-								</Link>
-								<Link
-									to="contact"
-									spy={true}
-									smooth={false}
-									offset={-65}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Kontakt</StyledListItems>
-								</Link>
-							</StyledUnsortedList>
-						</StyledNavigationSection>
-					</StyledNavigationBar>
-				</StyledNavBarPositioning>
-			</MediaQuery>
-			<MediaQuery maxWidth={1024}>
+			{device ? (
+				<StyledNavigationBar>
+					<StyledNavigationSection $scrolly={scrollY}>
+						<StyledLogoSection>
+							<Link
+								to="introtext"
+								spy={true}
+								smooth={false}
+								offset={-70}
+								duration={350}
+								onClick={handleChangeMenuButton}
+							>
+								<StyledLogo $scrolly={scrollY}>
+									Elektromaschinenbau Schulze GmbH
+								</StyledLogo>
+							</Link>
+						</StyledLogoSection>
+						<StyledUnsortedList>
+							<Link
+								to="introtext"
+								spy={true}
+								smooth={false}
+								offset={-70}
+								duration={350}
+								onClick={handleChangeMenuButton}
+							>
+								<StyledBorderDiv $scrolly={scrollY}>
+									<StyledListItems $scrolly={scrollY}>Start</StyledListItems>
+								</StyledBorderDiv>
+							</Link>
+							<Link
+								to="products"
+								spy={true}
+								smooth={false}
+								offset={-70}
+								duration={350}
+								onClick={handleChangeMenuButton}
+							>
+								{" "}
+								<StyledBorderDiv $scrolly={scrollY}>
+									<StyledListItems $scrolly={scrollY}>Produkte</StyledListItems>
+								</StyledBorderDiv>
+							</Link>
+							{/* <Link
+								to="about-us"
+								spy={true}
+								smooth={false}
+								offset={-70}
+								duration={350}
+								onClick={handleChangeMenuButton}
+							>
+								<StyledBorderDiv>
+									<StyledListItems $scrolly={scrollY}>
+										Wer wir sind
+									</StyledListItems>
+								</StyledBorderDiv>
+							</Link> */}
+							<Link
+								to="career"
+								spy={true}
+								smooth={false}
+								offset={-65}
+								duration={350}
+								onClick={handleChangeMenuButton}
+							>
+								<StyledBorderDiv $scrolly={scrollY}>
+									<StyledListItems $scrolly={scrollY}>Karriere</StyledListItems>
+								</StyledBorderDiv>
+							</Link>
+							<Link
+								to="contact"
+								spy={true}
+								smooth={false}
+								offset={-65}
+								duration={350}
+								onClick={handleChangeMenuButton}
+							>
+								<StyledBorderDiv $scrolly={scrollY}>
+									<StyledListItems $scrolly={scrollY}>Kontakt</StyledListItems>
+								</StyledBorderDiv>
+							</Link>
+						</StyledUnsortedList>
+					</StyledNavigationSection>
+				</StyledNavigationBar>
+			) : (
 				<StyledNavigationBar>
 					<StyledNavigationSection>
 						<StyledShowOrHideMenuButton onClick={handleChangeMenuButton}>
@@ -142,66 +164,65 @@ export default function Navigation() {
 								</Fade>
 							</StyledLogoSection>
 						)}
+						{menuClicked && (
+							<StyledUnsortedList>
+								<Fade cascade damping={0.1}>
+									<Link
+										to="introtext"
+										spy={true}
+										smooth={false}
+										offset={-70}
+										duration={350}
+										onClick={handleChangeMenuButton}
+									>
+										<StyledListItems>Start</StyledListItems>
+									</Link>
+									<Link
+										to="products"
+										spy={true}
+										smooth={false}
+										offset={-70}
+										duration={350}
+										onClick={handleChangeMenuButton}
+									>
+										<StyledListItems>Produkte</StyledListItems>
+									</Link>
+									<Link
+										to="about-us"
+										spy={true}
+										smooth={false}
+										offset={-70}
+										duration={350}
+										onClick={handleChangeMenuButton}
+									>
+										<StyledListItems>Wer wir sind</StyledListItems>
+									</Link>
+									<Link
+										to="career"
+										spy={true}
+										smooth={false}
+										offset={-65}
+										duration={350}
+										onClick={handleChangeMenuButton}
+									>
+										<StyledListItems>Karriere</StyledListItems>
+									</Link>
+									<Link
+										to="contact"
+										spy={true}
+										smooth={false}
+										offset={-65}
+										duration={350}
+										onClick={handleChangeMenuButton}
+									>
+										<StyledListItems>Kontakt</StyledListItems>
+									</Link>
+								</Fade>
+							</StyledUnsortedList>
+						)}
 					</StyledNavigationSection>
-
-					{menuClicked && (
-						<StyledUnsortedList>
-							<Fade cascade damping={0.1}>
-								<Link
-									to="introtext"
-									spy={true}
-									smooth={false}
-									offset={-70}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Start</StyledListItems>
-								</Link>
-								<Link
-									to="products"
-									spy={true}
-									smooth={false}
-									offset={-70}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Unsere Produkte</StyledListItems>
-								</Link>
-								<Link
-									to="about-us"
-									spy={true}
-									smooth={false}
-									offset={-70}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Wer wir sind</StyledListItems>
-								</Link>
-								<Link
-									to="career"
-									spy={true}
-									smooth={false}
-									offset={-65}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Karriere</StyledListItems>
-								</Link>
-								<Link
-									to="contact"
-									spy={true}
-									smooth={false}
-									offset={-65}
-									duration={350}
-									onClick={handleChangeMenuButton}
-								>
-									<StyledListItems>Kontakt</StyledListItems>
-								</Link>
-							</Fade>
-						</StyledUnsortedList>
-					)}
 				</StyledNavigationBar>
-			</MediaQuery>
+			)}
 		</>
 	);
 }
@@ -218,6 +239,15 @@ const Rotateforwards = keyframes`
     transform: rotate(180deg);
     opacity: 1;
   }
+`;
+
+const changeBorder = keyframes`
+ 0% {
+    width: 0%;
+ }
+ 100% {
+    width: 100%;
+ }
 `;
 
 const StyledShowOrHideMenuButton = styled.button`
@@ -241,13 +271,6 @@ const StyledMenuIcon = styled(FontAwesomeIcon)`
 			animationdone ? (menuclicked ? Rotateforwards : "none") : FadeIn}
 		0.7s ease;
 	transition: all 0.7s ease;
-`;
-
-const StyledNavBarPositioning = styled.div`
-	position: sticky;
-	top: 0;
-	height: 100%;
-	border: 1px solid black;
 `;
 
 const StyledSearchIcon = styled(FontAwesomeIcon)`
@@ -277,14 +300,17 @@ const StyledInputSection = styled.section`
 const StyledNavigationBar = styled.nav`
 	position: sticky;
 	top: 0;
-	@media (min-width: 1025px) {
-		border: 1px solid black;
-	}
 	z-index: 999;
 	width: 100%;
 	height: 100%;
-	border: 1px solid var(--color-third);
 	box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
+	@media (min-width: 1024px) {
+		position: sticky;
+		height: 5rem;
+		width: 100%;
+		box-shadow: none;
+		margin-top: 2rem;
+	}
 `;
 
 const StyledNavigationSection = styled.section`
@@ -299,21 +325,19 @@ const StyledNavigationSection = styled.section`
 	width: 100%;
 	height: 100%;
 	@media (min-width: 1024px) {
-		height: 5rem;
-		padding: 1rem;
+		width: 100%;
+		display: flex;
+		background-color: ${({ $scrolly }) => $scrolly > 200}rgba(255, 255, 255, 0);
+		box-shadow: ${({ $scrolly }) => $scrolly < 200} 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
+		transition: all 0.5s ease;
 	}
 `;
 
 const StyledUnsortedList = styled.ul`
 	position: absolute;
 	z-index: 3;
-
-	@media (min-width: 1024px) {
-		flex-direction: row;
-		height: 100%;
-		margin: auto;
-		top: 0;
-	}
+	display: flex;
+	flex-direction: column;
 	width: 60%;
 	height: 20rem;
 	display: flex;
@@ -322,7 +346,26 @@ const StyledUnsortedList = styled.ul`
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	margin-top: 0.5rem;
+	margin-top: 24rem;
+	@media (min-width: 768px) {
+		margin-top: 26rem;
+	}
+
+	@media (min-width: 1024px) {
+		flex-direction: row;
+		justify-content: flex-end;
+		position: static;
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		margin-right: 5%;
+		gap: 15px;
+		align-items: center;
+	}
+	@media (min-width: 1199px) {
+		width: 50%;
+		gap: 30px;
+	}
 `;
 
 const StyledListItems = styled.li`
@@ -331,21 +374,63 @@ const StyledListItems = styled.li`
 	background-color: white;
 	border: 1px solid var(--color-third);
 	font-size: var(--font-size-title);
-
-	@media (min-width: 1024px) {
-		height: 100%;
-	}
+	width: 100%;
+	transition: all 0.2s ease;
 	&:hover {
-		background-color: var(--color-third);
-		color: var(--color-fourth);
+		color: white;
+		background-color: var(--color-fourth);
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+	@media (min-width: 1024px) {
+		padding: 0.5rem;
+		border: none;
+		background-color: rgba(255, 255, 255, 0);
+		color: ${({ $scrolly }) =>
+			$scrolly > 200 ? "var(--color-fourth)" : "white"};
+		transition: all 0.5s ease;
+		border-left: ${({ $scrolly }) =>
+			$scrolly < 200 ? "none" : "1px solid black"};
+		font-weight: 500;
+
+		&:hover {
+			scale: 1.1;
+			padding: 0.5rem;
+			background-color: transparent;
+			color: ${({ $scrolly }) =>
+				$scrolly > 200 ? "var(--color-fourth)" : "white"};
+			cursor: pointer;
+		}
 	}
 `;
 
-const StyledLogoSection = styled.section`
-	grid-area: 1 / 2 / 2 / 3;
+const StyledBorderDiv = styled.div`
+	&:hover {
+		border-bottom: ${({ $scrolly }) =>
+			$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
+		animation: ${changeBorder} 0.2s linear forwards;
+	}
+`;
+
+const StyledLogoSection = styled.article`
+	margin: auto;
 	width: 80%;
 	text-align: center;
-	margin: auto;
+	align-self: center;
 	border-bottom: 5px solid var(--color-fifth);
 	border-top: 5px solid var(--color-secondary);
+	@media (min-width: 1024px) {
+		width: 25%;
+		max-width: 18rem;
+		margin-left: 5%;
+		justify-content: flex-start;
+	}
+`;
+
+const StyledLogo = styled.h1`
+	color: ${({ $scrolly }) => ($scrolly > 200 ? "black" : "white")};
+	font-size: var(--font-size-title);
+	padding: 0.3rem;
+	margin: 0;
+	font-weight: bold;
 `;

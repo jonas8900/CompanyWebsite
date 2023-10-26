@@ -17,8 +17,8 @@ import ContactFormular from "../Contact/ContactFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 
 export default function SideBar() {
-	const [arrowClicked, setArrowClicked] = useState(false);
-	const [arrowAnimation, setArrowAnimation] = useState(false);
+	const [arrowClicked, setArrowClicked] = useState(true);
+	const [arrowAnimation, setArrowAnimation] = useState(true);
 	const [questionClicked, setQuestionClicked] = useState(false);
 	const [formularClicked, setFormularClicked] = useState(false);
 	const [messageSuccess, setMessageSuccess] = useState(false);

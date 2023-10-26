@@ -53,6 +53,7 @@ const StyledCardWrapper = styled.section`
 	animation: ${({ $numberforrandomjob }) =>
 			$numberforrandomjob >= 1 && FadeinLeft}
 		1s ease;
+	width: 100%;
 `;
 
 const StyledButtonWrapper = styled.section`

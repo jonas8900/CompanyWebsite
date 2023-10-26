@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 export default function Randompicture() {
-	const [counter, setCounter] = useState(1);
+	const [counter, setCounter] = useState(0);
 	const [contactClicked, setContactClicked] = useState(false);
 	const [animationToggle, setAnimationToggle] = useState(true);
 
@@ -37,8 +37,9 @@ export default function Randompicture() {
 	useEffect(() => {
 		const timeOutForCount = setInterval(() => {
 			setCounter((increaseCount) => {
-				if (increaseCount >= 5) {
-					return 1;
+				if (increaseCount === 4) {
+					console.log("increase", increaseCount);
+					return 0;
 				} else {
 					return increaseCount + 1;
 				}
@@ -49,77 +50,74 @@ export default function Randompicture() {
 	}, []);
 
 	function handleClickLeftButtonToChangePicture() {
-		if (counter === 1) {
-			setCounter(5);
-		} else {
-			setCounter(counter - 1);
-		}
+		setCounter((counter - 1 + 5) % 5);
 	}
 	function handleClickRightButtonToChangePicture() {
-		if (counter === 5) {
-			setCounter(1);
-		} else {
-			setCounter(counter + 1);
-		}
+		setCounter((counter + 1) % 5);
 	}
-
 	return (
-		<StyledWrapper id="randompicture">
-			<StyledProgressSection>
-				<StyledProgressDiv1 $counter={counter}></StyledProgressDiv1>
-				<StyledProgressDiv2 $counter={counter}></StyledProgressDiv2>
-				<StyledProgressDiv3 $counter={counter}></StyledProgressDiv3>
-				<StyledProgressDiv4 $counter={counter}></StyledProgressDiv4>
-				<StyledProgressDiv5 $counter={counter}></StyledProgressDiv5>
-			</StyledProgressSection>
-			<StyledImageContainer>
-				<StyledArrowLeft
-					icon={faCaretLeft}
-					onClick={handleClickLeftButtonToChangePicture}
-				/>
-				<StyledArrowRight
-					icon={faCaretRight}
-					onClick={handleClickRightButtonToChangePicture}
-				/>
-				<StyledRandomImage
-					key={counter}
-					src={`/Random-Kranbild-${counter}.jpg`}
-					alt="Zufälliges Bild einer Krananlage"
-					width={390}
-					height={219}
-					counter={counter}
-					priority={true}
-				/>
-			</StyledImageContainer>
+		<>
+			<StyledWrapper id="introtext">
+				<StyledProgressSection>
+					<StyledProgressDiv1 $counter={counter + 1}></StyledProgressDiv1>
+					<StyledProgressDiv2 $counter={counter + 1}></StyledProgressDiv2>
+					<StyledProgressDiv3 $counter={counter + 1}></StyledProgressDiv3>
+					<StyledProgressDiv4 $counter={counter + 1}></StyledProgressDiv4>
+					<StyledProgressDiv5 $counter={counter + 1}></StyledProgressDiv5>
+				</StyledProgressSection>
+				<StyledImageContainer>
+					<StyledArrowLeft
+						icon={faCaretLeft}
+						onClick={handleClickLeftButtonToChangePicture}
+					/>
+					<StyledArrowRight
+						icon={faCaretRight}
+						onClick={handleClickRightButtonToChangePicture}
+					/>
+					<StyledRandomImage
+						key={counter}
+						src={`/Random-Kranbild-${counter}.jpg`}
+						sizes="(max-width: 600px) 400px, (max-width: 1024px) 1080px"
+						alt="Zufälliges Bild einer Krananlage"
+						width={1477}
+						height={615}
+						counter={counter + 1}
+						priority={true}
+					/>
+				</StyledImageContainer>
 
-			<StyledCardWrapper $contactclicked={contactClicked}>
-				<StyledCardSection>
-					<h1>Was wir können</h1>
-					<p>
-						Planung, Lieferung, Montage, Reparatur und Wartung von individuellen
-						Krananlagen.
-					</p>
-					<Greenbutton onClick={handleContactUsButton}>
-						Kontaktieren Sie uns
-					</Greenbutton>
-					{contactClicked && (
-						<WindowCard
-							headline={"Kontakt"}
-							infotext={`Wir sind für Sie da. Rufen Sie uns an oder schreiben Sie uns eine E-Mail. Wir freuen uns auf Sie!`}
-							onClick={handleContactUsButton}
-							contactData={<ContactData />}
-							animationTrigger={animationToggle}
-						></WindowCard>
-					)}
-				</StyledCardSection>
-			</StyledCardWrapper>
-		</StyledWrapper>
+				<StyledCardWrapper $contactclicked={contactClicked}>
+					<StyledCardSection>
+						<h1>Was wir können</h1>
+						<StyledSecondHeadline>Ganz einfach:</StyledSecondHeadline>
+						<p>
+							Krananlagen – von maßgefertigter Herstellung bis zu jährlichen
+							Sicherheitsprüfungen und allem dazwischen.
+						</p>
+						<StyledGreenButtonSection>
+							<Greenbutton onClick={handleContactUsButton} margin={-2}>
+								Kontaktieren Sie uns
+							</Greenbutton>
+						</StyledGreenButtonSection>
+						{contactClicked && (
+							<WindowCard
+								headline={"Kontakt"}
+								infotext={`Wir sind für Sie da. Rufen Sie uns an oder schreiben Sie uns eine E-Mail. Wir freuen uns auf Sie!`}
+								onClick={handleContactUsButton}
+								contactData={<ContactData />}
+								animationTrigger={animationToggle}
+							></WindowCard>
+						)}
+					</StyledCardSection>
+				</StyledCardWrapper>
+			</StyledWrapper>
+		</>
 	);
 }
 
 const Left = keyframes`
  0% {
-  opacity: 0;
+  opacity: 0.5;
   }
   100% {
   opacity: 1;
@@ -131,7 +129,21 @@ const Left = keyframes`
 const StyledWrapper = styled.section`
 	margin-bottom: 12rem;
 	position: relative;
-	top: 0;
+	top: 0%;
+	@media (min-width: 1025px) {
+		margin-top: -8rem;
+		margin-bottom: 4rem;
+	}
+	@media (min-width: 1440px) {
+		margin-bottom: 0rem;
+	}
+`;
+
+const StyledSecondHeadline = styled.h2`
+	@media (min-width: 1025px) {
+		font-size: 1.1rem;
+		font-weight: 500;
+	}
 `;
 
 const StyledRandomImage = styled(Image)`
@@ -142,18 +154,32 @@ const StyledRandomImage = styled(Image)`
 	object-fit: cover;
 	z-index: 0;
 	animation: ${({ counter }) => counter >= 1 && Left} 1.5s ease;
+	@media (min-width: 1025px) {
+		filter: brightness(0.65);
+		height: 75%;
+	}
 `;
 
 const StyledImageContainer = styled.section`
 	position: relative;
 	width: 100%;
 	padding-top: 56.25%;
+	@media (min-width: 1025px) {
+		position: static;
+	}
 `;
 
 const StyledCardSection = styled.article`
-	width: 70%;
+	width: 85%;
 	margin: auto;
 	margin-left: 2rem;
+`;
+
+const StyledGreenButtonSection = styled.section`
+	margin-left: 50%;
+	@media (min-width: 1250px) {
+		margin-left: 60%;
+	}
 `;
 
 const StyledCardWrapper = styled.section`
@@ -166,6 +192,17 @@ const StyledCardWrapper = styled.section`
 	margin: auto;
 	margin-top: -1rem;
 	z-index: ${({ $contactclicked }) => ($contactclicked ? 1000 : 1)};
+
+	@media (min-width: 768px) {
+		width: 60%;
+		margin: auto;
+		margin-top: -10%;
+	}
+	@media (min-width: 1025px) {
+		width: 40%;
+		margin: auto;
+		margin-top: -16%;
+	}
 `;
 
 const StyledProgressSection = styled.section`
@@ -176,6 +213,9 @@ const StyledProgressSection = styled.section`
 	right: 50%;
 	display: flex;
 	justify-content: center;
+	@media (min-width: 1025px) {
+		bottom: 30%;
+	}
 `;
 
 const StyledArrowRight = styled(FontAwesomeIcon)`
@@ -203,6 +243,7 @@ const StyledArrowRight = styled(FontAwesomeIcon)`
 		transition: all 0.1s ease;
 	}
 `;
+
 const StyledArrowLeft = styled(FontAwesomeIcon)`
 	position: absolute;
 	z-index: 2;
@@ -237,7 +278,14 @@ const StyledProgressDiv1 = styled.div`
 	min-height: 0.7rem;
 	background-color: ${({ $counter }) =>
 		$counter === 1 ? "var(--color-primary)" : "var(--color-third)"};
+	@media (min-width: 1025px) {
+		width: 1rem;
+		height: 1rem;
+		min-width: 1rem;
+		min-height: 1rem;
+	}
 `;
+
 const StyledProgressDiv2 = styled.div`
 	width: 0.7rem;
 	height: 0.7rem;
@@ -246,7 +294,14 @@ const StyledProgressDiv2 = styled.div`
 	min-height: 0.7rem;
 	background-color: ${({ $counter }) =>
 		$counter === 2 ? "var(--color-primary)" : "var(--color-third)"};
+	@media (min-width: 1025px) {
+		width: 1rem;
+		height: 1rem;
+		min-width: 1rem;
+		min-height: 1rem;
+	}
 `;
+
 const StyledProgressDiv3 = styled.div`
 	width: 0.7rem;
 	height: 0.7rem;
@@ -255,7 +310,14 @@ const StyledProgressDiv3 = styled.div`
 	min-height: 0.7rem;
 	background-color: ${({ $counter }) =>
 		$counter === 3 ? "var(--color-primary)" : "var(--color-third)"};
+	@media (min-width: 1025px) {
+		width: 1rem;
+		height: 1rem;
+		min-width: 1rem;
+		min-height: 1rem;
+	}
 `;
+
 const StyledProgressDiv4 = styled.div`
 	width: 0.7rem;
 	height: 0.7rem;
@@ -264,7 +326,14 @@ const StyledProgressDiv4 = styled.div`
 	min-height: 0.7rem;
 	background-color: ${({ $counter }) =>
 		$counter === 4 ? "var(--color-primary)" : "var(--color-third)"};
+	@media (min-width: 1025px) {
+		width: 1rem;
+		height: 1rem;
+		min-width: 1rem;
+		min-height: 1rem;
+	}
 `;
+
 const StyledProgressDiv5 = styled.div`
 	width: 0.7rem;
 	height: 0.7rem;
@@ -273,4 +342,10 @@ const StyledProgressDiv5 = styled.div`
 	min-height: 0.7rem;
 	background-color: ${({ $counter }) =>
 		$counter === 5 ? "var(--color-primary)" : "var(--color-third)"};
+	@media (min-width: 1025px) {
+		width: 1rem;
+		height: 1rem;
+		min-width: 1rem;
+		min-height: 1rem;
+	}
 `;

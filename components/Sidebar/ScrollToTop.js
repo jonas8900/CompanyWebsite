@@ -30,7 +30,7 @@ export default function ScrollToTop() {
 			{appearScrollToTopButton && (
 				<StyledSection $appearscrolltotopbutton={appearScrollToTopButton}>
 					<Link
-						to="randompicture"
+						to="introtext"
 						spy={true}
 						smooth={false}
 						offset={-70}
@@ -61,6 +61,10 @@ const StyledSection = styled.section`
 	animation: ${({ $appearscrolltotopbutton }) =>
 			$appearscrolltotopbutton && FadeIn}
 		0.5s ease;
+	@media (min-width: 1025px) {
+		width: 1.8rem;
+		height: 1.8rem;
+	}
 
 	&:hover {
 		color: var(--color-secondary);
