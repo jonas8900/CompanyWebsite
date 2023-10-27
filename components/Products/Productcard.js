@@ -74,6 +74,7 @@ const StyledCardWrapper = styled.section`
 	@media (min-width: 1025px) {
 		min-height: 25rem;
 		height: 25rem;
+		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
 	}
 	@media (min-width: 1250px) {
 		min-height: 30rem;

@@ -44,6 +44,8 @@ const StyledInfoWrapper = styled.article`
 	background-color: var(--color-third);
 	padding: 1rem 2rem 1rem 2rem;
 	color: #2b363e;
+	@media (min-width: 1025px) {
+	}
 `;
 
 const StyledCardWrapper = styled.section`
@@ -76,6 +78,9 @@ const StyledJobTitle = styled.h3`
 	font-size: var(--font-size-text);
 	font-weight: 700;
 	margin-top: 1rem;
+	@media (min-width: 1025px) {
+		min-height: 4rem;
+	}
 `;
 
 const StyledParagraphForJobTitle = styled.p`

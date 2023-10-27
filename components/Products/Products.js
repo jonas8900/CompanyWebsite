@@ -172,6 +172,7 @@ const StyledHeadline = styled.h1`
 	}
 	@media (min-width: 1025px) {
 		margin-top: 5%;
+		text-shadow: 1px 3px 1px #eee;
 	}
 	border-bottom: 2px solid var(--color-primary);
 `;
@@ -207,6 +208,7 @@ const StyledArrowLeft = styled(FontAwesomeIcon)`
 	transform: translateY(-40%);
 	width: 4rem;
 	height: 4rem;
+	cursor: pointer;
 `;
 
 const StyledArrowRight = styled(FontAwesomeIcon)`
@@ -217,4 +219,5 @@ const StyledArrowRight = styled(FontAwesomeIcon)`
 	transform: translateY(-40%);
 	width: 4rem;
 	height: 4rem;
+	cursor: pointer;
 `;

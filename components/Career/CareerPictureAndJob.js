@@ -9,9 +9,11 @@ import {
 import { JobData } from "./JobData";
 import { useEffect, useState } from "react";
 
-export default function CareerPictureAndJob({}) {
+export default function CareerPictureAndJob({ device }) {
 	const [randomJobObject, setRandomJobObject] = useState(JobData[0]);
 	const [numberForRandomJob, setNumberForRandomJob] = useState(0);
+	const numberForRandomSecondJob =
+		JobData[(numberForRandomJob + 1) % JobData.length];
 
 	useEffect(() => {
 		const timeOutForCount = setInterval(() => {
@@ -31,20 +33,13 @@ export default function CareerPictureAndJob({}) {
 	}, [numberForRandomJob]);
 
 	function handleClickLeftButtonToChangePicture() {
-		if (numberForRandomJob === 1) {
-			setNumberForRandomJob(5);
-		} else {
-			setNumberForRandomJob(numberForRandomJob - 1);
-		}
+		setNumberForRandomJob(
+			(numberForRandomJob - 1 + JobData.length) % JobData.length
+		);
 	}
 	function handleClickRightButtonToChangePicture() {
-		if (numberForRandomJob === 5) {
-			setNumberForRandomJob(1);
-		} else {
-			setNumberForRandomJob(numberForRandomJob + 1);
-		}
+		setNumberForRandomJob((numberForRandomJob + 1) % JobData.length);
 	}
-
 	return (
 		<>
 			<StyledHeadlineAndJobCardSectionWrapper>
@@ -70,12 +65,29 @@ export default function CareerPictureAndJob({}) {
 							onClick={handleClickRightButtonToChangePicture}
 						/>
 
-						<JobCard
-							headline={"Wir suchen Verstärkung!"}
-							infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-							jobtitle={randomJobObject.jobTitle}
-							numberForRandomJob={numberForRandomJob}
-						/>
+						{device ? (
+							<StyledJobCardSection>
+								<JobCard
+									headline={"Wir suchen Verstärkung!"}
+									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+									jobtitle={randomJobObject.jobTitle}
+									numberForRandomJob={numberForRandomJob}
+								/>
+								<JobCard
+									headline={"Wir suchen Verstärkung!"}
+									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+									jobtitle={numberForRandomSecondJob.jobTitle}
+									numberForRandomJob={numberForRandomJob + 1}
+								/>
+							</StyledJobCardSection>
+						) : (
+							<JobCard
+								headline={"Wir suchen Verstärkung!"}
+								infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+								jobtitle={randomJobObject.jobTitle}
+								numberForRandomJob={numberForRandomJob}
+							/>
+						)}
 					</StyledJobArticle>
 				</StyledCareerIntroSectionCard>
 			</StyledHeadlineAndJobCardSectionWrapper>
@@ -89,6 +101,12 @@ const StyledHeadlineAndJobCardSectionWrapper = styled.section`
 	margin-bottom: 18rem;
 	width: 100%;
 	height: auto;
+	@media (min-width: 1025px) {
+		margin-bottom: 33%;
+	}
+	@media (min-width: 1350px) {
+		margin-bottom: 23%;
+	}
 `;
 
 const StyledCareerIntroSectionImage = styled.section`
@@ -106,6 +124,11 @@ const StyledCareerIntroSectionCard = styled.section`
 	margin-top: -1rem;
 `;
 
+const StyledJobCardSection = styled.section`
+	display: flex;
+	gap: 40px;
+`;
+
 const StyledJobArticle = styled.article`
 	position: relative;
 
@@ -113,8 +136,12 @@ const StyledJobArticle = styled.article`
 		width: 60%;
 		margin: 0 auto;
 	}
-	@media (min-width: 1200px) {
-		width: 50%;
+	@media (min-width: 1025px) {
+		width: 90%;
+		margin: 0 auto;
+	}
+	@media (min-width: 1400px) {
+		width: 70%;
 		margin: 0 auto;
 	}
 `;

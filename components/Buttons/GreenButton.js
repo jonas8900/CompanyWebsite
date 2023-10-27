@@ -27,6 +27,7 @@ const StyledButton = styled.button`
 	font-size: var(--font-size-text);
 	color: var(--color-fourth);
 	margin-bottom: ${({ $margin }) => $margin + "rem"};
+	cursor: pointer;
 	&:active {
 		box-shadow: inset 1px 1px 5px 0px black;
 	}

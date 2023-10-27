@@ -2,13 +2,10 @@ import styled, { keyframes } from "styled-components";
 import GreenButton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
 
-
-
 export default function Introtext() {
 	const [windowAlert, setWindowAlert] = useState(0);
 	const [animationToggle, setAnimationToggle] = useState(true);
 
-	
 	function handleOnclickOnButtonWindow(index) {
 		if (windowAlert === 0 && animationToggle === false) {
 			setAnimationToggle(true);
@@ -34,7 +31,6 @@ export default function Introtext() {
 			}
 		}
 	}, [windowAlert]);
-
 
 	return (
 		<>
@@ -156,17 +152,29 @@ const FadeOut = keyframes`
 
 const StyledIntroTextWrapper = styled.main`
 	margin: auto 5% auto 10%;
+	margin-top: 60%;
+	@media (max-width: 350px) {
+		margin-top: 80%;
+	}
+	@media (min-width: 450px) {
+		margin-top: 30%;
+	}
 	@media (min-width: 1025px) {
 		margin: auto;
-		margin-top: 0;
+		margin-top: 4%;
 		padding: 1rem;
 		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
 		width: 70%;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	@media (min-width: 1800px) {
+		margin-top: 0;
 	}
 `;
 
 const StyledHeadline = styled.h1`
 	text-align: center;
+	text-shadow: 1px 3px 1px #eee;
 `;
 
 const StyledInfoSection = styled.section`
