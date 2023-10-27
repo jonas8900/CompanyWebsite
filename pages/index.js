@@ -8,6 +8,7 @@ import ScrollToTop from "../components/Sidebar/ScrollToTop";
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
 import SideBar from "../components/Sidebar/SideBar";
+import styled from "styled-components";
 
 export default function Home({ scrollY, device, setDevice }) {
 	return (
@@ -16,11 +17,21 @@ export default function Home({ scrollY, device, setDevice }) {
 			<Randompicture />
 			<ScrollToTop scrollY={scrollY} />
 			<SideBar />
-			<Introtext />
-			<Products device={device} setDevice={setDevice} />
-			<Career />
+			<StyledSectionForWidth>
+				<Introtext />
+				<Products device={device} setDevice={setDevice} />
+			</StyledSectionForWidth>
+			<Career device={device} />
 			<Contact />
+
 			<Footer />
 		</>
 	);
 }
+
+const StyledSectionForWidth = styled.section`
+	@media (min-width: 1920px) {
+		width: 80%;
+		margin: 0 auto;
+	}
+`;

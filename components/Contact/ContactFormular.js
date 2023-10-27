@@ -13,9 +13,6 @@ export default function ContactFormular({
 	onChange,
 	successValue,
 }) {
-
-
-
 	return (
 		<>
 			<StyledWindow>
@@ -50,12 +47,12 @@ export default function ContactFormular({
 						</StyledInputAndLabelArticle>
 						<StyledInputAndLabelArticle>
 							<StyledLabel id="requestType">Art der Anfrage</StyledLabel>
-							<select name="requestType" required>
+							<StyledSelect name="requestType" required>
 								<option value="Kundenberatung">Kundenberatung</option>
 								<option value="Kaufanfrage">Kaufanfrage</option>
 								<option value="Jobinformation">Job Informationen</option>
 								<option value="Sonstige">Sonstige</option>
-							</select>
+							</StyledSelect>
 						</StyledInputAndLabelArticle>
 						<ReCAPTCHA
 							sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -92,6 +89,12 @@ const StyledWindow = styled.section`
 	backdrop-filter: blur(20px);
 `;
 
+const StyledSelect = styled.select`
+	height: 2rem;
+	width: 35%;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+`;
+
 const StyledFormularCard = styled.article`
 	padding: 1rem;
 	position: fixed;
@@ -106,6 +109,9 @@ const StyledFormularCard = styled.article`
 		width: 50%;
 		left: 25%;
 		right: 25%;
+	}
+	@media (min-width: 1025px) {
+		width: 30%;
 	}
 	margin: auto;
 	z-index: 1;
@@ -157,10 +163,12 @@ const StyledInputAndLabelArticle = styled.article`
 
 const StyledInputField = styled.input`
 	height: 2rem;
+	border: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
 const StyledTextArea = styled.textarea`
 	height: 5rem;
+	border: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
 const StyledButton = styled.button`

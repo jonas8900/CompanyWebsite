@@ -22,7 +22,6 @@ export default function SideBar() {
 	const [questionClicked, setQuestionClicked] = useState(false);
 	const [formularClicked, setFormularClicked] = useState(false);
 	const [messageSuccess, setMessageSuccess] = useState(false);
-	const [messageError, setMessageError] = useState(false);
 	const [animationTrigger, setAnimationTrigger] = useState(false);
 	const [submitClicked, setSubmitClicked] = useState(false);
 	const [capture, setCapture] = useState("");

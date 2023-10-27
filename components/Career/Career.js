@@ -5,10 +5,11 @@ import Image from "next/image";
 import JobCard from "./JobCard";
 import { useState } from "react";
 import Greenbutton from "../Buttons/GreenButton";
-import Link from "next/link";
+import LinkToPage from "next/link";
 import { JobData } from "./JobData";
+import { Link } from "react-scroll/modules";
 
-export default function Career() {
+export default function Career({ device }) {
 	const [showMore, setShowMore] = useState(false);
 
 	function handleClickShowMore() {
@@ -17,11 +18,11 @@ export default function Career() {
 
 	return (
 		<StyledMainSection id="career">
-			<CareerPictureAndJob />
+			<CareerPictureAndJob device={device} />
 			<StyledCareerSection>
 				<CompanyAdvantages />
 				<StyledImageWrapper>
-					<Link href="https://www.kununu.com/de/elektromaschinenbau-schulze?utm_source=widget&utm_campaign=widget_selfservice_scorelarge">
+					<LinkToPage href="https://www.kununu.com/de/elektromaschinenbau-schulze?utm_source=widget&utm_campaign=widget_selfservice_scorelarge">
 						<StyledImage
 							src="https://www.kununu.com/de/partner/KlRWCFBUUQ%3D%3D/self-service-button?button-type=3"
 							width="150"
@@ -29,53 +30,139 @@ export default function Career() {
 							alt="kununu-score"
 							unoptimized
 						/>
-					</Link>
+					</LinkToPage>
 				</StyledImageWrapper>
 			</StyledCareerSection>
 			<StyledJobCardWrapper id="job-ads">
-				{showMore === false && (
+				{device ? (
 					<>
-						<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
-						{/* i want to show the first job in the jobdata */}
-						<JobCard
-							headline={"Wir suchen Verstärkung!"}
-							infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-							jobtitle={JobData[0].jobTitle}
-						></JobCard>
-						<StyledShowMoreSection>
-							<Greenbutton onClick={handleClickShowMore}>
-								alle Jobs anzeigen
-							</Greenbutton>
-						</StyledShowMoreSection>
-						<StyledBlurSection>
-							<JobCard
-								headline={"Wir suchen Verstärkung!"}
-								infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-								jobtitle={"Mechatroniker"}
-							></JobCard>
-							<JobCard
-								headline={"Wir suchen Verstärkung!"}
-								infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-								jobtitle={"Elektroniker für Betriebstechnik"}
-							></JobCard>
-						</StyledBlurSection>
+						{showMore === false && (
+							<>
+								<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
+								{/* i want to show the first job in the jobdata */}
+								<StyledSectionForTwoJobCards>
+									<JobCard
+										headline={"Wir suchen Verstärkung!"}
+										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+										jobtitle={JobData[0].jobTitle}
+									></JobCard>
+									<JobCard
+										headline={"Wir suchen Verstärkung!"}
+										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+										jobtitle={JobData[1].jobTitle}
+									></JobCard>
+								</StyledSectionForTwoJobCards>
+								<StyledShowMoreSection>
+									<Greenbutton onClick={handleClickShowMore}>
+										alle Jobs anzeigen
+									</Greenbutton>
+								</StyledShowMoreSection>
+
+								<StyledBlurSection>
+									<StyledSectionForTwoJobCards>
+										<JobCard
+											headline={"Wir suchen Verstärkung!"}
+											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+											jobtitle={"Mechatroniker"}
+										></JobCard>
+										<JobCard
+											headline={"Wir suchen Verstärkung!"}
+											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+											jobtitle={"Elektroniker für Betriebstechnik"}
+										></JobCard>
+									</StyledSectionForTwoJobCards>
+									<StyledSectionForTwoJobCards>
+										<JobCard
+											headline={"Wir suchen Verstärkung!"}
+											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+											jobtitle={"Mechatroniker"}
+										></JobCard>
+										<JobCard
+											headline={"Wir suchen Verstärkung!"}
+											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+											jobtitle={"Elektroniker für Betriebstechnik"}
+										></JobCard>
+									</StyledSectionForTwoJobCards>
+								</StyledBlurSection>
+							</>
+						)}
+						{showMore === true && (
+							<>
+								<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
+								<StyledSectionForAllJobs>
+									{JobData.map((job) => (
+										<JobCard
+											key={job.id}
+											headline={"Wir suchen Verstärkung!"}
+											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+											jobtitle={job.jobTitle}
+										></JobCard>
+									))}
+								</StyledSectionForAllJobs>
+								<StyledShowMoreSection>
+									<Link
+										to="job-ads"
+										spy={true}
+										smooth={false}
+										offset={-65}
+										duration={350}
+									>
+										<Greenbutton onClick={handleClickShowMore}>
+											weniger anzeigen
+										</Greenbutton>
+									</Link>
+								</StyledShowMoreSection>
+							</>
+						)}
 					</>
-				)}
-				{showMore === true && (
+				) : (
 					<>
-						{JobData.map((job) => (
-							<JobCard
-								key={job.id}
-								headline={"Wir suchen Verstärkung!"}
-								infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-								jobtitle={job.jobTitle}
-							></JobCard>
-						))}
-						<StyledShowMoreSection>
-							<Greenbutton onClick={handleClickShowMore}>
-								weniger anzeigen
-							</Greenbutton>
-						</StyledShowMoreSection>
+						{showMore === false && (
+							<>
+								<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
+								{/* i want to show the first job in the jobdata */}
+								<JobCard
+									headline={"Wir suchen Verstärkung!"}
+									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+									jobtitle={JobData[0].jobTitle}
+								></JobCard>
+								<StyledShowMoreSection>
+									<Greenbutton onClick={handleClickShowMore}>
+										alle Jobs anzeigen
+									</Greenbutton>
+								</StyledShowMoreSection>
+								<StyledBlurSection>
+									<JobCard
+										headline={"Wir suchen Verstärkung!"}
+										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+										jobtitle={"Mechatroniker"}
+									></JobCard>
+									<JobCard
+										headline={"Wir suchen Verstärkung!"}
+										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+										jobtitle={"Elektroniker für Betriebstechnik"}
+									></JobCard>
+								</StyledBlurSection>
+							</>
+						)}
+						{showMore === true && (
+							<>
+								<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
+								{JobData.map((job) => (
+									<JobCard
+										key={job.id}
+										headline={"Wir suchen Verstärkung!"}
+										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+										jobtitle={job.jobTitle}
+									></JobCard>
+								))}
+								<StyledShowMoreSection>
+									<Greenbutton onClick={handleClickShowMore}>
+										weniger anzeigen
+									</Greenbutton>
+								</StyledShowMoreSection>
+							</>
+						)}
 					</>
 				)}
 			</StyledJobCardWrapper>
@@ -131,6 +218,22 @@ const StyledImageWrapper = styled.section`
 	margin-top: 5rem;
 	margin-bottom: 5rem;
 `;
+const StyledSectionForTwoJobCards = styled.section`
+	display: flex;
+	margin-right: 2rem;
+	margin-left: 2rem;
+	gap: 3rem;
+	row-gap: 5rem;
+`;
+
+const StyledSectionForAllJobs = styled.section`
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-right: 2rem;
+	margin-left: 2rem;
+	gap: 3rem;
+	row-gap: 5rem;
+`;
 
 const StyledCareerSection = styled.section`
 	display: flex;
@@ -141,6 +244,7 @@ const StyledCareerSection = styled.section`
 		flex-direction: row;
 		gap: 40px;
 		justify-content: center;
+
 	}
 `;
 
@@ -155,9 +259,10 @@ const StyledJobCardWrapper = styled.section`
 		width: 50%;
 		margin: 0 auto;
 	}
-	@media (min-width: 1200px) {
-		width: 45%;
+	@media (min-width: 1025px) {
+		width: 70%;
 		margin: 0 auto;
+		margin-top: 10%;
 	}
 `;
 
@@ -168,7 +273,7 @@ const StyledShowMoreSection = styled.section`
 
 const StyledBlurSection = styled.section`
 	display: grid;
-	gap: 3rem;
+	gap: 7rem;
 	margin-bottom: 3rem;
 	filter: blur(20px);
 `;
