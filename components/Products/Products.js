@@ -1,18 +1,19 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import ProductCard from "./Productcard";
-import Greenbutton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
 import { ProductData } from "./ProductData";
 import ProductDetails from "./ProductDetails";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import "react-multi-carousel/lib/styles.css";
+import Carousel from "react-multi-carousel";
+import ProductSlideShow from "./ProductSlideShow";
 
 export default function Products({ device }) {
 	const [showProductDetails, setShowProductDetails] = useState(false);
 	const [activeProduct, setActiveProduct] = useState({});
 	const [productIndex, setProductIndex] = useState(0);
-	const productIndexForSecondPicture = (productIndex + 1) % ProductData.length;
 
 	function handleShowProductDetails(productIndexFromCard) {
 		setShowProductDetails(true);
@@ -33,51 +34,32 @@ export default function Products({ device }) {
 	}, [showProductDetails]);
 
 	function handleAddIndexForPicture() {
-		setProductIndex((productIndex + 1) % ProductData.length);
+		setRightArrowClicked(true);
+
+		setTimeout(() => {
+			setProductIndex((productIndex + 1) % ProductData.length);
+			setRightArrowClicked(false);
+		}, 350);
 	}
 
 	function handleSubtractIndexForPicture() {
+		setleftArrowClicked(true);
 		setProductIndex(
 			(productIndex - 1 + ProductData.length) % ProductData.length
 		);
+		setTimeout(() => {
+			setleftArrowClicked(false);
+		}, 350);
 	}
 	return (
 		<>
 			{device ? (
 				<>
 					<StyledHeadline id="products">Unsere Produkte</StyledHeadline>
+					<ProductSlideShow
+						handleShowProductDetails={handleShowProductDetails}
+					/>
 					<StyledProductDesktopSection>
-						{ProductData[productIndex] != undefined ? (
-							<ProductCard
-								key={ProductData[productIndex].id}
-								src={ProductData[productIndex].src}
-								alt={ProductData[productIndex].alt}
-								headline={ProductData[productIndex].headline}
-								infotext={ProductData[productIndex].infotext}
-								onClick={() =>
-									handleShowProductDetails(ProductData[productIndex].id)
-								}
-							>
-								Mehr Erfahren ...
-							</ProductCard>
-						) : null}
-						{ProductData[productIndexForSecondPicture] != undefined ? (
-							<ProductCard
-								key={ProductData[productIndexForSecondPicture].id}
-								src={ProductData[productIndexForSecondPicture].src}
-								alt={ProductData[productIndexForSecondPicture].alt}
-								headline={ProductData[productIndexForSecondPicture].headline}
-								infotext={ProductData[productIndexForSecondPicture].infotext}
-								onClick={() =>
-									handleShowProductDetails(
-										ProductData[productIndexForSecondPicture].id
-									)
-								}
-							>
-								{" "}
-								Mehr erfahren ...
-							</ProductCard>
-						) : null}
 						{showProductDetails && (
 							<>
 								<ProductDetails
@@ -105,14 +87,6 @@ export default function Products({ device }) {
 								/>
 							</>
 						)}
-						<StyledArrowLeft
-							icon={faCaretLeft}
-							onClick={handleSubtractIndexForPicture}
-						/>
-						<StyledArrowRight
-							icon={faCaretRight}
-							onClick={handleAddIndexForPicture}
-						/>
 					</StyledProductDesktopSection>
 				</>
 			) : (
@@ -177,6 +151,11 @@ const StyledHeadline = styled.h1`
 	border-bottom: 2px solid var(--color-primary);
 `;
 
+const StyledDiv = styled.div`
+	padding-right: 4rem;
+	padding-left: 4rem;
+`;
+
 const StyledProductWrapper = styled.section`
 	margin-top: 4rem;
 	max-width: 2000px;
@@ -189,8 +168,10 @@ const StyledArticle = styled.article`
 `;
 
 const StyledProductSection = styled.section`
-	@media (min-width: 1025px) {
-	}
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	margin-bottom: 2rem;
 `;
 
 const StyledProductDesktopSection = styled.section`

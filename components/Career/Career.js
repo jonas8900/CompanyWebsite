@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import CompanyAdvantages from "./CompanyAdvantages";
 import CareerPictureAndJob from "./CareerPictureAndJob";
 import Image from "next/image";
@@ -157,9 +157,17 @@ export default function Career({ device }) {
 									></JobCard>
 								))}
 								<StyledShowMoreSection>
-									<Greenbutton onClick={handleClickShowMore}>
-										weniger anzeigen
-									</Greenbutton>
+									<Link
+										to="job-ads"
+										spy={true}
+										smooth={false}
+										offset={-65}
+										duration={350}
+									>
+										<Greenbutton onClick={handleClickShowMore}>
+											weniger anzeigen
+										</Greenbutton>
+									</Link>
 								</StyledShowMoreSection>
 							</>
 						)}
@@ -169,6 +177,19 @@ export default function Career({ device }) {
 		</StyledMainSection>
 	);
 }
+
+const FadeUp = keyframes`
+  0% {
+  opacity: 0;
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+  }
+  100% {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+  }
+`;
 
 const StyledMainSection = styled.main`
 	background-color: #2c2c2c;
@@ -235,6 +256,11 @@ const StyledSectionForAllJobs = styled.section`
 	row-gap: 5rem;
 `;
 
+const StyledAnimation = styled.section`
+	animation: ${({ $animationtrigger }) => $animationtrigger && FadeUp} 0.6s
+		ease-in-out;
+`;
+
 const StyledCareerSection = styled.section`
 	display: flex;
 	flex-direction: column;
@@ -244,7 +270,6 @@ const StyledCareerSection = styled.section`
 		flex-direction: row;
 		gap: 40px;
 		justify-content: center;
-
 	}
 `;
 

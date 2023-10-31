@@ -8,12 +8,31 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { JobData } from "./JobData";
 import { useEffect, useState } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import ProductCard from "../Products/Productcard";
 
 export default function CareerPictureAndJob({ device }) {
 	const [randomJobObject, setRandomJobObject] = useState(JobData[0]);
 	const [numberForRandomJob, setNumberForRandomJob] = useState(0);
 	const numberForRandomSecondJob =
 		JobData[(numberForRandomJob + 1) % JobData.length];
+
+	const responsive = {
+		desktop: {
+			breakpoint: { max: 3000, min: 1025 },
+			items: 2,
+			slidesToSlide: 1,
+			partialVisibilityGutter: 40,
+		},
+
+		mobile: {
+			breakpoint: { max: 1024, min: 0 },
+			items: 1,
+			slidesToSlide: 1,
+			partialVisibilityGutter: 40,
+		},
+	};
 
 	useEffect(() => {
 		const timeOutForCount = setInterval(() => {
@@ -32,14 +51,6 @@ export default function CareerPictureAndJob({ device }) {
 		setRandomJobObject(JobData[numberForRandomJob]);
 	}, [numberForRandomJob]);
 
-	function handleClickLeftButtonToChangePicture() {
-		setNumberForRandomJob(
-			(numberForRandomJob - 1 + JobData.length) % JobData.length
-		);
-	}
-	function handleClickRightButtonToChangePicture() {
-		setNumberForRandomJob((numberForRandomJob + 1) % JobData.length);
-	}
 	return (
 		<>
 			<StyledHeadlineAndJobCardSectionWrapper>
@@ -56,38 +67,28 @@ export default function CareerPictureAndJob({ device }) {
 				</StyledCareerIntroSectionImage>
 				<StyledCareerIntroSectionCard>
 					<StyledJobArticle>
-						<StyledIconLeft
-							icon={faChevronLeft}
-							onClick={handleClickLeftButtonToChangePicture}
-						/>
-						<StyledIconRigh
-							icon={faChevronRight}
-							onClick={handleClickRightButtonToChangePicture}
-						/>
-
-						{device ? (
-							<StyledJobCardSection>
-								<JobCard
-									headline={"Wir suchen Verstärkung!"}
-									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-									jobtitle={randomJobObject.jobTitle}
-									numberForRandomJob={numberForRandomJob}
-								/>
-								<JobCard
-									headline={"Wir suchen Verstärkung!"}
-									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-									jobtitle={numberForRandomSecondJob.jobTitle}
-									numberForRandomJob={numberForRandomJob + 1}
-								/>
-							</StyledJobCardSection>
-						) : (
-							<JobCard
-								headline={"Wir suchen Verstärkung!"}
-								infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-								jobtitle={randomJobObject.jobTitle}
-								numberForRandomJob={numberForRandomJob}
-							/>
-						)}
+						<StyledMainDiv>
+							<Carousel
+								responsive={responsive}
+								partialVisibilityGutter={true}
+								infinite={true}
+								autoPlay={true}
+								autoPlaySpeed={8000}
+							>
+								{JobData.map((job) => (
+									<StyledDiv key={job.id}>
+										<JobCard
+											headline={"Wir suchen Verstärkung!"}
+											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+											qualification={job.qualification}
+											jobtitle={job.jobTitle}
+										>
+											Mehr Erfahren ...
+										</JobCard>
+									</StyledDiv>
+								))}
+							</Carousel>
+						</StyledMainDiv>
 					</StyledJobArticle>
 				</StyledCareerIntroSectionCard>
 			</StyledHeadlineAndJobCardSectionWrapper>
@@ -105,7 +106,25 @@ const StyledHeadlineAndJobCardSectionWrapper = styled.section`
 		margin-bottom: 33%;
 	}
 	@media (min-width: 1350px) {
-		margin-bottom: 23%;
+		margin-bottom: 20%;
+	}
+`;
+
+const StyledDiv = styled.div`
+	padding-bottom: 10px;
+
+	@media (min-width: 1025px) {
+		padding-right: 4rem;
+		padding-left: 4rem;
+	}
+`;
+
+const StyledMainDiv = styled.div`
+	width: 90%;
+	margin: 0 auto;
+
+	@media (min-width: 1025px) {
+		width: 100%;
 	}
 `;
 
@@ -124,23 +143,19 @@ const StyledCareerIntroSectionCard = styled.section`
 	margin-top: -1rem;
 `;
 
-const StyledJobCardSection = styled.section`
-	display: flex;
-	gap: 40px;
-`;
-
 const StyledJobArticle = styled.article`
 	position: relative;
 
 	@media (min-width: 768px) {
-		width: 60%;
+		width: 100%;
+
 		margin: 0 auto;
 	}
 	@media (min-width: 1025px) {
 		width: 90%;
 		margin: 0 auto;
 	}
-	@media (min-width: 1400px) {
+	@media (min-width: 1800px) {
 		width: 70%;
 		margin: 0 auto;
 	}
@@ -153,8 +168,6 @@ const StyledPageHeadline = styled.h1`
 	z-index: 1;
 	font-size: 2rem;
 	font-weight: 700;
-	@media (min-width: 768px) {
-	}
 `;
 
 const StyledIconLeft = styled(FontAwesomeIcon)`

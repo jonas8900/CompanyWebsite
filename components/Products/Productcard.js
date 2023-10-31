@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
 
 export default function ProductCard({
@@ -19,6 +19,7 @@ export default function ProductCard({
 					height={141}
 					alt={alt}
 					sizes="(max-width: 600px) 720px, (max-width: 1025px) 1080px"
+					priority={true}
 				/>
 			</StyledImageContainer>
 			<StyledInfoWrapper>
@@ -33,7 +34,57 @@ export default function ProductCard({
 		</StyledCardWrapper>
 	);
 }
+/*
+const FadeRight = keyframes`
+  0% {
+  -webkit-transform: translateX(30%);
+  transform: translateX(30%);
+  visibility: visible;
+  opacity: 0.8;
+  }
+  100% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  opacity: 1
+  }
+`;
 
+const FadeLeft = keyframes`
+  0% {
+  -webkit-transform: translateX(-30%);
+  transform: translateX(-30%);
+  visibility: visible;
+  opacity: 0.8;
+  }
+  100% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  opacity: 1
+  }
+`;
+
+const FadeOutRight = keyframes`
+  0% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+  100% {
+  visibility: hidden;
+  -webkit-transform: translateX(30%);
+  transform: translateX(30%);
+  }`;
+
+const FadeOutLeft = keyframes`
+  0% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+  100% {
+  visibility: hidden;
+  -webkit-transform: translateX(-30%);
+  transform: translateX(-30%);
+  }`;
+*/
 const StyledRandomImage = styled(Image)`
 	width: 100%;
 	height: 100%;
@@ -74,7 +125,10 @@ const StyledCardWrapper = styled.section`
 	@media (min-width: 1025px) {
 		min-height: 25rem;
 		height: 25rem;
+		width: 100%;
 		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
+
+		max-width: 100%;
 	}
 	@media (min-width: 1250px) {
 		min-height: 30rem;

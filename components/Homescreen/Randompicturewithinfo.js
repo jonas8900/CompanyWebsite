@@ -38,7 +38,6 @@ export default function Randompicture() {
 		const timeOutForCount = setInterval(() => {
 			setCounter((increaseCount) => {
 				if (increaseCount === 4) {
-					console.log("increase", increaseCount);
 					return 0;
 				} else {
 					return increaseCount + 1;

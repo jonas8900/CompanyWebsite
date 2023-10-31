@@ -49,3 +49,18 @@ export const JobData = [
     qualification: "Sie überzeugen uns mit"
 }
 ]
+
+/*<StyledJobCardSection>
+								<JobCard
+									headline={"Wir suchen Verstärkung!"}
+									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+									jobtitle={randomJobObject.jobTitle}
+									numberForRandomJob={numberForRandomJob}
+								/>
+								<JobCard
+									headline={"Wir suchen Verstärkung!"}
+									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+									jobtitle={numberForRandomSecondJob.jobTitle}
+									numberForRandomJob={numberForRandomJob + 1}
+								/>
+							</StyledJobCardSection>*/

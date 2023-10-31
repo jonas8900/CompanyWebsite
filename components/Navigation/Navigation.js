@@ -433,4 +433,5 @@ const StyledLogo = styled.h1`
 	padding: 0.3rem;
 	margin: 0;
 	font-weight: bold;
+	cursor: pointer;
 `;

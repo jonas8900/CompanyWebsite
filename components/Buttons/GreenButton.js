@@ -31,4 +31,14 @@ const StyledButton = styled.button`
 	&:active {
 		box-shadow: inset 1px 1px 5px 0px black;
 	}
+
+	&:hover {
+		scale: 1.1;
+		transition: all 0.3s ease-in-out;
+		
+	}
+
+	&:not(:hover) {
+		transition: all 0.3s ease-in-out;
+	}
 `;
