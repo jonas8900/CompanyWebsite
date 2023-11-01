@@ -175,6 +175,14 @@ export default function SideBar() {
 	);
 }
 
+const Wiggle = keyframes`
+    0% { transform: rotate(0deg); }
+   80% { transform: rotate(0deg); }
+   85% { transform: rotate(5deg); }
+   95% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+`;
+
 const fadeInRight = keyframes`
   0% {
   opacity: 0;
@@ -355,6 +363,11 @@ const StyledArrow = styled(FontAwesomeIcon)`
 	color: var(--color-fourth);
 	transform: ${({ $arrowclicked }) => ($arrowclicked ? "rotate(180deg)" : "")};
 	transition: all 0.4s ease;
+	cursor: pointer;
+	&:hover {
+		color: var(--color-fifth);
+		scale: 1.2;
+	}
 `;
 
 const StyledWrapper = styled.section`

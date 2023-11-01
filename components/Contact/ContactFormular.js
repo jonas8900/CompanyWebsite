@@ -84,7 +84,7 @@ const StyledWindow = styled.section`
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 999;
+	z-index: 9999;
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(20px);
 `;

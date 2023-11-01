@@ -1,23 +1,37 @@
 import Image from "next/image";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import JobCard from "./JobCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	faChevronLeft,
-	faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { JobData } from "./JobData";
-import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ProductCard from "../Products/Productcard";
+import { useEffect, useState } from "react";
+import JobDetails from "./JobDetails";
+import OutsideClickHandler from "react-outside-click-handler";
 
-export default function CareerPictureAndJob({ device }) {
-	const [randomJobObject, setRandomJobObject] = useState(JobData[0]);
-	const [numberForRandomJob, setNumberForRandomJob] = useState(0);
-	const numberForRandomSecondJob =
-		JobData[(numberForRandomJob + 1) % JobData.length];
+export default function CareerPictureAndJob({ scrollY }) {
+	const [seeMoreClicked, setSeeMoreClicked] = useState(false);
+	const [activejob, setActiveJob] = useState({});
 
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			if (seeMoreClicked === true) {
+				document.body.style.overflow = "hidden";
+			} else {
+				document.body.style.overflow = "auto";
+			}
+		}
+	}, [seeMoreClicked]);
+
+	function handleSeeMoreButton(id) {
+		setSeeMoreClicked(!seeMoreClicked);
+		setActiveJob(Number(id) - 1);
+	}
+
+	function handleClose() {
+		setSeeMoreClicked(false);
+	}
 	const responsive = {
 		desktop: {
 			breakpoint: { max: 3000, min: 1025 },
@@ -33,23 +47,6 @@ export default function CareerPictureAndJob({ device }) {
 			partialVisibilityGutter: 40,
 		},
 	};
-
-	useEffect(() => {
-		const timeOutForCount = setInterval(() => {
-			setNumberForRandomJob((increaseCount) => {
-				if (increaseCount >= JobData.length - 1) {
-					return 0;
-				} else {
-					return increaseCount + 1;
-				}
-			});
-		}, 10000);
-		return () => clearInterval(timeOutForCount);
-	}, []);
-
-	useEffect(() => {
-		setRandomJobObject(JobData[numberForRandomJob]);
-	}, [numberForRandomJob]);
 
 	return (
 		<>
@@ -82,6 +79,7 @@ export default function CareerPictureAndJob({ device }) {
 											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 											qualification={job.qualification}
 											jobtitle={job.jobTitle}
+											onClick={() => handleSeeMoreButton(job.id)}
 										>
 											Mehr Erfahren ...
 										</JobCard>
@@ -91,6 +89,19 @@ export default function CareerPictureAndJob({ device }) {
 						</StyledMainDiv>
 					</StyledJobArticle>
 				</StyledCareerIntroSectionCard>
+				{seeMoreClicked && (
+					<>
+						<JobDetails
+							onClick={handleClose}
+							headline={JobData[activejob].jobTitle}
+							introduction={JobData[activejob].introduction}
+							ourOffer={JobData[activejob].whatWeOffer}
+							tasks={JobData[activejob].tasks}
+							qualification={JobData[activejob].qualification}
+							clickHandler={() => handleClose()}
+						/>
+					</>
+				)}
 			</StyledHeadlineAndJobCardSectionWrapper>
 		</>
 	);
