@@ -99,14 +99,13 @@ export default function Randompicture() {
 							</Greenbutton>
 						</StyledGreenButtonSection>
 						{contactClicked && (
-								<WindowCard
-									headline={"Kontakt"}
-									infotext={`Wir sind für Sie da. Rufen Sie uns an oder schreiben Sie uns eine E-Mail. Wir freuen uns auf Sie!`}
-									onClick={handleContactUsButton}
-									contactData={<ContactData />}
-									animationTrigger={animationToggle}
-								></WindowCard>
-
+							<WindowCard
+								headline={"Kontakt"}
+								infotext={`Wir sind für Sie da. Rufen Sie uns an oder schreiben Sie uns eine E-Mail. Wir freuen uns auf Sie!`}
+								onClick={handleContactUsButton}
+								contactData={<ContactData />}
+								animationTrigger={animationToggle}
+							></WindowCard>
 						)}
 					</StyledCardSection>
 				</StyledCardWrapper>
@@ -172,6 +171,7 @@ const StyledImageContainer = styled.section`
 const StyledCardSection = styled.article`
 	width: 85%;
 	margin: auto;
+
 	margin-left: 2rem;
 `;
 
@@ -194,7 +194,7 @@ const StyledCardWrapper = styled.section`
 	right: 10%;
 	margin: auto;
 	margin-top: -1rem;
-	z-index: 9999;
+	z-index: ${({ $contactclicked }) => ($contactclicked ? 99999 : 999)};
 
 	@media (min-width: 768px) {
 		width: 60%;

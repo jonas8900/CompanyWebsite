@@ -54,7 +54,7 @@ const StyledWindow = styled.section`
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 9999;
+	z-index: 99999;
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(20px);
 	animation: ${({ $animationtrigger }) =>
@@ -98,6 +98,7 @@ const StyledInformationCard = styled.article`
 	width: 92%;
 	left: 4%;
 	right: 4%;
+	z-index: 99999;
 	@media (min-width: 1025px) {
 		width: 50%;
 		left: 25%;
