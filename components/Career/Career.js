@@ -3,14 +3,36 @@ import CompanyAdvantages from "./CompanyAdvantages";
 import CareerPictureAndJob from "./CareerPictureAndJob";
 import Image from "next/image";
 import JobCard from "./JobCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Greenbutton from "../Buttons/GreenButton";
 import LinkToPage from "next/link";
 import { JobData } from "./JobData";
 import { Link } from "react-scroll/modules";
+import JobDetails from "./JobDetails";
 
-export default function Career({ device }) {
+export default function Career({ device, scrollY }) {
 	const [showMore, setShowMore] = useState(false);
+	const [seeMoreOnSingleJob, setSeeMoreOnSingleJob] = useState(false);
+	const [activejob, setActiveJob] = useState({});
+
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			if (seeMoreOnSingleJob === true) {
+				document.body.style.overflow = "hidden";
+			} else {
+				document.body.style.overflow = "auto";
+			}
+		}
+	}, [seeMoreOnSingleJob]);
+
+	function handleSeeMoreButton(id) {
+		setSeeMoreOnSingleJob(!seeMoreOnSingleJob);
+		setActiveJob(Number(id) - 1);
+	}
+
+	function handleClose() {
+		setSeeMoreOnSingleJob(false);
+	}
 
 	function handleClickShowMore() {
 		setShowMore(!showMore);
@@ -45,11 +67,13 @@ export default function Career({ device }) {
 										headline={"Wir suchen Verstärkung!"}
 										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 										jobtitle={JobData[0].jobTitle}
+										onClick={() => handleSeeMoreButton(JobData[0].id)}
 									></JobCard>
 									<JobCard
 										headline={"Wir suchen Verstärkung!"}
 										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 										jobtitle={JobData[1].jobTitle}
+										onClick={() => handleSeeMoreButton(JobData[1].id)}
 									></JobCard>
 								</StyledSectionForTwoJobCards>
 								<StyledShowMoreSection>
@@ -96,6 +120,7 @@ export default function Career({ device }) {
 											headline={"Wir suchen Verstärkung!"}
 											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 											jobtitle={job.jobTitle}
+											onClick={() => handleSeeMoreButton(job.id)}
 										></JobCard>
 									))}
 								</StyledSectionForAllJobs>
@@ -125,6 +150,7 @@ export default function Career({ device }) {
 									headline={"Wir suchen Verstärkung!"}
 									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 									jobtitle={JobData[0].jobTitle}
+									onClick={() => handleSeeMoreButton(JobData[0].id)}
 								></JobCard>
 								<StyledShowMoreSection>
 									<Greenbutton onClick={handleClickShowMore}>
@@ -154,6 +180,7 @@ export default function Career({ device }) {
 										headline={"Wir suchen Verstärkung!"}
 										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 										jobtitle={job.jobTitle}
+										onClick={() => handleSeeMoreButton(job.id)}
 									></JobCard>
 								))}
 								<StyledShowMoreSection>
@@ -174,6 +201,18 @@ export default function Career({ device }) {
 					</>
 				)}
 			</StyledJobCardWrapper>
+			{seeMoreOnSingleJob && (
+				<>
+					<JobDetails
+						onClick={handleClose}
+						headline={JobData[activejob].jobTitle}
+						introduction={JobData[activejob].introduction}
+						ourOffer={JobData[activejob].whatWeOffer}
+						tasks={JobData[activejob].tasks}
+						qualification={JobData[activejob].qualification}
+					/>
+				</>
+			)}
 		</StyledMainSection>
 	);
 }

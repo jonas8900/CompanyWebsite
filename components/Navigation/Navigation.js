@@ -300,7 +300,7 @@ const StyledInputSection = styled.section`
 const StyledNavigationBar = styled.nav`
 	position: sticky;
 	top: 0;
-	z-index: 99999;
+	z-index: 9999;
 	width: 100%;
 	height: 100%;
 	box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);

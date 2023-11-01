@@ -1,7 +1,5 @@
-import { faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import styled, { keyframes } from "styled-components";
+
+import styled from "styled-components";
 import PhoneIcon from "../Icons/PhoneIcon";
 import MailIcon from "../Icons/MailIcon";
 

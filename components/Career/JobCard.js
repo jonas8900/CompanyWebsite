@@ -6,6 +6,7 @@ export default function JobCard({
 	infotext,
 	jobtitle,
 	numberForRandomJob,
+	onClick,
 }) {
 	return (
 		<StyledCardWrapper
@@ -21,7 +22,9 @@ export default function JobCard({
 				<StyledParagraphForInfo>{infotext}</StyledParagraphForInfo>
 			</StyledInfoWrapper>
 			<StyledButtonWrapper>
-				<Greenbutton margin={-2}>Mehr erfahren ...</Greenbutton>
+				<Greenbutton margin={-2} onClick={onClick}>
+					Mehr erfahren ...
+				</Greenbutton>
 			</StyledButtonWrapper>
 		</StyledCardWrapper>
 	);

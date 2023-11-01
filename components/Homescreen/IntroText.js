@@ -41,15 +41,19 @@ export default function Introtext() {
 					<StyledTextParagraph>
 						sind wir Ihr <b>zuverlässiger Partner</b> im Bereich{" "}
 						<b>Fördertechnik</b>. Unsere Leistungen umfassen die{" "}
-						<b>Herstellung von Krananlagen</b>, Service und Reparaturen,
-						Mängelbeseitigungen, Prüfungen sowie die Reparatur und Überholung
-						sämtlicher Kranantriebe, unabhängig von ihrem Alter und Hersteller.
-						Wir sind Spezialisten in der Planung, Konstruktion und Herstellung
-						von Kranen und Sonderhebezeugen. Darüber hinaus bieten wir
-						Kranprüfungen gemäß der UVV BGV an und sind Experten in
-						Spezialmontagen. Unser Ziel ist es, maßgeschneiderte Lösungen für
-						jeden Kunden anzubieten und somit langfristige Partnerschaften
-						aufzubauen. Vertrauen Sie auf unsere Erfahrung und unser Engagement.
+						<b>Herstellung von Krananlagen</b>, <b>Service</b> und{" "}
+						<b> Reparaturen</b>,<b> Mängelbeseitigungen</b>, <b>Prüfungen</b>{" "}
+						sowie die <b>Reparatur</b> und <b>Überholung </b>
+						sämtlicher <b>Kranantriebe</b>, unabhängig von ihrem Alter und
+						Hersteller. Wir sind Spezialisten in der <b>Planung</b>,{" "}
+						<b>Konstruktion</b> und{" "}
+						<b>Herstellung von Kranen und Sonderhebezeugen</b>. Darüber hinaus
+						bieten wir
+						<b> Kranprüfungen gemäß der UVV BGV</b> an und sind Experten in
+						<b> Spezialmontagen</b>. Unser Ziel ist es,{" "}
+						<b>maßgeschneiderte Lösungen für jeden Kunden</b> anzubieten und
+						somit langfristige Partnerschaften aufzubauen. Vertrauen Sie auf
+						unsere Erfahrung und unser Engagement.
 					</StyledTextParagraph>
 					<StyledArgumentCardWrapper>
 						<GreenButton>
@@ -159,13 +163,13 @@ const StyledIntroTextWrapper = styled.main`
 	@media (min-width: 450px) {
 		margin-top: 30%;
 	}
-	@media (min-width: 1025px) {
+	@media (min-width: 1100px) {
 		margin: auto;
 		margin-top: 4%;
 		padding: 1rem;
 		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
 		width: 70%;
-		border: 1px solid rgba(0, 0, 0, 0.1);
+		border-left: 1px solid rgba(0, 0, 0, 0.1);
 	}
 	@media (min-width: 1800px) {
 		margin-top: 0;
@@ -175,6 +179,8 @@ const StyledIntroTextWrapper = styled.main`
 const StyledHeadline = styled.h1`
 	text-align: center;
 	text-shadow: 1px 3px 1px #eee;
+	text-decoration: underline;
+	text-decoration-color: var(--color-secondary);
 `;
 
 const StyledInfoSection = styled.section`
@@ -206,7 +212,7 @@ const StyledArgumentCardWrapper = styled.article`
 	grid-template-rows: 1fr 1fr 1fr;
 	gap: 1rem;
 `;
-
+// customer dont want to show up some text on the three buttons
 const StyledWindow = styled.section`
 	width: 100%;
 	height: 100%;

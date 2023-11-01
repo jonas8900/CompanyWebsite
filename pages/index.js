@@ -21,7 +21,7 @@ export default function Home({ scrollY, device, setDevice }) {
 				<Introtext />
 				<Products device={device} setDevice={setDevice} />
 			</StyledSectionForWidth>
-			<Career device={device} />
+			<Career device={device} scrollY={scrollY} />
 			<Contact />
 
 			<Footer />

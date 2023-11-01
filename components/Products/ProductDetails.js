@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
+import OutsideClickHandler from "react-outside-click-handler";
 
 export default function ProductDetails({
 	headline,
@@ -8,24 +9,28 @@ export default function ProductDetails({
 	value,
 	animationTrigger,
 	contactData,
-	imageGalery,
 }) {
 	return (
 		<>
 			<StyledWindow $animationtrigger={animationTrigger}>
-				<StyledInformationCard>
-					<section>
-						<h3>{headline}</h3>
-						<StyledIntroText>{infotext}</StyledIntroText>
-					</section>
-					<StyledContactData>{contactData}</StyledContactData>
-					{/* <StyledImageGalery>{imageGalery}</StyledImageGalery> */}
-				</StyledInformationCard>
-				<StyledImageWrapper>
-					<Greenbutton onClick={onClick} $value={value}>
-						Schließen
-					</Greenbutton>
-				</StyledImageWrapper>
+				<OutsideClickHandler
+					onOutsideClick={() => {
+						onClick();
+					}}
+				>
+					<StyledInformationCard>
+						<section>
+							<h3>{headline}</h3>
+							<StyledIntroText>{infotext}</StyledIntroText>
+						</section>
+						<StyledContactData>{contactData}</StyledContactData>
+					</StyledInformationCard>
+					<StyledImageWrapper>
+						<Greenbutton onClick={onClick} $value={value}>
+							Schließen
+						</Greenbutton>
+					</StyledImageWrapper>
+				</OutsideClickHandler>
 			</StyledWindow>
 		</>
 	);
@@ -48,19 +53,12 @@ const StyledWindow = styled.section`
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 99999;
+	z-index: 9999;
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(20px);
 	animation: ${({ $animationtrigger }) =>
 			$animationtrigger ? FadeOut : FadeIn}
 		0.4s ease;
-`;
-
-const StyledImageGalery = styled.article`
-	background-color: var(--color-third);
-	display: flex;
-	gap: 1rem;
-	margin-bottom: 2rem;
 `;
 
 const StyledIntroText = styled.h4`
