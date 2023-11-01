@@ -3,6 +3,11 @@ import Greenbutton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
 import ContactFormular from "./ContactFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
+import PhoneIcon from "../Icons/PhoneIcon";
+import MailIcon from "../Icons/MailIcon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFax } from "@fortawesome/free-solid-svg-icons";
+import FaxIcon from "../Icons/FaxIcon";
 
 export default function Contact() {
 	const [messageSuccess, setMessageSuccess] = useState(false);
@@ -80,16 +85,15 @@ export default function Contact() {
 						<p>Hannover</p>
 					</StyledInformations>
 					<StyledInformations>
-						<h2>Telefon:</h2>
-						<p>0511 27789680</p>
+						<PhoneIcon href="tel:017626246722">0176 262 46722</PhoneIcon>
 					</StyledInformations>
 					<StyledInformations>
-						<h2>E-Mail:</h2>
-						<p>info@emb-schulze.de</p>
+						<MailIcon href="mailto:Info@emb-schulze.de">
+							Info@emb-schulze.de
+						</MailIcon>
 					</StyledInformations>
 					<StyledInformations>
-						<h2>Fax:</h2>
-						<p>0511 337706</p>
+						<FaxIcon href="fax:051133770619">0511 33770619</FaxIcon>
 					</StyledInformations>
 					<StyledInformations>
 						<h2>Adresse:</h2>

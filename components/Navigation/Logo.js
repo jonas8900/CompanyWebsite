@@ -6,7 +6,7 @@ export default function Logo() {
 		<>
 			<StyledLogo>
 				<Link
-					to="randompicture"
+					to="introtext"
 					spy={true}
 					smooth={false}
 					offset={-70}

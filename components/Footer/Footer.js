@@ -7,7 +7,7 @@ export default function Footer() {
 		<StyledSection>
 			<StyledLinkArticle>
 				<StyledLink href="/impressum">Impressum</StyledLink>
-				<StyledLink href="/datenschutz">Datenschutz</StyledLink>
+				<StyledLink href="/privacy">Datenschutz</StyledLink>
 			</StyledLinkArticle>
 		</StyledSection>
 	);
@@ -17,6 +17,7 @@ const StyledSection = styled.section`
 	background-color: var(--color-fourth);
 	display: flex;
 	align-items: center;
+	
 `;
 
 const StyledLinkArticle = styled.article`

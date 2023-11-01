@@ -70,4 +70,12 @@ const StyledInformationCard = styled.article`
 	right: 10%;
 	margin: auto;
 	z-index: 1;
+	width: 92%;
+	left: 4%;
+	right: 4%;
+	@media (min-width: 1025px) {
+		width: 50%;
+		left: 25%;
+		right: 25%;
+	}
 `;
