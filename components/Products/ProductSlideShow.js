@@ -48,4 +48,6 @@ const StyledDiv = styled.div`
 	object-fit: contain;
 `;
 
-const StyledMainDiv = styled.div``;
+const StyledMainDiv = styled.div`
+	z-index: 0;
+`;

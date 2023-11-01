@@ -69,7 +69,8 @@ const StyledSubHeadline = styled.h2`
 	margin-top: 0;
 	width: 70%;
 	margin: auto;
-	border-bottom: 1px solid var(--color-primary);
+	text-decoration: underline;
+	text-decoration-color: var(--color-secondary);
 	text-align: center;
 `;
 
