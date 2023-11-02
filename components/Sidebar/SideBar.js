@@ -38,8 +38,16 @@ export default function SideBar() {
 	}
 
 	function handleClickFormularButton() {
-		setFormularClicked(!formularClicked);
+		setFormularClicked(true);
 		setCapture("");
+	}
+
+	function handleCloseWindow() {
+		setAnimationTrigger(true);
+		setTimeout(() => {
+			setFormularClicked(false);
+			setAnimationTrigger(false);
+		}, 350);
 	}
 
 	function handleSubmitButtonClicked() {
@@ -108,11 +116,15 @@ export default function SideBar() {
 							onClick={handleArrowClicked}
 							icon={faCaretLeft}
 							$arrowclicked={arrowAnimation}
+							aria-label="Menü Aufklappen"
 						/>
 					</StyledSectionForArrow>
 					{arrowClicked && (
 						<StyledSectionForSideBar $arrowclicked={arrowAnimation}>
-							<StyledButton $questionclicked={questionClicked}>
+							<StyledButton
+								$questionclicked={questionClicked}
+								aria-label="Hilfe"
+							>
 								<StyledIcon icon={faQuestion} onClick={handleQuestionClick} />
 							</StyledButton>
 							<Link
@@ -120,13 +132,17 @@ export default function SideBar() {
 								spy={true}
 								smooth={false}
 								offset={-70}
+								href="#"
 								duration={350}
 							>
-								<StyledButton>
+								<StyledButton aria-label="Zu unserer Karriere-Seite gehen">
 									<StyledIcon icon={faUserGraduate} />
 								</StyledButton>
 							</Link>
-							<StyledButton onClick={handleClickFormularButton}>
+							<StyledButton
+								onClick={handleClickFormularButton}
+								aria-label="Kontaktformular"
+							>
 								<StyledIcon icon={faEnvelope} />
 							</StyledButton>
 						</StyledSectionForSideBar>
@@ -150,7 +166,11 @@ export default function SideBar() {
 										<b>info@emb-schulze.de</b>
 									</StyledLink>
 								</StyledParagraph>
-								<StyledClosedHelp icon={faX} onClick={handleQuestionClick} />
+								<StyledClosedHelp
+									icon={faX}
+									onClick={handleQuestionClick}
+									aria-label="Schließen"
+								/>
 							</StyledArticle>
 						</>
 					)}
@@ -158,8 +178,9 @@ export default function SideBar() {
 			</OutsideClickHandler>
 			{formularClicked && (
 				<ContactFormular
+					animationTrigger={animationTrigger}
 					onSubmit={handleSubmitFormular}
-					onClick={handleClickFormularButton}
+					onClick={handleCloseWindow}
 					onChange={(value) => setCapture(value)}
 					disabled={submitClicked}
 					successValue={submitClicked}
@@ -174,14 +195,6 @@ export default function SideBar() {
 		</>
 	);
 }
-
-const Wiggle = keyframes`
-    0% { transform: rotate(0deg); }
-   80% { transform: rotate(0deg); }
-   85% { transform: rotate(5deg); }
-   95% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
-`;
 
 const fadeInRight = keyframes`
   0% {
@@ -378,7 +391,7 @@ const StyledWrapper = styled.section`
 	display: flex;
 	width: 4rem;
 	height: 8rem;
-	z-index: 99;
+	z-index: 9999;
 	justify-content: center;
 	align-items: center;
 `;
@@ -394,7 +407,7 @@ const StyledArticle = styled.article`
 	animation: ${({ helpbuttonclicked }) => helpbuttonclicked && FadeIn} 1s ease;
 	position: fixed;
 	top: -3rem;
-	z-index: 9999;
+
 	right: 2.4rem;
 	transform: translateY(-70%);
 `;

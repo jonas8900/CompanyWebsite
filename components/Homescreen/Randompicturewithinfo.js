@@ -6,6 +6,7 @@ import WindowCard from "../WindowCards/WindowCard";
 import ContactData from "./ContactData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import Head from "next/head";
 
 export default function Randompicture() {
 	const [counter, setCounter] = useState(0);
@@ -48,14 +49,21 @@ export default function Randompicture() {
 		return () => clearInterval(timeOutForCount);
 	}, []);
 
-	function handleClickLeftButtonToChangePicture() {
+	async function handleClickLeftButtonToChangePicture() {
 		setCounter((counter - 1 + 5) % 5);
 	}
-	function handleClickRightButtonToChangePicture() {
+	async function handleClickRightButtonToChangePicture() {
 		setCounter((counter + 1) % 5);
 	}
 	return (
 		<>
+			<Head>
+				<title>Elektromaschinenbau Schulze</title>
+				<meta
+					name="description"
+					content="Wir sind der richtige Ansprechpartner, wenn es um Krananlagen geht! Unser erfahrenes Team bietet umfassende Leistungen wie Wartung, Reparatur und die Erfüllung der UVV-Vorschriften für Ihre Krananlagen. Verlassen Sie sich auf unsere Expertise."
+				/>
+			</Head>
 			<StyledWrapper id="introtext">
 				<StyledProgressSection>
 					<StyledProgressDiv1 $counter={counter + 1}></StyledProgressDiv1>
@@ -76,12 +84,12 @@ export default function Randompicture() {
 					<StyledRandomImage
 						key={counter}
 						src={`/Random-Kranbild-${counter}.jpg`}
-						sizes="(max-width: 600px) 400px, (max-width: 1024px) 1080px"
+						sizes="(max-width: 768px) 300px, (max-width: 1024px) 600px, (max-width: 1400px) 1080px"
 						alt="Zufälliges Bild einer Krananlage"
-						width={1477}
-						height={615}
+						width={450}
+						height={210}
 						counter={counter + 1}
-						priority={true}
+						unoptimized
 					/>
 				</StyledImageContainer>
 

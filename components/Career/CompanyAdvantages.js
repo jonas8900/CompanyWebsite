@@ -50,6 +50,7 @@ export default function CompanyAdvantages() {
 				<StyledButtonSection>
 					<Link
 						to="job-ads"
+						href="#"
 						spy={true}
 						smooth={false}
 						offset={-70}

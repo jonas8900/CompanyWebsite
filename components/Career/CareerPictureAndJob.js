@@ -13,6 +13,7 @@ import OutsideClickHandler from "react-outside-click-handler";
 export default function CareerPictureAndJob({ scrollY }) {
 	const [seeMoreClicked, setSeeMoreClicked] = useState(false);
 	const [activejob, setActiveJob] = useState({});
+	const [animationToggle, setAnimationToggle] = useState(false);
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -30,7 +31,11 @@ export default function CareerPictureAndJob({ scrollY }) {
 	}
 
 	function handleClose() {
-		setSeeMoreClicked(false);
+		setAnimationToggle(true);
+		setTimeout(() => {
+			setSeeMoreClicked(false);
+			setAnimationToggle(false);
+		}, 350);
 	}
 	const responsive = {
 		desktop: {
@@ -55,43 +60,47 @@ export default function CareerPictureAndJob({ scrollY }) {
 					<StyledPageHeadline>Karriere</StyledPageHeadline>
 					<StyledImage
 						src="/KarriereBild.jpg"
-						width={500}
+						width={1500}
 						height={500}
-						sizes="100%"
+						sizes="(max-width: 600px) 300px, (max-width: 1024px) 600px, (max-width: 1400px) 800px"
 						alt="Das Bild zeigt einen Mann am Schreibtisch mit einem Helm und einem Anzug"
+						loading="lazy"
 						unoptimized
 					/>
 				</StyledCareerIntroSectionImage>
 				<StyledCareerIntroSectionCard>
 					<StyledJobArticle>
-						<StyledMainDiv>
-							<Carousel
-								responsive={responsive}
-								partialVisibilityGutter={true}
-								infinite={true}
-								autoPlay={true}
-								autoPlaySpeed={8000}
-							>
-								{JobData.map((job) => (
-									<StyledDiv key={job.id}>
-										<JobCard
-											headline={"Wir suchen Verstärkung!"}
-											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-											qualification={job.qualification}
-											jobtitle={job.jobTitle}
-											onClick={() => handleSeeMoreButton(job.id)}
-										>
-											Mehr Erfahren ...
-										</JobCard>
-									</StyledDiv>
-								))}
-							</Carousel>
-						</StyledMainDiv>
+						<Carousel
+							responsive={responsive}
+							partialVisibilityGutter={true}
+							infinite={true}
+							autoPlay={true}
+							autoPlaySpeed={8000}
+							role="listbox"
+							aria-label="Jobangebote"
+							aria-hidden="true"
+						>
+							{JobData.map((job) => (
+								<StyledDiv key={job.id}>
+									<JobCard
+										headline={"Wir suchen Verstärkung!"}
+										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+										qualification={job.qualification}
+										jobtitle={job.jobTitle}
+										onClick={() => handleSeeMoreButton(job.id)}
+										aria-label={job.jobTitle}
+									>
+										Mehr Erfahren ...
+									</JobCard>
+								</StyledDiv>
+							))}
+						</Carousel>
 					</StyledJobArticle>
 				</StyledCareerIntroSectionCard>
 				{seeMoreClicked && (
 					<>
 						<JobDetails
+							animationTrigger={animationToggle}
 							onClick={handleClose}
 							headline={JobData[activejob].jobTitle}
 							introduction={JobData[activejob].introduction}

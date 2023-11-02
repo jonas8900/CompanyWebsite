@@ -9,8 +9,9 @@ import LinkToPage from "next/link";
 import { JobData } from "./JobData";
 import { Link } from "react-scroll/modules";
 import JobDetails from "./JobDetails";
+import Head from "next/head";
 
-export default function Career({ device, scrollY }) {
+export default function Career({ device }) {
 	const [showMore, setShowMore] = useState(false);
 	const [seeMoreOnSingleJob, setSeeMoreOnSingleJob] = useState(false);
 	const [activejob, setActiveJob] = useState({});
@@ -39,51 +40,133 @@ export default function Career({ device, scrollY }) {
 	}
 
 	return (
-		<StyledMainSection id="career">
-			<CareerPictureAndJob device={device} />
-			<StyledCareerSection>
-				<CompanyAdvantages />
-				<StyledImageWrapper>
-					<LinkToPage href="https://www.kununu.com/de/elektromaschinenbau-schulze?utm_source=widget&utm_campaign=widget_selfservice_scorelarge">
-						<StyledImage
-							src="https://www.kununu.com/de/partner/KlRWCFBUUQ%3D%3D/self-service-button?button-type=3"
-							width="150"
-							height="100"
-							alt="kununu-score"
-							unoptimized
-						/>
-					</LinkToPage>
-				</StyledImageWrapper>
-			</StyledCareerSection>
-			<StyledJobCardWrapper id="job-ads">
-				{device ? (
-					<>
-						{showMore === false && (
-							<>
-								<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
-								{/* i want to show the first job in the jobdata */}
-								<StyledSectionForTwoJobCards>
+		<>
+			<Head>
+				<title>Karriere bei Elektromaschinenbau Schulze</title>
+				<meta
+					name="description"
+					content="Entdecken Sie berufliche Möglichkeiten bei Elektromaschinenbau Schulze. Wir bieten Karrierechancen in der Krananlagen-Industrie für engagierte Fachleute. Werden Sie Teil unseres Teams!"
+				/>
+			</Head>
+			<StyledMainSection id="career">
+				<CareerPictureAndJob device={device} />
+				<StyledCareerSection>
+					<CompanyAdvantages />
+					<StyledImageWrapper>
+						<LinkToPage href="https://www.kununu.com/de/elektromaschinenbau-schulze?utm_source=widget&utm_campaign=widget_selfservice_scorelarge">
+							<StyledImage
+								src="https://www.kununu.com/de/partner/KlRWCFBUUQ%3D%3D/self-service-button?button-type=3"
+								width="150"
+								height="100"
+								alt="kununu-score"
+								unoptimized
+							/>
+						</LinkToPage>
+					</StyledImageWrapper>
+				</StyledCareerSection>
+				<StyledJobCardWrapper id="job-ads">
+					{device ? (
+						<>
+							{showMore === false && (
+								<>
+									<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
+									{/* i want to show the first job in the jobdata */}
+									<StyledSectionForTwoJobCards>
+										<JobCard
+											headline={"Wir suchen Verstärkung!"}
+											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+											jobtitle={JobData[0].jobTitle}
+											onClick={() => handleSeeMoreButton(JobData[0].id)}
+										></JobCard>
+										<JobCard
+											headline={"Wir suchen Verstärkung!"}
+											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+											jobtitle={JobData[1].jobTitle}
+											onClick={() => handleSeeMoreButton(JobData[1].id)}
+										></JobCard>
+									</StyledSectionForTwoJobCards>
+									<StyledShowMoreSection>
+										<Greenbutton onClick={handleClickShowMore}>
+											alle Jobs anzeigen
+										</Greenbutton>
+									</StyledShowMoreSection>
+
+									<StyledBlurSection>
+										<StyledSectionForTwoJobCards>
+											<JobCard
+												headline={"Wir suchen Verstärkung!"}
+												infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+												jobtitle={"Mechatroniker"}
+											></JobCard>
+											<JobCard
+												headline={"Wir suchen Verstärkung!"}
+												infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+												jobtitle={"Elektroniker für Betriebstechnik"}
+											></JobCard>
+										</StyledSectionForTwoJobCards>
+										<StyledSectionForTwoJobCards>
+											<JobCard
+												headline={"Wir suchen Verstärkung!"}
+												infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+												jobtitle={"Mechatroniker"}
+											></JobCard>
+											<JobCard
+												headline={"Wir suchen Verstärkung!"}
+												infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+												jobtitle={"Elektroniker für Betriebstechnik"}
+											></JobCard>
+										</StyledSectionForTwoJobCards>
+									</StyledBlurSection>
+								</>
+							)}
+							{showMore === true && (
+								<>
+									<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
+									<StyledSectionForAllJobs>
+										{JobData.map((job) => (
+											<JobCard
+												key={job.id}
+												headline={"Wir suchen Verstärkung!"}
+												infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+												jobtitle={job.jobTitle}
+												onClick={() => handleSeeMoreButton(job.id)}
+											></JobCard>
+										))}
+									</StyledSectionForAllJobs>
+									<StyledShowMoreSection>
+										<Link
+											to="job-ads"
+											spy={true}
+											smooth={false}
+											offset={-65}
+											duration={350}
+										>
+											<Greenbutton onClick={handleClickShowMore}>
+												weniger anzeigen
+											</Greenbutton>
+										</Link>
+									</StyledShowMoreSection>
+								</>
+							)}
+						</>
+					) : (
+						<>
+							{showMore === false && (
+								<>
+									<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
+									{/* i want to show the first job in the jobdata */}
 									<JobCard
 										headline={"Wir suchen Verstärkung!"}
 										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 										jobtitle={JobData[0].jobTitle}
 										onClick={() => handleSeeMoreButton(JobData[0].id)}
 									></JobCard>
-									<JobCard
-										headline={"Wir suchen Verstärkung!"}
-										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-										jobtitle={JobData[1].jobTitle}
-										onClick={() => handleSeeMoreButton(JobData[1].id)}
-									></JobCard>
-								</StyledSectionForTwoJobCards>
-								<StyledShowMoreSection>
-									<Greenbutton onClick={handleClickShowMore}>
-										alle Jobs anzeigen
-									</Greenbutton>
-								</StyledShowMoreSection>
-
-								<StyledBlurSection>
-									<StyledSectionForTwoJobCards>
+									<StyledShowMoreSection>
+										<Greenbutton onClick={handleClickShowMore}>
+											alle Jobs anzeigen
+										</Greenbutton>
+									</StyledShowMoreSection>
+									<StyledBlurSection>
 										<JobCard
 											headline={"Wir suchen Verstärkung!"}
 											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
@@ -94,26 +177,12 @@ export default function Career({ device, scrollY }) {
 											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 											jobtitle={"Elektroniker für Betriebstechnik"}
 										></JobCard>
-									</StyledSectionForTwoJobCards>
-									<StyledSectionForTwoJobCards>
-										<JobCard
-											headline={"Wir suchen Verstärkung!"}
-											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-											jobtitle={"Mechatroniker"}
-										></JobCard>
-										<JobCard
-											headline={"Wir suchen Verstärkung!"}
-											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-											jobtitle={"Elektroniker für Betriebstechnik"}
-										></JobCard>
-									</StyledSectionForTwoJobCards>
-								</StyledBlurSection>
-							</>
-						)}
-						{showMore === true && (
-							<>
-								<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
-								<StyledSectionForAllJobs>
+									</StyledBlurSection>
+								</>
+							)}
+							{showMore === true && (
+								<>
+									<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
 									{JobData.map((job) => (
 										<JobCard
 											key={job.id}
@@ -123,97 +192,38 @@ export default function Career({ device, scrollY }) {
 											onClick={() => handleSeeMoreButton(job.id)}
 										></JobCard>
 									))}
-								</StyledSectionForAllJobs>
-								<StyledShowMoreSection>
-									<Link
-										to="job-ads"
-										spy={true}
-										smooth={false}
-										offset={-65}
-										duration={350}
-									>
-										<Greenbutton onClick={handleClickShowMore}>
-											weniger anzeigen
-										</Greenbutton>
-									</Link>
-								</StyledShowMoreSection>
-							</>
-						)}
-					</>
-				) : (
+									<StyledShowMoreSection>
+										<Link
+											to="job-ads"
+											spy={true}
+											smooth={false}
+											offset={-65}
+											duration={350}
+										>
+											<Greenbutton onClick={handleClickShowMore}>
+												weniger anzeigen
+											</Greenbutton>
+										</Link>
+									</StyledShowMoreSection>
+								</>
+							)}
+						</>
+					)}
+				</StyledJobCardWrapper>
+				{seeMoreOnSingleJob && (
 					<>
-						{showMore === false && (
-							<>
-								<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
-								{/* i want to show the first job in the jobdata */}
-								<JobCard
-									headline={"Wir suchen Verstärkung!"}
-									infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-									jobtitle={JobData[0].jobTitle}
-									onClick={() => handleSeeMoreButton(JobData[0].id)}
-								></JobCard>
-								<StyledShowMoreSection>
-									<Greenbutton onClick={handleClickShowMore}>
-										alle Jobs anzeigen
-									</Greenbutton>
-								</StyledShowMoreSection>
-								<StyledBlurSection>
-									<JobCard
-										headline={"Wir suchen Verstärkung!"}
-										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-										jobtitle={"Mechatroniker"}
-									></JobCard>
-									<JobCard
-										headline={"Wir suchen Verstärkung!"}
-										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-										jobtitle={"Elektroniker für Betriebstechnik"}
-									></JobCard>
-								</StyledBlurSection>
-							</>
-						)}
-						{showMore === true && (
-							<>
-								<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
-								{JobData.map((job) => (
-									<JobCard
-										key={job.id}
-										headline={"Wir suchen Verstärkung!"}
-										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-										jobtitle={job.jobTitle}
-										onClick={() => handleSeeMoreButton(job.id)}
-									></JobCard>
-								))}
-								<StyledShowMoreSection>
-									<Link
-										to="job-ads"
-										spy={true}
-										smooth={false}
-										offset={-65}
-										duration={350}
-									>
-										<Greenbutton onClick={handleClickShowMore}>
-											weniger anzeigen
-										</Greenbutton>
-									</Link>
-								</StyledShowMoreSection>
-							</>
-						)}
+						<JobDetails
+							onClick={handleClose}
+							headline={JobData[activejob].jobTitle}
+							introduction={JobData[activejob].introduction}
+							ourOffer={JobData[activejob].whatWeOffer}
+							tasks={JobData[activejob].tasks}
+							qualification={JobData[activejob].qualification}
+						/>
 					</>
 				)}
-			</StyledJobCardWrapper>
-			{seeMoreOnSingleJob && (
-				<>
-					<JobDetails
-						onClick={handleClose}
-						headline={JobData[activejob].jobTitle}
-						introduction={JobData[activejob].introduction}
-						ourOffer={JobData[activejob].whatWeOffer}
-						tasks={JobData[activejob].tasks}
-						qualification={JobData[activejob].qualification}
-					/>
-				</>
-			)}
-		</StyledMainSection>
+			</StyledMainSection>
+		</>
 	);
 }
 

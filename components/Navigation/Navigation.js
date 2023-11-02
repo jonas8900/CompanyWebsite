@@ -25,45 +25,47 @@ export default function Navigation({ scrollY, device }) {
 				<StyledNavigationBar>
 					<StyledNavigationSection $scrolly={scrollY}>
 						<StyledLogoSection>
-							<Link
+							<StyledLink
 								to="introtext"
 								spy={true}
 								smooth={false}
 								offset={-70}
 								duration={350}
+								href="#"
 								onClick={handleChangeMenuButton}
 							>
 								<StyledLogo $scrolly={scrollY}>
 									Elektromaschinenbau Schulze GmbH
 								</StyledLogo>
-							</Link>
+							</StyledLink>
 						</StyledLogoSection>
 						<StyledUnsortedList>
-							<Link
-								to="introtext"
-								spy={true}
-								smooth={false}
-								offset={-70}
-								duration={350}
-								onClick={handleChangeMenuButton}
-							>
-								<StyledBorderDiv $scrolly={scrollY}>
+							<li>
+								<StyledLink
+									to="introtext"
+									spy={true}
+									smooth={false}
+									offset={-70}
+									duration={350}
+									href="#"
+									onClick={handleChangeMenuButton}
+								>
 									<StyledListItems $scrolly={scrollY}>Start</StyledListItems>
-								</StyledBorderDiv>
-							</Link>
-							<Link
-								to="products"
-								spy={true}
-								smooth={false}
-								offset={-70}
-								duration={350}
-								onClick={handleChangeMenuButton}
-							>
-								{" "}
-								<StyledBorderDiv $scrolly={scrollY}>
+								</StyledLink>
+							</li>
+							<li>
+								<StyledLink
+									to="products"
+									spy={true}
+									smooth={false}
+									offset={-70}
+									duration={350}
+									href="#"
+									onClick={handleChangeMenuButton}
+								>
 									<StyledListItems $scrolly={scrollY}>Produkte</StyledListItems>
-								</StyledBorderDiv>
-							</Link>
+								</StyledLink>
+							</li>
 							{/* <Link
 								to="about-us"
 								spy={true}
@@ -78,30 +80,34 @@ export default function Navigation({ scrollY, device }) {
 									</StyledListItems>
 								</StyledBorderDiv>
 							</Link> */}
-							<Link
-								to="career"
-								spy={true}
-								smooth={false}
-								offset={-65}
-								duration={350}
-								onClick={handleChangeMenuButton}
-							>
-								<StyledBorderDiv $scrolly={scrollY}>
-									<StyledListItems $scrolly={scrollY}>Karriere</StyledListItems>
-								</StyledBorderDiv>
-							</Link>
-							<Link
-								to="contact"
-								spy={true}
-								smooth={false}
-								offset={-65}
-								duration={350}
-								onClick={handleChangeMenuButton}
-							>
-								<StyledBorderDiv $scrolly={scrollY}>
+							<li>
+								<StyledLink
+									to="career"
+									spy={true}
+									smooth={false}
+									offset={-65}
+									duration={350}
+									href="#"
+									onClick={handleChangeMenuButton}
+								>
+									<StyledListItems $scrolly={scrollY}>
+										Karriere{" "}
+									</StyledListItems>
+								</StyledLink>
+							</li>
+							<li>
+								<StyledLink
+									to="contact"
+									spy={true}
+									smooth={false}
+									offset={-65}
+									duration={350}
+									href="#"
+									onClick={handleChangeMenuButton}
+								>
 									<StyledListItems $scrolly={scrollY}>Kontakt</StyledListItems>
-								</StyledBorderDiv>
-							</Link>
+								</StyledLink>
+							</li>
 						</StyledUnsortedList>
 					</StyledNavigationSection>
 				</StyledNavigationBar>
@@ -167,56 +173,61 @@ export default function Navigation({ scrollY, device }) {
 						{menuClicked && (
 							<StyledUnsortedList>
 								<Fade cascade damping={0.1}>
-									<Link
+									<StyledLink
 										to="introtext"
 										spy={true}
 										smooth={false}
 										offset={-70}
 										duration={350}
+										href="#"
 										onClick={handleChangeMenuButton}
 									>
-										<StyledListItems>Start</StyledListItems>
-									</Link>
-									<Link
+										<StyledListItemMobile>Start</StyledListItemMobile>
+									</StyledLink>
+									<StyledLink
 										to="products"
 										spy={true}
 										smooth={false}
 										offset={-70}
 										duration={350}
+										href="#"
 										onClick={handleChangeMenuButton}
 									>
-										<StyledListItems>Produkte</StyledListItems>
-									</Link>
-									<Link
+										<StyledListItemMobile>Produkte</StyledListItemMobile>
+									</StyledLink>
+									<StyledLink
 										to="about-us"
 										spy={true}
 										smooth={false}
 										offset={-70}
 										duration={350}
+										href="#"
 										onClick={handleChangeMenuButton}
 									>
-										<StyledListItems>Wer wir sind</StyledListItems>
-									</Link>
-									<Link
+										<StyledListItemMobile>Wer wir sind</StyledListItemMobile>
+									</StyledLink>
+									<StyledLink
 										to="career"
 										spy={true}
 										smooth={false}
 										offset={-65}
 										duration={350}
+										href="#"
 										onClick={handleChangeMenuButton}
 									>
-										<StyledListItems>Karriere</StyledListItems>
-									</Link>
-									<Link
+										<StyledListItemMobile>Karriere</StyledListItemMobile>
+									</StyledLink>
+									<StyledLink
 										to="contact"
 										spy={true}
 										smooth={false}
 										offset={-65}
 										duration={350}
+										href="#"
 										onClick={handleChangeMenuButton}
 									>
-										<StyledListItems>Kontakt</StyledListItems>
-									</Link>
+										<StyledListItemMobile>Kontakt</StyledListItemMobile>
+									</StyledLink>
 								</Fade>
 							</StyledUnsortedList>
 						)}
@@ -248,6 +259,10 @@ const changeBorder = keyframes`
  100% {
     width: 100%;
  }
+`;
+
+const StyledLink = styled(Link)`
+	text-decoration: none;
 `;
 
 const StyledShowOrHideMenuButton = styled.button`
@@ -368,7 +383,7 @@ const StyledUnsortedList = styled.ul`
 	}
 `;
 
-const StyledListItems = styled.li`
+const StyledListItems = styled.p`
 	padding: 1.4rem;
 	color: black;
 	background-color: white;
@@ -400,16 +415,54 @@ const StyledListItems = styled.li`
 			color: ${({ $scrolly }) =>
 				$scrolly > 200 ? "var(--color-fourth)" : "white"};
 			cursor: pointer;
+			&:hover {
+				border-bottom: ${({ $scrolly }) =>
+					$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
+				animation: ${changeBorder} 0.2s linear forwards;
+			}
 		}
 	}
 `;
 
-const StyledBorderDiv = styled.div`
+const StyledListItemMobile = styled.li`
+padding: 1.4rem;
+color: black;
+background-color: white;
+border: 1px solid var(--color-third);
+font-size: var(--font-size-title);
+width: 100%;
+transition: all 0.2s ease;
+&:hover {
+	color: white;
+	background-color: var(--color-fourth);
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+@media (min-width: 1024px) {
+	padding: 0.5rem;
+	border: none;
+	background-color: rgba(255, 255, 255, 0);
+	color: ${({ $scrolly }) =>
+		$scrolly > 200 ? "var(--color-fourth)" : "white"};
+	transition: all 0.5s ease;
+	border-left: ${({ $scrolly }) =>
+		$scrolly < 200 ? "none" : "1px solid black"};
+	font-weight: 500;
+
 	&:hover {
-		border-bottom: ${({ $scrolly }) =>
-			$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
-		animation: ${changeBorder} 0.2s linear forwards;
+		scale: 1.1;
+		padding: 0.5rem;
+		background-color: transparent;
+		color: ${({ $scrolly }) =>
+			$scrolly > 200 ? "var(--color-fourth)" : "white"};
+		cursor: pointer;
+		&:hover {
+			border-bottom: ${({ $scrolly }) =>
+				$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
+			animation: ${changeBorder} 0.2s linear forwards;
+		}
 	}
+}
 `;
 
 const StyledLogoSection = styled.article`
