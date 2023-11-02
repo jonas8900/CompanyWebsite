@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }) {
 					name="description"
 					content="Wir sind der richtige Ansprechpartner, wenn es um Krananlagen geht! Unser erfahrenes Team bietet umfassende Leistungen wie Wartung, Reparatur und die Erfüllung der UVV-Vorschriften für Ihre Krananlagen. Verlassen Sie sich auf unsere Expertise."
 				/>
-				<link rel="canonical" href="http://localhost:3000" />
+				<link rel="canonical" href="https://elektromaschinenbau.vercel.app/" />
 			</Head>
 			<Component
 				{...pageProps}
