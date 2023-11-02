@@ -4,23 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function Introtext() {
 	const [windowAlert, setWindowAlert] = useState(0);
-	const [animationToggle, setAnimationToggle] = useState(true);
 
-	function handleOnclickOnButtonWindow(index) {
-		if (windowAlert === 0 && animationToggle === false) {
-			setAnimationToggle(true);
-		} else {
-			setAnimationToggle(!animationToggle);
-			setWindowAlert(index);
-		}
-	}
-
-	function handleCloseWindow() {
-		setAnimationToggle(!animationToggle);
-		setTimeout(() => {
-			setWindowAlert(0);
-		}, 350);
-	}
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -39,102 +23,26 @@ export default function Introtext() {
 				<StyledSecondHeadline>schon seit 10 Jahren..</StyledSecondHeadline>
 				<StyledInfoSection>
 					<StyledTextParagraph>
-						sind wir Ihr <b>zuverlässiger Partner</b> im Bereich{" "}
-						<b>Fördertechnik</b>. Unsere Leistungen umfassen die{" "}
-						<b>Herstellung von Krananlagen</b>, <b>Service</b> und{" "}
-						<b> Reparaturen</b>,<b> Mängelbeseitigungen</b>, <b>Prüfungen</b>{" "}
-						sowie die <b>Reparatur</b> und <b>Überholung </b>
-						sämtlicher <b>Kranantriebe</b>, unabhängig von ihrem Alter und
-						Hersteller. Wir sind Spezialisten in der <b>Planung</b>,{" "}
-						<b>Konstruktion</b> und{" "}
-						<b>Herstellung von Kranen und Sonderhebezeugen</b>. Darüber hinaus
-						bieten wir
-						<b> Kranprüfungen gemäß der UVV BGV</b> an und sind Experten in
-						<b> Spezialmontagen</b>. Unser Ziel ist es,{" "}
-						<b>maßgeschneiderte Lösungen für jeden Kunden</b> anzubieten und
-						somit langfristige Partnerschaften aufzubauen. Vertrauen Sie auf
-						unsere Erfahrung und unser Engagement.
+						sind wir Ihr zuverlässiger Partner im Bereich Fördertechnik. Unsere
+						Leistungen umfassen die Herstellung von Krananlagen, Service und
+						Reparaturen, Mängelbeseitigungen, Prüfungen sowie die Reparatur und
+						Überholung sämtlicher Kranantriebe, unabhängig von ihrem Alter und
+						Hersteller. Wir sind Spezialisten in der Planung, Konstruktion und
+						Herstellung von Kranen und Sonderhebezeugen. Darüber hinaus bieten
+						wir Kranprüfungen gemäß der UVV BGV an und sind Experten in
+						Spezialmontagen. Unser Ziel ist es, maßgeschneiderte Lösungen für
+						jeden Kunden anzubieten und somit langfristige Partnerschaften
+						aufzubauen. Vertrauen Sie auf unsere Erfahrung und unser Engagement.
 					</StyledTextParagraph>
 					<StyledArgumentCardWrapper>
 						<GreenButton>
 							<i>schnell</i>
 						</GreenButton>
-						{/* {windowAlert === 1 && (
-							<>
-								<WindowCard
-									headline={"schnell"}
-									infotext={`Bei uns wissen wir, dass Zeit buchstäblich Geld bedeutet,
-                      insbesondere in der Welt des Maschinenbaus und der
-                      Fördertechnik. Deshalb haben wir uns einen Ruf als
-                      diejenigen erarbeitet, die nicht nur verstehen, wie man
-                      Krananlagen repariert und wartet, sondern dies auch in
-                      Rekordzeit erledigen.`}
-									onClick={handleCloseWindow}
-									animationTrigger={animationToggle}
-								/>
-							</>
-						)} */}
+						
 						<GreenButton>
 							<b>fair</b>
 						</GreenButton>
-						{/* {windowAlert === 2 && (
-							<>
-								<StyledWindow $animationtrigger={animationToggle}>
-									<StyledInformationCard>
-										<h3>
-											<b>fair</b>
-										</h3>
-										<h4>Warum Sie uns vertrauen können:</h4>
-										<h5> Faire Preise:</h5>
-										<p>
-											Wir bieten faire Preise für unsere Produkte und
-											Dienstleistungen, um sicherzustellen, dass Sie stets Wert
-											für Ihr Geld erhalten. Ihre Zufriedenheit ist unsere
-											oberste Priorität.{" "}
-										</p>
-										<h5>Flexibilität:</h5>
-										<p>
-											Wir verstehen, dass Ihre Zeit kostbar ist. Daher bemühen
-											wir uns, flexible Lösungen anzubieten, die sich Ihren
-											Bedürfnissen anpassen. Wir sind hier, um Ihre
-											Anforderungen zu erfüllen.
-										</p>{" "}
-										<h5>Qualität ohne Kompromisse:</h5>
-										<p>
-											Unsere Verpflichtung zur Qualität erstreckt sich auf
-											alles, was wir tun. Von der Auswahl hochwertiger Produkte
-											bis zur Bereitstellung erstklassiger Dienstleistungen
-											legen wir großen Wert auf Qualität.
-										</p>{" "}
-										<h5>Respektvolle Partnerschaft:</h5>
-										<p>
-											{" "}
-											Wir behandeln unsere Kunden stets respektvoll und fair.
-											Ihre Zufriedenheit und Ihr Vertrauen sind für uns von
-											größter Bedeutung.
-										</p>
-										<GreenButton onClick={handleCloseWindow}>
-											Schließen
-										</GreenButton>
-									</StyledInformationCard>
-								</StyledWindow>
-							</>
-						)}
-						{windowAlert === 3 && (
-							<>
-								<WindowCard
-									headline={"zuverlässig"}
-									infotext={`Bei uns sind wir stolz auf unsere Zuverlässigkeit und
-                      unser Engagement, unsere Kunden zufriedenzustellen.
-                      Verlassen Sie sich auf uns, um Ihre Anlagen in optimaler
-                      Betriebsbereitschaft zu halten. Ihre Zufriedenheit und Ihr
-                      Vertrauen sind unsere höchsten Prioritäten, und darauf
-                      können Sie sich immer verlassen.`}
-									onClick={handleCloseWindow}
-									animationTrigger={animationToggle}
-								/>
-							</>
-						)} */}
+			
 						<GreenButton>zuverlässig</GreenButton>
 					</StyledArgumentCardWrapper>
 				</StyledInfoSection>
@@ -142,17 +50,6 @@ export default function Introtext() {
 		</>
 	);
 }
-
-const FadeIn = keyframes`
-0% {opacity: 0;}
-100% {opacity: 1;}
-
-`;
-
-const FadeOut = keyframes`
-0% { opacity: 1;}
-100% { opacity: 0; }
-`;
 
 const StyledIntroTextWrapper = styled.main`
 	margin: auto 5% auto 10%;
@@ -211,32 +108,4 @@ const StyledArgumentCardWrapper = styled.article`
 	justify-content: center;
 	grid-template-rows: 1fr 1fr 1fr;
 	gap: 1rem;
-`;
-// customer dont want to show up some text on the three buttons
-const StyledWindow = styled.section`
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 100;
-	background-color: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(20px);
-	animation: ${({ $animationtrigger }) =>
-			$animationtrigger ? FadeOut : FadeIn}
-		0.4s ease;
-`;
-
-const StyledInformationCard = styled.article`
-	padding: 1rem;
-	position: fixed;
-	top: 38%;
-	transform: translate(-0%, -38%);
-	border-radius: 9px;
-	background-color: var(--color-third);
-	width: 80%;
-	left: 10%;
-	right: 10%;
-	margin: auto;
-	z-index: 1;
 `;

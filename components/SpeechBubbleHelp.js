@@ -160,7 +160,7 @@ const StyledBubbleWrapper = styled.section`
 	text-align: center;
 	bottom: 2rem;
 	left: 1rem;
-	z-index: 99;
+	z-index: 99999;
 `;
 
 const StyledClosedHelp = styled(FontAwesomeIcon)`
@@ -190,6 +190,7 @@ const StyledArticle = styled.article`
 	width: 20rem;
 	height: 7rem;
 	border: 1px solid black;
+	z-index: 99999;
 	animation: ${({ helpbuttonclicked }) => helpbuttonclicked && FadeIn} 1s ease;
 `;
 

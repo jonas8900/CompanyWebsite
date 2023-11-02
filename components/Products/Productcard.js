@@ -15,11 +15,11 @@ export default function ProductCard({
 			<StyledImageContainer>
 				<StyledRandomImage
 					src={src}
-					width={250}
-					height={141}
+					width={1600}
+					height={420}
 					alt={alt}
-					sizes="(max-width: 600px) 720px, (max-width: 1025px) 1080px"
-					priority={true}
+					sizes="(max-width: 600px) 300px, (max-width: 1025px) 600px, (max-width: 1400px) 1080px"
+					loading="lazy"
 				/>
 			</StyledImageContainer>
 			<StyledInfoWrapper>
@@ -27,64 +27,14 @@ export default function ProductCard({
 				<StyledParagraph>{infotext}</StyledParagraph>
 			</StyledInfoWrapper>
 			<StyledButtonWrapper>
-				<Greenbutton margin={-2} onClick={onClick}>
+				<Greenbutton margin={-2} onClick={onClick} aria-hidden="true">
 					{children}
 				</Greenbutton>
 			</StyledButtonWrapper>
 		</StyledCardWrapper>
 	);
 }
-/*
-const FadeRight = keyframes`
-  0% {
-  -webkit-transform: translateX(30%);
-  transform: translateX(30%);
-  visibility: visible;
-  opacity: 0.8;
-  }
-  100% {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-  opacity: 1
-  }
-`;
 
-const FadeLeft = keyframes`
-  0% {
-  -webkit-transform: translateX(-30%);
-  transform: translateX(-30%);
-  visibility: visible;
-  opacity: 0.8;
-  }
-  100% {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-  opacity: 1
-  }
-`;
-
-const FadeOutRight = keyframes`
-  0% {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-  }
-  100% {
-  visibility: hidden;
-  -webkit-transform: translateX(30%);
-  transform: translateX(30%);
-  }`;
-
-const FadeOutLeft = keyframes`
-  0% {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-  }
-  100% {
-  visibility: hidden;
-  -webkit-transform: translateX(-30%);
-  transform: translateX(-30%);
-  }`;
-*/
 const StyledRandomImage = styled(Image)`
 	width: 100%;
 	height: 100%;

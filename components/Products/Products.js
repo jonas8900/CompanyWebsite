@@ -8,10 +8,12 @@ import Image from "next/image";
 import "react-multi-carousel/lib/styles.css";
 
 import ProductSlideShow from "./ProductSlideShow";
+import Head from "next/head";
 
 export default function Products({ device }) {
 	const [showProductDetails, setShowProductDetails] = useState(false);
 	const [activeProduct, setActiveProduct] = useState({});
+	const [animationToggle, setAnimationToggle] = useState(false);
 
 	function handleShowProductDetails(productIndexFromCard) {
 		setShowProductDetails(true);
@@ -19,7 +21,11 @@ export default function Products({ device }) {
 	}
 
 	function handleCloseWindow() {
-		setShowProductDetails(false);
+		setAnimationToggle(true);
+		setTimeout(() => {
+			setShowProductDetails(false);
+			setAnimationToggle(false);
+		}, 350);
 	}
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -31,11 +37,17 @@ export default function Products({ device }) {
 		}
 	}, [showProductDetails]);
 
-
 	return (
 		<>
 			{device ? (
 				<>
+					<Head>
+						<title>Unsere Produkte</title>
+						<meta
+							name="description"
+							content="Entdecken Sie unsere hochwertigen Produkte für Krananlagen. Wir bieten eine breite Palette von Kranen und Zubehör für Ihre Anforderungen."
+						/>
+					</Head>
 					<StyledHeadline id="products">Unsere Produkte</StyledHeadline>
 					<ProductSlideShow
 						handleShowProductDetails={handleShowProductDetails}
@@ -44,6 +56,7 @@ export default function Products({ device }) {
 						{showProductDetails && (
 							<>
 								<ProductDetails
+									animationTrigger={animationToggle}
 									headline={activeProduct.headline}
 									infotext={activeProduct.productDescription}
 									contactData={
@@ -91,6 +104,7 @@ export default function Products({ device }) {
 					{showProductDetails && (
 						<>
 							<ProductDetails
+								animationTrigger={animationToggle}
 								headline={activeProduct.headline}
 								infotext={activeProduct.productDescription}
 								contactData={
@@ -132,7 +146,6 @@ const StyledHeadline = styled.h1`
 	border-bottom: 2px solid var(--color-primary);
 `;
 
-
 const StyledProductWrapper = styled.section`
 	margin-top: 4rem;
 	max-width: 2000px;
@@ -157,4 +170,3 @@ const StyledProductDesktopSection = styled.section`
 	gap: 30px;
 	position: relative;
 `;
-

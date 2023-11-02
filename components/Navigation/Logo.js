@@ -5,15 +5,16 @@ export default function Logo() {
 	return (
 		<>
 			<StyledLogo>
-				<Link
+				<StyledLink
 					to="introtext"
 					spy={true}
+					href="#"
 					smooth={false}
 					offset={-70}
 					duration={350}
 				>
 					Elektromaschinenbau Schulze GmbH
-				</Link>
+				</StyledLink>
 			</StyledLogo>
 		</>
 	);
@@ -25,4 +26,9 @@ const StyledLogo = styled.h1`
 	padding: 0.3rem;
 	margin: 0;
 	font-weight: bold;
+`;
+
+const StyledLink = styled(Link)`
+	text-decoration: none;
+	color: var(--color-fourth);
 `;

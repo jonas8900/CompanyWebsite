@@ -8,6 +8,7 @@ import MailIcon from "../Icons/MailIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFax } from "@fortawesome/free-solid-svg-icons";
 import FaxIcon from "../Icons/FaxIcon";
+import Head from "next/head";
 
 export default function Contact() {
 	const [messageSuccess, setMessageSuccess] = useState(false);
@@ -16,9 +17,18 @@ export default function Contact() {
 	const [submitClicked, setSubmitClicked] = useState(false);
 	const [formularClicked, setFormularClicked] = useState(false);
 	const [capture, setCapture] = useState("");
+	const [animationToggle, setAnimationToggle] = useState(false);
 
 	function handleClickFormularButton() {
-		setFormularClicked(!formularClicked);
+		setFormularClicked(true);
+	}
+
+	function handleCloseWindow() {
+		setAnimationToggle(true);
+		setTimeout(() => {
+			setFormularClicked(false);
+			setAnimationToggle(false);
+		}, 350);
 	}
 
 	function handleSubmitButtonClicked() {
@@ -72,6 +82,13 @@ export default function Contact() {
 
 	return (
 		<>
+			<Head>
+				<title>Kontaktieren Sie Elektromaschinenbau Schulze</title>
+				<meta
+					name="description"
+					content="Kontaktieren Sie uns für Anfragen zu Krananlagen, Wartungsdienstleistungen und mehr. Unser Team steht Ihnen zur Verfügung!"
+				/>
+			</Head>
 			<StyledContactSection id="contact">
 				<StyledHeadlineAndButtonWrapper>
 					<StyledHeadline>Kontakt</StyledHeadline>
@@ -115,8 +132,9 @@ export default function Contact() {
 			{formularClicked && (
 				<>
 					<ContactFormular
+						animationTrigger={animationToggle}
 						onSubmit={handleSubmitFormular}
-						onClick={handleClickFormularButton}
+						onClick={handleCloseWindow}
 						onChange={(value) => setCapture(value)}
 						disabled={submitClicked}
 						successValue={submitClicked}

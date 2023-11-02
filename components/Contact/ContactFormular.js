@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
@@ -12,10 +12,11 @@ export default function ContactFormular({
 	disabled,
 	onChange,
 	successValue,
+	animationTrigger,
 }) {
 	return (
 		<>
-			<StyledWindow>
+			<StyledWindow $animationtrigger={animationTrigger}>
 				<StyledFormularCard>
 					<h2>Kontaktformular</h2>
 					<StyledForm onSubmit={onSubmit}>
@@ -78,6 +79,17 @@ export default function ContactFormular({
 	);
 }
 
+const FadeIn = keyframes`
+0% {opacity: 0;}
+100% {opacity: 1;}
+
+`;
+
+const FadeOut = keyframes`
+0% { opacity: 1;}
+100% { opacity: 0; }
+`;
+
 const StyledWindow = styled.section`
 	width: 100%;
 	height: 100%;
@@ -87,6 +99,9 @@ const StyledWindow = styled.section`
 	z-index: 9999;
 	background-color: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(20px);
+	animation: ${({ $animationtrigger }) =>
+			$animationtrigger ? FadeOut : FadeIn}
+		0.4s ease;
 `;
 
 const StyledSelect = styled.select`

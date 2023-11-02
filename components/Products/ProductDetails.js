@@ -19,10 +19,9 @@ export default function ProductDetails({
 					}}
 				>
 					<StyledInformationCard>
-						<section>
-							<h3>{headline}</h3>
-							<StyledIntroText>{infotext}</StyledIntroText>
-						</section>
+						<StyledThirdHeadline>{headline}</StyledThirdHeadline>
+						<StyledIntroText>{infotext}</StyledIntroText>
+
 						<StyledContactData>{contactData}</StyledContactData>
 					</StyledInformationCard>
 					<StyledImageWrapper>
@@ -59,6 +58,14 @@ const StyledWindow = styled.section`
 	animation: ${({ $animationtrigger }) =>
 			$animationtrigger ? FadeOut : FadeIn}
 		0.4s ease;
+`;
+
+const StyledThirdHeadline = styled.h3`
+	text-decoration: underline;
+	text-decoration-color: var(--color-secondary);
+	position: sticky;
+	top: 0;
+	background-color: var(--color-third);
 `;
 
 const StyledIntroText = styled.h4`
