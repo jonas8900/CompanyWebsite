@@ -192,12 +192,12 @@ const StyledGreenButtonSection = styled.section`
 		margin-left: 50%;
 	}
 	@media (min-width: 600px) {
-		margin-left: 55%;
+		margin-left: 50%;
 	}
 	@media (min-width: 1250px) {
 		margin-left: 60%;
 	}
-	@media (min-width: 1850px) {
+	@media (min-width: 2200px) {
 		margin-left: 70%;
 	}
 `;
@@ -223,7 +223,7 @@ const StyledCardWrapper = styled.section`
 		margin: auto;
 		margin-top: -16%;
 	}
-	@media (min-width: 1920px) {
+	@media (min-width: 1900px) {
 		width: 30%;
 		margin: auto;
 		margin-top: -16%;
