@@ -61,11 +61,15 @@ const StyledWindow = styled.section`
 `;
 
 const StyledThirdHeadline = styled.h3`
+	position: sticky;
+	top: -1.2rem;
+	padding: 0.4rem;
+	margin-top: 0;
+	background-color: var(--color-third);
 	text-decoration: underline;
 	text-decoration-color: var(--color-secondary);
-	position: sticky;
-	top: 0;
-	background-color: var(--color-third);
+	color: var(--color-fourth);
+	text-align: center;
 `;
 
 const StyledIntroText = styled.h4`
