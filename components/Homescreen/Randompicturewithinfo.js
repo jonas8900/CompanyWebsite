@@ -197,7 +197,7 @@ const StyledGreenButtonSection = styled.section`
 	@media (min-width: 1250px) {
 		margin-left: 60%;
 	}
-	@media (min-width: 1850px) {
+	@media (min-width: 2200px) {
 		margin-left: 70%;
 	}
 `;
