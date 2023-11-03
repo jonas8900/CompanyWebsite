@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 export default function Introtext() {
 	const [windowAlert, setWindowAlert] = useState(0);
 
-
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			if (windowAlert > 0) {
@@ -35,15 +34,15 @@ export default function Introtext() {
 						aufzubauen. Vertrauen Sie auf unsere Erfahrung und unser Engagement.
 					</StyledTextParagraph>
 					<StyledArgumentCardWrapper>
-						<GreenButton>
+						<StyledButton disabled>
 							<i>schnell</i>
-						</GreenButton>
-						
-						<GreenButton>
+						</StyledButton>
+
+						<StyledButton disabled>
 							<b>fair</b>
-						</GreenButton>
-			
-						<GreenButton>zuverlässig</GreenButton>
+						</StyledButton>
+
+						<StyledButton disabled>zuverlässig</StyledButton>
 					</StyledArgumentCardWrapper>
 				</StyledInfoSection>
 			</StyledIntroTextWrapper>
@@ -71,6 +70,16 @@ const StyledIntroTextWrapper = styled.main`
 	@media (min-width: 1800px) {
 		margin-top: 0;
 	}
+`;
+
+const StyledButton = styled.button`
+	background-color: #e9ffef;
+	border: none;
+	border-bottom: 1px solid rgba(220, 220, 220, 1);
+	padding: 0.6rem;
+	min-width: 6rem;
+	font-size: var(--font-size-text);
+	color: var(--color-fourth);
 `;
 
 const StyledHeadline = styled.h1`

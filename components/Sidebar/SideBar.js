@@ -127,7 +127,7 @@ export default function SideBar() {
 							>
 								<StyledIcon icon={faQuestion} onClick={handleQuestionClick} />
 							</StyledButton>
-							<Link
+							{/* <Link
 								to="career"
 								spy={true}
 								smooth={false}
@@ -138,7 +138,7 @@ export default function SideBar() {
 								<StyledButton aria-label="Zu unserer Karriere-Seite gehen">
 									<StyledIcon icon={faUserGraduate} />
 								</StyledButton>
-							</Link>
+							</Link> */}
 							<StyledButton
 								onClick={handleClickFormularButton}
 								aria-label="Kontaktformular"

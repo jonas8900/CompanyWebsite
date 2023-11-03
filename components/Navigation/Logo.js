@@ -22,10 +22,13 @@ export default function Logo() {
 
 const StyledLogo = styled.h1`
 	color: var(--color-fourth);
-	font-size: var(--font-size-title);
+	font-size: var(--font-size-text);
 	padding: 0.3rem;
 	margin: 0;
 	font-weight: bold;
+	@media (min-width: 370px) {
+		font-size: var(--font-size-title);
+	}
 `;
 
 const StyledLink = styled(Link)`

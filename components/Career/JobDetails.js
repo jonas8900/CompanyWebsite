@@ -135,7 +135,7 @@ const StyledImageWrapper = styled.article`
 
 const StyledHeadlineThird = styled.h3`
 	position: sticky;
-	top: 0;
+	top: -5px;
 	padding: 1rem;
 	background-color: var(--color-third);
 	text-decoration: underline;

@@ -5,6 +5,7 @@ import { Fade } from "react-awesome-reveal";
 import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 import { Link } from "react-scroll/modules";
+import Greenbutton from "../Buttons/GreenButton";
 
 export default function Navigation({ scrollY, device }) {
 	const [menuClicked, setMenuClicked] = useState(false);
@@ -114,14 +115,18 @@ export default function Navigation({ scrollY, device }) {
 			) : (
 				<StyledNavigationBar>
 					<StyledNavigationSection>
-						<StyledShowOrHideMenuButton onClick={handleChangeMenuButton}>
-							<StyledIconDescription>Menü</StyledIconDescription>
+						<StyledShowOrHideMenuButton
+							onClick={handleChangeMenuButton}
+							aria-label="Menü öffnen oder schließen"
+						>
+							<StyledIconDescription id="menuDescription"></StyledIconDescription>
 							{menuClicked ? (
 								<>
 									<StyledMenuIcon
 										icon={faX}
 										menuclicked={menuClicked ? "true" : "false"}
 										animationdone={animationDone ? "true" : "false"}
+										aria-describedby="menuDescription"
 									/>
 								</>
 							) : (
@@ -129,47 +134,17 @@ export default function Navigation({ scrollY, device }) {
 									icon={faBars}
 									menuclicked={menuClicked ? "true" : "false"}
 									animationdone={animationDone ? "true" : "false"}
+									aria-describedby="menuDescription"
 								/>
 							)}
 						</StyledShowOrHideMenuButton>
-						<StyledShowOrHideSearchButton onClick={handleChangeSearchButton}>
-							{searchClicked ? (
-								<>
-									<StyledIconDescription>schließen</StyledIconDescription>
-									<StyledSearchIcon
-										icon={faX}
-										searchclicked={searchClicked ? "true" : "false"}
-									/>
-								</>
-							) : (
-								<>
-									<StyledIconDescription>Suche</StyledIconDescription>
-									<StyledSearchIcon
-										icon={faSearch}
-										searchclicked={searchClicked ? "true" : "false"}
-									/>
-								</>
-							)}
-						</StyledShowOrHideSearchButton>
 
-						{searchClicked ? (
-							<StyledInputSection>
-								<label id="suche"></label>
-								<Fade>
-									<StyledSearchInput
-										id="suche"
-										type="text"
-										placeholder="Suche"
-									/>
-								</Fade>
-							</StyledInputSection>
-						) : (
-							<StyledLogoSection>
-								<Fade>
-									<Logo />
-								</Fade>
-							</StyledLogoSection>
-						)}
+						<StyledLogoSection>
+							<Fade>
+								<Logo />
+							</Fade>
+						</StyledLogoSection>
+
 						{menuClicked && (
 							<StyledUnsortedList>
 								<Fade cascade damping={0.1}>
@@ -195,7 +170,7 @@ export default function Navigation({ scrollY, device }) {
 									>
 										<StyledListItemMobile>Produkte</StyledListItemMobile>
 									</StyledLink>
-									<StyledLink
+									{/* <StyledLink
 										to="about-us"
 										spy={true}
 										smooth={false}
@@ -205,7 +180,7 @@ export default function Navigation({ scrollY, device }) {
 										onClick={handleChangeMenuButton}
 									>
 										<StyledListItemMobile>Wer wir sind</StyledListItemMobile>
-									</StyledLink>
+									</StyledLink> */}
 									<StyledLink
 										to="career"
 										spy={true}
@@ -268,14 +243,12 @@ const StyledLink = styled(Link)`
 const StyledShowOrHideMenuButton = styled.button`
 	border: none;
 	background-color: transparent;
-	grid-area: 1 / 1 / 2 / 2;
-	padding: 0.5rem;
-`;
 
-const StyledShowOrHideSearchButton = styled.button`
-	border: none;
-	background-color: transparent;
-	grid-area: 1 / 3 / 2 / 4;
+	grid-area: 1 / 3 / 2 / 3;
+	padding: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 const StyledMenuIcon = styled(FontAwesomeIcon)`
@@ -288,28 +261,10 @@ const StyledMenuIcon = styled(FontAwesomeIcon)`
 	transition: all 0.7s ease;
 `;
 
-const StyledSearchIcon = styled(FontAwesomeIcon)`
-	width: 2.2rem;
-	height: 2.2rem;
-	color: var(--color-fourth);
-`;
-
 const StyledIconDescription = styled.p`
 	color: var(--color-fourth);
 	margin: 0;
 	font-size: var(--font-size-text);
-`;
-
-const StyledSearchInput = styled.input`
-	height: 2rem;
-	width: 13rem;
-	border-radius: 10px;
-	border: none;
-`;
-
-const StyledInputSection = styled.section`
-	grid-area: 1 / 2 / 2 / 3;
-	text-align: center;
 `;
 
 const StyledNavigationBar = styled.nav`
@@ -330,7 +285,7 @@ const StyledNavigationBar = styled.nav`
 
 const StyledNavigationSection = styled.section`
 	display: grid;
-	grid-template-columns: 0.3fr 1fr 0.3fr;
+	grid-template-columns: 1fr 0.3fr 0.3fr;
 	grid-template-rows: 1fr;
 	grid-column-gap: 0px;
 	grid-row-gap: 0px;
@@ -354,16 +309,17 @@ const StyledUnsortedList = styled.ul`
 	display: flex;
 	flex-direction: column;
 	width: 60%;
-	height: 20rem;
+	right: 0;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	margin-top: 24rem;
+	margin-top: 20rem;
 	@media (min-width: 768px) {
-		margin-top: 26rem;
+		margin-top: 22rem;
 	}
 
 	@media (min-width: 1024px) {
@@ -425,53 +381,59 @@ const StyledListItems = styled.p`
 `;
 
 const StyledListItemMobile = styled.li`
-padding: 1.4rem;
-color: black;
-background-color: white;
-border: 1px solid var(--color-third);
-font-size: var(--font-size-title);
-width: 100%;
-transition: all 0.2s ease;
-&:hover {
-	color: white;
-	background-color: var(--color-fourth);
-	cursor: pointer;
+	padding: 1.4rem;
+	color: black;
+	background-color: white;
+	border: 1px solid var(--color-third);
+	font-size: var(--font-size-title);
+	width: 100%;
 	transition: all 0.2s ease;
-}
-@media (min-width: 1024px) {
-	padding: 0.5rem;
-	border: none;
-	background-color: rgba(255, 255, 255, 0);
-	color: ${({ $scrolly }) =>
-		$scrolly > 200 ? "var(--color-fourth)" : "white"};
-	transition: all 0.5s ease;
-	border-left: ${({ $scrolly }) =>
-		$scrolly < 200 ? "none" : "1px solid black"};
-	font-weight: 500;
-
 	&:hover {
-		scale: 1.1;
+		color: white;
+		background-color: var(--color-fourth);
+		cursor: pointer;
+		transition: all 0.2s ease;
+	}
+	@media (min-width: 1024px) {
 		padding: 0.5rem;
-		background-color: transparent;
+		border: none;
+		background-color: rgba(255, 255, 255, 0);
 		color: ${({ $scrolly }) =>
 			$scrolly > 200 ? "var(--color-fourth)" : "white"};
-		cursor: pointer;
+		transition: all 0.5s ease;
+		border-left: ${({ $scrolly }) =>
+			$scrolly < 200 ? "none" : "1px solid black"};
+		font-weight: 500;
+
 		&:hover {
-			border-bottom: ${({ $scrolly }) =>
-				$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
-			animation: ${changeBorder} 0.2s linear forwards;
+			scale: 1.1;
+			padding: 0.5rem;
+			background-color: transparent;
+			color: ${({ $scrolly }) =>
+				$scrolly > 200 ? "var(--color-fourth)" : "white"};
+			cursor: pointer;
+			&:hover {
+				border-bottom: ${({ $scrolly }) =>
+					$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
+				animation: ${changeBorder} 0.2s linear forwards;
+			}
 		}
 	}
-}
 `;
 
 const StyledLogoSection = styled.article`
-	margin: auto;
-	width: 80%;
+	grid-area: 1 / 1 / 2 / 2;
+	width: 73%;
+	margin: 0 auto;
+	margin-left: 0rem;
 	text-align: center;
 	align-self: center;
 	border-bottom: 5px solid var(--color-fifth);
 	border-top: 5px solid var(--color-secondary);
+	@media (min-width: 550px) {
+		width: 60%;
+		margin-left: 0rem;
+	}
 	@media (min-width: 1024px) {
 		width: 25%;
 		max-width: 18rem;
