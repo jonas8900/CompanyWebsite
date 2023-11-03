@@ -223,7 +223,7 @@ const StyledCardWrapper = styled.section`
 		margin: auto;
 		margin-top: -16%;
 	}
-	@media (min-width: 1920px) {
+	@media (min-width: 1900px) {
 		width: 30%;
 		margin: auto;
 		margin-top: -16%;
