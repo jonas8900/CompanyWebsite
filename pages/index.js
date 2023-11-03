@@ -9,14 +9,33 @@ import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
 import SideBar from "../components/Sidebar/SideBar";
 import styled from "styled-components";
+import PopupForJob from "../components/Popup/PopupForJob";
+import { useState } from "react";
 
 export default function Home({ scrollY, device, setDevice }) {
+	const [popUp, setPopUp] = useState(true);
+	const [animationTrigger, setAnimationTrigger] = useState(false);
+
+	function handlePopUp() {
+		setAnimationTrigger(true);
+		setTimeout(() => {
+			setPopUp(false);
+			setAnimationTrigger(false);
+		}, 350);
+	}
+
 	return (
 		<>
 			<Navigation scrollY={scrollY} device={device} setDevice={setDevice} />
 			<Randompicture />
 			<ScrollToTop scrollY={scrollY} />
 			<SideBar />
+			{popUp && (
+				<PopupForJob
+					animationTrigger={animationTrigger}
+					onClick={handlePopUp}
+				/>
+			)}
 			<StyledSectionForWidth>
 				<Introtext />
 				<Products device={device} setDevice={setDevice} />

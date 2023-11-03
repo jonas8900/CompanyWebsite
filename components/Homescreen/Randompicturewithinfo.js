@@ -184,7 +184,16 @@ const StyledCardSection = styled.article`
 `;
 
 const StyledGreenButtonSection = styled.section`
-	margin-left: 50%;
+	margin-left: 27%;
+	@media (min-width: 330px) {
+		margin-left: 35%;
+	}
+	@media (min-width: 390px) {
+		margin-left: 50%;
+	}
+	@media (min-width: 600px) {
+		margin-left: 55%;
+	}
 	@media (min-width: 1250px) {
 		margin-left: 60%;
 	}

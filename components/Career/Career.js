@@ -15,6 +15,7 @@ export default function Career({ device }) {
 	const [showMore, setShowMore] = useState(false);
 	const [seeMoreOnSingleJob, setSeeMoreOnSingleJob] = useState(false);
 	const [activejob, setActiveJob] = useState({});
+	const [animationTrigger, setAnimationTrigger] = useState(false);
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -122,7 +123,7 @@ export default function Career({ device }) {
 							{showMore === true && (
 								<>
 									<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
-									<StyledSectionForAllJobs>
+									<StyledSectionForAllJobs $animationtrigger={animationTrigger}>
 										{JobData.map((job) => (
 											<JobCard
 												key={job.id}
@@ -303,11 +304,7 @@ const StyledSectionForAllJobs = styled.section`
 	margin-left: 2rem;
 	gap: 3rem;
 	row-gap: 5rem;
-`;
-
-const StyledAnimation = styled.section`
-	animation: ${({ $animationtrigger }) => $animationtrigger && FadeUp} 0.6s
-		ease-in-out;
+	animation: ${({ $animationtrigger }) => $animationtrigger && FadeUp} 0.6s;
 `;
 
 const StyledCareerSection = styled.section`
