@@ -139,7 +139,7 @@ const StyledHeadlineThird = styled.h3`
 	padding: 1rem;
 	background-color: var(--color-third);
 	text-decoration: underline;
-	text-decoration-color: var(--color-secondary);
+	text-decoration-color: var(--color-primary);
 	color: var(--color-fourth);
 	text-align: center;
 `;

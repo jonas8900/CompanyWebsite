@@ -67,7 +67,7 @@ const StyledThirdHeadline = styled.h3`
 	margin-top: 0;
 	background-color: var(--color-third);
 	text-decoration: underline;
-	text-decoration-color: var(--color-secondary);
+	text-decoration-color: var(--color-primary);
 	color: var(--color-fourth);
 	text-align: center;
 `;

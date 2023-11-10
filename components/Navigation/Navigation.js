@@ -445,6 +445,7 @@ const StyledLogoSection = styled.article`
 const StyledLogo = styled.h1`
 	color: ${({ $scrolly }) => ($scrolly > 200 ? "black" : "white")};
 	font-size: var(--font-size-title);
+	font-family: Arial, Helvetica, sans-serif;
 	padding: 0.3rem;
 	margin: 0;
 	font-weight: bold;

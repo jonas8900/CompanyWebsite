@@ -9,6 +9,8 @@ import "react-multi-carousel/lib/styles.css";
 import { useEffect, useState } from "react";
 import JobDetails from "./JobDetails";
 import OutsideClickHandler from "react-outside-click-handler";
+import ArrowLeft from "../Icons/ArrowLeft";
+import ArrowRight from "../Icons/ArrowRight";
 
 export default function CareerPictureAndJob({ scrollY }) {
 	const [seeMoreClicked, setSeeMoreClicked] = useState(false);
@@ -79,6 +81,8 @@ export default function CareerPictureAndJob({ scrollY }) {
 							role="listbox"
 							aria-label="Jobangebote"
 							aria-hidden="true"
+							customLeftArrow={<ArrowLeft />}
+							customRightArrow={<ArrowRight />}
 						>
 							{JobData.map((job) => (
 								<StyledDiv key={job.id}>

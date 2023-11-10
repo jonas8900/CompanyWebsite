@@ -250,22 +250,29 @@ const StyledArrowRight = styled(FontAwesomeIcon)`
 	top: 40%;
 	width: 2.5rem;
 	height: 2.5rem;
-	color: black;
+	color: white;
 	border: none;
 	margin: 0.3rem;
 
 	&:hover {
-		color: white;
+		color: var(--color-secondary);
 		transition: all 0.5s ease;
 	}
 	&:not(:hover) {
-		color: black;
+		color: white;
 		transition: all 0.5s ease;
 	}
 
 	&:active {
 		color: var(--color-fifth);
 		transition: all 0.1s ease;
+	}
+	@media (min-width: 1025px) {
+		width: 4rem;
+		height: 4rem;
+		top: 40%;
+		margin: 0;
+		transform: translateY(-50%);
 	}
 `;
 
@@ -276,22 +283,29 @@ const StyledArrowLeft = styled(FontAwesomeIcon)`
 	top: 40%;
 	width: 2.5rem;
 	height: 2.5rem;
-	color: black;
+	color: white;
 	border: none;
 	margin: 0.3rem;
 
 	&:hover {
-		color: white;
+		color: var(--color-secondary);
 		transition: all 0.5s ease;
 	}
 	&:not(:hover) {
-		color: black;
+		color: white;
 		transition: all 0.5s ease;
 	}
 
 	&:active {
 		color: var(--color-fifth);
 		transition: all 0.1s ease;
+	}
+	@media (min-width: 1025px) {
+		width: 4rem;
+		height: 4rem;
+		top: 40%;
+		margin: 0;
+		transform: translateY(-50%);
 	}
 `;
 

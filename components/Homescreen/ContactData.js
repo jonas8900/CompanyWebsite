@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import PhoneIcon from "../Icons/PhoneIcon";
 import MailIcon from "../Icons/MailIcon";
@@ -27,7 +26,7 @@ const StyledArticle = styled.article`
 
 const StyledHeadline1 = styled.h2`
 	text-decoration: underline;
-	text-decoration-color: var(--color-secondary);
+	text-decoration-color: var(--color-primary);
 `;
 
 const StyledSection = styled.section``;

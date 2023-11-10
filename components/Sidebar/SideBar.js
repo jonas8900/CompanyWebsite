@@ -236,28 +236,28 @@ const PhoneRing = keyframes`
         transform: rotate(25deg) scale(1.5) skew(1deg);
         border: 1px solid transparent; 
         border-radius: 50%;
-        background-color: var(--color-secondary);
+        background-color: var(--color-primary);
         color: black;
     }
     30% {
         transform: rotate(-25deg) scale(1.5) skew(1deg);
         border: 1px solid transparent; 
         border-radius: 50%;
-        background-color: var(--color-secondary);
+		background-color: var(--color-primary);
         color: black;
     }
     40% {
         transform: rotate(25deg) scale(1.5) skew(1deg);
         border: 1px solid transparent; 
         border-radius: 50%;
-        background-color: var(--color-secondary);
+        background-color: var(--color-primary);
         color: black
     }
     50% {
         transform: rotate(0) scale(1.5) skew(1deg);
         border: 1px solid transparent; 
         border-radius: 100%;
-        background-color: var(--color-secondary)
+        background-color: var(--color-primary);
 
     }
     100% {
@@ -385,7 +385,7 @@ const StyledArrow = styled(FontAwesomeIcon)`
 
 const StyledWrapper = styled.section`
 	position: fixed;
-	top: 90%;
+	bottom: 10%;
 	transform: translateY(-90%);
 	right: 0%;
 	display: flex;
