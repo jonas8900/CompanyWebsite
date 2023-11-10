@@ -50,6 +50,15 @@ const StyledInfoWrapper = styled.article`
 const StyledImageContainer = styled.section`
 	width: 100%;
 	height: 70%;
+	@media (min-width: 1025px) {
+		height: 60%;
+	}
+	@media (min-width: 1450px) {
+		height: 65%;
+	}
+	@media (min-width: 1600px) {
+		height: 70%;
+	}
 `;
 
 const StyledParagraph = styled.p`
@@ -73,18 +82,22 @@ const StyledCardWrapper = styled.section`
 	position: relative;
 
 	@media (min-width: 1025px) {
-		min-height: 25rem;
-		height: 25rem;
+		min-height: 27rem;
+		height: 27rem;
 		width: 100%;
 		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
 
 		max-width: 100%;
 	}
 	@media (min-width: 1250px) {
+		min-height: 32rem;
+		height: 32rem;
+	}
+	@media (min-width: 1400px) {
 		min-height: 30rem;
 		height: 30rem;
 	}
-	@media (min-width: 1400px) {
+	@media (min-width: 1600px) {
 		min-height: 40rem;
 		height: 40rem;
 	}

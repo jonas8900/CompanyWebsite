@@ -23,7 +23,6 @@ export default function ImpressumText() {
 					<p>HRB 207493</p>
 					<StyledSecondHeadline>Kontakt</StyledSecondHeadline>
 					<PhoneIcon href="tel:017626246722">0176 262 46722</PhoneIcon>
-					<FaxIcon href="fax:051133770619">0511 33770619</FaxIcon>
 					<MailIcon href="mailto:Info@emb-schulze.de">
 						Info@emb-schulze.de
 					</MailIcon>
@@ -87,7 +86,7 @@ const StyledArticle = styled.article``;
 const StyledHeadline = styled.h1`
 	font-size: var(--font-size-title);
 	text-decoration: underline;
-	text-decoration-color: var(--color-secondary);
+	text-decoration-color: var(--color-primary);
 
 	@media (min-width: 768px) {
 	}

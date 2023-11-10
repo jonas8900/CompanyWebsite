@@ -110,9 +110,6 @@ export default function Contact() {
 						</MailIcon>
 					</StyledInformations>
 					<StyledInformations>
-						<FaxIcon href="fax:051133770619">0511 33770619</FaxIcon>
-					</StyledInformations>
-					<StyledInformations>
 						<h2>Adresse:</h2>
 						<p>Alter Flughafen 6, 30179 Hannover</p>
 					</StyledInformations>

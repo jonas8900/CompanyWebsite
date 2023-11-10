@@ -19,7 +19,7 @@ export default function Introtext() {
 		<>
 			<StyledIntroTextWrapper>
 				<StyledHeadline>Elektromaschinenbau Schulze GmbH</StyledHeadline>
-				<StyledSecondHeadline>schon seit 10 Jahren..</StyledSecondHeadline>
+				<StyledSecondHeadline>seit mehr als 10 Jahren..</StyledSecondHeadline>
 				<StyledInfoSection>
 					<StyledTextParagraph>
 						sind wir Ihr zuverlässiger Partner im Bereich Fördertechnik. Unsere
@@ -84,9 +84,9 @@ const StyledButton = styled.button`
 
 const StyledHeadline = styled.h1`
 	text-align: center;
-	text-shadow: 1px 3px 1px #eee;
+	text-shadow: 1px 1px 1px #eee;
 	text-decoration: underline;
-	text-decoration-color: var(--color-secondary);
+	text-decoration-color: var(--color-primary);
 `;
 
 const StyledInfoSection = styled.section`

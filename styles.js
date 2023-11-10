@@ -18,10 +18,10 @@ export default createGlobalStyle`
 
   :root {
     --color-primary: #BAFFC6;
-    --color-secondary: #34FF66;
+    --color-secondary: #178012;
     --color-third: #F5F6FF;
     --color-fourth: #4B5E6B;
-    --color-fifth: #2C65FF;
+    --color-fifth: #181E90;
     --font-size-text: 12px;
     --font-size-subtitle: 14px;
     --font-size-title: 16px;
