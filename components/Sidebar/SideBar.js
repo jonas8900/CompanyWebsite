@@ -1,17 +1,14 @@
 import {
 	faCaretLeft,
-	faCircleCheck,
 	faEnvelope,
 	faPhone,
 	faQuestion,
-	faUserGraduate,
 	faX,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import directLink from "next/link";
-import { Link } from "react-scroll";
 import OutsideClickHandler from "react-outside-click-handler";
 import ContactFormular from "../Contact/ContactFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
@@ -373,13 +370,18 @@ const StyledSectionForArrow = styled.section`
 const StyledArrow = styled(FontAwesomeIcon)`
 	width: 2rem;
 	height: 2rem;
-	color: var(--color-fourth);
+	color: var(--color-secondary);
 	transform: ${({ $arrowclicked }) => ($arrowclicked ? "rotate(180deg)" : "")};
 	transition: all 0.4s ease;
 	cursor: pointer;
 	&:hover {
 		color: var(--color-fifth);
 		scale: 1.2;
+	}
+
+	@media (min-width: 768px) {
+		width: 2.5rem;
+		height: 2.5rem;
 	}
 `;
 

@@ -15,11 +15,12 @@ export default function ProductCard({
 			<StyledImageContainer>
 				<StyledRandomImage
 					src={src}
-					width={1600}
-					height={420}
 					alt={alt}
-					sizes="(max-width: 600px) 300px, (max-width: 1025px) 600px, (max-width: 1400px) 1080px"
+					layout="responsive"
+					width={400}
+					height={225}
 					loading="lazy"
+					unoptimized
 				/>
 			</StyledImageContainer>
 			<StyledInfoWrapper>
@@ -38,25 +39,31 @@ export default function ProductCard({
 const StyledRandomImage = styled(Image)`
 	width: 100%;
 	height: 100%;
-	max-height: 30rem;
-	object-fit: cover;
 `;
 
 const StyledInfoWrapper = styled.article`
 	margin-left: 1rem;
 	margin-right: 0.5rem;
+	@media (min-width: 1025px) {
+		margin-top: -1rem;
+	}
+	@media (min-width: 1600px) {
+		margin-top: 0rem;
+	}
 `;
 
 const StyledImageContainer = styled.section`
 	width: 100%;
 	height: 70%;
+	overflow: hidden;
+
 	@media (min-width: 1025px) {
 		height: 60%;
 	}
 	@media (min-width: 1450px) {
 		height: 65%;
 	}
-	@media (min-width: 1600px) {
+	@media (min-width: 1800px) {
 		height: 70%;
 	}
 `;
@@ -82,24 +89,23 @@ const StyledCardWrapper = styled.section`
 	position: relative;
 
 	@media (min-width: 1025px) {
-		min-height: 27rem;
-		height: 27rem;
 		width: 100%;
 		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
-
+		min-height: 25rem;
+		height: 25rem;
 		max-width: 100%;
 	}
 	@media (min-width: 1250px) {
-		min-height: 32rem;
-		height: 32rem;
+		min-height: 27rem;
+		height: 27rem;
 	}
 	@media (min-width: 1400px) {
 		min-height: 30rem;
 		height: 30rem;
 	}
 	@media (min-width: 1600px) {
-		min-height: 40rem;
-		height: 40rem;
+		min-height: 30rem;
+		height: 32rem;
 	}
 `;
 

@@ -6,10 +6,11 @@ export default function Greenbutton({
 	margin,
 	value,
 	disabled,
+	onClickApply,
 }) {
 	return (
 		<StyledButton
-			onClick={onClick}
+			onClick={onClick || onClickApply}
 			$margin={margin}
 			$value={value}
 			disabled={disabled}
@@ -28,17 +29,15 @@ const StyledButton = styled.button`
 	color: var(--color-fourth);
 	margin-bottom: ${({ $margin }) => $margin + "rem"};
 	cursor: pointer;
+	transition: all 0.3s ease-in-out;
 	&:active {
 		box-shadow: inset 1px 1px 5px 0px black;
 	}
 
 	&:hover {
-		scale: 1.1;
-		transition: all 0.3s ease-in-out;
+		background-color: var(--color-fourth);
+		color: white;
 		
 	}
 
-	&:not(:hover) {
-		transition: all 0.3s ease-in-out;
-	}
 `;

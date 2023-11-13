@@ -30,8 +30,6 @@ export default function Home({ scrollY, device, setDevice }) {
 		}, 350);
 	}
 
-	console.log(popUp);
-
 	return (
 		<>
 			<StyledMain>

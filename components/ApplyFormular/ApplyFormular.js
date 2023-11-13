@@ -1,11 +1,10 @@
 import styled, { keyframes } from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-export default function ContactFormular({
+export default function ApplyFormular({
 	onSubmit,
 	onClick,
 	value,
@@ -13,13 +12,27 @@ export default function ContactFormular({
 	onChange,
 	successValue,
 	animationTrigger,
+	Jobtitle,
 }) {
+	function checkFileSize(event) {
+		const fileInput = event.target;
+		const maxFileSize = 10 * 1024 * 1024;
+
+		if (fileInput.files.length > 0) {
+			const fileSize = fileInput.files[0].size;
+
+			if (fileSize > maxFileSize) {
+				alert("Die Dateigröße darf 10 MB nicht überschreiten.");
+				fileInput.value = "";
+			}
+		}
+	}
 	return (
 		<>
 			<StyledWindow $animationtrigger={animationTrigger}>
 				<StyledFormularCard>
-					<h2>Kontaktformular</h2>
-					<StyledForm onSubmit={onSubmit}>
+					<h2>Bewerbung als {Jobtitle}</h2>
+					<StyledForm onSubmit={onSubmit} enctype="multipart/form-data">
 						<StyledInputAndLabelArticle>
 							<StyledLabel id="name">Name</StyledLabel>
 							<StyledInputField
@@ -42,18 +55,36 @@ export default function ContactFormular({
 						</StyledInputAndLabelArticle>
 						<StyledInputAndLabelArticle>
 							<StyledLabel id="message" required>
-								Nachricht
+								Nachricht an uns
 							</StyledLabel>
 							<StyledTextArea name="message" maxLength="500" />
 						</StyledInputAndLabelArticle>
 						<StyledInputAndLabelArticle>
-							<StyledLabel id="requestType">Art der Anfrage</StyledLabel>
-							<StyledSelect name="requestType" required>
-								<option value="Kundenberatung">Kundenberatung</option>
-								<option value="Kaufanfrage">Kaufanfrage</option>
-								<option value="Jobinformation">Job Informationen</option>
-								<option value="Sonstige">Sonstige</option>
+							<StyledLabel id="earliestWorkBegin">
+								Frühstmöglicher Beschäftigungsbeginn
+							</StyledLabel>
+							<StyledSelect name="earliestWorkBegin" required>
+								<option value="Sofort">Sofort</option>
+								<option value="1. Monat">1. Monat</option>
+								<option value="zwischen 1. und 3. Monaten">
+									zwischen 1. und 3. Monaten
+								</option>
+								<option value="länger als 3. Monate">
+									länger als 3. Monate
+								</option>
 							</StyledSelect>
+						</StyledInputAndLabelArticle>
+						<StyledInputAndLabelArticle>
+							<StyledFileLabel id="fileToUpload">
+								Ihr Lebenslauf
+							</StyledFileLabel>
+							<StyledFileUpload
+								type="file"
+								name="fileToUpload"
+								id="myFile"
+								onChange={checkFileSize}
+								accept=".pdf, .doc, .docx, .zip"
+							/>
 						</StyledInputAndLabelArticle>
 						<ReCAPTCHA
 							sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -105,9 +136,31 @@ const StyledWindow = styled.section`
 `;
 
 const StyledSelect = styled.select`
-	height: 2rem;
-	width: 35%;
+	width: 60%;
 	border: 1px solid rgba(0, 0, 0, 0.2);
+`;
+
+const StyledFileUpload = styled.input`
+	margin-top: 1rem;
+
+	&::file-selector-button {
+		background-color: var(--color-primary);
+		color: var(--color-fourth);
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		padding: 5px 12px;
+		cursor: pointer;
+		transition: all 0.3s ease-in-out;
+
+		&:hover {
+			background-color: var(--color-fourth);
+			color: white;
+		}
+	}
+`;
+
+const StyledFileLabel = styled.label`
+	font-size: var(--font-size-subtitle);
+	border: none;
 `;
 
 const StyledFormularCard = styled.article`

@@ -5,9 +5,6 @@ import ContactFormular from "./ContactFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 import PhoneIcon from "../Icons/PhoneIcon";
 import MailIcon from "../Icons/MailIcon";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFax } from "@fortawesome/free-solid-svg-icons";
-import FaxIcon from "../Icons/FaxIcon";
 import Head from "next/head";
 
 export default function Contact() {
@@ -35,7 +32,7 @@ export default function Contact() {
 		setSubmitClicked(true);
 		setTimeout(() => {
 			setSubmitClicked(false);
-		}, 3000);
+		}, 2000);
 	}
 
 	async function handleSubmitFormular(event) {
@@ -64,7 +61,7 @@ export default function Contact() {
 			setTimeout(() => {
 				setMessageSuccess(false);
 				setFormularClicked(false);
-			}, 3000);
+			}, 2000);
 		} else {
 			alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
 		}

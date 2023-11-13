@@ -13,6 +13,7 @@ export default function JobDetails({
 	tasks,
 	ourOffer,
 	qualification,
+	onClickApply,
 }) {
 	return (
 		<>
@@ -22,27 +23,32 @@ export default function JobDetails({
 						onClick();
 					}}
 				>
-					<StyledSection>
+					<section>
 						<StyledIcon icon={faCircleXmark} onClick={onClick} />
 						<StyledInformationCard>
 							<StyledHeadlineThird>{headline}</StyledHeadlineThird>
 							<StyledIntroText>{introduction}</StyledIntroText>
 
-							<StyledArticle>
+							<article>
 								<StyledHeadlineFourth>Unser Angebot</StyledHeadlineFourth>
 								<p>{ourOffer}</p>
 								<StyledHeadlineFourth>Deine Aufgaben</StyledHeadlineFourth>
 								<p>{tasks}</p>
 								<StyledHeadlineFourth>Dein Profil</StyledHeadlineFourth>
 								<p>{qualification}</p>
-							</StyledArticle>
+							</article>
 						</StyledInformationCard>
+						<StyledEmployeeArticle>
+							<Greenbutton onClickApply={onClickApply} >
+								Jetzt Bewerben
+							</Greenbutton>
+						</StyledEmployeeArticle>
 						<StyledImageWrapper>
 							<Greenbutton onClick={onClick} $value={value}>
 								Schließen
 							</Greenbutton>
 						</StyledImageWrapper>
-					</StyledSection>
+					</section>
 				</OutsideClickHandler>
 			</StyledWindow>
 		</>
@@ -74,9 +80,12 @@ const StyledWindow = styled.section`
 		0.4s ease;
 `;
 
-const StyledArticle = styled.article``;
-
-const StyledSection = styled.section``;
+const StyledEmployeeArticle = styled.article`
+	position: fixed;
+	bottom: 1rem;
+	left: 50%;
+	transform: translate(-50%, -50%);
+`;
 
 const StyledIcon = styled(FontAwesomeIcon)`
 	width: 2rem;

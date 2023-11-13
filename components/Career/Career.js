@@ -10,12 +10,19 @@ import { JobData } from "./JobData";
 import { Link } from "react-scroll/modules";
 import JobDetails from "./JobDetails";
 import Head from "next/head";
+import ContactFormular from "../Contact/ContactFormular";
+import ApplyFormular from "../ApplyFormular/ApplyFormular";
+import ToastMessage from "../ToastMessage/ToastMessage";
 
 export default function Career({ device }) {
 	const [showMore, setShowMore] = useState(false);
 	const [seeMoreOnSingleJob, setSeeMoreOnSingleJob] = useState(false);
 	const [activejob, setActiveJob] = useState({});
 	const [animationTrigger, setAnimationTrigger] = useState(false);
+	const [messageSuccess, setMessageSuccess] = useState(false);
+	const [applyWindow, setApplyWindow] = useState(false);
+	const [submitClicked, setSubmitClicked] = useState(false);
+	const [capture, setCapture] = useState("");
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -33,11 +40,58 @@ export default function Career({ device }) {
 	}
 
 	function handleClose() {
-		setSeeMoreOnSingleJob(false);
+		setAnimationTrigger(true);
+
+		setTimeout(() => {
+			setSeeMoreOnSingleJob(false);
+			setAnimationTrigger(false);
+			setApplyWindow(false);
+		}, 350);
 	}
 
 	function handleClickShowMore() {
 		setShowMore(!showMore);
+	}
+
+	function handleJobApply() {
+		console.log("handleJobApply called");
+
+		setSeeMoreOnSingleJob(false);
+		setApplyWindow(true);
+	}
+
+	function handleSubmitButtonClicked() {
+		setSubmitClicked(true);
+		setTimeout(() => {
+			setSubmitClicked(false);
+		}, 6000);
+	}
+
+	async function handleSubmitFormular(event) {
+		event.preventDefault();
+		handleSubmitButtonClicked();
+
+		if (!capture || capture === null || "") {
+			alert("Bitte bestätigen Sie, dass Sie kein Roboter sind.");
+			return;
+		}
+
+		const formData = new FormData(event.target);
+		const response = await fetch("/api/apply", {
+			method: "POST",
+			body: formData,
+		});
+
+		if (response.ok) {
+			event.target.reset();
+			setMessageSuccess(true);
+			setTimeout(() => {
+				setMessageSuccess(false);
+				setSeeMoreOnSingleJob(false);
+			}, 3000);
+		} else {
+			alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+		}
 	}
 
 	return (
@@ -105,18 +159,20 @@ export default function Career({ device }) {
 												jobtitle={"Elektroniker für Betriebstechnik"}
 											></JobCard>
 										</StyledSectionForTwoJobCards>
-										<StyledSectionForTwoJobCards>
-											<JobCard
-												headline={"Wir suchen Verstärkung!"}
-												infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-												jobtitle={"Mechatroniker"}
-											></JobCard>
-											<JobCard
-												headline={"Wir suchen Verstärkung!"}
-												infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-												jobtitle={"Elektroniker für Betriebstechnik"}
-											></JobCard>
-										</StyledSectionForTwoJobCards>
+										{JobData.length > 4 && (
+											<StyledSectionForTwoJobCards>
+												<JobCard
+													headline={"Wir suchen Verstärkung!"}
+													infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+													jobtitle={"Mechatroniker"}
+												></JobCard>
+												<JobCard
+													headline={"Wir suchen Verstärkung!"}
+													infotext={"wir freuen uns darauf Sie kennenzulernen!"}
+													jobtitle={"Elektroniker für Betriebstechnik"}
+												></JobCard>
+											</StyledSectionForTwoJobCards>
+										)}
 									</StyledBlurSection>
 								</>
 							)}
@@ -220,7 +276,22 @@ export default function Career({ device }) {
 							ourOffer={JobData[activejob].whatWeOffer}
 							tasks={JobData[activejob].tasks}
 							qualification={JobData[activejob].qualification}
+							onClickApply={handleJobApply}
 						/>
+					</>
+				)}
+				{applyWindow && (
+					<>
+						<ApplyFormular
+							Jobtitle={JobData[activejob].jobTitle}
+							onClick={handleClose}
+							animationTrigger={animationTrigger}
+							onSubmit={handleSubmitFormular}
+							disabled={submitClicked}
+							successValue={submitClicked}
+							onChange={(value) => setCapture(value)}
+						/>
+						{messageSuccess && <ToastMessage>Senden erfolgreich!</ToastMessage>}
 					</>
 				)}
 			</StyledMainSection>

@@ -75,4 +75,5 @@ export default createGlobalStyle`
     font-weight: 400;
     color: var(--color-fourth);
   }
+;
 `;
