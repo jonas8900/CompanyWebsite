@@ -31,7 +31,7 @@ export default function ProductSlideShow({ handleShowProductDetails }) {
 				customRightArrow={<ArrowRight />}
 			>
 				{ProductData.map((product) => (
-					<StyledDiv key={product.id}>
+					<StyledDiv key={product.id} >
 						<ProductCard
 							key={product.id}
 							src={product.src}
@@ -51,7 +51,6 @@ export default function ProductSlideShow({ handleShowProductDetails }) {
 }
 
 const StyledDiv = styled.div`
-	object-fit: contain;
 	margin: auto;
 	padding-left: 2rem;
 	padding-right: 2rem;

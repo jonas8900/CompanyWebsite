@@ -86,8 +86,8 @@ export default function Randompicture() {
 						src={`/Random-Kranbild-${counter}.jpg`}
 						sizes="(max-width: 768px) 300px, (max-width: 1024px) 600px, (max-width: 1400px) 1080px"
 						alt="Zufälliges Bild einer Krananlage"
-						width={450}
-						height={210}
+						width={1920}
+						height={1080}
 						counter={counter + 1}
 						unoptimized
 					/>
@@ -253,6 +253,7 @@ const StyledArrowRight = styled(FontAwesomeIcon)`
 	color: white;
 	border: none;
 	margin: 0.3rem;
+	cursor: pointer;
 
 	&:hover {
 		color: var(--color-secondary);
@@ -286,6 +287,7 @@ const StyledArrowLeft = styled(FontAwesomeIcon)`
 	color: white;
 	border: none;
 	margin: 0.3rem;
+	cursor: pointer;
 
 	&:hover {
 		color: var(--color-secondary);

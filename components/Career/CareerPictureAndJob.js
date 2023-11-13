@@ -2,7 +2,6 @@ import Image from "next/image";
 import styled from "styled-components";
 import JobCard from "./JobCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { JobData } from "./JobData";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -11,11 +10,17 @@ import JobDetails from "./JobDetails";
 import OutsideClickHandler from "react-outside-click-handler";
 import ArrowLeft from "../Icons/ArrowLeft";
 import ArrowRight from "../Icons/ArrowRight";
+import ApplyFormular from "../ApplyFormular/ApplyFormular";
+import ToastMessage from "../ToastMessage/ToastMessage";
 
 export default function CareerPictureAndJob({ scrollY }) {
 	const [seeMoreClicked, setSeeMoreClicked] = useState(false);
 	const [activejob, setActiveJob] = useState({});
 	const [animationToggle, setAnimationToggle] = useState(false);
+	const [applyWindow, setApplyWindow] = useState(false);
+	const [submitClicked, setSubmitClicked] = useState(false);
+	const [messageSuccess, setMessageSuccess] = useState(false);
+	const [capture, setCapture] = useState("");
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -25,18 +30,61 @@ export default function CareerPictureAndJob({ scrollY }) {
 				document.body.style.overflow = "auto";
 			}
 		}
-	}, [seeMoreClicked]);
+	}, [seeMoreClicked, applyWindow]);
 
 	function handleSeeMoreButton(id) {
 		setSeeMoreClicked(!seeMoreClicked);
 		setActiveJob(Number(id) - 1);
 	}
 
+	function handleJobApply() {
+		console.log("handleJobApply called");
+
+		setSeeMoreClicked(false);
+		setApplyWindow(true);
+	}
+
+	function handleSubmitButtonClicked() {
+		setSubmitClicked(true);
+		setTimeout(() => {
+			setSubmitClicked(false);
+		}, 6000);
+	}
+
+	async function handleSubmitFormular(event) {
+		event.preventDefault();
+		handleSubmitButtonClicked();
+
+		if (!capture || capture === null || "") {
+			alert("Bitte bestätigen Sie, dass Sie kein Roboter sind.");
+			return;
+		}
+
+		const formData = new FormData(event.target);
+		const response = await fetch("/api/apply", {
+			method: "POST",
+			body: formData,
+		});
+
+		if (response.ok) {
+			event.target.reset();
+			setMessageSuccess(true);
+			setTimeout(() => {
+				setMessageSuccess(false);
+				setSeeMoreClicked(false);
+			}, 3000);
+		} else {
+			alert("Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.");
+		}
+	}
+
 	function handleClose() {
 		setAnimationToggle(true);
+
 		setTimeout(() => {
 			setSeeMoreClicked(false);
 			setAnimationToggle(false);
+			setApplyWindow(false);
 		}, 350);
 	}
 	const responsive = {
@@ -112,7 +160,22 @@ export default function CareerPictureAndJob({ scrollY }) {
 							tasks={JobData[activejob].tasks}
 							qualification={JobData[activejob].qualification}
 							clickHandler={() => handleClose()}
+							onClickApply={handleJobApply}
 						/>
+					</>
+				)}
+				{applyWindow && (
+					<>
+						<ApplyFormular
+							Jobtitle={JobData[activejob].jobTitle}
+							onClick={handleClose}
+							animationTrigger={animationToggle}
+							onSubmit={handleSubmitFormular}
+							disabled={submitClicked}
+							successValue={submitClicked}
+							onChange={(value) => setCapture(value)}
+						/>
+						{messageSuccess && <ToastMessage>Senden erfolgreich!</ToastMessage>}
 					</>
 				)}
 			</StyledHeadlineAndJobCardSectionWrapper>

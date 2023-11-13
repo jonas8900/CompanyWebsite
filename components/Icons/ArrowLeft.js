@@ -22,6 +22,7 @@ const StyledIcon = styled(FontAwesomeIcon)`
 	border: 1px solid rgba(160, 160, 160, 1);
 	border-radius: 100%;
 	padding: 0.4rem;
+	cursor: pointer;
 	&:hover {
 		color: var(--color-fourth);
 		border: 1px solid var(--color-fourth);
