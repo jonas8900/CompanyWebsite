@@ -124,18 +124,6 @@ export default function SideBar() {
 							>
 								<StyledIcon icon={faQuestion} onClick={handleQuestionClick} />
 							</StyledButton>
-							{/* <Link
-								to="career"
-								spy={true}
-								smooth={false}
-								offset={-70}
-								href="#"
-								duration={350}
-							>
-								<StyledButton aria-label="Zu unserer Karriere-Seite gehen">
-									<StyledIcon icon={faUserGraduate} />
-								</StyledButton>
-							</Link> */}
 							<StyledButton
 								onClick={handleClickFormularButton}
 								aria-label="Kontaktformular"
@@ -341,8 +329,10 @@ const StyledButton = styled.button`
 	width: 3rem;
 	height: 3rem;
 	display: flex;
-
+	cursor: pointer;
+	justify-content: center;
 	border: none;
+	transition: all 0.2s ease-in-out;
 	box-shadow: ${({ $questionclicked }) =>
 		$questionclicked
 			? "5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0,0,0,0)"
@@ -350,6 +340,10 @@ const StyledButton = styled.button`
 	&:active {
 		box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000,
 			5px 5px 15px 5px rgba(0, 0, 0, 0);
+	}
+
+	&:hover {
+		background-color: var(--color-secondary);
 	}
 `;
 
@@ -389,7 +383,7 @@ const StyledWrapper = styled.section`
 	position: fixed;
 	bottom: 10%;
 	transform: translateY(-90%);
-	right: 0%;
+	right: 1%;
 	display: flex;
 	width: 4rem;
 	height: 8rem;

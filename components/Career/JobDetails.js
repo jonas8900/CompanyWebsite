@@ -26,23 +26,31 @@ export default function JobDetails({
 					<section>
 						<StyledIcon icon={faCircleXmark} onClick={onClick} />
 						<StyledInformationCard>
-							<StyledHeadlineThird>{headline}</StyledHeadlineThird>
+							<StyledHeadlineAndJobCardSectionWrapper>
+								<StyledHeadlineThird>{headline}</StyledHeadlineThird>
+								<StyledEmployeeArticle>
+									<Greenbutton onClickApply={onClickApply}>
+										Jetzt Bewerben
+									</Greenbutton>
+								</StyledEmployeeArticle>
+							</StyledHeadlineAndJobCardSectionWrapper>
 							<StyledIntroText>{introduction}</StyledIntroText>
 
 							<article>
-								<StyledHeadlineFourth>Unser Angebot</StyledHeadlineFourth>
-								<p>{ourOffer}</p>
-								<StyledHeadlineFourth>Deine Aufgaben</StyledHeadlineFourth>
-								<p>{tasks}</p>
-								<StyledHeadlineFourth>Dein Profil</StyledHeadlineFourth>
-								<p>{qualification}</p>
+								<div>
+									<StyledHeadlineFourth>Unser Angebot</StyledHeadlineFourth>
+									<div>{ourOffer}</div>
+								</div>
+								<div>
+									<StyledHeadlineFourth>Deine Aufgaben</StyledHeadlineFourth>
+									<div>{tasks}</div>
+								</div>
+								<div>
+									<StyledHeadlineFourth>Dein Profil</StyledHeadlineFourth>
+									<div>{qualification}</div>
+								</div>
 							</article>
 						</StyledInformationCard>
-						<StyledEmployeeArticle>
-							<Greenbutton onClickApply={onClickApply} >
-								Jetzt Bewerben
-							</Greenbutton>
-						</StyledEmployeeArticle>
 						<StyledImageWrapper>
 							<Greenbutton onClick={onClick} $value={value}>
 								Schließen
@@ -81,10 +89,21 @@ const StyledWindow = styled.section`
 `;
 
 const StyledEmployeeArticle = styled.article`
+	/*
 	position: fixed;
 	bottom: 1rem;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	*/
+`;
+
+const StyledHeadlineAndJobCardSectionWrapper = styled.section`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: sticky;
+	top: -1rem;
+	background-color: var(--color-third);
 `;
 
 const StyledIcon = styled(FontAwesomeIcon)`

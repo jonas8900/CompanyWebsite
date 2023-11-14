@@ -1,4 +1,3 @@
-import AboutUs from "../components/AboutUs/AboutUs";
 import Career from "../components/Career/Career";
 import Introtext from "../components/Homescreen/IntroText";
 import Navigation from "../components/Navigation/Navigation";
@@ -11,7 +10,6 @@ import SideBar from "../components/Sidebar/SideBar";
 import styled, { keyframes } from "styled-components";
 import PopupForJob from "../components/Popup/PopupForJob";
 import useLocalStorageState from "use-local-storage-state";
-import { Fade } from "react-awesome-reveal";
 
 export default function Home({ scrollY, device, setDevice }) {
 	const [popUp, setPopUp] = useLocalStorageState("popUp", {

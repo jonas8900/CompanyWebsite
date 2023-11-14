@@ -16,9 +16,9 @@ export default function ProductCard({
 				<StyledRandomImage
 					src={src}
 					alt={alt}
-					layout="responsive"
 					width={400}
 					height={225}
+					layout="responsive"
 					loading="lazy"
 					unoptimized
 				/>

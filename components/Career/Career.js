@@ -10,7 +10,6 @@ import { JobData } from "./JobData";
 import { Link } from "react-scroll/modules";
 import JobDetails from "./JobDetails";
 import Head from "next/head";
-import ContactFormular from "../Contact/ContactFormular";
 import ApplyFormular from "../ApplyFormular/ApplyFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 
@@ -26,13 +25,13 @@ export default function Career({ device }) {
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
-			if (seeMoreOnSingleJob === true) {
+			if (seeMoreOnSingleJob === true || applyWindow === true) {
 				document.body.style.overflow = "hidden";
 			} else {
 				document.body.style.overflow = "auto";
 			}
 		}
-	}, [seeMoreOnSingleJob]);
+	}, [seeMoreOnSingleJob, applyWindow]);
 
 	function handleSeeMoreButton(id) {
 		setSeeMoreOnSingleJob(!seeMoreOnSingleJob);
@@ -272,6 +271,7 @@ export default function Career({ device }) {
 						<JobDetails
 							onClick={handleClose}
 							headline={JobData[activejob].jobTitle}
+							animationTrigger={animationTrigger}
 							introduction={JobData[activejob].introduction}
 							ourOffer={JobData[activejob].whatWeOffer}
 							tasks={JobData[activejob].tasks}
@@ -388,6 +388,9 @@ const StyledCareerSection = styled.section`
 		gap: 40px;
 		justify-content: center;
 	}
+	@media (min-width: 1600px) {
+		gap: 10rem;
+	}
 `;
 
 const StyledJobCardWrapper = styled.section`
@@ -405,6 +408,9 @@ const StyledJobCardWrapper = styled.section`
 		width: 70%;
 		margin: 0 auto;
 		margin-top: 10%;
+	}
+	@media (min-width: 1800px) {
+		width: 60%;
 	}
 `;
 

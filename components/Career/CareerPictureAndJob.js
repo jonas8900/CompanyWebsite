@@ -24,7 +24,7 @@ export default function CareerPictureAndJob({ scrollY }) {
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
-			if (seeMoreClicked === true) {
+			if (seeMoreClicked === true || applyWindow === true) {
 				document.body.style.overflow = "hidden";
 			} else {
 				document.body.style.overflow = "auto";

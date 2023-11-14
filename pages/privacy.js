@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Footer from "../components/Footer/Footer";
 import BackToHome from "../components/Homescreen/BackToHome";
 import PrivacyText from "../components/ImpressumAndPrivacy/PrivacyText";
@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Privacy() {
 	return (
-		<>
+		<StyledMain>
 			<BackToHome />
 			<StyledSection>
 				<PrivacyText />
@@ -20,9 +20,16 @@ export default function Privacy() {
 					<Greenbutton>Zurück zur Hauptseite</Greenbutton>
 				</Link>
 			</StyledButtonSection>
-		</>
+		</StyledMain>
 	);
 }
+
+const FadeIn = keyframes`
+0% {opacity: 0;}
+20% {opacity: 0;}
+100% {opacity: 1;}
+
+`;
 
 const StyledSection = styled.section`
 	margin: 2rem;
@@ -39,4 +46,8 @@ const StyledFooterSection = styled.section`
 const StyledButtonSection = styled.section`
 	margin-left: 50%;
 	margin-bottom: 6rem;
+`;
+
+const StyledMain = styled.main`
+	animation: ${FadeIn} 0.8s linear;
 `;

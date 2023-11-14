@@ -1,11 +1,10 @@
 import { faBars, faSearch, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 import { Link } from "react-scroll/modules";
-import Greenbutton from "../Buttons/GreenButton";
 
 export default function Navigation({ scrollY, device }) {
 	const [menuClicked, setMenuClicked] = useState(false);
@@ -14,10 +13,6 @@ export default function Navigation({ scrollY, device }) {
 	function handleChangeMenuButton() {
 		setMenuClicked(!menuClicked);
 		setAnimationDone(!animationDone);
-	}
-
-	function handleChangeSearchButton() {
-		setSearchClicked(!searchClicked);
 	}
 
 	return (
@@ -284,6 +279,7 @@ const StyledNavigationBar = styled.nav`
 `;
 
 const StyledNavigationSection = styled.section`
+	position: relative;
 	display: grid;
 	grid-template-columns: 1fr 0.3fr 0.3fr;
 	grid-template-rows: 1fr;
@@ -317,10 +313,7 @@ const StyledUnsortedList = styled.ul`
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	margin-top: 20rem;
-	@media (min-width: 768px) {
-		margin-top: 22rem;
-	}
+	top: 100%;
 
 	@media (min-width: 1024px) {
 		flex-direction: row;
