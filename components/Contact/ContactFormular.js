@@ -3,7 +3,7 @@ import Greenbutton from "../Buttons/GreenButton";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faCircleCheck, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function ContactFormular({
 	onSubmit,
@@ -18,6 +18,7 @@ export default function ContactFormular({
 		<>
 			<StyledWindow $animationtrigger={animationTrigger}>
 				<StyledFormularCard>
+				<StyledIcon icon={faCircleXmark} onClick={onClick} />
 					<h2>Kontaktformular</h2>
 					<StyledForm onSubmit={onSubmit}>
 						<StyledInputAndLabelArticle>
@@ -50,7 +51,6 @@ export default function ContactFormular({
 							<StyledLabel id="requestType">Art der Anfrage</StyledLabel>
 							<StyledSelect name="requestType" required>
 								<option value="Kundenberatung">Kundenberatung</option>
-								<option value="Kaufanfrage">Kaufanfrage</option>
 								<option value="Jobinformation">Job Informationen</option>
 								<option value="Sonstige">Sonstige</option>
 							</StyledSelect>
@@ -69,11 +69,6 @@ export default function ContactFormular({
 						)}
 					</StyledForm>
 				</StyledFormularCard>
-				<StyledButtonSection>
-					<Greenbutton onClick={onClick} $value={value}>
-						Schließen
-					</Greenbutton>
-				</StyledButtonSection>
 			</StyledWindow>
 		</>
 	);
@@ -191,14 +186,20 @@ const StyledTextArea = styled.textarea`
 	border: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
-const StyledButton = styled.button`
-	background-color: var(--color-primary);
-	border: none;
-	padding: 0.6rem;
-	min-width: 6rem;
-	font-size: var(--font-size-text);
-	color: var(--color-fourth);
-	&:active {
-		box-shadow: inset 1px 1px 5px 0px black;
+
+
+
+const StyledIcon = styled(FontAwesomeIcon)`
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	right: -0.5rem;
+	top: -0.5rem;
+	color: red;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		scale: 1.2;
 	}
 `;

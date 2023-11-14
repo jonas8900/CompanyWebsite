@@ -2,12 +2,11 @@ import styled, { keyframes } from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
 import ReCAPTCHA from "react-google-recaptcha";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function ApplyFormular({
 	onSubmit,
 	onClick,
-	value,
 	disabled,
 	onChange,
 	successValue,
@@ -16,13 +15,13 @@ export default function ApplyFormular({
 }) {
 	function checkFileSize(event) {
 		const fileInput = event.target;
-		const maxFileSize = 10 * 1024 * 1024;
+		const maxFileSize = 4.5 * 1024 * 1024;
 
 		if (fileInput.files.length > 0) {
 			const fileSize = fileInput.files[0].size;
 
 			if (fileSize > maxFileSize) {
-				alert("Die Dateigröße darf 10 MB nicht überschreiten.");
+				alert("Die Dateigröße darf 4,5 MB nicht überschreiten.");
 				fileInput.value = "";
 			}
 		}
@@ -31,8 +30,9 @@ export default function ApplyFormular({
 		<>
 			<StyledWindow $animationtrigger={animationTrigger}>
 				<StyledFormularCard>
-					<h2>Bewerbung als {Jobtitle}</h2>
-					<StyledForm onSubmit={onSubmit} enctype="multipart/form-data">
+					<StyledHeadline>Bewerbung als {Jobtitle}</StyledHeadline>
+					<StyledIcon icon={faCircleXmark} onClick={onClick} />
+					<StyledForm onSubmit={onSubmit}>
 						<StyledInputAndLabelArticle>
 							<StyledLabel id="name">Name</StyledLabel>
 							<StyledInputField
@@ -57,7 +57,7 @@ export default function ApplyFormular({
 							<StyledLabel id="message" required>
 								Nachricht an uns
 							</StyledLabel>
-							<StyledTextArea name="message" maxLength="500" />
+							<StyledTextArea name="message"  placeholder="Schreib uns gern eine Nachricht" maxLength="500" />
 						</StyledInputAndLabelArticle>
 						<StyledInputAndLabelArticle>
 							<StyledLabel id="earliestWorkBegin">
@@ -76,7 +76,7 @@ export default function ApplyFormular({
 						</StyledInputAndLabelArticle>
 						<StyledInputAndLabelArticle>
 							<StyledFileLabel id="fileToUpload">
-								Ihr Lebenslauf
+								Deine Bewerbung
 							</StyledFileLabel>
 							<StyledFileUpload
 								type="file"
@@ -100,11 +100,6 @@ export default function ApplyFormular({
 						)}
 					</StyledForm>
 				</StyledFormularCard>
-				<StyledButtonSection>
-					<Greenbutton onClick={onClick} $value={value}>
-						Schließen
-					</Greenbutton>
-				</StyledButtonSection>
 			</StyledWindow>
 		</>
 	);
@@ -119,6 +114,11 @@ const FadeIn = keyframes`
 const FadeOut = keyframes`
 0% { opacity: 1;}
 100% { opacity: 0; }
+`;
+
+const StyledHeadline = styled.h2`
+	text-decoration: underline;
+	text-decoration-color: var(--color-primary);
 `;
 
 const StyledWindow = styled.section`
@@ -253,5 +253,20 @@ const StyledButton = styled.button`
 	color: var(--color-fourth);
 	&:active {
 		box-shadow: inset 1px 1px 5px 0px black;
+	}
+`;
+
+const StyledIcon = styled(FontAwesomeIcon)`
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	right: -0.5rem;
+	top: -0.5rem;
+	color: red;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		scale: 1.2;
 	}
 `;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Footer from "../components/Footer/Footer";
 import BackToHome from "../components/Homescreen/BackToHome";
 import ImpressumText from "../components/ImpressumAndPrivacy/ImpressumText";
@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Impressum() {
 	return (
-		<>
+		<StyledMain>
 			<BackToHome />
 			<StyledSection>
 				<ImpressumText />
@@ -20,9 +20,16 @@ export default function Impressum() {
 			<StyledFooterSection>
 				<Footer />
 			</StyledFooterSection>
-		</>
+		</StyledMain>
 	);
 }
+
+const FadeIn = keyframes`
+0% {opacity: 0;}
+20% {opacity: 0;}
+100% {opacity: 1;}
+
+`;
 
 const StyledSection = styled.section`
 	margin: 2rem;
@@ -36,4 +43,8 @@ const StyledButtonSection = styled.section`
 	margin-left: 50%;
 	margin-bottom: 2rem;
 	transform: translateX(-50%, 50%);
+`;
+
+const StyledMain = styled.main`
+	animation: ${FadeIn} 0.8s linear;
 `;
