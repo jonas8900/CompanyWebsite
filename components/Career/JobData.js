@@ -223,9 +223,109 @@ export const JobData = [
 	{
 		id: "4",
 		jobTitle: "Ausbildung Elektroniker Maschinen- und Antriebstechnik (m/w/d)",
-		introduction: "Stellenausschreibung folgt",
-		whatWeOffer: <ul></ul>,
-		tasks: <ul></ul>,
-		qualification: <ul></ul>,
+		introduction: (
+			<StyledSubHeadline>
+				Du suchst einen spannenden Einstieg ins Berufsleben? Dann bist du hier
+				genau richtig! Wir bieten dir die Möglichkeit einer erstklassigen
+				Ausbildung zum Elektroniker für Maschinen und Antriebstechnik (m/w/d).
+			</StyledSubHeadline>
+		),
+		whatWeOffer: (
+			<ul>
+				<li>Eine fundierte Ausbildung in einem expandierenden Unternehmen.</li>
+				<li>Einblick in verschiedene Bereiche der Elektrotechnik.</li>
+				<li>Ein motiviertes Team, das dich unterstützt.</li>
+				<li>
+					Vielfältige Perspektiven nach erfolgreichem Abschluss deiner
+					Ausbildung.
+				</li>
+				<li>Attraktive Vergütung und 30 Tage Urlaub im Jahr.</li>
+			</ul>
+		),
+		tasks: (
+			<ul>
+				<li>
+					Montage, Reparatur und Wartung: Du erhältst Einblicke in die
+					faszinierende Welt der Krananlagen und Elektromotoren – von der
+					Montage über Reparaturen bis zur regelmäßigen Wartung.
+				</li>
+				<li>
+					Elektroinstallation und Steuerungsbau: Wir vermitteln dir fundierte
+					Kenntnisse in Elektroinstallation und Steuerungsbau, um ein
+					umfassendes Verständnis für deine Aufgaben zu entwickeln.
+				</li>
+				<li>
+					Spannende Projekte: In abwechslungsreichen Projekten lernst du,
+					eigenverantwortlich zu arbeiten und deine Fähigkeiten optimal
+					einzusetzen.
+				</li>
+				<li>
+					Expertenstatus: Du wirst zum Experten in Sachen Maschinen und
+					Antriebstechnik ausgebildet, um optimal auf die Herausforderungen der
+					Branche vorbereitet zu sein.
+				</li>
+			</ul>
+		),
+		qualification: (
+			<ul>
+				<li>
+					Mindestens einen guten Hauptschulabschluss oder einen höheren
+					Schulabschluss.
+				</li>
+				<li>Interesse an Technik und Elektronik.</li>
+				<li>Handwerkliches Geschick und technisches Verständnis.</li>
+				<li>Zuverlässigkeit, Teamgeist und Lernbereitschaft.</li>
+			</ul>
+		),
+	},
+	{
+		id: "5",
+		jobTitle: "Initiativbewerbung",
+		introduction: (
+			<StyledSubHeadline>
+				Du bist auf der Suche nach einer neuen beruflichen Herausforderung und
+				findest keine passende Stellenausschreibung? Kein Problem! Wir sind
+				immer offen für motivierte und talentierte Menschen, die unser Team
+				verstärken möchten. Wenn du dich in einem spannenden Umfeld entfalten
+				möchtest, Spaß an technischen Herausforderungen hast und deine
+				Fähigkeiten in einem wachsenden Unternehmen einbringen möchtest, dann
+				sollten wir uns kennenlernen. Unsere Tätigkeitsbereiche umfassen
+				individuelle Lösungen im Kranbau, von der Planung über Montage bis zur
+				Wartung von Krananlagen und Elektromotoren.
+			</StyledSubHeadline>
+		),
+		whatWeOffer: (
+			<ul>
+				<li>Ein innovatives und wachsendes Unternehmen.</li>
+				<li>Abwechslungsreiche Aufgaben und Projekte.</li>
+				<li>Ein motiviertes Team, das Zusammenarbeit schätzt.</li>
+				<li>Raum für persönliche und berufliche Entwicklung.</li>
+				<li>
+					Die Möglichkeit, aktiv an der Gestaltung und Optimierung von Prozessen
+					teilzunehmen.
+				</li>
+			</ul>
+		),
+		tasks: (
+			<ul>
+				<>
+					Bewirb dich jetzt initiativ bei uns und zeig uns, warum du perfekt zu
+					unserem Team passt!
+				</>
+			</ul>
+		),
+		qualification: (
+			<ul>
+				<li>
+					Technisches Verständnis und handwerkliches Geschick sind für dich
+					selbstverständlich.
+				</li>
+				<li>Eigeninitiative und Teamgeist zeichnen dich aus.</li>
+				<li>
+					Du bist motiviert, neue Herausforderungen anzunehmen und in einem
+					dynamischen Umfeld zu arbeiten.
+				</li>
+			</ul>
+		),
 	},
 ];
