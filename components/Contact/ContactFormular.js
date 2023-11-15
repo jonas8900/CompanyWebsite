@@ -8,7 +8,6 @@ import { faCheck, faCircleCheck, faCircleXmark } from "@fortawesome/free-solid-s
 export default function ContactFormular({
 	onSubmit,
 	onClick,
-	value,
 	disabled,
 	onChange,
 	successValue,

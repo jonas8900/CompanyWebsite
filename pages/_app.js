@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import GlobalStyle from "../styles";
 import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }) {
 	const [scrollY, setScrollY] = useState(0);
@@ -54,6 +55,7 @@ export default function App({ Component, pageProps }) {
 				device={device}
 				setDevice={setDevice}
 			/>
+			<Analytics />
 		</>
 	);
 }

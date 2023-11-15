@@ -16,6 +16,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-hook/media-query": "^1.1.1",
+    "@vercel/analytics": "^1.1.1",
     "body-scroll-lock": "^4.0.0-beta.0",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.2",
