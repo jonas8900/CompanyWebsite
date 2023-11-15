@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 				resolve({ fields, files });
 			});
 		});
-		console.log(data.fields);
+
 		if (data.error) {
 			return res.status(500).json({ error: "Error parsing form data." });
 		}
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
 				...mailOptions,
 				subject: `Neue Anfrage Thema: Bewerbung von: ${data.fields.name[0]}`,
 				text: "This is a text",
-				html: `<h1>Neue Anfrage über unsere Homepage!</h1><p>von: ${data.fields.name[0]}</p><p>email: ${data.fields.email[0]}</p><p>Nachricht: ${data.fields.message[0]}</p><p>Frühstmöglicher Arbeitsbeginn: ${data.fields.earliestWorkBegin[0]}</p>`,
+				html: `<h1>Neue Anfrage über unsere Homepage!</h1><p>von: ${data.fields.name[0]}</p><p>email: ${data.fields.email[0]}</p><p>Nachricht: ${data.fields.message[0]}</p>`,
 				attachments: [
 					{
 						filename: data.files.fileToUpload[0].originalFilename,
