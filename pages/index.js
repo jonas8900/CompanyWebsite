@@ -10,6 +10,7 @@ import SideBar from "../components/Sidebar/SideBar";
 import styled, { keyframes } from "styled-components";
 import PopupForJob from "../components/Popup/PopupForJob";
 import useLocalStorageState from "use-local-storage-state";
+import Head from "next/head";
 
 export default function Home({ scrollY, device, setDevice }) {
 	const [popUp, setPopUp] = useLocalStorageState("popUp", {
@@ -30,6 +31,14 @@ export default function Home({ scrollY, device, setDevice }) {
 
 	return (
 		<>
+			<Head>
+				<title>Elektromaschinenbau Schulze</title>
+				<meta
+					name="description"
+					content="Wir sind der richtige Ansprechpartner, wenn es um Krananlagen geht! Unser erfahrenes Team bietet umfassende Leistungen wie Wartung, Reparatur und die Erfüllung der UVV-Vorschriften für Ihre Krananlagen. Verlassen Sie sich auf unsere Expertise."
+				/>
+				<link rel="canonical" href="https://elektromaschinenbau.vercel.app/" />
+			</Head>
 			<StyledMain>
 				<Navigation scrollY={scrollY} device={device} setDevice={setDevice} />
 				<Randompicture />

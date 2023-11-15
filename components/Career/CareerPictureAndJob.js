@@ -7,7 +7,6 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useEffect, useState } from "react";
 import JobDetails from "./JobDetails";
-import OutsideClickHandler from "react-outside-click-handler";
 import ArrowLeft from "../Icons/ArrowLeft";
 import ArrowRight from "../Icons/ArrowRight";
 import ApplyFormular from "../ApplyFormular/ApplyFormular";

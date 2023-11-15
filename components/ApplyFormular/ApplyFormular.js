@@ -57,34 +57,27 @@ export default function ApplyFormular({
 							<StyledLabel id="message" required>
 								Nachricht an uns
 							</StyledLabel>
-							<StyledTextArea name="message"  placeholder="Schreib uns gern eine Nachricht" maxLength="500" />
-						</StyledInputAndLabelArticle>
-						<StyledInputAndLabelArticle>
-							<StyledLabel id="earliestWorkBegin">
-								Frühstmöglicher Beschäftigungsbeginn
-							</StyledLabel>
-							<StyledSelect name="earliestWorkBegin" required>
-								<option value="Sofort">Sofort</option>
-								<option value="1. Monat">1. Monat</option>
-								<option value="zwischen 1. und 3. Monaten">
-									zwischen 1. und 3. Monaten
-								</option>
-								<option value="länger als 3. Monate">
-									länger als 3. Monate
-								</option>
-							</StyledSelect>
+							<StyledTextArea
+								name="message"
+								placeholder="Schreib uns eine Nachricht"
+								maxLength="500"
+								required
+							/>
 						</StyledInputAndLabelArticle>
 						<StyledInputAndLabelArticle>
 							<StyledFileLabel id="fileToUpload">
-								Deine Bewerbung
+								Lebenslauf (optional):
 							</StyledFileLabel>
 							<StyledFileUpload
 								type="file"
 								name="fileToUpload"
 								id="myFile"
 								onChange={checkFileSize}
-								accept=".pdf, .doc, .docx, .zip"
+								accept=".pdf, .doc, .docx, .txt, .rtf, .jpg, .jpeg, .tif, .tiff, .zip"
 							/>
+							<StyledParagraph>
+								Unterstützte Formate: PDF, DOC, DOCX, TXT, RFT, JPG, TIF & ZIP.
+							</StyledParagraph>
 						</StyledInputAndLabelArticle>
 						<ReCAPTCHA
 							sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -135,9 +128,8 @@ const StyledWindow = styled.section`
 		0.4s ease;
 `;
 
-const StyledSelect = styled.select`
-	width: 60%;
-	border: 1px solid rgba(0, 0, 0, 0.2);
+const StyledParagraph = styled.p`
+	font-size: 10px;
 `;
 
 const StyledFileUpload = styled.input`
