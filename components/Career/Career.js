@@ -96,7 +96,6 @@ export default function Career({ device }) {
 	return (
 		<>
 			<Head>
-				<title>Karriere</title>
 				<meta
 					name="description"
 					content="Entdecken Sie berufliche Möglichkeiten bei Elektromaschinenbau Schulze. Wir bieten Karrierechancen in der Krananlagen-Industrie für engagierte Fachleute. Werden Sie Teil unseres Teams!"
