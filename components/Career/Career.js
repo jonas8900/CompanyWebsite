@@ -9,7 +9,7 @@ import LinkToPage from "next/link";
 import { JobData } from "./JobData";
 import { Link } from "react-scroll/modules";
 import JobDetails from "./JobDetails";
-import Head from "next/head";
+
 import ApplyFormular from "../ApplyFormular/ApplyFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 

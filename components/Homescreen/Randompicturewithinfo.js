@@ -58,7 +58,6 @@ export default function Randompicture() {
 	}
 	return (
 		<>
-
 			<StyledWrapper id="introtext">
 				<StyledProgressSection>
 					<StyledProgressDiv1 $counter={counter + 1}></StyledProgressDiv1>
@@ -79,11 +78,13 @@ export default function Randompicture() {
 					<StyledRandomImage
 						key={counter}
 						src={`/Random-Kranbild-${counter}.jpg`}
-						sizes="(max-width: 768px) 300px, (max-width: 1024px) 600px, (max-width: 1400px) 1080px"
+						sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, (max-width: 1400px) 1080px"
 						alt="Zufälliges Bild einer Krananlage"
 						width={1920}
 						height={1080}
 						counter={counter + 1}
+						rel="preload"
+						priority={true}
 						unoptimized
 					/>
 				</StyledImageContainer>
