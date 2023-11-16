@@ -1,8 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
 import OutsideClickHandler from "react-outside-click-handler";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function ProductDetails({
 	headline,

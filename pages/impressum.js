@@ -4,9 +4,22 @@ import BackToHome from "../components/Homescreen/BackToHome";
 import ImpressumText from "../components/ImpressumAndPrivacy/ImpressumText";
 import Greenbutton from "../components/Buttons/GreenButton";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Impressum() {
 	return (
+		<>
+			<Head>
+				<title>Impressum - Elektromaschinenbau Schulze</title>
+				<meta
+					name="description"
+					content="Wir sind der richtige Ansprechpartner, wenn es um Krananlagen geht! Unser erfahrenes Team aus Hannover bietet umfassende Leistungen wie Wartung, Reparatur und die Erfüllung der UVV-Vorschriften für Ihre Krananlagen. Verlassen Sie sich auf unsere Expertise."
+				/>
+				<link
+					rel="canonical"
+					href="https://www.elektromaschinenbau-schulze.de/"
+				/>
+			</Head>
 		<StyledMain>
 			<BackToHome />
 			<StyledSection>
@@ -21,6 +34,7 @@ export default function Impressum() {
 				<Footer />
 			</StyledFooterSection>
 		</StyledMain>
+		</>
 	);
 }
 

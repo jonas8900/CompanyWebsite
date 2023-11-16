@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
 
 export default function ProductCard({
@@ -16,10 +16,11 @@ export default function ProductCard({
 				<StyledRandomImage
 					src={src}
 					alt={alt}
-					width={400}
-					height={225}
+					width={1920}
+					height={1080}
+					sizes="(max-width: 768px) 250px, (max-width: 1024px) 500px, (max-width: 1400px) 1080px"
 					layout="responsive"
-					loading="lazy"
+					rel="preload"
 					unoptimized
 				/>
 			</StyledImageContainer>

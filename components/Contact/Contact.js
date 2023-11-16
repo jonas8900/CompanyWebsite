@@ -5,13 +5,10 @@ import ContactFormular from "./ContactFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 import PhoneIcon from "../Icons/PhoneIcon";
 import MailIcon from "../Icons/MailIcon";
-import Head from "next/head";
-import { Helmet } from "react-helmet";
+
 
 export default function Contact() {
 	const [messageSuccess, setMessageSuccess] = useState(false);
-	const [messageError, setMessageError] = useState(false);
-	const [animationTrigger, setAnimationTrigger] = useState(false);
 	const [submitClicked, setSubmitClicked] = useState(false);
 	const [formularClicked, setFormularClicked] = useState(false);
 	const [capture, setCapture] = useState("");

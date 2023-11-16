@@ -1,4 +1,4 @@
-import { faBars, faSearch, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
@@ -9,7 +9,6 @@ import { Link } from "react-scroll/modules";
 export default function Navigation({ scrollY, device }) {
 	const [menuClicked, setMenuClicked] = useState(false);
 	const [animationDone, setAnimationDone] = useState(false);
-	const [searchClicked, setSearchClicked] = useState(false);
 	function handleChangeMenuButton() {
 		setMenuClicked(!menuClicked);
 		setAnimationDone(!animationDone);
@@ -62,20 +61,6 @@ export default function Navigation({ scrollY, device }) {
 									<StyledListItems $scrolly={scrollY}>Produkte</StyledListItems>
 								</StyledLink>
 							</li>
-							{/* <Link
-								to="about-us"
-								spy={true}
-								smooth={false}
-								offset={-70}
-								duration={350}
-								onClick={handleChangeMenuButton}
-							>
-								<StyledBorderDiv>
-									<StyledListItems $scrolly={scrollY}>
-										Wer wir sind
-									</StyledListItems>
-								</StyledBorderDiv>
-							</Link> */}
 							<li>
 								<StyledLink
 									to="career"

@@ -8,8 +8,7 @@ import Image from "next/image";
 import "react-multi-carousel/lib/styles.css";
 
 import ProductSlideShow from "./ProductSlideShow";
-import Head from "next/head";
-import { Helmet } from "react-helmet";
+
 
 export default function Products({ device }) {
 	const [showProductDetails, setShowProductDetails] = useState(false);

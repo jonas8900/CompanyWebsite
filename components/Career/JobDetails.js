@@ -28,11 +28,11 @@ export default function JobDetails({
 						<StyledInformationCard>
 							<StyledHeadlineAndJobCardSectionWrapper>
 								<StyledHeadlineThird>{headline}</StyledHeadlineThird>
-								<StyledEmployeeArticle>
+								<article>
 									<Greenbutton onClickApply={onClickApply}>
 										Jetzt Bewerben
 									</Greenbutton>
-								</StyledEmployeeArticle>
+								</article>
 							</StyledHeadlineAndJobCardSectionWrapper>
 							<StyledIntroText>{introduction}</StyledIntroText>
 
@@ -88,14 +88,7 @@ const StyledWindow = styled.section`
 		0.4s ease;
 `;
 
-const StyledEmployeeArticle = styled.article`
-	/*
-	position: fixed;
-	bottom: 1rem;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	*/
-`;
+
 
 const StyledHeadlineAndJobCardSectionWrapper = styled.section`
 	display: flex;
