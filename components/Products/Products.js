@@ -42,7 +42,7 @@ export default function Products({ device }) {
 			{device ? (
 				<>
 					<Head>
-						<title>Unsere Produkte</title>
+
 						<meta
 							name="description"
 							content="Entdecken Sie unsere hochwertigen Produkte für Krananlagen. Wir bieten eine breite Palette von Kranen und Zubehör für Ihre Anforderungen."

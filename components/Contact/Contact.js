@@ -80,7 +80,6 @@ export default function Contact() {
 	return (
 		<>
 			<Head>
-				<title>Kontakt</title>
 				<meta
 					name="description"
 					content="Kontaktieren Sie uns für Anfragen zu Krananlagen, Wartungsdienstleistungen und mehr. Unser Team steht Ihnen zur Verfügung!"
