@@ -58,7 +58,6 @@ export default function Home({ scrollY, device, setDevice }) {
 				</StyledSectionForWidth>
 				<Career device={device} scrollY={scrollY} />
 				<Contact />
-
 				<Footer />
 			</StyledMain>
 		</>

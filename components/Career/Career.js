@@ -13,6 +13,7 @@ import Head from "next/head";
 import ApplyFormular from "../ApplyFormular/ApplyFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 
+
 export default function Career({ device }) {
 	const [showMore, setShowMore] = useState(false);
 	const [seeMoreOnSingleJob, setSeeMoreOnSingleJob] = useState(false);
@@ -95,12 +96,7 @@ export default function Career({ device }) {
 
 	return (
 		<>
-			<Head>
-				<meta
-					name="description"
-					content="Entdecken Sie berufliche Möglichkeiten bei Elektromaschinenbau Schulze. Wir bieten Karrierechancen in der Krananlagen-Industrie für engagierte Fachleute. Werden Sie Teil unseres Teams!"
-				/>
-			</Head>
+
 			<StyledMainSection id="career">
 				<CareerPictureAndJob device={device} />
 				<StyledCareerSection>
