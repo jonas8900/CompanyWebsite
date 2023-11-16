@@ -9,6 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import ProductSlideShow from "./ProductSlideShow";
 import Head from "next/head";
+import { Helmet } from "react-helmet";
 
 export default function Products({ device }) {
 	const [showProductDetails, setShowProductDetails] = useState(false);
@@ -41,13 +42,6 @@ export default function Products({ device }) {
 		<>
 			{device ? (
 				<>
-					<Head>
-
-						<meta
-							name="description"
-							content="Entdecken Sie unsere hochwertigen Produkte für Krananlagen. Wir bieten eine breite Palette von Kranen und Zubehör für Ihre Anforderungen."
-						/>
-					</Head>
 					<StyledHeadline id="products">Unsere Produkte</StyledHeadline>
 					<ProductSlideShow
 						handleShowProductDetails={handleShowProductDetails}

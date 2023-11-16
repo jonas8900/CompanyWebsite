@@ -6,6 +6,7 @@ import ToastMessage from "../ToastMessage/ToastMessage";
 import PhoneIcon from "../Icons/PhoneIcon";
 import MailIcon from "../Icons/MailIcon";
 import Head from "next/head";
+import { Helmet } from "react-helmet";
 
 export default function Contact() {
 	const [messageSuccess, setMessageSuccess] = useState(false);
@@ -79,12 +80,6 @@ export default function Contact() {
 
 	return (
 		<>
-			<Head>
-				<meta
-					name="description"
-					content="Kontaktieren Sie uns für Anfragen zu Krananlagen, Wartungsdienstleistungen und mehr. Unser Team steht Ihnen zur Verfügung!"
-				/>
-			</Head>
 			<StyledContactSection id="contact">
 				<StyledHeadlineAndButtonWrapper>
 					<StyledHeadline>Kontakt</StyledHeadline>

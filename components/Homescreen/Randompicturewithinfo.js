@@ -7,6 +7,7 @@ import ContactData from "./ContactData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 import Head from "next/head";
+import { Helmet } from "react-helmet";
 
 export default function Randompicture() {
 	const [counter, setCounter] = useState(0);
@@ -57,12 +58,7 @@ export default function Randompicture() {
 	}
 	return (
 		<>
-			<Head>
-				<meta
-					name="description"
-					content="Wir sind der richtige Ansprechpartner, wenn es um Krananlagen geht! Unser erfahrenes Team bietet umfassende Leistungen wie Wartung, Reparatur und die Erfüllung der UVV-Vorschriften für Ihre Krananlagen. Verlassen Sie sich auf unsere Expertise."
-				/>
-			</Head>
+
 			<StyledWrapper id="introtext">
 				<StyledProgressSection>
 					<StyledProgressDiv1 $counter={counter + 1}></StyledProgressDiv1>
