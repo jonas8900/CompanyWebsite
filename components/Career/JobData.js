@@ -100,7 +100,7 @@ export const JobData = [
 	},
 	{
 		id: "2",
-		jobTitle: "Elektroinker",
+		jobTitle: "Elektroniker",
 		introduction: (
 			<StyledSubHeadline>
 				Wenn du Lust hast auf Abwechslung und eine verantwortungsvolle Aufgabe
@@ -222,7 +222,7 @@ export const JobData = [
 	},
 	{
 		id: "4",
-		jobTitle: "Ausbildung Elektroniker Maschinen- und Antriebstechnik (m/w/d)",
+		jobTitle: "Ausbildung Elektroniker Maschinen- und Antriebstechnik",
 		introduction: (
 			<StyledSubHeadline>
 				Du suchst einen spannenden Einstieg ins Berufsleben? Dann bist du hier
