@@ -114,7 +114,7 @@ export default function Contact() {
 				<StyledMap>
 					<StyledFrame
 						title="Google Maps Karte"
-						src="https://www.google.com/maps/embed?pb=!1m19!1m8!1m3!1d9733.956892292174!2d9.7423785!3d52.4159328!3m2!1i1024!2i768!4f13.1!4m8!3e0!4m0!4m5!1s0x47b07308c9f8b3d1%3A0xcac079d74df9304a!2sElektromaschinenbau%20Schulze%20GmbH%2C%20Alter%20Flughafen%206%2C%2030179%20Hannover!3m2!1d52.415932399999996!2d9.7423229!5e0!3m2!1sde!2sde!4v1696775027478!5m2!1sde!2sde"
+						src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d9733.706148067538!2d9.737020474686359!3d52.41706875254704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x47b07308c9f8b3d1%3A0xcac079d74df9304a!2selektromaschinenbau%20schulze!3m2!1d52.415932399999996!2d9.7423229!5e0!3m2!1sde!2sde!4v1700135741460!5m2!1sde!2sde"
 						width="600"
 						height="450"
 						allowFullScreen=""
