@@ -6,7 +6,6 @@ import ToastMessage from "../ToastMessage/ToastMessage";
 import PhoneIcon from "../Icons/PhoneIcon";
 import MailIcon from "../Icons/MailIcon";
 
-
 export default function Contact() {
 	const [messageSuccess, setMessageSuccess] = useState(false);
 	const [submitClicked, setSubmitClicked] = useState(false);
@@ -90,7 +89,7 @@ export default function Contact() {
 						<p>Hannover</p>
 					</StyledInformations>
 					<StyledInformations>
-						<PhoneIcon href="tel:017626246722">0176 262 46722</PhoneIcon>
+						<PhoneIcon href="tel:051127789680">0511 277896-80</PhoneIcon>
 					</StyledInformations>
 					<StyledInformations>
 						<MailIcon href="mailto:Info@emb-schulze.de">
