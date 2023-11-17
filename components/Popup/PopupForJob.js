@@ -16,8 +16,8 @@ export default function PopupForJob({ animationTrigger, onClick }) {
 				</p>
 				<StyledParagraph>
 					Bei Interesse melden Sie sich bitte telefonisch oder per E-Mail:
-					<StyledAnchorTag href="tel:0351471440">
-						Telefon: 0351/ 471 44 0
+					<StyledAnchorTag href="tel:051127789680">
+						0511 277896-80
 					</StyledAnchorTag>
 					,
 					<StyledAnchorTag href="mailto:Info@emb-schulze.de">
