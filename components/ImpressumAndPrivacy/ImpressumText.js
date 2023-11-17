@@ -22,7 +22,7 @@ export default function ImpressumText() {
 					<p>Amtsgericht Hannover </p>
 					<p>HRB 207493</p>
 					<StyledSecondHeadline>Kontakt</StyledSecondHeadline>
-					<PhoneIcon href="tel:017626246722">0176 262 46722</PhoneIcon>
+					<PhoneIcon href="tel:051127789680">0511 277896-80</PhoneIcon>
 					<MailIcon href="mailto:Info@emb-schulze.de">
 						Info@emb-schulze.de
 					</MailIcon>
