@@ -22,10 +22,11 @@ const StyledLogoSection = styled.section`
 	border-bottom: 4px solid var(--color-fifth);
 	padding: 0.4rem;
 	width: 100%;
-	margin: 1rem auto;
+	margin: 2rem auto;
 	display: grid;
 	grid-template-columns: 1fr 2fr 1fr;
 	text-align: center;
+	background-color: white;
 	align-items: center;
 	@media (min-width: 768px) {
 		padding: 0.7rem;

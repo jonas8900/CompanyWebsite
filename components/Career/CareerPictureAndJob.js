@@ -11,6 +11,8 @@ import ArrowLeft from "../Icons/ArrowLeft";
 import ArrowRight from "../Icons/ArrowRight";
 import ApplyFormular from "../ApplyFormular/ApplyFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
+import useSWR from "swr";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 export default function CareerPictureAndJob({ scrollY }) {
 	const [seeMoreClicked, setSeeMoreClicked] = useState(false);
@@ -20,6 +22,9 @@ export default function CareerPictureAndJob({ scrollY }) {
 	const [submitClicked, setSubmitClicked] = useState(false);
 	const [messageSuccess, setMessageSuccess] = useState(false);
 	const [capture, setCapture] = useState("");
+	const { data, isLoading } = useSWR("api/getJobData", {
+		fallbackData: JobData,
+	});
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -31,9 +36,17 @@ export default function CareerPictureAndJob({ scrollY }) {
 		}
 	}, [seeMoreClicked, applyWindow]);
 
+	if (isLoading) {
+		return <FontAwesomeIcon icon={faSpinner} spinPulse />;
+	}
+
 	function handleSeeMoreButton(id) {
 		setSeeMoreClicked(!seeMoreClicked);
-		setActiveJob(Number(id) - 1);
+
+		const foundJob = data.find((job) => job._id === id);
+		{
+			setActiveJob(foundJob);
+		}
 	}
 
 	function handleJobApply() {
@@ -131,14 +144,15 @@ export default function CareerPictureAndJob({ scrollY }) {
 							customLeftArrow={<ArrowLeft />}
 							customRightArrow={<ArrowRight />}
 						>
-							{JobData.map((job) => (
-								<StyledDiv key={job.id}>
+							{data.map((job, index) => (
+								<StyledDiv key={index}>
 									<JobCard
+										key={job._id}
 										headline={"Wir suchen Verstärkung!"}
 										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 										qualification={job.qualification}
 										jobtitle={job.jobTitle}
-										onClick={() => handleSeeMoreButton(job.id)}
+										onClick={() => handleSeeMoreButton(job._id)}
 										aria-label={job.jobTitle}
 									>
 										Mehr Erfahren ...
@@ -153,11 +167,11 @@ export default function CareerPictureAndJob({ scrollY }) {
 						<JobDetails
 							animationTrigger={animationToggle}
 							onClick={handleClose}
-							headline={JobData[activejob].jobTitle}
-							introduction={JobData[activejob].introduction}
-							ourOffer={JobData[activejob].whatWeOffer}
-							tasks={JobData[activejob].tasks}
-							qualification={JobData[activejob].qualification}
+							headline={activejob.jobTitle}
+							introduction={activejob.introduction}
+							ourOffer={activejob.whatWeOffer}
+							tasks={activejob.tasks}
+							qualification={activejob.qualification}
 							clickHandler={() => handleClose()}
 							onClickApply={handleJobApply}
 						/>
@@ -166,7 +180,7 @@ export default function CareerPictureAndJob({ scrollY }) {
 				{applyWindow && (
 					<>
 						<ApplyFormular
-							Jobtitle={JobData[activejob].jobTitle}
+							Jobtitle={activejob.jobTitle}
 							onClick={handleClose}
 							animationTrigger={animationToggle}
 							onSubmit={handleSubmitFormular}

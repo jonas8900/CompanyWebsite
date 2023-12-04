@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 import GlobalStyle from "../styles";
 import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react";
+import { SessionProvider } from "next-auth/react";
+import { SWRConfig } from "swr/_internal";
 
-export default function App({ Component, pageProps }) {
+const fetcher = (url) => fetch(url).then((response) => response.json());
+
+export default function App({ Component, pageProps, session }) {
 	const [scrollY, setScrollY] = useState(0);
 	const [device, setDevice] = useState("");
 
@@ -52,13 +56,20 @@ export default function App({ Component, pageProps }) {
 					href="https://www.elektromaschinenbau-schulze.de/"
 				/>
 			</Head>
-			<Component
-				{...pageProps}
-				scrollY={scrollY}
-				device={device}
-				setDevice={setDevice}
-			/>
+			<SWRConfig value={{ fetcher }}>
+				<SessionProvider session={session}>
+					<Component
+						{...pageProps}
+						scrollY={scrollY}
+						device={device}
+						setDevice={setDevice}
+					/>
+				</SessionProvider>
+			</SWRConfig>
 			<Analytics />
 		</>
 	);
 }
+
+
+

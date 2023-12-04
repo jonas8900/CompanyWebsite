@@ -6,8 +6,6 @@ import WindowCard from "../WindowCards/WindowCard";
 import ContactData from "./ContactData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
-import Head from "next/head";
-import { Helmet } from "react-helmet";
 
 export default function Randompicture() {
 	const [counter, setCounter] = useState(0);
@@ -50,10 +48,10 @@ export default function Randompicture() {
 		return () => clearInterval(timeOutForCount);
 	}, []);
 
-	async function handleClickLeftButtonToChangePicture() {
+	function handleClickLeftButtonToChangePicture() {
 		setCounter((counter - 1 + 5) % 5);
 	}
-	async function handleClickRightButtonToChangePicture() {
+	function handleClickRightButtonToChangePicture() {
 		setCounter((counter + 1) % 5);
 	}
 	return (

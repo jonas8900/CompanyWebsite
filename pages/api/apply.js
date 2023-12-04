@@ -4,7 +4,6 @@ import multiparty from "multiparty";
 export default async function handler(req, res) {
 	if (req.method === "POST") {
 		const form = new multiparty.Form({ maxFilesSize: 10 * 1024 * 1024 });
-		console.log("yes");
 		const data = await new Promise((resolve, reject) => {
 			form.parse(req, function (err, fields, files) {
 				if (err) reject({ err });

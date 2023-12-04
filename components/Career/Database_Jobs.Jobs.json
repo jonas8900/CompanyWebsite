@@ -1,0 +1,140 @@
+[{
+  "_id": {
+    "$oid": "655f3d4801524aa6216cac7a"
+  },
+  "jobTitle": "Technischer Einkäufer",
+  "introduction": "Derzeit suchen wir einen engagierten Einkäufer (m/w/d) in Vollzeit. Als Einkäufer in unserem Team spielst du eine entscheidende Rolle und trägst dazu bei, unsere Prozesse und Abläufe zu optimieren.",
+  "whatWeOffer": [
+    "Eine anspruchsvolle und abwechslungsreiche Tätigkeit als Einkäufer (m/w/d) mit großem gestalterischem Freiraum.",
+    "Vielseitige Perspektiven durch regelmäßige Weiterbildungsangebote und technische Schulungen.",
+    "Attraktive Vergütung, 30 Tage Urlaub im Jahr und viele Sozialleistungen.",
+    "Du wirst Teil eines offenen und dynamischen Teams mit flachen Hierarchien und kurzen Entscheidungswegen.",
+    "Durch unser Unternehmenswachstum bieten wir hervorragende Aufstiegschancen und die Möglichkeit, deine Karriere bei uns voranzutreiben."
+  ],
+  "tasks": [
+    "Du bist verantwortlich für die termingerechte, kostenbewusste und qualitätsorientierte Beschaffung von lagergeführten und projektbezogenen Waren und Dienstleistungen.",
+    "Dies beinhaltet die Einholung und Auswertung von Angeboten sowie die Abwicklung von Bestellungen, von der Prüfung der Auftragsbestätigung bis zur kontinuierlichen Stammdatenpflege und Bestandskontrolle.",
+    "Du überwachst die Liefertermine, Kosten und Qualitätsvorgaben, führst Marktbeobachtungen durch und ermittelst Kostensenkungspotenziale.",
+    "Verhandlungen von Rahmenverträgen und Lieferkonditionen sowie die Auswahl und Bewertung von Lieferanten gehören zu deinen Aufgaben. Zudem pflegst du die Lieferantenbeziehungen und optimierst die Beschaffungsprozesse.",
+    "Du arbeitest eng mit den relevanten Fachabteilungen zusammen, insbesondere mit Konstruktion und Technik."
+  ],
+  "qualification": [
+    "Du verfügst über eine abgeschlossene technische Ausbildung oder alternativ über eine kaufmännische Ausbildung mit einer technischen Zusatzqualifikation.",
+    "Mehrjährige Berufserfahrung in einer vergleichbaren Position und nachgewiesene Erfolge sind von Vorteil.",
+    "Du zeichnest dich durch ein hohes technisches Verständnis, analytische Fähigkeiten, Zuverlässigkeit und Qualitätsorientierung aus.",
+    "Der sichere Umgang mit MS Office Produkten und ERP-Systemen ist für dich selbstverständlich.",
+    "Du bist teamorientiert und ergreifst gerne selbst die Initiative."
+  ]
+},
+{
+  "_id": {
+    "$oid": "655f3d4801524aa6216cac7b"
+  },
+  "jobTitle": "Elektroniker",
+  "introduction": "Wenn du Lust hast auf Abwechslung und eine verantwortungsvolle Aufgabe in einem hochmotivierten Team hast, dann bist du bei uns genau richtig.",
+  "whatWeOffer": [
+    "Unbefristete Festanstellung mit attraktiver Vergütung und 30 Tagen Urlaub im Jahr",
+    "Abwechslungsreiche Tätigkeit",
+    "Moderne, gut ausgestattete Werkstatt",
+    "Nettes, hochmotiviertes Team",
+    "Vielseitige Perspektiven durch regelmäßige Weiterbildungsangebote und technische Schulungen",
+    "Hochwertige Arbeitskleidung"
+  ],
+  "tasks": [
+    "Systematische Fehlersuche und Durchführung von Reparatur-, Service- und Wartungsarbeiten vor Ort beim Kunden und in unserer Werkstatt",
+    "Wiederkehrende Prüfungen von Krananlagen, Elektromotoren, etc.",
+    "Montagearbeiten",
+    "Notdienstreparaturen"
+  ],
+  "qualification": [
+    "Abgeschlossene Berufsausbildung in einem der oben genannten Berufe oder alternativ eine Ausbildung in einem technischen Bereich (z.B. Elektroinstallateur, Elektromaschinenbauer, Maschinenbau)",
+    "Technisches Verständnis und handwerkliches Geschick",
+    "Interesse am Aufspüren und gewissenhaften Beseitigen von Fehlern",
+    "Aufgeschlossenheit gegenüber neuen Aufgaben",
+    "Kommunikationsfähigkeit",
+    "Verlässlichkeit, Teamgeist, Gründlichkeit und Leistungsbereitschaft",
+    "Höhensicherheit",
+    "Fahrbereitschaft und Führerschein Klasse B",
+    "Gabelstaplerführerschein, Hubarbeitsbühnenschein (kann bei uns erworben werden)"
+  ]
+},
+{
+  "_id": {
+    "$oid": "655f3d4801524aa6216cac7c"
+  },
+  "jobTitle": "Mechatroniker",
+  "introduction": "Wenn du Lust hast auf Abwechslung und eine verantwortungsvolle Aufgabe in einem hochmotivierten Team hast, dann bist du bei uns genau richtig.",
+  "whatWeOffer": [
+    "Unbefristete Festanstellung mit attraktiver Vergütung und 30 Tagen Urlaub im Jahr",
+    "Abwechslungsreiche Tätigkeit",
+    "Moderne, gut ausgestattete Werkstatt",
+    "Nettes, hochmotiviertes Team",
+    "Vielseitige Perspektiven durch regelmäßige Weiterbildungsangebote und technische Schulungen",
+    "Hochwertige Arbeitskleidung"
+  ],
+  "tasks": [
+    "Systematische Fehlersuche und Durchführung von Reparatur-, Service- und Wartungsarbeiten vor Ort beim Kunden und in unserer Werkstatt",
+    "Wiederkehrende Prüfungen von Krananlagen, Elektromotoren, etc.",
+    "Montagearbeiten",
+    "Notdienstreparaturen"
+  ],
+  "qualification": [
+    "Abgeschlossene Berufsausbildung in einem der oben genannten Berufe oder alternativ eine Ausbildung in einem technischen Bereich (z.B. Elektroinstallateur, Elektromaschinenbauer, Maschinenbau)",
+    "Technisches Verständnis und handwerkliches Geschick",
+    "Interesse am Aufspüren und gewissenhaften Beseitigen von Fehlern",
+    "Aufgeschlossenheit gegenüber neuen Aufgaben",
+    "Kommunikationsfähigkeit",
+    "Verlässlichkeit, Teamgeist, Gründlichkeit und Leistungsbereitschaft",
+    "Höhensicherheit",
+    "Fahrbereitschaft und Führerschein Klasse B",
+    "Gabelstaplerführerschein, Hubarbeitsbühnenschein (kann bei uns erworben werden)"
+  ]
+},
+{
+  "_id": {
+    "$oid": "655f3d4801524aa6216cac7d"
+  },
+  "jobTitle": "Ausbildung Elektroniker Maschinen- und Antriebstechnik",
+  "introduction": "Du suchst einen spannenden Einstieg ins Berufsleben? Dann bist du hier genau richtig! Wir bieten dir die Möglichkeit einer erstklassigen Ausbildung zum Elektroniker für Maschinen und Antriebstechnik (m/w/d).",
+  "whatWeOffer": [
+    "Eine fundierte Ausbildung in einem expandierenden Unternehmen.",
+    "Einblick in verschiedene Bereiche der Elektrotechnik.",
+    "Ein motiviertes Team, das dich unterstützt.",
+    "Vielfältige Perspektiven nach erfolgreichem Abschluss deiner Ausbildung.",
+    "Attraktive Vergütung und 30 Tage Urlaub im Jahr."
+  ],
+  "tasks": [
+    "Montage, Reparatur und Wartung: Du erhältst Einblicke in die faszinierende Welt der Krananlagen und Elektromotoren – von der Montage über Reparaturen bis zur regelmäßigen Wartung.",
+    "Elektroinstallation und Steuerungsbau: Wir vermitteln dir fundierte Kenntnisse in Elektroinstallation und Steuerungsbau, um ein umfassendes Verständnis für deine Aufgaben zu entwickeln.",
+    "Spannende Projekte: In abwechslungsreichen Projekten lernst du, eigenverantwortlich zu arbeiten und deine Fähigkeiten optimal einzusetzen.",
+    "Expertenstatus: Du wirst zum Experten in Sachen Maschinen und Antriebstechnik ausgebildet, um optimal auf die Herausforderungen der Branche vorbereitet zu sein."
+  ],
+  "qualification": [
+    "Mindestens einen guten Hauptschulabschluss oder einen höheren Schulabschluss.",
+    "Interesse an Technik und Elektronik.",
+    "Handwerkliches Geschick und technisches Verständnis.",
+    "Zuverlässigkeit, Teamgeist und Lernbereitschaft."
+  ]
+},
+{
+  "_id": {
+    "$oid": "655f3d4801524aa6216cac7e"
+  },
+  "jobTitle": "Initiativbewerbung",
+  "introduction": "Du bist auf der Suche nach einer neuen beruflichen Herausforderung und findest keine passende Stellenausschreibung? Kein Problem! Wir sind immer offen für motivierte und talentierte Menschen, die unser Team verstärken möchten. Wenn du dich in einem spannenden Umfeld entfalten möchtest, Spaß an technischen Herausforderungen hast und deine Fähigkeiten in einem wachsenden Unternehmen einbringen möchtest, dann sollten wir uns kennenlernen. Unsere Tätigkeitsbereiche umfassen individuelle Lösungen im Kranbau, von der Planung über Montage bis zur Wartung von Krananlagen und Elektromotoren.",
+  "whatWeOffer": [
+    "Ein innovatives und wachsendes Unternehmen.",
+    "Abwechslungsreiche Aufgaben und Projekte.",
+    "Ein motiviertes Team, das Zusammenarbeit schätzt.",
+    "Raum für persönliche und berufliche Entwicklung.",
+    "Die Möglichkeit, aktiv an der Gestaltung und Optimierung von Prozessen teilzunehmen."
+  ],
+  "tasks": [
+    "Bewirb dich jetzt initiativ bei uns und zeig uns, warum du perfekt zu unserem Team passt!"
+  ],
+  "qualification": [
+    "Technisches Verständnis und handwerkliches Geschick sind für dich selbstverständlich.",
+    "Eigeninitiative und Teamgeist zeichnen dich aus.",
+    "Du bist motiviert, neue Herausforderungen anzunehmen und in einem dynamischen Umfeld zu arbeiten."
+  ]
+}]

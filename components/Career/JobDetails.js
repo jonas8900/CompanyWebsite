@@ -3,6 +3,7 @@ import Greenbutton from "../Buttons/GreenButton";
 import OutsideClickHandler from "react-outside-click-handler";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { JobData } from "./JobData";
 
 export default function JobDetails({
 	headline,
@@ -15,6 +16,8 @@ export default function JobDetails({
 	qualification,
 	onClickApply,
 }) {
+
+
 	return (
 		<>
 			<StyledWindow $animationtrigger={animationTrigger}>
@@ -39,15 +42,27 @@ export default function JobDetails({
 							<article>
 								<div>
 									<StyledHeadlineFourth>Unser Angebot</StyledHeadlineFourth>
-									<div>{ourOffer}</div>
+									<ul>
+										{ourOffer.map((offer) => (
+											<li key={offer}>{offer}</li>
+										))}
+									</ul>
 								</div>
 								<div>
 									<StyledHeadlineFourth>Deine Aufgaben</StyledHeadlineFourth>
-									<div>{tasks}</div>
+									<ul>
+										{tasks.map((task) => (
+											<li key={task}>{task}</li>
+										))}
+									</ul>
 								</div>
 								<div>
 									<StyledHeadlineFourth>Dein Profil</StyledHeadlineFourth>
-									<div>{qualification}</div>
+									<ul>
+										{qualification.map((experience) => (
+											<li key={experience}>{experience}</li>
+										))}
+									</ul>
 								</div>
 							</article>
 						</StyledInformationCard>
@@ -88,8 +103,6 @@ const StyledWindow = styled.section`
 		0.4s ease;
 `;
 
-
-
 const StyledHeadlineAndJobCardSectionWrapper = styled.section`
 	display: flex;
 	align-items: center;
@@ -127,8 +140,11 @@ const StyledIcon = styled(FontAwesomeIcon)`
 
 const StyledIntroText = styled.h4`
 	font-size: var(--font-size-text);
-	font-weight: 400;
-	color: black;
+	color: var(--color-fourth);
+	padding-left: 10%;
+	padding-right: 10%;
+	font-weight: bold;
+	margin-bottom: 5%;
 `;
 
 const StyledInformationCard = styled.article`
@@ -163,6 +179,7 @@ const StyledHeadlineThird = styled.h3`
 	text-decoration-color: var(--color-primary);
 	color: var(--color-fourth);
 	text-align: center;
+	font-weight: bold;
 `;
 
 const StyledHeadlineFourth = styled.h4`
