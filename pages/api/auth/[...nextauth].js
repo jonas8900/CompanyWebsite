@@ -16,9 +16,10 @@ export default NextAuth({
 			},
 		}),
 	],
+
 	callbacks: {
 		async signIn(user, account, profile) {
-			if (user.email === process.env.ALLOWED_ADMIN_EMAIL) {
+			if (user.profile.email == process.env.ALLOWED_ADMIN_EMAIL) {
 				return true;
 			} else {
 				return false;

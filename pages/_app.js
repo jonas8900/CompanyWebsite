@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
 import { SWRConfig } from "swr/_internal";
+import Link from "next/link";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
@@ -55,6 +56,7 @@ export default function App({ Component, pageProps, session }) {
 					rel="canonical"
 					href="https://www.elektromaschinenbau-schulze.de/"
 				/>
+				<link rel="icon" href="/favicon.jpg" />
 			</Head>
 			<SWRConfig value={{ fetcher }}>
 				<SessionProvider session={session}>
@@ -70,6 +72,3 @@ export default function App({ Component, pageProps, session }) {
 		</>
 	);
 }
-
-
-

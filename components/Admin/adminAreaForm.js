@@ -12,6 +12,7 @@ import {
 import React, { useEffect, useState } from "react";
 import Greenbutton from "../Buttons/GreenButton";
 import { Link } from "react-scroll/modules";
+import { useSession } from "next-auth/react";
 
 export default function AdminAreaForm() {
 	const [openAddForm, setOpenAddForm] = useState(false);
@@ -20,6 +21,7 @@ export default function AdminAreaForm() {
 	const [whatWeOffer, setWhatWeOffer] = useState([``]);
 	const [openEditForm, setOpenEditForm] = useState(false);
 	const [currentEditJobId, setCurrentEditJobId] = useState("");
+	const { data: session } = useSession();
 	const { data, isLoading } = useSWR("api/getJobData", {
 		fallbackData: JobData,
 	});
@@ -108,16 +110,22 @@ export default function AdminAreaForm() {
 	function handleAddInput(focusedInput) {
 		if (focusedInput === qualifications) {
 			setQualifications([...qualifications, ``]);
-			const qualificationOfFilteredJob = filteredJob.qualification;
-			qualificationOfFilteredJob.push(``);
+			if (filteredJob !== undefined) {
+				const qualificationOfFilteredJob = filteredJob.qualification;
+				qualificationOfFilteredJob.push(``);
+			}
 		} else if (focusedInput === tasks) {
 			setTasks([...tasks, ``]);
-			const tasksOfFilteredJob = filteredJob.tasks;
-			tasksOfFilteredJob.push(``);
+			if (filteredJob !== undefined) {
+				const tasksOfFilteredJob = filteredJob.tasks;
+				tasksOfFilteredJob.push(``);
+			}
 		} else if (focusedInput === whatWeOffer) {
 			setWhatWeOffer([...whatWeOffer, ``]);
-			const whatWeOfferOfFilteredJob = filteredJob.whatWeOffer;
-			whatWeOfferOfFilteredJob.push(``);
+			if (filteredJob !== undefined) {
+				const whatWeOfferOfFilteredJob = filteredJob.whatWeOffer;
+				whatWeOfferOfFilteredJob.push(``);
+			}
 		} else {
 			alert("Error");
 		}
@@ -127,18 +135,24 @@ export default function AdminAreaForm() {
 		if (focusedInput === qualifications) {
 			qualifications.pop();
 			setQualifications([...qualifications]);
-			const qualificationOfFilteredJob = filteredJob.qualification;
-			qualificationOfFilteredJob.pop();
+			if (filteredJob !== undefined) {
+				const qualificationOfFilteredJob = filteredJob.qualification;
+				qualificationOfFilteredJob.pop();
+			}
 		} else if (focusedInput === tasks) {
 			tasks.pop();
 			setTasks([...tasks]);
-			const tasksOfFilteredJob = filteredJob.tasks;
-			tasksOfFilteredJob.pop();
+			if (filteredJob !== undefined) {
+				const tasksOfFilteredJob = filteredJob.tasks;
+				tasksOfFilteredJob.pop();
+			}
 		} else if (focusedInput === whatWeOffer) {
 			whatWeOffer.pop();
 			setWhatWeOffer([...whatWeOffer]);
-			const whatWeOfferOfFilteredJob = filteredJob.whatWeOffer;
-			whatWeOfferOfFilteredJob.pop();
+			if (filteredJob !== undefined) {
+				const whatWeOfferOfFilteredJob = filteredJob.whatWeOffer;
+				whatWeOfferOfFilteredJob.pop();
+			}
 		} else {
 			alert("Error");
 		}
@@ -192,261 +206,283 @@ export default function AdminAreaForm() {
 
 	return (
 		<StyledMain>
-			<StyledHeadlineSection>
-				<StyledHeadline>Admin Area</StyledHeadline>
-				<StyledParagraph>Willkommen im Admin Bereich</StyledParagraph>
-				<StyledParagraph>
-					Hier können Sie Jobs entfernen, ändern oder hinzufügen
-				</StyledParagraph>
-			</StyledHeadlineSection>
-			<StyledAddFormSection>
-				<StyledSubHeadline>Neuen Job hinzufügen</StyledSubHeadline>
-				{openAddForm ? (
-					<StyledAddForm onSubmit={handleSubmitToAddJob}>
-						<StyledExitIcon
-							icon={faCircleXmark}
-							onClick={handleOpenFormToAddJob}
-						/>
-						<StyledLabelAndInput>
-							<label htmlFor="jobTitle">Job Titel</label>
-							<StyledInput type="text" id="jobTitle" name="jobTitle" required />
-						</StyledLabelAndInput>
-						<StyledLabelAndInput>
-							<label htmlFor="introduction">Introtext</label>
-							<StyledInput
-								type="text"
-								id="introduction"
-								name="introduction"
-								required
-							/>
-						</StyledLabelAndInput>
+			{session ? (
+				<>
+					<StyledHeadlineSection>
+						<StyledHeadline>Admin Area</StyledHeadline>
+						<StyledParagraph>Willkommen im Admin Bereich</StyledParagraph>
+						<StyledParagraph>
+							Hier können Sie Jobs entfernen, ändern oder hinzufügen
+						</StyledParagraph>
+					</StyledHeadlineSection>
+					<StyledAddFormSection>
+						<StyledSubHeadline>Neuen Job hinzufügen</StyledSubHeadline>
+						{openAddForm ? (
+							<StyledAddForm onSubmit={handleSubmitToAddJob}>
+								<StyledExitIcon
+									icon={faCircleXmark}
+									onClick={handleOpenFormToAddJob}
+								/>
+								<StyledLabelAndInput>
+									<label htmlFor="jobTitle">Job Titel</label>
+									<StyledInput
+										type="text"
+										id="jobTitle"
+										name="jobTitle"
+										required
+									/>
+								</StyledLabelAndInput>
+								<StyledLabelAndInput>
+									<label htmlFor="introduction">Introtext</label>
+									<StyledInput
+										type="text"
+										id="introduction"
+										name="introduction"
+										required
+									/>
+								</StyledLabelAndInput>
 
-						<label htmlFor="qualification">Qualifikationen</label>
-						{qualifications.map((qualification, index) => (
-							<StyledInput
-								key={index}
-								type="text"
-								id={`qualification${index}`}
-								name={`qualification${index}`}
-								required
-							/>
-						))}
+								<label htmlFor="qualification">Qualifikationen</label>
+								{qualifications.map((qualification, index) => (
+									<StyledInput
+										key={index}
+										type="text"
+										id={`qualification${index}`}
+										name={`qualification${index}`}
+										required
+									/>
+								))}
 
-						<StyledButtonSection>
-							<StyledAddNewInputIcon
+								<StyledButtonSection>
+									<StyledAddNewInputIcon
+										icon={faSquarePlus}
+										onClick={() => handleAddInput(qualifications)}
+									/>
+									{qualifications.length > 1 && (
+										<StyledDeleteNewInputIcon
+											icon={faSquareMinus}
+											onClick={() => handleDeleteInput(qualifications)}
+										/>
+									)}
+								</StyledButtonSection>
+								<label htmlFor="tasks">Aufgaben</label>
+								{tasks.map((task, index) => (
+									<StyledInput
+										key={index}
+										type="text"
+										id={`task${index}`}
+										name={`task${index}`}
+										required
+									/>
+								))}
+								<StyledButtonSection>
+									<StyledAddNewInputIcon
+										icon={faSquarePlus}
+										onClick={() => handleAddInput(tasks)}
+									/>
+									{tasks.length > 1 && (
+										<StyledDeleteNewInputIcon
+											icon={faSquareMinus}
+											onClick={() => handleDeleteInput(tasks)}
+										/>
+									)}
+								</StyledButtonSection>
+								<label htmlFor="whatWeOffer">Was wir bieten</label>
+
+								{whatWeOffer.map((offer, index) => (
+									<StyledInput
+										key={index}
+										type="text"
+										id={`offer${index}`}
+										name={`offer${index}`}
+										required
+									/>
+								))}
+								<StyledButtonSection>
+									<StyledAddNewInputIcon
+										icon={faSquarePlus}
+										onClick={() => handleAddInput(whatWeOffer)}
+									/>
+									{whatWeOffer.length > 1 && (
+										<StyledDeleteNewInputIcon
+											icon={faSquareMinus}
+											onClick={() => handleDeleteInput(whatWeOffer)}
+										/>
+									)}
+								</StyledButtonSection>
+								<StyledAddJobButtonSection>
+									<Greenbutton margin={-2} type="submit">
+										Job hinzufügen
+									</Greenbutton>
+								</StyledAddJobButtonSection>
+							</StyledAddForm>
+						) : (
+							<StyledPlusIcon
 								icon={faSquarePlus}
-								onClick={() => handleAddInput(qualifications)}
+								onClick={handleOpenFormToAddJob}
 							/>
-							{qualifications.length > 1 && (
-								<StyledDeleteNewInputIcon
-									icon={faSquareMinus}
-									onClick={() => handleDeleteInput(qualifications)}
-								/>
-							)}
-						</StyledButtonSection>
-						<label htmlFor="tasks">Aufgaben</label>
-						{tasks.map((task, index) => (
-							<StyledInput
-								key={index}
-								type="text"
-								id={`task${index}`}
-								name={`task${index}`}
-								required
-							/>
-						))}
-						<StyledButtonSection>
-							<StyledAddNewInputIcon
-								icon={faSquarePlus}
-								onClick={() => handleAddInput(tasks)}
-							/>
-							{tasks.length > 1 && (
-								<StyledDeleteNewInputIcon
-									icon={faSquareMinus}
-									onClick={() => handleDeleteInput(tasks)}
-								/>
-							)}
-						</StyledButtonSection>
-						<label htmlFor="whatWeOffer">Was wir bieten</label>
+						)}
+					</StyledAddFormSection>
+					<StyledJobSection>
+						<StyledSubHeadline id="jobheadline">
+							Aktuelle Jobs
+						</StyledSubHeadline>
+						{openEditForm && (
+							<StyledAddForm onSubmit={handleSubmitToEditJob}>
+								<Link to="jobheadline" smooth={true} duration={500}>
+									<StyledExitIcon
+										icon={faCircleXmark}
+										onClick={handleOpenFormToEditJob}
+									/>
+								</Link>
+								{data
+									.filter((job) => job._id === currentEditJobId)
+									.map((filteredJob) => (
+										<>
+											<StyledLabelAndInput>
+												<label htmlFor="jobTitle">Job Titel</label>
+												<StyledInput
+													type="text"
+													id="jobTitle"
+													name="jobTitle"
+													defaultValue={filteredJob.jobTitle}
+													required
+												/>
+											</StyledLabelAndInput>
+											<StyledLabelAndInput>
+												<label htmlFor="introduction">Introtext</label>
+												<StyledTextArea
+													type="textarea"
+													cols="60"
+													rows="5"
+													id="introduction"
+													name="introduction"
+													defaultValue={filteredJob.introduction}
+													required
+												/>
+											</StyledLabelAndInput>
 
-						{whatWeOffer.map((offer, index) => (
-							<StyledInput
-								key={index}
-								type="text"
-								id={`offer${index}`}
-								name={`offer${index}`}
-								required
-							/>
-						))}
-						<StyledButtonSection>
-							<StyledAddNewInputIcon
-								icon={faSquarePlus}
-								onClick={() => handleAddInput(whatWeOffer)}
-							/>
-							{whatWeOffer.length > 1 && (
-								<StyledDeleteNewInputIcon
-									icon={faSquareMinus}
-									onClick={() => handleDeleteInput(whatWeOffer)}
-								/>
-							)}
-						</StyledButtonSection>
-						<StyledAddJobButtonSection>
-							<Greenbutton margin={-2} type="submit">
-								Job hinzufügen
-							</Greenbutton>
-						</StyledAddJobButtonSection>
-					</StyledAddForm>
-				) : (
-					<StyledPlusIcon
-						icon={faSquarePlus}
-						onClick={handleOpenFormToAddJob}
-					/>
-				)}
-			</StyledAddFormSection>
-			<StyledJobSection>
-				<StyledSubHeadline id="jobheadline">Aktuelle Jobs</StyledSubHeadline>
-				{openEditForm && (
-					<StyledAddForm onSubmit={handleSubmitToEditJob}>
-						<Link to="jobheadline" smooth={true} duration={500}>
-							<StyledExitIcon
-								icon={faCircleXmark}
-								onClick={handleOpenFormToEditJob}
-							/>
-						</Link>
-						{data
-							.filter((job) => job._id === currentEditJobId)
-							.map((filteredJob) => (
-								<>
-									{/* {console.log(filteredJob)} */}
-									<StyledLabelAndInput>
-										<label htmlFor="jobTitle">Job Titel</label>
-										<StyledInput
-											type="text"
-											id="jobTitle"
-											name="jobTitle"
-											defaultValue={filteredJob.jobTitle}
-											required
-										/>
-									</StyledLabelAndInput>
-									<StyledLabelAndInput>
-										<label htmlFor="introduction">Introtext</label>
-										<StyledTextArea
-											type="textarea"
-											cols="60"
-											rows="5"
-											id="introduction"
-											name="introduction"
-											defaultValue={filteredJob.introduction}
-											required
-										/>
-									</StyledLabelAndInput>
+											<label htmlFor="qualification">Qualifikationen</label>
+											{filteredJob.qualification.map((qualification, index) => (
+												<StyledInput
+													key={index}
+													type="text"
+													id={`qualification${index}`}
+													name={`qualification${index}`}
+													defaultValue={qualification}
+													required
+												/>
+											))}
+											<StyledButtonSection>
+												<StyledAddNewInputIcon
+													icon={faSquarePlus}
+													onClick={() => handleAddInput(qualifications)}
+												/>
+												{filteredJob.qualification.length > 1 && (
+													<StyledDeleteNewInputIcon
+														icon={faSquareMinus}
+														onClick={() => handleDeleteInput(qualifications)}
+													/>
+												)}
+											</StyledButtonSection>
+											<label htmlFor="tasks">Aufgaben</label>
+											{filteredJob.tasks.map((task, index) => (
+												<StyledInput
+													key={index}
+													type="text"
+													id={`task${index}`}
+													name={`task${index}`}
+													defaultValue={task}
+													required
+												/>
+											))}
+											<StyledButtonSection>
+												<StyledAddNewInputIcon
+													icon={faSquarePlus}
+													onClick={() => handleAddInput(tasks)}
+												/>
+												{filteredJob.tasks.length > 1 && (
+													<StyledDeleteNewInputIcon
+														icon={faSquareMinus}
+														onClick={() => handleDeleteInput(tasks)}
+													/>
+												)}
+											</StyledButtonSection>
+											<label htmlFor="whatWeOffer">Was wir bieten</label>
 
-									<label htmlFor="qualification">Qualifikationen</label>
-									{filteredJob.qualification.map((qualification, index) => (
-										<StyledInput
-											key={index}
-											type="text"
-											id={`qualification${index}`}
-											name={`qualification${index}`}
-											defaultValue={qualification}
-											required
-										/>
+											{filteredJob.whatWeOffer.map((offer, index) => (
+												<StyledInput
+													key={index}
+													type="text"
+													id={`offer${index}`}
+													name={`offer${index}`}
+													defaultValue={offer}
+													required
+												/>
+											))}
+											<StyledButtonSection>
+												<StyledAddNewInputIcon
+													icon={faSquarePlus}
+													onClick={() => handleAddInput(whatWeOffer)}
+												/>
+												{filteredJob.whatWeOffer.length > 1 && (
+													<StyledDeleteNewInputIcon
+														icon={faSquareMinus}
+														onClick={() => handleDeleteInput(whatWeOffer)}
+													/>
+												)}
+											</StyledButtonSection>
+										</>
 									))}
-									<StyledButtonSection>
-										<StyledAddNewInputIcon
-											icon={faSquarePlus}
-											onClick={() => handleAddInput(qualifications)}
+								<StyledAddJobButtonSection>
+									<Greenbutton margin={-2} type="submit">
+										Job ändern
+									</Greenbutton>
+								</StyledAddJobButtonSection>
+							</StyledAddForm>
+						)}
+						{openEditForm
+							? data
+									.filter((job) => job._id !== currentEditJobId)
+									.map((job) => (
+										<JobInformationCardForAdmin
+											key={job._id}
+											infoText={job.introduction}
+											jobtitle={job.jobTitle}
+											qualificationText={job.qualification}
+											taskText={job.tasks}
+											ourOfferText={job.whatWeOffer}
+											onClickOnDeleteIcon={() => handleDeleteFunction(job._id)}
+											onClickEditIcon={() => handleOpenFormToEditJob(job._id)}
 										/>
-										{filteredJob.qualification.length > 1 && (
-											<StyledDeleteNewInputIcon
-												icon={faSquareMinus}
-												onClick={() => handleDeleteInput(qualifications)}
-											/>
-										)}
-									</StyledButtonSection>
-									<label htmlFor="tasks">Aufgaben</label>
-									{filteredJob.tasks.map((task, index) => (
-										<StyledInput
-											key={index}
-											type="text"
-											id={`task${index}`}
-											name={`task${index}`}
-											defaultValue={task}
-											required
-										/>
-									))}
-									<StyledButtonSection>
-										<StyledAddNewInputIcon
-											icon={faSquarePlus}
-											onClick={() => handleAddInput(tasks)}
-										/>
-										{filteredJob.tasks.length > 1 && (
-											<StyledDeleteNewInputIcon
-												icon={faSquareMinus}
-												onClick={() => handleDeleteInput(tasks)}
-											/>
-										)}
-									</StyledButtonSection>
-									<label htmlFor="whatWeOffer">Was wir bieten</label>
-
-									{filteredJob.whatWeOffer.map((offer, index) => (
-										<StyledInput
-											key={index}
-											type="text"
-											id={`offer${index}`}
-											name={`offer${index}`}
-											defaultValue={offer}
-											required
-										/>
-									))}
-									<StyledButtonSection>
-										<StyledAddNewInputIcon
-											icon={faSquarePlus}
-											onClick={() => handleAddInput(whatWeOffer)}
-										/>
-										{filteredJob.whatWeOffer.length > 1 && (
-											<StyledDeleteNewInputIcon
-												icon={faSquareMinus}
-												onClick={() => handleDeleteInput(whatWeOffer)}
-											/>
-										)}
-									</StyledButtonSection>
-								</>
-							))}
-						<StyledAddJobButtonSection>
-							<Greenbutton margin={-2} type="submit">
-								Job ändern
-							</Greenbutton>
-						</StyledAddJobButtonSection>
-					</StyledAddForm>
-				)}
-				{openEditForm
-					? data
-							.filter((job) => job._id !== currentEditJobId)
-							.map((job) => (
-								<JobInformationCardForAdmin
-									key={job._id}
-									infoText={job.introduction}
-									jobtitle={job.jobTitle}
-									qualificationText={job.qualification}
-									taskText={job.tasks}
-									ourOfferText={job.whatWeOffer}
-									onClickOnDeleteIcon={() => handleDeleteFunction(job._id)}
-									onClickEditIcon={() => handleOpenFormToEditJob(job._id)}
-								/>
-							))
-					: data.map((job) => (
-							<JobInformationCardForAdmin
-								key={job._id}
-								infoText={job.introduction}
-								jobtitle={job.jobTitle}
-								qualificationText={job.qualification}
-								taskText={job.tasks}
-								ourOfferText={job.whatWeOffer}
-								onClickOnDeleteIcon={() => handleDeleteFunction(job._id)}
-								onClickEditIcon={() => handleOpenFormToEditJob(job._id)}
-							/>
-					  ))}
-			</StyledJobSection>
+									))
+							: data.map((job) => (
+									<JobInformationCardForAdmin
+										key={job._id}
+										infoText={job.introduction}
+										jobtitle={job.jobTitle}
+										qualificationText={job.qualification}
+										taskText={job.tasks}
+										ourOfferText={job.whatWeOffer}
+										onClickOnDeleteIcon={() => handleDeleteFunction(job._id)}
+										onClickEditIcon={() => handleOpenFormToEditJob(job._id)}
+									/>
+							  ))}
+					</StyledJobSection>
+				</>
+			) : (
+				<>
+					<StyledHeadlineSection>
+						<StyledHeadline>
+							Bitte melden Sie sich an um Zugriff auf diese Seite zu bekommen
+						</StyledHeadline>
+						<StyledParagraph>
+							Wenn Sie bereits angemeldet sind, überprüfen Sie bitte ob Sie die
+							richtige Email Adresse benutzt haben.
+						</StyledParagraph>
+					</StyledHeadlineSection>
+				</>
+			)}
 		</StyledMain>
 	);
 }

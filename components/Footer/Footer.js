@@ -4,7 +4,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 export default function Footer() {
 	const { data: session } = useSession();
 
-
 	return (
 		<StyledSection>
 			<StyledLinkArticle>
@@ -13,12 +12,10 @@ export default function Footer() {
 			</StyledLinkArticle>
 			<StyledLinkForLogin>
 				{session ? (
-
 					<StyledButton onClick={() => signOut()}>Abmelden</StyledButton>
 				) : (
 					<StyledButton onClick={() => signIn()}>Login</StyledButton>
-				)
-				}
+				)}
 			</StyledLinkForLogin>
 		</StyledSection>
 	);
@@ -45,6 +42,14 @@ const StyledLink = styled(Link)`
 const StyledButton = styled.button`
 	text-decoration: none;
 	color: white;
+	background-color: var(--color-fourth);
+	border: none;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		color: var(--color-primary);
+		scale: 1.1;
+	}
 `;
 
 const StyledLinkForLogin = styled.article`

@@ -37,7 +37,7 @@ export default function CareerPictureAndJob({ scrollY }) {
 	}, [seeMoreClicked, applyWindow]);
 
 	if (isLoading) {
-		return <FontAwesomeIcon icon={faSpinner} spinPulse />;
+		return <StyledLoadingIcon icon={faSpinner} spinPulse />;
 	}
 
 	function handleSeeMoreButton(id) {
@@ -208,6 +208,12 @@ const StyledHeadlineAndJobCardSectionWrapper = styled.section`
 	@media (min-width: 1350px) {
 		margin-bottom: 20%;
 	}
+`;
+
+const StyledLoadingIcon = styled(FontAwesomeIcon)`
+	width: 3rem;
+	height: 3rem;
+	color: white;
 `;
 
 const StyledDiv = styled.div`
