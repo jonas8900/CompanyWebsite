@@ -6,13 +6,13 @@ import JobCard from "./JobCard";
 import { useEffect, useState } from "react";
 import Greenbutton from "../Buttons/GreenButton";
 import LinkToPage from "next/link";
-import { JobData } from "./JobData";
 import { Link } from "react-scroll/modules";
 import JobDetails from "./JobDetails";
 
 import ApplyFormular from "../ApplyFormular/ApplyFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
-
+import useSWR from "swr";
+import { JobData } from "./JobData";
 
 export default function Career({ device }) {
 	const [showMore, setShowMore] = useState(false);
@@ -23,6 +23,9 @@ export default function Career({ device }) {
 	const [applyWindow, setApplyWindow] = useState(false);
 	const [submitClicked, setSubmitClicked] = useState(false);
 	const [capture, setCapture] = useState("");
+	const { data, isLoading } = useSWR("api/getJobData", {
+		fallbackData: JobData,
+	});
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
@@ -36,7 +39,10 @@ export default function Career({ device }) {
 
 	function handleSeeMoreButton(id) {
 		setSeeMoreOnSingleJob(!seeMoreOnSingleJob);
-		setActiveJob(Number(id) - 1);
+		const foundJob = data.find((job) => job._id === id);
+		{
+			setActiveJob(foundJob);
+		}
 	}
 
 	function handleClose() {
@@ -54,8 +60,6 @@ export default function Career({ device }) {
 	}
 
 	function handleJobApply() {
-		console.log("handleJobApply called");
-
 		setSeeMoreOnSingleJob(false);
 		setApplyWindow(true);
 	}
@@ -96,7 +100,6 @@ export default function Career({ device }) {
 
 	return (
 		<>
-
 			<StyledMainSection id="career">
 				<CareerPictureAndJob device={device} />
 				<StyledCareerSection>
@@ -124,14 +127,14 @@ export default function Career({ device }) {
 										<JobCard
 											headline={"Wir suchen Verstärkung!"}
 											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-											jobtitle={JobData[0].jobTitle}
-											onClick={() => handleSeeMoreButton(JobData[0].id)}
+											jobtitle={data[0].jobTitle}
+											onClick={() => handleSeeMoreButton(data[0]._id)}
 										></JobCard>
 										<JobCard
 											headline={"Wir suchen Verstärkung!"}
 											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-											jobtitle={JobData[1].jobTitle}
-											onClick={() => handleSeeMoreButton(JobData[1].id)}
+											jobtitle={data[1].jobTitle}
+											onClick={() => handleSeeMoreButton(data[1]._id)}
 										></JobCard>
 									</StyledSectionForTwoJobCards>
 									<StyledShowMoreSection>
@@ -153,7 +156,7 @@ export default function Career({ device }) {
 												jobtitle={"Elektroniker für Betriebstechnik"}
 											></JobCard>
 										</StyledSectionForTwoJobCards>
-										{JobData.length > 4 && (
+										{data.length > 4 && (
 											<StyledSectionForTwoJobCards>
 												<JobCard
 													headline={"Wir suchen Verstärkung!"}
@@ -174,13 +177,13 @@ export default function Career({ device }) {
 								<>
 									<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
 									<StyledSectionForAllJobs $animationtrigger={animationTrigger}>
-										{JobData.map((job) => (
+										{data.map((job) => (
 											<JobCard
-												key={job.id}
+												key={job._id}
 												headline={"Wir suchen Verstärkung!"}
 												infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 												jobtitle={job.jobTitle}
-												onClick={() => handleSeeMoreButton(job.id)}
+												onClick={() => handleSeeMoreButton(job._id)}
 											></JobCard>
 										))}
 									</StyledSectionForAllJobs>
@@ -209,8 +212,8 @@ export default function Career({ device }) {
 									<JobCard
 										headline={"Wir suchen Verstärkung!"}
 										infotext={"wir freuen uns darauf Sie kennenzulernen!"}
-										jobtitle={JobData[0].jobTitle}
-										onClick={() => handleSeeMoreButton(JobData[0].id)}
+										//jobtitle={data[0].jobTitle}
+										//onClick={() => handleSeeMoreButton(data[0].id)}
 									></JobCard>
 									<StyledShowMoreSection>
 										<Greenbutton onClick={handleClickShowMore}>
@@ -234,13 +237,13 @@ export default function Career({ device }) {
 							{showMore === true && (
 								<>
 									<StyledSubHeadline>Stellenanzeigen</StyledSubHeadline>
-									{JobData.map((job) => (
+									{data.map((job) => (
 										<JobCard
-											key={job.id}
+											key={job._id}
 											headline={"Wir suchen Verstärkung!"}
 											infotext={"wir freuen uns darauf Sie kennenzulernen!"}
 											jobtitle={job.jobTitle}
-											onClick={() => handleSeeMoreButton(job.id)}
+											onClick={() => handleSeeMoreButton(job._id)}
 										></JobCard>
 									))}
 									<StyledShowMoreSection>
@@ -265,12 +268,12 @@ export default function Career({ device }) {
 					<>
 						<JobDetails
 							onClick={handleClose}
-							headline={JobData[activejob].jobTitle}
+							headline={activejob.jobTitle}
 							animationTrigger={animationTrigger}
-							introduction={JobData[activejob].introduction}
-							ourOffer={JobData[activejob].whatWeOffer}
-							tasks={JobData[activejob].tasks}
-							qualification={JobData[activejob].qualification}
+							introduction={activejob.introduction}
+							ourOffer={activejob.whatWeOffer}
+							tasks={activejob.tasks}
+							qualification={activejob.qualification}
 							onClickApply={handleJobApply}
 						/>
 					</>
@@ -278,7 +281,7 @@ export default function Career({ device }) {
 				{applyWindow && (
 					<>
 						<ApplyFormular
-							Jobtitle={JobData[activejob].jobTitle}
+							Jobtitle={activejob.jobTitle}
 							onClick={handleClose}
 							animationTrigger={animationTrigger}
 							onSubmit={handleSubmitFormular}

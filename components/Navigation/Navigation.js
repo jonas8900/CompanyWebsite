@@ -5,8 +5,11 @@ import { Fade } from "react-awesome-reveal";
 import styled, { keyframes } from "styled-components";
 import Logo from "./Logo";
 import { Link } from "react-scroll/modules";
+import { useSession } from "next-auth/react";
+import LinkToAdmin from "next/link";
 
 export default function Navigation({ scrollY, device }) {
+	const { data: session } = useSession();
 	const [menuClicked, setMenuClicked] = useState(false);
 	const [animationDone, setAnimationDone] = useState(false);
 	function handleChangeMenuButton() {
@@ -89,10 +92,21 @@ export default function Navigation({ scrollY, device }) {
 									<StyledListItems $scrolly={scrollY}>Kontakt</StyledListItems>
 								</StyledLink>
 							</li>
+							{session && (
+								<li>
+									<StyledLinkToMain
+										href="/adminArea"
+										onClick={handleChangeMenuButton}
+									>
+										<StyledListItems $scrolly={scrollY}>Admin</StyledListItems>
+									</StyledLinkToMain>
+								</li>
+							)}
 						</StyledUnsortedList>
 					</StyledNavigationSection>
 				</StyledNavigationBar>
 			) : (
+				// Mobile Navigation
 				<StyledNavigationBar>
 					<StyledNavigationSection>
 						<StyledShowOrHideMenuButton
@@ -183,6 +197,14 @@ export default function Navigation({ scrollY, device }) {
 									>
 										<StyledListItemMobile>Kontakt</StyledListItemMobile>
 									</StyledLink>
+									{session && (
+										<StyledLinkToMain
+											href="/adminArea"
+											onClick={handleChangeMenuButton}
+										>
+											<StyledListItemMobile>Admin</StyledListItemMobile>
+										</StyledLinkToMain>
+									)}
 								</Fade>
 							</StyledUnsortedList>
 						)}
@@ -214,6 +236,10 @@ const changeBorder = keyframes`
  100% {
     width: 100%;
  }
+`;
+
+const StyledLinkToMain = styled(LinkToAdmin)`
+	text-decoration: none;
 `;
 
 const StyledLink = styled(Link)`

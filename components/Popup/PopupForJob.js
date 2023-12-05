@@ -1,9 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import Greenbutton from "../Buttons/GreenButton";
 import { Link } from "react-scroll";
-import PhoneIcon from "../Icons/PhoneIcon";
-import MailIcon from "../Icons/MailIcon";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 export default function PopupForJob({ animationTrigger, onClick }) {
 	return (

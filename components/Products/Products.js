@@ -57,19 +57,6 @@ export default function Products({ device }) {
 											{activeProduct.productDetails}
 										</StyledArticle>
 									}
-									imageGalery={
-										activeProduct.images != undefined
-											? activeProduct.images.map((image) => (
-													<Image
-														src={image}
-														key={image}
-														alt="Produktbild"
-														width={100}
-														height={100}
-													/>
-											  ))
-											: null
-									}
 									onClick={handleCloseWindow}
 								/>
 							</>
