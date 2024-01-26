@@ -18,7 +18,6 @@ Please note that the website is a work in progress, and ongoing improvements are
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
 
 
 ## About
@@ -48,6 +47,5 @@ Feel free to explore the project to understand the design and functionality tail
 - [Git](https://git-scm.com/)
 - [Figma](https://www.figma.com/)
 
-## Contributing
 
-Contributions to enhance the design and functionality of the website are welcome. Follow the contributing guidelines to get started.
+
