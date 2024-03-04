@@ -65,7 +65,7 @@ const StyledImageContainer = styled.section`
 		height: 65%;
 	}
 	@media (min-width: 1800px) {
-		height: 70%;
+		height: 60%;
 	}
 `;
 
@@ -81,6 +81,8 @@ const StyledParagraph = styled.p`
 `;
 
 const StyledCardWrapper = styled.section`
+	display: flex;
+	flex-direction: column;
 	background-color: var(--color-third);
 	width: 70%;
 	border: 1px solid transparent;
@@ -105,8 +107,6 @@ const StyledCardWrapper = styled.section`
 		height: 30rem;
 	}
 	@media (min-width: 1600px) {
-		min-height: 30rem;
-		height: 32rem;
 	}
 `;
 
