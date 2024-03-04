@@ -35,7 +35,7 @@ export default function ImpressumText() {
 					</p>
 					<p>
 						Anganben gemäß § 5 TMG Inhaltlich verantwortlich gemäß §55 II RStV:
-						T. Schulze, Max-Müller-Straße 22,30179 Hannover
+						T. Schulze, Alter Flughafen 6, 30179 Hannover
 					</p>
 					<StyledSecondHeadline>Haftung für Inhalte</StyledSecondHeadline>
 					<p>
