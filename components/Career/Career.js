@@ -104,7 +104,7 @@ export default function Career({ device }) {
 				<CareerPictureAndJob device={device} />
 				<StyledCareerSection>
 					<CompanyAdvantages />
-					<StyledImageWrapper>
+					{/* <StyledImageWrapper>
 						<LinkToPage href="https://www.kununu.com/de/elektromaschinenbau-schulze?utm_source=widget&utm_campaign=widget_selfservice_scorelarge">
 							<StyledImage
 								src="https://www.kununu.com/de/partner/KlRWCFBUUQ%3D%3D/self-service-button?button-type=3"
@@ -114,7 +114,7 @@ export default function Career({ device }) {
 								unoptimized
 							/>
 						</LinkToPage>
-					</StyledImageWrapper>
+					</StyledImageWrapper> */}
 				</StyledCareerSection>
 				<StyledJobCardWrapper id="job-ads">
 					{device ? (
