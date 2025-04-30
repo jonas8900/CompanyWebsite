@@ -6,11 +6,15 @@ import WindowCard from "../WindowCards/WindowCard";
 import ContactData from "./ContactData";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import ProgressDots from "./ProgressDot";
 
 export default function Randompicture() {
 	const [counter, setCounter] = useState(0);
 	const [contactClicked, setContactClicked] = useState(false);
 	const [animationToggle, setAnimationToggle] = useState(true);
+	const [timerResetKey, setTimerResetKey] = useState(0);
+	const steps = 8;
+
 
 	function handleContactUsButton() {
 		setAnimationToggle(!animationToggle);
@@ -33,37 +37,41 @@ export default function Randompicture() {
 		}
 	}, [contactClicked]);
 
-	//use a function with to change the picture every 10 seconds
+	//useEffect to change the picture every 10 seconds
 	useEffect(() => {
-		const timeOutForCount = setInterval(() => {
-			setCounter((increaseCount) => {
-				if (increaseCount === 4) {
-					return 0;
-				} else {
-					return increaseCount + 1;
-				}
-			});
-		}, 10000);
+		const interval = setInterval(() => {
+			setCounter((prev) => (prev === 8 ? 0 : prev + 1));
+		}, 10000); 
 
-		return () => clearInterval(timeOutForCount);
-	}, []);
+		return () => clearInterval(interval); 
+	}, [timerResetKey]);
 
 	function handleClickLeftButtonToChangePicture() {
-		setCounter((counter - 1 + 5) % 5);
+		setCounter((prev) => (prev - 1 + steps) % steps);
+		setTimerResetKey((prev) => prev + 1); 
 	}
+
 	function handleClickRightButtonToChangePicture() {
-		setCounter((counter + 1) % 5);
+		setCounter((prev) => (prev + 1) % steps);
+		setTimerResetKey((prev) => prev + 1);
 	}
+
+	function handleChangePictureOnCLick(number) {
+		setCounter(number - 1);
+		setTimerResetKey((prev) => prev + 1); 
+	}
+
+
 	return (
 		<>
 			<StyledWrapper id="introtext">
-				<StyledProgressSection>
-					<StyledProgressDiv1 $counter={counter + 1}></StyledProgressDiv1>
-					<StyledProgressDiv2 $counter={counter + 1}></StyledProgressDiv2>
-					<StyledProgressDiv3 $counter={counter + 1}></StyledProgressDiv3>
-					<StyledProgressDiv4 $counter={counter + 1}></StyledProgressDiv4>
-					<StyledProgressDiv5 $counter={counter + 1}></StyledProgressDiv5>
-				</StyledProgressSection>
+			<StyledProgressSection>
+				<ProgressDots
+					counter={counter}
+					onDotClick={handleChangePictureOnCLick}
+					totalDots={steps} 
+				/>
+			</StyledProgressSection>
 				<StyledImageContainer>
 					<StyledArrowLeft
 						icon={faCaretLeft}
@@ -75,7 +83,7 @@ export default function Randompicture() {
 					/>
 					<StyledRandomImage
 						key={counter}
-						src={`/Random-Kranbild-${counter}.jpg`}
+						src={`/Random-Kranbild-${counter}.webp`}
 						sizes="(max-width: 768px) 300px, (max-width: 1024px) 400px, (max-width: 1400px) 1080px"
 						alt="Zufälliges Bild einer Krananlage"
 						width={1920}
@@ -134,6 +142,7 @@ const StyledWrapper = styled.section`
 	@media (min-width: 1025px) {
 		margin-top: -8rem;
 		margin-bottom: 4rem;
+		height: 100%;
 	}
 	@media (min-width: 1440px) {
 		margin-bottom: 0rem;
@@ -156,7 +165,6 @@ const StyledRandomImage = styled(Image)`
 	z-index: 0;
 	animation: ${({ counter }) => counter >= 1 && Left} 1.5s ease;
 	@media (min-width: 1025px) {
-		filter: brightness(0.65);
 		height: 75%;
 	}
 `;
@@ -164,9 +172,10 @@ const StyledRandomImage = styled(Image)`
 const StyledImageContainer = styled.section`
 	position: relative;
 	width: 100%;
-	padding-top: 56.25%;
+	padding-top: 62%;
 	@media (min-width: 1025px) {
 		position: static;
+		height: 100%;
 	}
 `;
 
@@ -232,6 +241,11 @@ const StyledProgressSection = styled.section`
 	right: 50%;
 	display: flex;
 	justify-content: center;
+
+	div {
+		cursor: pointer;
+	}
+
 	@media (min-width: 1025px) {
 		bottom: 30%;
 	}
@@ -302,85 +316,5 @@ const StyledArrowLeft = styled(FontAwesomeIcon)`
 		top: 40%;
 		margin: 0;
 		transform: translateY(-50%);
-	}
-`;
-
-const StyledProgressDiv1 = styled.div`
-	width: 0.7rem;
-	height: 0.7rem;
-	margin: 0.3rem;
-	min-width: 0.7rem;
-	min-height: 0.7rem;
-	background-color: ${({ $counter }) =>
-		$counter === 1 ? "var(--color-primary)" : "var(--color-third)"};
-	@media (min-width: 1025px) {
-		width: 1rem;
-		height: 1rem;
-		min-width: 1rem;
-		min-height: 1rem;
-	}
-`;
-
-const StyledProgressDiv2 = styled.div`
-	width: 0.7rem;
-	height: 0.7rem;
-	margin: 0.3rem;
-	min-width: 0.7rem;
-	min-height: 0.7rem;
-	background-color: ${({ $counter }) =>
-		$counter === 2 ? "var(--color-primary)" : "var(--color-third)"};
-	@media (min-width: 1025px) {
-		width: 1rem;
-		height: 1rem;
-		min-width: 1rem;
-		min-height: 1rem;
-	}
-`;
-
-const StyledProgressDiv3 = styled.div`
-	width: 0.7rem;
-	height: 0.7rem;
-	margin: 0.3rem;
-	min-width: 0.7rem;
-	min-height: 0.7rem;
-	background-color: ${({ $counter }) =>
-		$counter === 3 ? "var(--color-primary)" : "var(--color-third)"};
-	@media (min-width: 1025px) {
-		width: 1rem;
-		height: 1rem;
-		min-width: 1rem;
-		min-height: 1rem;
-	}
-`;
-
-const StyledProgressDiv4 = styled.div`
-	width: 0.7rem;
-	height: 0.7rem;
-	margin: 0.3rem;
-	min-width: 0.7rem;
-	min-height: 0.7rem;
-	background-color: ${({ $counter }) =>
-		$counter === 4 ? "var(--color-primary)" : "var(--color-third)"};
-	@media (min-width: 1025px) {
-		width: 1rem;
-		height: 1rem;
-		min-width: 1rem;
-		min-height: 1rem;
-	}
-`;
-
-const StyledProgressDiv5 = styled.div`
-	width: 0.7rem;
-	height: 0.7rem;
-	margin: 0.3rem;
-	min-width: 0.7rem;
-	min-height: 0.7rem;
-	background-color: ${({ $counter }) =>
-		$counter === 5 ? "var(--color-primary)" : "var(--color-third)"};
-	@media (min-width: 1025px) {
-		width: 1rem;
-		height: 1rem;
-		min-width: 1rem;
-		min-height: 1rem;
 	}
 `;

@@ -39,8 +39,10 @@ export default function ProductCard({
 
 const StyledRandomImage = styled(Image)`
 	width: 100%;
-	height: 100%;
+	height: 100%!important;
+	object-fit: cover;
 `;
+
 
 const StyledInfoWrapper = styled.article`
 	margin-left: 1rem;
@@ -55,19 +57,20 @@ const StyledInfoWrapper = styled.article`
 
 const StyledImageContainer = styled.section`
 	width: 100%;
-	height: 70%;
+	height: 200px; 
 	overflow: hidden;
 
 	@media (min-width: 1025px) {
-		height: 60%;
+		height: 250px;
 	}
 	@media (min-width: 1450px) {
-		height: 65%;
+		height: 280px;
 	}
 	@media (min-width: 1800px) {
-		height: 60%;
+		height: 300px;
 	}
 `;
+
 
 const StyledParagraph = styled.p`
 	margin-bottom: 2rem;
@@ -99,12 +102,12 @@ const StyledCardWrapper = styled.section`
 		max-width: 100%;
 	}
 	@media (min-width: 1250px) {
-		min-height: 27rem;
-		height: 27rem;
+		min-height: 432px;
+		height: 432px;
 	}
 	@media (min-width: 1400px) {
-		min-height: 30rem;
-		height: 30rem;
+		min-height: 480px;
+		height: 480px;
 	}
 	@media (min-width: 1600px) {
 	}

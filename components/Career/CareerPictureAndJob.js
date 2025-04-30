@@ -119,9 +119,11 @@ export default function CareerPictureAndJob({ scrollY }) {
 		<>
 			<StyledHeadlineAndJobCardSectionWrapper>
 				<StyledCareerIntroSectionImage>
+					<StyledHeadlineWrapper>
 					<StyledPageHeadline>Karriere</StyledPageHeadline>
+					</StyledHeadlineWrapper>
 					<StyledImage
-						src="/KarriereBild.jpg"
+						src="/KarriereBild.webp"
 						width={1500}
 						height={500}
 						sizes="(max-width: 600px) 300px, (max-width: 1024px) 600px, (max-width: 1400px) 800px"
@@ -267,40 +269,46 @@ const StyledJobArticle = styled.article`
 	}
 `;
 
+const StyledHeadlineWrapper = styled.div`
+	position: absolute;
+	top: 2%;
+	left: 2%;
+	background-color:rgb(207, 207, 207);
+	height: 3rem;
+	width: 8rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 9px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+	@media (min-width: 1025px) {
+		position: absolute;
+		top: 2%;
+		left: 5%;
+		background-color: white;
+		height: 6rem;
+		width: 12rem;
+	}
+`;
+
 const StyledPageHeadline = styled.h1`
-	position: absolute;
-	left: 10%;
-	color: White;
-	z-index: 1;
-	font-size: 2rem;
+	color: black;
+	font-size: 1.4rem;
 	font-weight: 700;
+
+	@media (min-width: 1025px) {
+		font-size: 2rem;
+	}
 `;
 
-const StyledIconLeft = styled(FontAwesomeIcon)`
-	position: absolute;
-	color: white;
-	left: -1rem;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 2rem;
-	height: 2rem;
-	z-index: 5;
-`;
-
-const StyledIconRigh = styled(FontAwesomeIcon)`
-	position: absolute;
-	color: white;
-	right: -1rem;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 2rem;
-	height: 2rem;
-	z-index: 5;
-`;
 
 const StyledImage = styled(Image)`
 	width: 100%;
 	height: 20rem;
 	object-fit: cover;
-	filter: brightness(0.55);
+
+	@media (min-width: 1025px) {
+		height: 35rem;
+	}
 `;

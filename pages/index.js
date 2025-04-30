@@ -11,6 +11,7 @@ import styled, { keyframes } from "styled-components";
 import PopupForJob from "../components/Popup/PopupForJob";
 import useLocalStorageState from "use-local-storage-state";
 import Head from "next/head";
+import Certificates from "../components/Certificates/Certificates";
 
 export default function Home({ scrollY, device, setDevice }) {
 	const [popUp, setPopUp] = useLocalStorageState("popUp", {
@@ -55,6 +56,7 @@ export default function Home({ scrollY, device, setDevice }) {
 				<StyledSectionForWidth>
 					<Introtext />
 					<Products device={device} setDevice={setDevice} />
+					<Certificates device={device} />
 				</StyledSectionForWidth>
 				<Career device={device} scrollY={scrollY} />
 				<Contact />

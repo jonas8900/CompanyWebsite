@@ -66,6 +66,21 @@ export default function Navigation({ scrollY, device }) {
 							</li>
 							<li>
 								<StyledLink
+									to="certificates"
+									spy={true}
+									smooth={false}
+									offset={-65}
+									duration={350}
+									href="#"
+									onClick={handleChangeMenuButton}
+								>
+									<StyledListItems $scrolly={scrollY}>
+										Zertifikate{" "}
+									</StyledListItems>
+								</StyledLink>
+							</li>
+							<li>
+								<StyledLink
 									to="career"
 									spy={true}
 									smooth={false}
@@ -285,7 +300,8 @@ const StyledNavigationBar = styled.nav`
 		height: 5rem;
 		width: 100%;
 		box-shadow: none;
-		margin-top: 2rem;
+		/* margin-top: 2rem; */
+		padding:0;
 	}
 `;
 
@@ -304,7 +320,7 @@ const StyledNavigationSection = styled.section`
 	@media (min-width: 1024px) {
 		width: 100%;
 		display: flex;
-		background-color: ${({ $scrolly }) => $scrolly > 200}rgba(255, 255, 255, 0);
+		background-color: white;
 		box-shadow: ${({ $scrolly }) => $scrolly < 200} 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
 		transition: all 0.5s ease;
 	}
@@ -361,23 +377,19 @@ const StyledListItems = styled.p`
 		padding: 0.5rem;
 		border: none;
 		background-color: rgba(255, 255, 255, 0);
-		color: ${({ $scrolly }) =>
-			$scrolly > 200 ? "var(--color-fourth)" : "white"};
+		color: var(--color-fourth);
 		transition: all 0.5s ease;
-		border-left: ${({ $scrolly }) =>
-			$scrolly < 200 ? "none" : "1px solid black"};
+		border-left: 1px solid black;
 		font-weight: 500;
 
 		&:hover {
 			scale: 1.1;
 			padding: 0.5rem;
 			background-color: transparent;
-			color: ${({ $scrolly }) =>
-				$scrolly > 200 ? "var(--color-fourth)" : "white"};
+			color: var(--color-fourth);
 			cursor: pointer;
 			&:hover {
-				border-bottom: ${({ $scrolly }) =>
-					$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
+				border-bottom: 1px solid black;
 				animation: ${changeBorder} 0.2s linear forwards;
 			}
 		}
@@ -402,11 +414,9 @@ const StyledListItemMobile = styled.li`
 		padding: 0.5rem;
 		border: none;
 		background-color: rgba(255, 255, 255, 0);
-		color: ${({ $scrolly }) =>
-			$scrolly > 200 ? "var(--color-fourth)" : "white"};
+		color: var(--color-fourth);
 		transition: all 0.5s ease;
-		border-left: ${({ $scrolly }) =>
-			$scrolly < 200 ? "none" : "1px solid black"};
+		border-left: 1px solid black;
 		font-weight: 500;
 
 		&:hover {
@@ -447,7 +457,7 @@ const StyledLogoSection = styled.article`
 `;
 
 const StyledLogo = styled.h1`
-	color: ${({ $scrolly }) => ($scrolly > 200 ? "black" : "white")};
+	color: black;
 	font-size: var(--font-size-title);
 	font-family: Arial, Helvetica, sans-serif;
 	padding: 0.3rem;

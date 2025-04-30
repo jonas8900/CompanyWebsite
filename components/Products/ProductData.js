@@ -1,7 +1,7 @@
 export const ProductData = [
 	{
 		id: "1",
-		src: "/ProductPictures/Produkt-1.jpg",
+		src: "/ProductPictures/Produkt-1.webp",
 		alt: "Bild einer gelben Krananlage an der Decke befestigt",
 		headline: "Krananlagen und Hebezeuge",
 		infotext: "Planen, beurteilen, modernisieren und optimieren",
@@ -55,7 +55,7 @@ export const ProductData = [
 	},
 	{
 		id: "2",
-		src: "/ProductPictures/Produkt-2.jpg",
+		src: "/ProductPictures/Produkt-2.webp",
 		alt: "Bild einer gelben Krananlage an der Decke befestigt",
 		headline: "Modernisierung und Instandsetzung",
 		infotext:
@@ -97,7 +97,7 @@ export const ProductData = [
 	},
 	{
 		id: "3",
-		src: "/ProductPictures/Produkt-3.jpg",
+		src: "/ProductPictures/Produkt-3.webp",
 		alt: "Bild einer gelben Krananlage an der Decke befestigt",
 		headline: "Reparatur und Service",
 		infotext: "Für den zuverlässigen Betrieb Ihrer Krananlagen",
@@ -137,7 +137,7 @@ export const ProductData = [
 	},
 	{
 		id: "4",
-		src: "/ProductPictures/Produkt-4.jpg",
+		src: "/ProductPictures/Produkt-4.webp",
 		alt: "Bild von zwei Bauarbeiter*innen die auf die Stadt schauen",
 		headline: "Ersatzteile",
 		infotext: "Beschaffung und Lieferung für reibungslosen Krananlagenbetrieb",
@@ -158,7 +158,7 @@ export const ProductData = [
 	},
 	{
 		id: "5",
-		src: "/ProductPictures/Produkt-5.jpg",
+		src: "/ProductPictures/Produkt-5.webp",
 		alt: "Bild eines Elektromotors",
 		headline: "Prüfung und Sicherheit",
 		infotext: "Für zuverlässige Krananlagen und Arbeitsplatzsicherheit",
@@ -224,7 +224,7 @@ export const ProductData = [
 	},
 	{
 		id: "6",
-		src: "/ProductPictures/Produkt-6.jpg",
+		src: "/ProductPictures/Produkt-6.webp",
 		alt: "Bild eines Elektromotors",
 		headline: "Schulungen",
 		infotext:

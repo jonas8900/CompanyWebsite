@@ -373,7 +373,7 @@ const StyledSectionForAllJobs = styled.section`
 	margin-left: 2rem;
 	gap: 3rem;
 	row-gap: 5rem;
-	animation: ${({ $animationtrigger }) => $animationtrigger && FadeUp} 0.6s;
+	/* animation: ${({ $animationtrigger }) => $animationtrigger && FadeUp} 0.6s; */
 `;
 
 const StyledCareerSection = styled.section`

@@ -19,7 +19,7 @@ export default function Introtext() {
 		<>
 			<StyledIntroTextWrapper>
 				<StyledHeadline>Elektromaschinenbau Schulze GmbH</StyledHeadline>
-				<StyledSecondHeadline>seit mehr als 10 Jahren..</StyledSecondHeadline>
+				<StyledSecondHeadline>seit mehr als 15 Jahren..</StyledSecondHeadline>
 				<StyledInfoSection>
 					<StyledTextParagraph>
 						sind wir Ihr zuverlässiger Partner im Bereich Fördertechnik. Unsere
