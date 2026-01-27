@@ -84,12 +84,17 @@ const StyledSectionForWidth = styled.section`
 const TestingHeadling = styled.h1`
 	color: red;
 	position: fixed;
-	font-size: 1rem;
-	top: 6rem;
+	font-size: 0.6rem;
+	top: 10%;
 	left: 1rem;
 	z-index: 100000;
 	background-color: white;
-	padding: 1rem;
+	font-size: 0.9rem;
+
+	@media (min-width: 768px) {
+		font-size: 1rem;
+		padding: 1rem;
+	}
 `;
 
 const StyledMain = styled.main`

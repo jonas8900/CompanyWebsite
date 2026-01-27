@@ -1,10 +1,10 @@
-import { authOptions } from "pages/api/auth/[...nextauth]";
+
 import { getServerSession } from "next-auth/next";
 import dbConnect from "../../db/connect";
 import Job from "../../db/models/Jobs";
 
 export default async function handler(req, res) {
-	const session = await getServerSession(req, res, authOptions);
+	const session = await getServerSession(req, res);
 
 
 	if (!session) {

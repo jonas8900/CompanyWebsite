@@ -5,6 +5,7 @@ import ContactFormular from "./ContactFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 import PhoneIcon from "../Icons/PhoneIcon";
 import MailIcon from "../Icons/MailIcon";
+import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
 
 export default function Contact() {
 	const [messageSuccess, setMessageSuccess] = useState(false);
@@ -64,15 +65,7 @@ export default function Contact() {
 		}
 	}
 
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			if (formularClicked) {
-				document.body.style.overflow = "hidden";
-			} else {
-				document.body.style.overflow = "auto";
-			}
-		}
-	}, [formularClicked]);
+	useBodyScrollLock(formularClicked);
 
 	return (
 		<>

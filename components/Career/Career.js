@@ -13,6 +13,7 @@ import ApplyFormular from "../ApplyFormular/ApplyFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 import useSWR from "swr";
 import { JobData } from "./JobData";
+import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
 
 export default function Career({ device }) {
 	const [showMore, setShowMore] = useState(false);
@@ -27,15 +28,8 @@ export default function Career({ device }) {
 		fallbackData: JobData,
 	});
 
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			if (seeMoreOnSingleJob === true || applyWindow === true) {
-				document.body.style.overflow = "hidden";
-			} else {
-				document.body.style.overflow = "auto";
-			}
-		}
-	}, [seeMoreOnSingleJob, applyWindow]);
+
+	useBodyScrollLock(seeMoreOnSingleJob || applyWindow);
 
 	function handleSeeMoreButton(id) {
 		setSeeMoreOnSingleJob(!seeMoreOnSingleJob);

@@ -13,6 +13,7 @@ import ApplyFormular from "../ApplyFormular/ApplyFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
 import useSWR from "swr";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
 
 export default function CareerPictureAndJob({ scrollY }) {
 	const [seeMoreClicked, setSeeMoreClicked] = useState(false);
@@ -26,15 +27,7 @@ export default function CareerPictureAndJob({ scrollY }) {
 		fallbackData: JobData,
 	});
 
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			if (seeMoreClicked === true || applyWindow === true) {
-				document.body.style.overflow = "hidden";
-			} else {
-				document.body.style.overflow = "auto";
-			}
-		}
-	}, [seeMoreClicked, applyWindow]);
+	useBodyScrollLock(seeMoreClicked || applyWindow);
 
 	if (isLoading) {
 		return <StyledLoadingIcon icon={faSpinner} spinPulse />;

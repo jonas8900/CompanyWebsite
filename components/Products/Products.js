@@ -8,6 +8,7 @@ import Image from "next/image";
 import "react-multi-carousel/lib/styles.css";
 
 import ProductSlideShow from "./ProductSlideShow";
+import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
 
 
 export default function Products({ device }) {
@@ -27,15 +28,8 @@ export default function Products({ device }) {
 			setAnimationToggle(false);
 		}, 350);
 	}
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			if (showProductDetails === true) {
-				document.body.style.overflow = "hidden";
-			} else {
-				document.body.style.overflow = "auto";
-			}
-		}
-	}, [showProductDetails]);
+
+	useBodyScrollLock(showProductDetails);
 
 	return (
 		<>

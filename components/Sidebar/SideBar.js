@@ -12,6 +12,7 @@ import directLink from "next/link";
 import OutsideClickHandler from "react-outside-click-handler";
 import ContactFormular from "../Contact/ContactFormular";
 import ToastMessage from "../ToastMessage/ToastMessage";
+import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
 
 export default function SideBar() {
 	const [arrowClicked, setArrowClicked] = useState(true);
@@ -86,15 +87,8 @@ export default function SideBar() {
 		}
 	}
 
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			if (formularClicked) {
-				document.body.style.overflow = "hidden";
-			} else {
-				document.body.style.overflow = "auto";
-			}
-		}
-	}, [formularClicked]);
+
+	useBodyScrollLock(formularClicked);
 
 	return (
 		<>
