@@ -2,7 +2,7 @@ import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { Fade } from "react-awesome-reveal";
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 import Logo from "./Logo";
 import { Link } from "react-scroll/modules";
 import { useSession } from "next-auth/react";
@@ -20,9 +20,9 @@ export default function Navigation({ scrollY, device }) {
 	return (
 		<>
 			{device ? (
-				<StyledNavigationBar>
-					<StyledNavigationSection $scrolly={scrollY}>
-						<StyledLogoSection>
+				<StyledNavigationBar $scrolly={scrollY}>
+					<StyledNavigationSection>
+						<StyledLogoReplacement>
 							<StyledLink
 								to="introtext"
 								spy={true}
@@ -30,13 +30,12 @@ export default function Navigation({ scrollY, device }) {
 								offset={-70}
 								duration={350}
 								href="#"
-								onClick={handleChangeMenuButton}
 							>
-								<StyledLogo $scrolly={scrollY}>
+								<StyledCompanyTitle $scrolly={scrollY}>
 									Elektromaschinenbau Schulze GmbH
-								</StyledLogo>
+								</StyledCompanyTitle>
 							</StyledLink>
-						</StyledLogoSection>
+						</StyledLogoReplacement>
 						<StyledUnsortedList>
 							<li>
 								<StyledLink
@@ -46,7 +45,6 @@ export default function Navigation({ scrollY, device }) {
 									offset={-70}
 									duration={350}
 									href="#"
-									onClick={handleChangeMenuButton}
 								>
 									<StyledListItems $scrolly={scrollY}>Start</StyledListItems>
 								</StyledLink>
@@ -59,7 +57,6 @@ export default function Navigation({ scrollY, device }) {
 									offset={-70}
 									duration={350}
 									href="#"
-									onClick={handleChangeMenuButton}
 								>
 									<StyledListItems $scrolly={scrollY}>Produkte</StyledListItems>
 								</StyledLink>
@@ -72,7 +69,6 @@ export default function Navigation({ scrollY, device }) {
 									offset={-65}
 									duration={350}
 									href="#"
-									onClick={handleChangeMenuButton}
 								>
 									<StyledListItems $scrolly={scrollY}>
 										Zertifikate{" "}
@@ -87,7 +83,6 @@ export default function Navigation({ scrollY, device }) {
 									offset={-65}
 									duration={350}
 									href="#"
-									onClick={handleChangeMenuButton}
 								>
 									<StyledListItems $scrolly={scrollY}>
 										Karriere{" "}
@@ -102,7 +97,6 @@ export default function Navigation({ scrollY, device }) {
 									offset={-65}
 									duration={350}
 									href="#"
-									onClick={handleChangeMenuButton}
 								>
 									<StyledListItems $scrolly={scrollY}>Kontakt</StyledListItems>
 								</StyledLink>
@@ -111,7 +105,6 @@ export default function Navigation({ scrollY, device }) {
 								<li>
 									<StyledLinkToMain
 										href="/adminArea"
-										onClick={handleChangeMenuButton}
 									>
 										<StyledListItems $scrolly={scrollY}>Admin</StyledListItems>
 									</StyledLinkToMain>
@@ -121,7 +114,7 @@ export default function Navigation({ scrollY, device }) {
 					</StyledNavigationSection>
 				</StyledNavigationBar>
 			) : (
-				// Mobile Navigation
+				// Mobile Navigation (bleibt vorerst unverändert)
 				<StyledNavigationBar>
 					<StyledNavigationSection>
 						<StyledShowOrHideMenuButton
@@ -179,17 +172,6 @@ export default function Navigation({ scrollY, device }) {
 									>
 										<StyledListItemMobile>Produkte</StyledListItemMobile>
 									</StyledLink>
-									{/* <StyledLink
-										to="about-us"
-										spy={true}
-										smooth={false}
-										offset={-70}
-										duration={350}
-										href="#"
-										onClick={handleChangeMenuButton}
-									>
-										<StyledListItemMobile>Wer wir sind</StyledListItemMobile>
-									</StyledLink> */}
 									<StyledLink
 										to="career"
 										spy={true}
@@ -229,29 +211,6 @@ export default function Navigation({ scrollY, device }) {
 		</>
 	);
 }
-const FadeIn = keyframes`
-0% {opacity: 0;}
-100% {opacity: 1;}
-`;
-
-const Rotateforwards = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    transform: rotate(180deg);
-    opacity: 1;
-  }
-`;
-
-const changeBorder = keyframes`
- 0% {
-    width: 0%;
- }
- 100% {
-    width: 100%;
- }
-`;
 
 const StyledLinkToMain = styled(LinkToAdmin)`
 	text-decoration: none;
@@ -264,7 +223,6 @@ const StyledLink = styled(Link)`
 const StyledShowOrHideMenuButton = styled.button`
 	border: none;
 	background-color: transparent;
-
 	grid-area: 1 / 3 / 2 / 3;
 	padding: 0.5rem;
 	display: flex;
@@ -276,10 +234,6 @@ const StyledMenuIcon = styled(FontAwesomeIcon)`
 	width: 2.2rem;
 	height: 2.2rem;
 	color: var(--color-fourth);
-	animation: ${({ animationdone, menuclicked }) =>
-			animationdone ? (menuclicked ? Rotateforwards : "none") : FadeIn}
-		0.7s ease;
-	transition: all 0.7s ease;
 `;
 
 const StyledIconDescription = styled.p`
@@ -293,15 +247,23 @@ const StyledNavigationBar = styled.nav`
 	top: 0;
 	z-index: 9999;
 	width: 100%;
-	height: 100%;
-	box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
+	height: auto;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+
 	@media (min-width: 1024px) {
-		position: sticky;
 		height: 5rem;
-		width: 100%;
-		box-shadow: none;
-		/* margin-top: 2rem; */
-		padding:0;
+		${props => props.$scrolly > 50
+			? css`
+				background-color: white;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+				backdrop-filter: blur(0px);
+			`
+			: css`
+				background-color: rgba(0, 0, 0, 0.1);
+				box-shadow: none;
+				backdrop-filter: blur(8px);
+			`
+		}
 	}
 `;
 
@@ -309,20 +271,18 @@ const StyledNavigationSection = styled.section`
 	position: relative;
 	display: grid;
 	grid-template-columns: 1fr 0.3fr 0.3fr;
-	grid-template-rows: 1fr;
-	grid-column-gap: 0px;
-	grid-row-gap: 0px;
-	margin-top: 0;
 	align-items: center;
 	background-color: white;
 	width: 100%;
 	height: 100%;
+
 	@media (min-width: 1024px) {
 		width: 100%;
 		display: flex;
-		background-color: white;
-		box-shadow: ${({ $scrolly }) => $scrolly < 200} 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
-		transition: all 0.5s ease;
+		justify-content: space-between;
+		align-items: center;
+		background-color: transparent;
+		padding: 0 5%;
 	}
 `;
 
@@ -334,9 +294,6 @@ const StyledUnsortedList = styled.ul`
 	width: 60%;
 	right: 0;
 	height: auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
 	list-style: none;
 	padding: 0;
 	margin: 0;
@@ -344,18 +301,11 @@ const StyledUnsortedList = styled.ul`
 
 	@media (min-width: 1024px) {
 		flex-direction: row;
-		justify-content: flex-end;
 		position: static;
-		width: 100%;
+		width: auto;
 		height: 100%;
-		margin: auto;
-		margin-right: 5%;
-		gap: 15px;
-		align-items: center;
-	}
-	@media (min-width: 1199px) {
-		width: 50%;
 		gap: 30px;
+		align-items: center;
 	}
 `;
 
@@ -366,32 +316,34 @@ const StyledListItems = styled.p`
 	border: 1px solid var(--color-third);
 	font-size: var(--font-size-title);
 	width: 100%;
-	transition: all 0.2s ease;
-	&:hover {
-		color: white;
-		background-color: var(--color-fourth);
-		cursor: pointer;
-		transition: all 0.2s ease;
-	}
-	@media (min-width: 1024px) {
-		padding: 0.5rem;
-		border: none;
-		background-color: rgba(255, 255, 255, 0);
-		color: var(--color-fourth);
-		transition: all 0.5s ease;
-		border-left: 1px solid black;
-		font-weight: 500;
+	transition: color 0.3s ease;
 
-		&:hover {
-			scale: 1.1;
-			padding: 0.5rem;
-			background-color: transparent;
-			color: var(--color-fourth);
-			cursor: pointer;
-			&:hover {
-				border-bottom: 1px solid black;
-				animation: ${changeBorder} 0.2s linear forwards;
-			}
+	@media (min-width: 1024px) {
+		padding: 0.5rem 0;
+		border: none;
+		background-color: transparent;
+		font-weight: 500;
+		position: relative;
+		color: ${props => props.$scrolly > 50 ? 'var(--color-fourth)' : 'white'};
+		text-shadow: ${props => props.$scrolly > 50 ? 'none' : '0 1px 4px rgba(0,0,0,0.5)'};
+		cursor: pointer;
+
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: -2px;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background-color: var(--color-secondary);
+			transform: scaleX(0);
+			transform-origin: right;
+			transition: transform 0.3s ease;
+		}
+
+		&:hover:after {
+			transform: scaleX(1);
+			transform-origin: left;
 		}
 	}
 `;
@@ -403,65 +355,65 @@ const StyledListItemMobile = styled.li`
 	border: 1px solid var(--color-third);
 	font-size: var(--font-size-title);
 	width: 100%;
-	transition: all 0.2s ease;
-	&:hover {
-		color: white;
-		background-color: var(--color-fourth);
-		cursor: pointer;
-		transition: all 0.2s ease;
-	}
-	@media (min-width: 1024px) {
-		padding: 0.5rem;
-		border: none;
-		background-color: rgba(255, 255, 255, 0);
-		color: var(--color-fourth);
-		transition: all 0.5s ease;
-		border-left: 1px solid black;
-		font-weight: 500;
+`;
 
-		&:hover {
-			scale: 1.1;
-			padding: 0.5rem;
-			background-color: transparent;
-			color: ${({ $scrolly }) =>
-				$scrolly > 200 ? "var(--color-fourth)" : "white"};
-			cursor: pointer;
-			&:hover {
-				border-bottom: ${({ $scrolly }) =>
-					$scrolly < 200 ? "1px solid #f5f6ff" : "1px solid black"};
-				animation: ${changeBorder} 0.2s linear forwards;
-			}
-		}
+const StyledLogoReplacement = styled.div`
+	display: none;
+
+	@media (min-width: 1024px) {
+		display: block;
+		position: relative;
 	}
 `;
 
+const StyledCompanyTitle = styled.h1`
+	color: ${props => props.$scrolly > 50 ? 'var(--color-fourth)' : 'white'};
+	font-size: 1.2rem;
+	font-weight: 600;
+	padding: 10px 0;
+	margin: 0;
+	cursor: pointer;
+	position: relative;
+	transition: color 0.3s ease;
+	text-shadow: ${props => props.$scrolly > 50 ? 'none' : '0 1px 4px rgba(0,0,0,0.5)'};
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 3px;
+		border-radius: 999px;
+		background: linear-gradient(
+			90deg,
+			rgba(125, 255, 125, 0.0),
+			rgba(125, 255, 125, 1),
+			rgba(125, 255, 125, 0.0)
+		);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 3px;
+		border-radius: 999px;
+		background: linear-gradient(
+			90deg,
+			rgba(24, 30, 144, 0.0),
+			#181E90,
+			rgba(24, 30, 144, 0.0)
+		);
+	}
+`;
+
+// Alte Logo-Styles, werden nicht mehr für Desktop benötigt
 const StyledLogoSection = styled.article`
 	grid-area: 1 / 1 / 2 / 2;
 	width: 73%;
 	margin: 0 auto;
 	margin-left: 0rem;
-	text-align: center;
-	align-self: center;
-	border-bottom: 5px solid var(--color-fifth);
-	border-top: 5px solid var(--color-secondary);
-	@media (min-width: 550px) {
-		width: 60%;
-		margin-left: 0rem;
-	}
-	@media (min-width: 1024px) {
-		width: 25%;
-		max-width: 18rem;
-		margin-left: 5%;
-		justify-content: flex-start;
-	}
-`;
-
-const StyledLogo = styled.h1`
-	color: black;
-	font-size: var(--font-size-title);
-	font-family: Arial, Helvetica, sans-serif;
-	padding: 0.3rem;
-	margin: 0;
-	font-weight: bold;
-	cursor: pointer;
 `;

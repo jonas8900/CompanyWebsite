@@ -18,7 +18,7 @@ export default function ProductCard({
 					alt={alt}
 					width={1920}
 					height={1080}
-					sizes="(max-width: 768px) 250px, (max-width: 1024px) 500px, (max-width: 1400px) 1080px"
+					sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
 					layout="responsive"
 					rel="preload"
 					unoptimized
@@ -41,17 +41,17 @@ const StyledRandomImage = styled(Image)`
 	width: 100%;
 	height: 100%!important;
 	object-fit: cover;
+    border-radius: 8px; // Angepasst
 `;
 
 
 const StyledInfoWrapper = styled.article`
-	margin-left: 1rem;
-	margin-right: 0.5rem;
+	padding: 1rem; // Angepasst
 	@media (min-width: 1025px) {
-		margin-top: -1rem;
+		margin-top: -1rem; // Beibehalten
 	}
 	@media (min-width: 1600px) {
-		margin-top: 0rem;
+		margin-top: 0rem; // Beibehalten
 	}
 `;
 
@@ -59,6 +59,7 @@ const StyledImageContainer = styled.section`
 	width: 100%;
 	height: 200px; 
 	overflow: hidden;
+    border-radius: 8px; // Angepasst
 
 	@media (min-width: 1025px) {
 		height: 250px;
@@ -75,11 +76,10 @@ const StyledImageContainer = styled.section`
 const StyledParagraph = styled.p`
 	margin-bottom: 2rem;
 	@media (min-width: 1025px) {
-		margin-bottom: 6rem;
-		min-height: 4rem;
+		min-height: 4rem; // Beibehalten
 	}
 	@media (min-width: 1200px) {
-		margin-bottom: 2rem;
+		margin-bottom: 2rem; // Beibehalten
 	}
 `;
 
@@ -87,36 +87,38 @@ const StyledCardWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
 	background-color: var(--color-third);
-	width: 70%;
-	border: 1px solid transparent;
-	margin: auto;
-	margin-top: 2%;
-	margin-bottom: 5%;
+	border-radius: 10px; // Angepasst
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Angepasst
 	position: relative;
+    overflow: hidden; // Für border-radius des Bildes
+
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; // Hover-Effekt
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
 
 	@media (min-width: 1025px) {
-		width: 100%;
-		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
 		min-height: 25rem;
-		height: 25rem;
+		height: auto; // Angepasst, damit der Inhalt passt
 		max-width: 100%;
 	}
 	@media (min-width: 1250px) {
 		min-height: 432px;
-		height: 432px;
+		height: auto; // Angepasst
 	}
 	@media (min-width: 1400px) {
 		min-height: 480px;
-		height: 480px;
-	}
-	@media (min-width: 1600px) {
+		height: auto; // Angepasst
 	}
 `;
 
 const StyledButtonWrapper = styled.article`
 	position: absolute;
-	bottom: -0.6rem;
-	right: 10%;
+	bottom: 1rem; // Angepasst
+	right: 1rem; // Angepasst
 `;
 
 const StyledSubHeadline = styled.h2`
