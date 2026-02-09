@@ -5,7 +5,7 @@ import { ProductData } from "./ProductData";
 import ProductDetails from "./ProductDetails";
 import Image from "next/image";
 
-import "react-multi-carousel/lib/styles.css"; // Diese Zeile kann entfernt werden, wenn das Carousel nicht mehr verwendet wird.
+import "react-multi-carousel/lib/styles.css"; 
 
 import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
 
@@ -17,16 +17,18 @@ export default function Products({ device }) {
 
 	function handleShowProductDetails(productIndexFromCard) {
 		setShowProductDetails(true);
-		// ProductData IDs starten bei 1, Array-Indizes bei 0, daher -1
+		setAnimationToggle(false);
 		setActiveProduct(ProductData[productIndexFromCard - 1]);
 	}
 
 	function handleCloseWindow() {
+		if (animationToggle) return; 
+
 		setAnimationToggle(true);
 		setTimeout(() => {
 			setShowProductDetails(false);
 			setAnimationToggle(false);
-		}, 350);
+		}, 360);
 	}
 
 	useBodyScrollLock(showProductDetails);
@@ -42,11 +44,11 @@ export default function Products({ device }) {
 							src={product.src}
 							alt={product.alt}
 							headline={product.headline}
+							subheadline={product.subheadline}
 							infotext={product.infotext}
 							onClick={() => handleShowProductDetails(product.id)}
 						>
-							{" "}
-							Mehr erfahren ...
+							Mehr erfahren
 						</ProductCard>
 					))}
 				</StyledProductGrid>
@@ -60,7 +62,7 @@ export default function Products({ device }) {
 								<StyledArticle>{activeProduct.productDetails}</StyledArticle>
 							}
 							imageGalery={
-								activeProduct.images != undefined // Das bleibt, auch wenn `images` noch nicht in ProductData ist
+								activeProduct.images != undefined 
 									? activeProduct.images.map((image) => (
 											<Image
 												src={image}
@@ -82,24 +84,43 @@ export default function Products({ device }) {
 }
 
 const StyledHeadline = styled.h1`
-	margin-left: 10%;
-	width: 8rem;
+	font-size: 2rem;
+	font-weight: 700;
+	color: var(--color-fourth);
+	text-align: center;
+	margin-bottom: 3rem;
+	position: relative;
+	padding-bottom: 1rem;
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 3px;
+		background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+	}
+
 	@media (min-width: 768px) {
-		width: 10.5rem;
+		font-size: 2.25rem;
+		margin-bottom: 4rem;
 	}
-	@media (min-width: 1025px) {
-		margin-top: 5%;
-    margin-left: 0; /* Für Desktop linksbündig */
-		text-shadow: 1px 3px 1px #eee;
+
+	@media (min-width: 1024px) {
+		font-size: 2.5rem;
 	}
-	border-bottom: 2px solid var(--color-primary);
-  margin-bottom: 2rem; /* Abstand nach unten hinzufügen */
 `;
 
 const StyledProductWrapper = styled.section`
-	margin: 4rem auto; /* Zentrieren und vertikalen Abstand */
-	padding: 0 1rem;
-	max-width: 1200px; /* Maximale Breite für den Inhalt */
+	margin: 6rem auto;
+	padding: 0 1.5rem;
+	max-width: 1600px;
+
+	@media (min-width: 768px) {
+		padding: 0 2rem;
+	}
 `;
 
 const StyledArticle = styled.article`
@@ -110,15 +131,20 @@ const StyledArticle = styled.article`
 
 const StyledProductGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr; /* Eine Spalte auf kleinen Bildschirmen */
-  gap: 2rem; /* Abstand zwischen den Kacheln */
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  justify-items: center;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr); /* Zwei Spalten auf Tablets */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
   }
 
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, 1fr); /* Drei Spalten auf Desktops */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 `;
 

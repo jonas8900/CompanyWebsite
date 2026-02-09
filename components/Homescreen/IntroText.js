@@ -27,15 +27,25 @@ export default function Introtext() {
       <ContentGrid>
         <TextSection>
           <p>
-            Ihr zuverlässiger Partner im Bereich <strong>Fördertechnik</strong>. 
-            Von der Herstellung hochspezialisierter Krananlagen bis hin zu 
-            präzisen Wartungen nach UVV BGV – wir vereinen handwerkliche 
-            Tradition mit modernster Technik.
+            Unser Unternehmen mit Sitz in Hannover, hat sich auf die Entwicklung und Fertigung von maßgeschneiderten Sonderkranlösungen spezialisiert.
           </p>
           <p>
-            Wir überholen sämtliche Kranantriebe markenunabhängig und 
-            konstruieren maßgeschneiderte Sonderhebezeuge für Ihre 
-            individuellen Anforderungen.
+            Dabei stehen die Kundenanforderungen im Mittelpunkt, wir erfüllen alle Wünsche an Anfahrmaße, 
+            Geschwindigkeiten, Traglasten, Farbgebung (Corporate Identity) sowie die Einbindung in aktive oder neue Prozesse. 
+            Durch spezielle Bauweisen und Sicherheitsanforderungen sowie unter Einhaltung der geltenden und gültigen Normen hat sich unser EMB-Sonderkranportfolio um 
+            Krane- für Personentransport sowie für den Transport feuerflüssiger Massen erweitert.
+          </p>
+          <p>
+            Erschwerte Einbringungssituationen welche besondere Demontage und Montagekonzepte erforderlich machen, sind für uns kein Hindernis.
+          </p>
+          <p>
+            <b>Ihre speziellen Anforderungen sind unser Antrieb</b>
+          </p>
+          <p>
+            Unser Portfolio wird durch unseren umfangreichen Kranservice abgerundet.
+          </p>
+          <p>
+            Alles aus einer Hand.
           </p>
         </TextSection>
 
@@ -102,7 +112,7 @@ const Badge = styled.span`
 `;
 
 const MainTitle = styled.h1`
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
   line-height: 1.1;
   color: #1a1a1a;
   margin-bottom: 3rem;

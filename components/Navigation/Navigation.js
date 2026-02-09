@@ -143,7 +143,9 @@ export default function Navigation({ scrollY, device }) {
 
 						<StyledLogoSection>
 							<Fade>
-								<Logo />
+								<StyledMobileCompanyTitle>
+									Elektromaschinenbau Schulze GmbH
+								</StyledMobileCompanyTitle>
 							</Fade>
 						</StyledLogoSection>
 
@@ -251,7 +253,7 @@ const StyledNavigationBar = styled.nav`
 	transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 
 	@media (min-width: 1024px) {
-		height: 5rem;
+		position: fixed;
 		${props => props.$scrolly > 50
 			? css`
 				background-color: white;
@@ -410,10 +412,52 @@ const StyledCompanyTitle = styled.h1`
 	}
 `;
 
-// Alte Logo-Styles, werden nicht mehr für Desktop benötigt
 const StyledLogoSection = styled.article`
 	grid-area: 1 / 1 / 2 / 2;
 	width: 73%;
 	margin: 0 auto;
 	margin-left: 0rem;
+`;
+
+const StyledMobileCompanyTitle = styled.h1`
+	color: var(--color-fourth);
+	font-size: 0.9rem;
+	font-weight: 600;
+	padding: 12px 0;
+	margin: 0;
+	position: relative;
+	text-align: left;
+	line-height: 1.3;
+
+	&::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 3px;
+		border-radius: 999px;
+		background: linear-gradient(
+			90deg,
+			rgba(125, 255, 125, 0.0),
+			rgba(125, 255, 125, 1),
+			rgba(125, 255, 125, 0.0)
+		);
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		height: 3px;
+		border-radius: 999px;
+		background: linear-gradient(
+			90deg,
+			rgba(24, 30, 144, 0.0),
+			#181E90,
+			rgba(24, 30, 144, 0.0)
+		);
+	}
 `;

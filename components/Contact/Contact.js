@@ -124,32 +124,126 @@ export default function Contact() {
 }
 
 const StyledContactSection = styled.section`
-	margin-left: 10%;
-	margin-right: 10%;
+	max-width: 1400px;
+	margin: 6rem auto;
+	padding: 0 1.5rem;
+
+	@media (min-width: 768px) {
+		padding: 0 2rem;
+	}
 `;
 
 const StyledHeadline = styled.h1`
-	margin-bottom: 2rem;
+	font-size: 2rem;
+	font-weight: 700;
+	color: var(--color-fourth);
+	text-align: center;
+	margin-bottom: 1rem;
+	position: relative;
+	padding-bottom: 1rem;
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 3px;
+		background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+	}
+
+	@media (min-width: 768px) {
+		font-size: 2.25rem;
+	}
+
+	@media (min-width: 1024px) {
+		font-size: 2.5rem;
+	}
 `;
 
 const StyledHeadlineAndButtonWrapper = styled.section`
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	gap: 1.5rem;
 	align-items: center;
+	margin-bottom: 3rem;
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
 `;
 
 const StyledInformationWrapper = styled.section`
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+	margin-bottom: 3rem;
+	background: white;
+	padding: 2rem;
+	border-radius: 12px;
+	border: 1px solid #e5e7eb;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+	@media (min-width: 600px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@media (min-width: 1024px) {
+		grid-template-columns: repeat(4, 1fr);
+		gap: 2.5rem;
+		padding: 2.5rem;
+	}
 `;
 
-const StyledInformations = styled.article``;
+const StyledInformations = styled.article`
+	h2 {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-secondary);
+		margin-bottom: 0.5rem;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
 
-const StyledMap = styled.article``;
+	p {
+		font-size: 1rem;
+		color: var(--color-fourth);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	a {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--color-fourth);
+		text-decoration: none;
+		transition: color 0.2s ease;
+		font-size: 1rem;
+
+		&:hover {
+			color: var(--color-secondary);
+		}
+	}
+`;
+
+const StyledMap = styled.article`
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	border: 1px solid #e5e7eb;
+`;
 
 const StyledFrame = styled.iframe`
 	border: none;
 	width: 100%;
-	height: 100%;
-	margin-bottom: 2rem;
+	height: 400px;
+	display: block;
+
+	@media (min-width: 768px) {
+		height: 500px;
+	}
 `;
