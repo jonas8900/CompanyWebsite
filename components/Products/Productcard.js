@@ -72,7 +72,7 @@ const StyledImageContainer = styled.section`
 	}
 
 	@media (min-width: 1024px) {
-		height: 300px;
+		height: 400px;
 	}
 `;
 
