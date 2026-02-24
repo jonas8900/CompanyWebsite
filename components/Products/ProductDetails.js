@@ -62,7 +62,8 @@ export default function ProductDetails({
 							<StyledIntroText>{infotext}</StyledIntroText>
 						</StyledHeader>
 
-						<StyledContentWrapper>
+						<StyledContentWrapper $imageCount={imageGalery !== null}>
+							{console.log(imageGalery !== null)}
 							<StyledMainContent>
 								<StyledContactData>{contactData}</StyledContactData>
 							</StyledMainContent>
@@ -285,7 +286,7 @@ const StyledContentWrapper = styled.div`
 	}
 
 	@media (min-width: 1024px) {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: ${({$imageCount}) => $imageCount ? '1fr 1fr' : '2fr' };
 		gap: 3rem;
 	}
 `;

@@ -9,10 +9,10 @@ export const ProductData = [
 		productDescription:
 			"Von der Erstprüfung bis zur finalen Abnahme – wir modernisieren Ihre Krananlagen professionell und zuverlässig.",
 		images: [
-			"/ProductPictures/Produkt-1.webp",
-			"/ProductPictures/Produkt-2.webp",
-			"/ProductPictures/Produkt-3.webp",
-			"/ProductPictures/Produkt-4.webp",
+			"/ProductPictures/PicturesInProducts/product-1.1.webp",
+			"/ProductPictures/PicturesInProducts/product-1.2.webp",
+			"/ProductPictures/PicturesInProducts/product-1.3.webp",
+			"/ProductPictures/PicturesInProducts/product-1.4.webp",
 		],
 		productDetails: (
 			<div>
@@ -44,9 +44,10 @@ export const ProductData = [
 		productDescription:
 			"Individuelle Kranlösungen nach Maß – von der ersten Idee bis zur fertigen Anlage.",
 		images: [
-			"/ProductPictures/Produkt-1.webp",
-			"/ProductPictures/Produkt-2.webp",
-			"/ProductPictures/Produkt-3.webp",
+			"/ProductPictures/PicturesInProducts/product-2.1.webp",
+			"/ProductPictures/PicturesInProducts/product-2.2.webp",
+			"/ProductPictures/PicturesInProducts/product-2.3.webp",
+			"/ProductPictures/PicturesInProducts/product-2.4.webp",
 		],
 		productDetails: (
 			<div>
@@ -81,7 +82,16 @@ export const ProductData = [
 		productDetails: (
 			<div>
 				<p>
-					Weitere Informationen zu unseren Serviceleistungen folgen in Kürze.
+					Durchführung der jährlich vorgeschriebenen Sicherheitsüberprüfung nach DGUV V52 und DGUV V54 an Krananlagen, Hebezeugen, Winden, Hub- und Zuggeräten mit vorgeschriebener Restlebensdauerberechnung und Lastprobe.
+				</p>
+				<p>
+					Wartungsarbeiten, ausgelegt und abgestimmt auf Ihren konkreten Bedarf mit Erstellung individueller Wartungspläne für jede Krananlage, je nach Nutzung und notwendiger Verfügbarkeit
+				</p>
+				<p>
+					Durchführung der elektrischen Prüfung nach DGUV V3 an Krananlagen
+					Mängelbeseitigungen zur Wiederherstellung des betriebssicheren Zustandes Ihrer Krananlage
+					Störungsbeseitigung und Notfalleinsatz für unsere Bestandskunden
+					Reparaturen und Überholung aller Komponenten unserer EMB-Krananlagen sowie eines jeden Herstellers
 				</p>
 			</div>
 		),
@@ -97,8 +107,10 @@ export const ProductData = [
 		productDetails: (
 			<div>
 				<p>
-					Weitere Informationen zu Ersatzteilen und unseren Schulungsangeboten
-					folgen in Kürze.
+					Ersatzteilebeschaffung aller gängigen Krankomponenten sowie Sonderanfertigungen
+				</p>
+				<p>
+					Durchführung von Kranführerschulungen
 				</p>
 			</div>
 		),

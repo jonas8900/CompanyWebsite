@@ -19,8 +19,7 @@ export default function Introtext() {
       <header>
         <Badge>Seit über 15 Jahren</Badge>
         <MainTitle>
-          Elektromaschinenbau <br />
-          <span>Schulze GmbH</span>
+          Das sind <span>wir</span>
         </MainTitle>
       </header>
 
@@ -65,8 +64,8 @@ export default function Introtext() {
               <Handshake size={28} color="#ffffff" strokeWidth={2} />
             </IconWrapper>
             <TextContent>
-              <h3>Fair</h3>
-              <p>Transparente Konditionen</p>
+              <h3>Kompentenz</h3>
+              <p>Know How im Sonderkranbau</p>
             </TextContent>
           </FeatureCard>
 

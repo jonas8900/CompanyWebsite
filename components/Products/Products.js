@@ -68,8 +68,8 @@ export default function Products({ device }) {
 												src={image}
 												key={image}
 												alt="Produktbild"
-												width={100}
-												height={100}
+												width={500}
+												height={500}
 											/>
 									  ))
 									: null
@@ -143,7 +143,7 @@ const StyledProductGrid = styled.div`
   @media (min-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
-    max-width: 1400px;
+    max-width: 1250px;
     margin: 0 auto;
   }
 `;

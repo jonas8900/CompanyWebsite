@@ -121,6 +121,7 @@ const StyledCardWrapper = styled.section`
 
 	@media (min-width: 1024px) {
 		min-height: 550px;
+		min-width:100%;
 	}
 `;
 
