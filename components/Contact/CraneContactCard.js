@@ -52,7 +52,7 @@ export default function CraneContactCard() {
 					<StyledContent onClick={handleCall}>
 						<StyledImageWrapper>
 							<Image
-								src="/vertriebler.jpg"
+								src="/vertriebler.webp"
 								alt="Ihr Ansprechpartner"
 								width={70}
 								height={70}

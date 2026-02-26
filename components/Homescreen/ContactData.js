@@ -17,7 +17,7 @@ export default function ContactData({ onClick, animationTrigger }) {
 					<StyledHeader>
 						<StyledImageWrapper>
 							<Image
-								src="/vertriebler.jpg"
+								src="/vertriebler.webp"
 								alt="Tim Dally"
 								width={120}
 								height={120}
