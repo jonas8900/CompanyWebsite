@@ -93,7 +93,7 @@ const StyledWrapper = styled.section`
 const StyledImageContainer = styled.section`
   position: relative;
   width: 100%;
-  height: 60vh;
+  height: 42vh;
   overflow: hidden;
 
   @media (min-width: 1025px) {

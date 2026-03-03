@@ -424,7 +424,7 @@ const StyledMobileCompanyTitle = styled.h1`
 	font-size: 0.9rem;
 	font-weight: 600;
 	padding: 12px 0;
-	margin: 0;
+	margin: auto auto auto 10px;
 	position: relative;
 	text-align: left;
 	line-height: 1.3;
