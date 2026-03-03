@@ -7,7 +7,7 @@ import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
 import { Link } from "react-scroll";
 import ContactData from "./ContactData";
 
-export default function ModernRandomPicture() {
+export default function ModernRandomPicture({device}) {
 	const [isInfoBoxHovered, setIsInfoBoxHovered] = useState(false);
 	const [contactDataOpen, setContactDataOpen] = useState(false);
 	const [animationToggle, setAnimationToggle] = useState(false);
@@ -18,7 +18,7 @@ export default function ModernRandomPicture() {
 	}
 
 	function handleCloseContactData() {
-		if (animationToggle) return; // Verhindert doppeltes Schließen während Animation läuft
+		if (animationToggle) return; 
 
 		setAnimationToggle(true);
 		setTimeout(() => {
@@ -28,6 +28,7 @@ export default function ModernRandomPicture() {
 	}
 
 	useBodyScrollLock(contactDataOpen);
+
 
 	return (
 		<>
@@ -43,16 +44,6 @@ export default function ModernRandomPicture() {
 						sizes="100vw"
 					/>
 
-					<StyledMobileImageText>
-						<h1>Ihr Partner für maßgeschneiderte Lösungen im Sonderkranbau und Service</h1>
-						<p>Schauen Sie sich jetzt um oder kontaktieren Sie uns</p>
-						<div className="buttons">
-							<Link to="products" smooth={true} duration={500}>
-								<Greenbutton>Unsere Produkte</Greenbutton>
-							</Link>
-							<Greenbutton onClick={handleContactUsButton}>Kontakt</Greenbutton>
-						</div>
-					</StyledMobileImageText>
 
 					<StyledInfoBox
 						onMouseEnter={() => setIsInfoBoxHovered(true)}
@@ -71,6 +62,16 @@ export default function ModernRandomPicture() {
 						</div>
 					</StyledInfoBox>
 				</StyledImageContainer>
+					<StyledMobileImageText>
+						<h1>Ihr Partner für maßgeschneiderte Lösungen im Sonderkranbau und Service</h1>
+						<p>Schauen Sie sich jetzt um oder kontaktieren Sie uns</p>
+						<div className="buttons">
+							<Link to="products" smooth={true} duration={500}>
+								<Greenbutton>Unsere Produkte</Greenbutton>
+							</Link>
+							<Greenbutton onClick={handleContactUsButton}>Kontakt</Greenbutton>
+						</div>
+					</StyledMobileImageText>
 			</StyledWrapper>
 
 			{contactDataOpen && (
@@ -127,12 +128,8 @@ const StyledRandomImage = styled(Image)`
 `;
 
 const StyledMobileImageText = styled.div`
-  position: absolute;
-  z-index: 4;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: min(92%, 500px);
+  margin: 2rem auto;
   padding: 1.75rem 1.25rem;
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.5);

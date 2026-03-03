@@ -19,8 +19,8 @@ export default function ContactData({ onClick, animationTrigger }) {
 							<Image
 								src="/vertriebler.webp"
 								alt="Tim Dally"
-								width={120}
-								height={120}
+								width={160}
+								height={160}
 								style={{ borderRadius: "50%", objectFit: "cover" }}
 								onError={(e) => {
 									e.target.style.display = "none";
@@ -143,8 +143,8 @@ const StyledHeader = styled.div`
 `;
 
 const StyledImageWrapper = styled.div`
-	width: 120px;
-	height: 120px;
+	width: 180px;
+	height: 180px;
 	margin: 0 auto 1.5rem;
 	border-radius: 50%;
 	overflow: hidden;

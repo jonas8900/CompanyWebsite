@@ -54,8 +54,8 @@ export default function CraneContactCard() {
 							<Image
 								src="/vertriebler.webp"
 								alt="Ihr Ansprechpartner"
-								width={70}
-								height={70}
+								width={100}
+								height={100}
 								style={{ borderRadius: "50%", objectFit: "cover" }}
 								onError={(e) => {
 									// Fallback wenn kein Bild vorhanden - Zeige Platzhalter
@@ -104,7 +104,7 @@ const StyledCard = styled.div`
 	position: fixed;
 	bottom: 2rem;
 	right: 2rem;
-	width: 300px;
+	width: 400px;
 	background: white;
 	border-radius: 16px;
 	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -114,7 +114,7 @@ const StyledCard = styled.div`
 	animation: ${({ $isAnimating }) => ($isAnimating ? slideIn : slideOut)} 0.3s ease-out forwards;
 
 	@media (max-width: 767px) {
-		width: 280px;
+		width: 380px;
 		bottom: 1rem;
 		right: 1rem;
 	}
@@ -158,8 +158,8 @@ const StyledContent = styled.div`
 
 const StyledImageWrapper = styled.div`
 	flex-shrink: 0;
-	width: 70px;
-	height: 70px;
+	width: 100px;
+	height: 100px;
 	border-radius: 50%;
 	overflow: hidden;
 	border: 3px solid var(--color-primary);

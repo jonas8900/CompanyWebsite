@@ -44,7 +44,7 @@ export default function Home({ scrollY, device, setDevice }) {
 			</Head>
 			<StyledMain>
 				<Navigation scrollY={scrollY} device={device} setDevice={setDevice} />
-				<ModernRandomPicture />
+				<ModernRandomPicture device={device}/>
 				<ScrollToTop scrollY={scrollY} />
 				<SideBar />
 				{popUp && (
@@ -54,7 +54,6 @@ export default function Home({ scrollY, device, setDevice }) {
 					/>
 				)}
 				<StyledSectionForWidth>
-					<TestingHeadling>TESTING-PREVIEW-BRANCH</TestingHeadling>
 					<Introtext />
 					<Products device={device} setDevice={setDevice} />
 					<Certificates device={device} />
@@ -81,21 +80,6 @@ const StyledSectionForWidth = styled.section`
 	}
 `;
 
-const TestingHeadling = styled.h1`
-	color: red;
-	position: fixed;
-	font-size: 0.6rem;
-	top: 10%;
-	left: 1rem;
-	z-index: 100000;
-	background-color: white;
-	font-size: 0.9rem;
-
-	@media (min-width: 768px) {
-		font-size: 1rem;
-		padding: 1rem;
-	}
-`;
 
 const StyledMain = styled.main`
 	animation: ${FadeIn} 0.8s linear;
