@@ -64,7 +64,7 @@ export default function Introtext() {
               <Handshake size={28} color="#ffffff" strokeWidth={2} />
             </IconWrapper>
             <TextContent>
-              <h3>Kompentenz</h3>
+              <h3>Kompentent</h3>
               <p>Know How im Sonderkranbau</p>
             </TextContent>
           </FeatureCard>

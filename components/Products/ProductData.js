@@ -3,7 +3,7 @@ export const ProductData = [
 		id: "1",
 		src: "/ProductPictures/Produkt-1.webp",
 		alt: "Bild einer modernen Krananlage",
-		headline: "Modernisierung/Retrofit",
+		headline: "Modernisierung / Retrofit",
 		subheadline: "Für alle Traglasten und jede Kranart",
 		infotext: "Rund-um-sorglos Paket beginnend ab Tragwerksüberprüfung bis hin zur betriebsfertigen Übergabe mit Sachverständigenabnahme, alles aus einer Hand.",
 		productDescription:
@@ -39,7 +39,7 @@ export const ProductData = [
 		id: "2",
 		src: "/ProductPictures/Produkt-2.webp",
 		alt: "Bild einer Kranherstellung",
-		headline: "Kranherstellung/Neuanlagenbau",
+		headline: "Kranherstellung / Neuanlagenbau",
 		infotext: "Maßgeschneiderte Lösung ohne Kompromisse, ab der Planung bis zur Abnahme, alles aus einer Hand.",
 		productDescription:
 			"Individuelle Kranlösungen nach Maß – von der ersten Idee bis zur fertigen Anlage.",
@@ -89,7 +89,9 @@ export const ProductData = [
 				</p>
 				<p>
 					Durchführung der elektrischen Prüfung nach DGUV V3 an Krananlagen
-					Mängelbeseitigungen zur Wiederherstellung des betriebssicheren Zustandes Ihrer Krananlage
+					Mängelbeseitigungen zur Wiederherstellung des betriebssicheren Zustandes Ihrer Krananlage.
+				</p>
+				<p>
 					Störungsbeseitigung und Notfalleinsatz für unsere Bestandskunden
 					Reparaturen und Überholung aller Komponenten unserer EMB-Krananlagen sowie eines jeden Herstellers
 				</p>

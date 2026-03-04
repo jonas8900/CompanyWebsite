@@ -54,7 +54,7 @@ export default function CraneContactCard() {
 							<Image
 								src="/vertriebler.webp"
 								alt="Ihr Ansprechpartner"
-								width={100}
+								width={120}
 								height={100}
 								style={{ borderRadius: "50%", objectFit: "cover" }}
 								onError={(e) => {
