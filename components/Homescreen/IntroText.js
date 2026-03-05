@@ -1,120 +1,215 @@
 import styled, { keyframes } from "styled-components";
-import GreenButton from "../Buttons/GreenButton";
 import { useEffect, useState } from "react";
+import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
+import { Zap, Handshake, ShieldCheck } from "lucide-react"; // Moderne Icons
+
+const fadeInUp = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
 
 export default function Introtext() {
-	const [windowAlert, setWindowAlert] = useState(0);
+  const [windowAlert, setWindowAlert] = useState(0);
+  useBodyScrollLock(windowAlert > 0);
 
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			if (windowAlert > 0) {
-				document.body.style.overflow = "hidden";
-			} else {
-				document.body.style.overflow = "auto";
-			}
-		}
-	}, [windowAlert]);
+  const brandGreen = "#2e7d32"; // Das kräftige Logo-Grün
 
-	return (
-		<>
-			<StyledIntroTextWrapper>
-				<StyledHeadline>Elektromaschinenbau Schulze GmbH</StyledHeadline>
-				<StyledSecondHeadline>seit mehr als 15 Jahren..</StyledSecondHeadline>
-				<StyledInfoSection>
-					<StyledTextParagraph>
-						sind wir Ihr zuverlässiger Partner im Bereich Fördertechnik. Unsere
-						Leistungen umfassen die Herstellung von Krananlagen, Service und
-						Reparaturen, Mängelbeseitigungen, Prüfungen sowie die Reparatur und
-						Überholung sämtlicher Kranantriebe, unabhängig von ihrem Alter und
-						Hersteller. Wir sind Spezialisten in der Planung, Konstruktion und
-						Herstellung von Kranen und Sonderhebezeugen. Darüber hinaus bieten
-						wir Kranprüfungen gemäß der UVV BGV an und sind Experten in
-						Spezialmontagen. Unser Ziel ist es, maßgeschneiderte Lösungen für
-						jeden Kunden anzubieten und somit langfristige Partnerschaften
-						aufzubauen. Vertrauen Sie auf unsere Erfahrung und unser Engagement.
-					</StyledTextParagraph>
-					<StyledArgumentCardWrapper>
-						<StyledButton disabled>
-							<i>schnell</i>
-						</StyledButton>
+  return (
+    <StyledIntroContainer>
+      <header>
+        <Badge>Seit über 15 Jahren</Badge>
+        <MainTitle>
+          Das sind <span>wir</span>
+        </MainTitle>
+      </header>
 
-						<StyledButton disabled>
-							<b>fair</b>
-						</StyledButton>
+      <ContentGrid>
+        <TextSection>
+          <p>
+            Unser Unternehmen mit Sitz in Hannover, hat sich auf die Entwicklung und Fertigung von maßgeschneiderten Sonderkranlösungen spezialisiert.
+          </p>
+          <p>
+            Dabei stehen die Kundenanforderungen im Mittelpunkt, wir erfüllen alle Wünsche an Anfahrmaße, 
+            Geschwindigkeiten, Traglasten, Farbgebung (Corporate Identity) sowie die Einbindung in aktive oder neue Prozesse. 
+            Durch spezielle Bauweisen und Sicherheitsanforderungen sowie unter Einhaltung der geltenden und gültigen Normen hat sich unser EMB-Sonderkranportfolio um 
+            Krane- für Personentransport sowie für den Transport feuerflüssiger Massen erweitert.
+          </p>
+          <p>
+            Erschwerte Einbringungssituationen welche besondere Demontage und Montagekonzepte erforderlich machen, sind für uns kein Hindernis.
+          </p>
+          <p>
+            <b>Ihre speziellen Anforderungen sind unser Antrieb</b>
+          </p>
+          <p>
+            Unser Portfolio wird durch unseren umfangreichen Kranservice abgerundet.
+          </p>
+          <p>
+            Alles aus einer Hand.
+          </p>
+        </TextSection>
 
-						<StyledButton disabled>zuverlässig</StyledButton>
-					</StyledArgumentCardWrapper>
-				</StyledInfoSection>
-			</StyledIntroTextWrapper>
-		</>
-	);
+        <FeatureList>
+          <FeatureCard color="dark">
+            <IconWrapper>
+              <Zap size={28} color={brandGreen} strokeWidth={2} />
+            </IconWrapper>
+            <TextContent>
+              <h3>Schnell</h3>
+              <p>Minimale Stillstandzeiten</p>
+            </TextContent>
+          </FeatureCard>
+
+          <FeatureCard color="dark">
+            <IconWrapper>
+              <Handshake size={28} color="#ffffff" strokeWidth={2} />
+            </IconWrapper>
+            <TextContent>
+              <h3>Kompentent</h3>
+              <p>Know How im Sonderkranbau</p>
+            </TextContent>
+          </FeatureCard>
+
+		<FeatureCard color="dark">
+            <IconWrapper>
+              <ShieldCheck size={28} color={brandGreen} strokeWidth={2} />
+            </IconWrapper>
+            <TextContent>
+              <h3>Zuverlässig</h3>
+              <p>Qualität nach Norm</p>
+            </TextContent>
+          </FeatureCard>
+        </FeatureList>
+      </ContentGrid>
+    </StyledIntroContainer>
+  );
 }
 
-const StyledIntroTextWrapper = styled.main`
-	margin: auto 5% auto 10%;
-	margin-top: 60%;
-	@media (max-width: 350px) {
-		margin-top: 80%;
-	}
-	@media (min-width: 450px) {
-		margin-top: 30%;
-	}
-	@media (min-width: 1100px) {
-		margin: auto;
-		margin-top: 4%;
-		padding: 1rem;
-		box-shadow: 5px 8px 12px -4px rgba(0, 0, 0, 0.2);
-		width: 70%;
-		border-left: 1px solid rgba(0, 0, 0, 0.1);
-	}
-	@media (min-width: 1800px) {
-		margin-top: 0;
-	}
+
+const StyledIntroContainer = styled.main`
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 0 2rem;
+  font-family: 'Inter', sans-serif;
+  animation: ${fadeInUp} 0.8s ease-out;
+
+  @media (max-width: 768px) {
+    margin: 60px auto;
+  }
 `;
 
-const StyledButton = styled.button`
-	background-color: #e9ffef;
-	border: none;
-	border-bottom: 1px solid rgba(220, 220, 220, 1);
-	padding: 0.6rem;
-	min-width: 6rem;
-	font-size: var(--font-size-text);
-	color: var(--color-fourth);
+const Badge = styled.span`
+  display: inline-block;
+  background: #e9ffef;
+  color: #2e7d32;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 `;
 
-const StyledHeadline = styled.h1`
-	text-align: center;
-	text-shadow: 1px 1px 1px #eee;
-	text-decoration: underline;
-	text-decoration-color: var(--color-primary);
+const MainTitle = styled.h1`
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  line-height: 1.1;
+  color: #1a1a1a;
+  margin-bottom: 3rem;
+
+  span {
+    color: #2e7d32; 
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 8px;
+      background: rgba(46, 125, 50, 0.1);
+      z-index: -1;
+    }
+  }
 `;
 
-const StyledInfoSection = styled.section`
-	display: flex;
+const ContentGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: center;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 `;
 
-const StyledTextParagraph = styled.p`
-	@media (min-width: 1025px) {
-		line-height: 1.5rem;
-		align-self: center;
-	}
+const TextSection = styled.article`
+  p {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.5rem;
+
+    strong {
+      color: #1a1a1a;
+      border-bottom: 2px solid #2e7d32;
+    }
+  }
 `;
 
-const StyledSecondHeadline = styled.h2`
-	text-align: center;
-	@media (min-width: 1025px) {
-		font-size: 1.1rem;
-		font-weight: 500;
-	}
+const FeatureList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 `;
 
-const StyledArgumentCardWrapper = styled.article`
-	margin: auto 0 auto 1rem;
-	display: flex;
-	flex-direction: column;
+const FeatureCard = styled.div`
+  display: flex;
+  align-items: center; 
+  gap: 1.5rem;
+  
+  
+  background: ${props => props.color === 'dark' ? '#2e7d32' : '#e9ffef'};
+  color: ${props => props.color === 'dark' ? '#fff' : '#fff'};
+  
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border: 1px solid rgba(46, 125, 50, 0.1);
+  transition: all 0.3s ease;
 
-	align-items: center;
-	justify-content: center;
-	grid-template-rows: 1fr 1fr 1fr;
-	gap: 1rem;
+  &:hover {
+    transform: translateX(10px);
+    box-shadow: 0 12px 35px rgba(46, 125, 50, 0.15);
+  }
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: ${props => props.theme === 'dark' ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.5)'};
+  padding: 12px;
+  border-radius: 12px;
+`;
+
+const TextContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 4px 0 0 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+	color: #fff;
+  }
 `;

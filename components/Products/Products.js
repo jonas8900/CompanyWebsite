@@ -5,9 +5,9 @@ import { ProductData } from "./ProductData";
 import ProductDetails from "./ProductDetails";
 import Image from "next/image";
 
-import "react-multi-carousel/lib/styles.css";
+import "react-multi-carousel/lib/styles.css"; 
 
-import ProductSlideShow from "./ProductSlideShow";
+import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
 
 
 export default function Products({ device }) {
@@ -17,118 +17,110 @@ export default function Products({ device }) {
 
 	function handleShowProductDetails(productIndexFromCard) {
 		setShowProductDetails(true);
+		setAnimationToggle(false);
 		setActiveProduct(ProductData[productIndexFromCard - 1]);
 	}
 
 	function handleCloseWindow() {
+		if (animationToggle) return; 
+
 		setAnimationToggle(true);
 		setTimeout(() => {
 			setShowProductDetails(false);
 			setAnimationToggle(false);
-		}, 350);
+		}, 360);
 	}
-	useEffect(() => {
-		if (typeof window !== "undefined") {
-			if (showProductDetails === true) {
-				document.body.style.overflow = "hidden";
-			} else {
-				document.body.style.overflow = "auto";
-			}
-		}
-	}, [showProductDetails]);
+
+	useBodyScrollLock(showProductDetails);
 
 	return (
 		<>
-			{device ? (
-				<>
-					<StyledHeadline id="products">Unsere Produkte</StyledHeadline>
-					<ProductSlideShow
-						handleShowProductDetails={handleShowProductDetails}
-					/>
-					<StyledProductDesktopSection>
-						{showProductDetails && (
-							<>
-								<ProductDetails
-									animationTrigger={animationToggle}
-									headline={activeProduct.headline}
-									infotext={activeProduct.productDescription}
-									contactData={
-										<StyledArticle>
-											{activeProduct.productDetails}
-										</StyledArticle>
-									}
-									onClick={handleCloseWindow}
-								/>
-							</>
-						)}
-					</StyledProductDesktopSection>
-				</>
-			) : (
-				<StyledProductWrapper id="products">
-					<StyledHeadline>Unsere Produkte</StyledHeadline>
-					<StyledProductSection>
-						{ProductData.map((product) => (
-							<ProductCard
-								key={product.id}
-								src={product.src}
-								alt={product.alt}
-								headline={product.headline}
-								infotext={product.infotext}
-								onClick={() => handleShowProductDetails(product.id)}
-							>
-								{" "}
-								Mehr erfahren ...
-							</ProductCard>
-						))}
-					</StyledProductSection>
-					{showProductDetails && (
-						<>
-							<ProductDetails
-								animationTrigger={animationToggle}
-								headline={activeProduct.headline}
-								infotext={activeProduct.productDescription}
-								contactData={
-									<StyledArticle>{activeProduct.productDetails}</StyledArticle>
-								}
-								imageGalery={
-									activeProduct.images != undefined
-										? activeProduct.images.map((image) => (
-												<Image
-													src={image}
-													key={image}
-													alt="Produktbild"
-													width={100}
-													height={100}
-												/>
-										  ))
-										: null
-								}
-								onClick={handleCloseWindow}
-							/>
-						</>
-					)}
-				</StyledProductWrapper>
-			)}
+			<StyledProductWrapper id="products">
+				<StyledHeadline>Unsere Produkte</StyledHeadline>
+				<StyledProductGrid>
+					{ProductData.map((product) => (
+						<ProductCard
+							key={product.id}
+							src={product.src}
+							alt={product.alt}
+							headline={product.headline}
+							subheadline={product.subheadline}
+							infotext={product.infotext}
+							onClick={() => handleShowProductDetails(product.id)}
+						>
+							Mehr erfahren
+						</ProductCard>
+					))}
+				</StyledProductGrid>
+				{showProductDetails && (
+					<>
+						<ProductDetails
+							animationTrigger={animationToggle}
+							headline={activeProduct.headline}
+							infotext={activeProduct.productDescription}
+							contactData={
+								<StyledArticle>{activeProduct.productDetails}</StyledArticle>
+							}
+							imageGalery={
+								activeProduct.images != undefined 
+									? activeProduct.images.map((image) => (
+											<Image
+												src={image}
+												key={image}
+												alt="Produktbild"
+												width={500}
+												height={500}
+											/>
+									  ))
+									: null
+							}
+							onClick={handleCloseWindow}
+						/>
+					</>
+				)}
+			</StyledProductWrapper>
 		</>
 	);
 }
 
 const StyledHeadline = styled.h1`
-	margin-left: 10%;
-	width: 8rem;
+	font-size: 2rem;
+	font-weight: 700;
+	color: var(--color-fourth);
+	text-align: center;
+	margin-bottom: 3rem;
+	position: relative;
+	padding-bottom: 1rem;
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 80px;
+		height: 3px;
+		background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+	}
+
 	@media (min-width: 768px) {
-		width: 10.5rem;
+		font-size: 2.25rem;
+		margin-bottom: 4rem;
 	}
-	@media (min-width: 1025px) {
-		margin-top: 5%;
-		text-shadow: 1px 3px 1px #eee;
+
+	@media (min-width: 1024px) {
+		font-size: 2.5rem;
 	}
-	border-bottom: 2px solid var(--color-primary);
 `;
 
 const StyledProductWrapper = styled.section`
-	margin-top: 4rem;
-	max-width: 2000px;
+	margin: 6rem auto;
+	padding: 0 1.5rem;
+	max-width: 1600px;
+
+	@media (min-width: 768px) {
+		padding: 0 2rem;
+	}
 `;
 
 const StyledArticle = styled.article`
@@ -137,16 +129,29 @@ const StyledArticle = styled.article`
 	color: var(--color-fourth);
 `;
 
-const StyledProductSection = styled.section`
-	display: flex;
-	flex-direction: column;
-	gap: 40px;
-	margin-bottom: 2rem;
+const StyledProductGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  justify-items: center;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 1250px;
+    margin: 0 auto;
+  }
 `;
 
-const StyledProductDesktopSection = styled.section`
-	margin: 5% 15%;
-	display: flex;
-	gap: 30px;
-	position: relative;
-`;
+// Diese Styled-Component wird nicht mehr benötigt, da ProductSlideShow entfernt wurde.
+// const StyledProductDesktopSection = styled.section`
+// 	margin: 5% 15%;
+// 	display: flex;
+// 	gap: 30px;
+// 	position: relative;
+// `;

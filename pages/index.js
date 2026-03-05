@@ -2,7 +2,7 @@ import Career from "../components/Career/Career";
 import Introtext from "../components/Homescreen/IntroText";
 import Navigation from "../components/Navigation/Navigation";
 import Products from "../components/Products/Products";
-import Randompicture from "../components/Homescreen/Randompicturewithinfo";
+import ModernRandomPicture from "../components/Homescreen/ModernRandomPicture";
 import ScrollToTop from "../components/Sidebar/ScrollToTop";
 import Contact from "../components/Contact/Contact";
 import Footer from "../components/Footer/Footer";
@@ -44,7 +44,7 @@ export default function Home({ scrollY, device, setDevice }) {
 			</Head>
 			<StyledMain>
 				<Navigation scrollY={scrollY} device={device} setDevice={setDevice} />
-				<Randompicture />
+				<ModernRandomPicture device={device}/>
 				<ScrollToTop scrollY={scrollY} />
 				<SideBar />
 				{popUp && (
@@ -79,6 +79,7 @@ const StyledSectionForWidth = styled.section`
 		margin: 0 auto;
 	}
 `;
+
 
 const StyledMain = styled.main`
 	animation: ${FadeIn} 0.8s linear;

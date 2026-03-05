@@ -1,10 +1,9 @@
 import dbConnect from "../../db/connect";
 import Job from "../../db/models/Jobs";
-import { authOptions } from "pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth/next";
 
 export default async function handler(request, response) {
-	const session = await getServerSession(request, response, authOptions);
+	const session = await getServerSession(request, response);
 
 	if (!session) {
 		response.status(401).json({ error: "Unauthorized" });
