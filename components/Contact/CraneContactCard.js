@@ -70,6 +70,8 @@ export default function CraneContactCard() {
 								<Phone size={18} />
 								<span>0511 277896-80</span>
 							</StyledPhoneWrapper>
+							<StyledContact>Ihr Kontakt im Vertrieb</StyledContact>
+							<StyledContact>Tim Dally</StyledContact>
 						</StyledTextWrapper>
 					</StyledContent>
 				</StyledCard>
@@ -187,6 +189,14 @@ const StyledQuestion = styled.p`
 	line-height: 1.3;
 `;
 
+const StyledContact = styled.p`
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--color-fourth);
+	margin: 0;
+	line-height: 1.3;
+`;
+
 const StyledPhoneWrapper = styled.div`
 	display: flex;
 	align-items: center;
@@ -194,6 +204,7 @@ const StyledPhoneWrapper = styled.div`
 	color: var(--color-secondary);
 	font-weight: 600;
 	font-size: 1rem;
+	margin-bottom: 0.5rem;
 
 	svg {
 		color: var(--color-secondary);
