@@ -63,7 +63,6 @@ export default function ProductDetails({
 						</StyledHeader>
 
 						<StyledContentWrapper $imageCount={imageGalery !== null}>
-							{console.log(imageGalery !== null)}
 							<StyledMainContent>
 								<StyledContactData>{contactData}</StyledContactData>
 							</StyledMainContent>

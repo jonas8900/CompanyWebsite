@@ -8,7 +8,7 @@ import { Link } from "react-scroll/modules";
 import { useSession } from "next-auth/react";
 import LinkToAdmin from "next/link";
 
-export default function Navigation({ scrollY, device }) {
+export default function Navigation({ scrollY, device: $device }) {
 	const { data: session } = useSession();
 	const [menuClicked, setMenuClicked] = useState(false);
 	const [animationDone, setAnimationDone] = useState(false);
@@ -19,7 +19,7 @@ export default function Navigation({ scrollY, device }) {
 
 	return (
 		<>
-			{device ? (
+			{$device ? (
 				<StyledNavigationBar $scrolly={scrollY}>
 					<StyledNavigationSection>
 						<StyledLogoReplacement>

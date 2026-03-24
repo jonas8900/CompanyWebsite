@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function Certificates({ device }) {
     return (
-        <StyledSectionForWidth id="certificates" device={device}>
-            <StyledCertificatesContainer device={device}>
+        <StyledSectionForWidth id="certificates">
+            <StyledCertificatesContainer>
                 <StyledCertificatesText>
                     <StyledHeadline>Unsere Zertifikate</StyledHeadline>
                     <StyledParagraph>
@@ -15,7 +15,7 @@ export default function Certificates({ device }) {
                     </StyledDownloadButton>
                 </StyledCertificatesText>
 
-                <StyledCertificatesImageContainer device={device}>
+                <StyledCertificatesImageContainer>
                     <a href="/Zertifikate/Zertifikatiso9001.pdf" download>
                         <Image
                             src="/Zertifikatvorschau.png"

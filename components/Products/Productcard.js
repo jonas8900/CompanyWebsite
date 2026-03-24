@@ -20,7 +20,11 @@ export default function ProductCard({
 					width={1920}
 					height={1080}
 					sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
-					layout="responsive"
+					style={{
+						width: '100%',
+						height: '100%',
+						objectFit: 'cover',
+					}}
 					rel="preload"
 					unoptimized
 				/>
@@ -42,9 +46,6 @@ export default function ProductCard({
 }
 
 const StyledRandomImage = styled(Image)`
-	width: 100%;
-	height: 100% !important;
-	object-fit: cover;
 	transition: transform 0.4s ease;
 `;
 

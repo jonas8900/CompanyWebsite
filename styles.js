@@ -49,13 +49,6 @@ export default createGlobalStyle`
     .react-responsive-carousel .carousel .slide[aria-hidden="true"] {
   pointer-events: none;
 }
-    @font-face {
-      font-family: 'Roboto';
-      src: url('/path/to/your-font.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: optional;
-    }
   }
 
   h1 {
