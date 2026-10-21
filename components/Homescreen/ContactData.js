@@ -37,8 +37,8 @@ export default function ContactData({ onClick, animationTrigger }) {
 							<PhoneIcon href="tel:017660742449">0176 60742449</PhoneIcon>
 						</StyledContactItem>
 						<StyledContactItem>
-							<MailIcon href="mailto:tim.dally@emb-schulze.de">
-								tim.dally@emb-schulze.de
+							<MailIcon href="mailto:dally@emb-schulze.de">
+								dally@emb-schulze.de
 							</MailIcon>
 						</StyledContactItem>
 					</StyledContent>
