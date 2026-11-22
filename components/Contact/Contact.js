@@ -6,6 +6,7 @@ import ToastMessage from "../ToastMessage/ToastMessage";
 import PhoneIcon from "../Icons/PhoneIcon";
 import MailIcon from "../Icons/MailIcon";
 import { useBodyScrollLock } from "../../lib/helper/BodyScrollBar";
+import GoogleMapsConsent from "./GoogleMapsConsent";
 
 export default function Contact() {
 	const [messageSuccess, setMessageSuccess] = useState(false);
@@ -94,17 +95,7 @@ export default function Contact() {
 						<p>Alter Flughafen 6, 30179 Hannover</p>
 					</StyledInformations>
 				</StyledInformationWrapper>
-				<StyledMap>
-					<StyledFrame
-						title="Google Maps Karte"
-						src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d9733.706148067538!2d9.737020474686359!3d52.41706875254704!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x47b07308c9f8b3d1%3A0xcac079d74df9304a!2selektromaschinenbau%20schulze!3m2!1d52.415932399999996!2d9.7423229!5e0!3m2!1sde!2sde!4v1700135741460!5m2!1sde!2sde"
-						width="600"
-						height="450"
-						allowFullScreen=""
-						loading="lazy"
-						referrerPolicy="no-referrer-when-downgrade"
-					></StyledFrame>
-				</StyledMap>
+				<GoogleMapsConsent />
 			</StyledContactSection>
 			{formularClicked && (
 				<>
@@ -227,23 +218,5 @@ const StyledInformations = styled.article`
 		&:hover {
 			color: var(--color-secondary);
 		}
-	}
-`;
-
-const StyledMap = styled.article`
-	border-radius: 12px;
-	overflow: hidden;
-	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	border: 1px solid #e5e7eb;
-`;
-
-const StyledFrame = styled.iframe`
-	border: none;
-	width: 100%;
-	height: 400px;
-	display: block;
-
-	@media (min-width: 768px) {
-		height: 500px;
 	}
 `;
