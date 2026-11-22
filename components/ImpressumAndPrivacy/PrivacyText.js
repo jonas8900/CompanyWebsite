@@ -25,6 +25,17 @@ export default function PrivacyText() {
                 </StyledLink>
             </StyledParagraph>
 
+            <StyledSecondHeadline id="google-maps">Google Maps</StyledSecondHeadline>
+            <StyledParagraph>
+                Auf unserer Website können Sie eine Karte des Kartendienstes Google Maps anzeigen lassen. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland (&bdquo;Google&ldquo;). <br /><br />
+                Die Karte wird <strong>nicht automatisch</strong> geladen. Erst wenn Sie aktiv auf &bdquo;Karte laden&ldquo; klicken, wird eine Verbindung zu den Servern von Google hergestellt. Dabei werden insbesondere Ihre IP-Adresse sowie Informationen über die aufgerufene Seite an Google übermittelt. Google kann zudem Cookies oder vergleichbare Technologien auf Ihrem Endgerät speichern bzw. auslesen. Es ist nicht ausgeschlossen, dass Daten auch an Server der Google LLC in den USA übertragen werden. Die Google LLC ist nach dem &bdquo;EU-US Data Privacy Framework&ldquo; (DPF) zertifiziert. <br /><br />
+                Die Nutzung von Google Maps erfolgt ausschließlich auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG). Ihre Einwilligung wird nicht gespeichert und gilt nur für den aktuellen Seitenaufruf. Sie können sie jederzeit mit Wirkung für die Zukunft widerrufen, indem Sie die Seite neu laden oder schließen; die Karte wird dann erst nach einem erneuten Klick wieder geladen. <br /><br />
+                Weitere Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google: <br />
+                <StyledLink href="https://policies.google.com/privacy?hl=de">
+                    https://policies.google.com/privacy?hl=de
+                </StyledLink>
+            </StyledParagraph>
+
             <StyledSecondHeadline>reCAPTCHA</StyledSecondHeadline>
             <StyledParagraph>
                 Zum Schutz Ihrer Anfragen per Internetformular verwenden wir den Dienst
